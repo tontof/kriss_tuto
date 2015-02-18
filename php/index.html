@@ -1,0 +1,2777 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<title>PHP</title>
+
+<link rel="stylesheet" href="../lib/reveal.js/css/reveal.min.css"/>
+<link rel="stylesheet" href="../lib/reveal.js/css/theme/serif.css" id="theme"/>
+<link rel="stylesheet" href="./inc/css/custom.css"/>
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = '../lib/reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+<script type="text/javascript" src="../lib/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<meta name="description" content="PHP Introduction.">
+</head>
+<body>
+<div id="phpjs-compiler"><textarea id="phpjs-code"></textarea><div id="phpjs-results"><div id="phpjs-result"></div><div id="phpjs-html-result"></div></div><button id="phpjs-clear">Clear</button><button id="phpjs-close">Close</button><button id="phpjs-run">Run</button></div>
+<div class="reveal">
+<div class="slides">
+<section>
+<div id="title"><h1>PHP</h1><h2></h2><h3><a href="mailto:"></a></h3></div></section>
+<section>
+<h2>Table des matières</h2><ul>
+<li>
+<a href="#sec-1">Les bases en PHP</a>
+</li>
+<li>
+<a href="#sec-2">Les formulaires</a>
+</li>
+<li>
+<a href="#sec-3">Cookies et sessions</a>
+</li>
+<li>
+<a href="#sec-4">PHP et les fichiers</a>
+</li>
+<li>
+<a href="#sec-5">Bases de données SQL</a>
+</li>
+</ul>
+</section>
+
+<section id="sec-1" >
+
+<h2>Les bases en PHP</h2>
+</section>
+<section id="sec-1-1" >
+
+<h3>Pourquoi PHP ?</h3>
+<a href="http://www.commitstrip.com/fr/2015/01/12/the-right-tool-for-the-right-job/"><img src="./inc/img/Strip-PHP-doute650-Web.jpg" alt="Strip-PHP-doute650-Web.jpg" /></a>
+
+</section>
+<section id="sec-1-2" >
+
+<h3>Introduction à PHP</h3>
+<ul class="org-ul">
+<li><b><a href="http://php.net">PHP</a></b> (PHP: Hypertext Preprocessor)
+</li>
+<li>Langage de programmation
+<ul class="org-ul">
+<li>impératif, procédural (suite d'instructions)
+</li>
+<li>interprété côté serveur
+</li>
+<li>libre
+</li>
+</ul>
+</li>
+<li>Pages Web dynamiques
+</li>
+<li>Logo : <img src="./inc/img/php.png" alt="php.png" /> 
+</li>
+<li>Mascotte (Elephpant) : <img src="./inc/img/elephpant.png" alt="elephpant.png" />
+</li>
+</ul>
+
+
+</section>
+<section id="sec-1-2-1" >
+
+<h4>Quelques versions de php</h4>
+<ul class="org-ul">
+<li><code>1.0 : 1995      :</code> <i>PHP: Personal Home Page</i>
+</li>
+<li><code>2.0 : 1997      :</code> Base du langage PHP actuel
+</li>
+<li><code>3.0 : 1998-2000 :</code> <i>PHP: Hypertext Preprocessor</i>
+</li>
+<li><code>4.0 : 2000-2001 :</code> Zend engine
+</li>
+<li><code>4.3 : 2002-2005 :</code> <i>CLI: Command line interface</i>
+</li>
+<li><code>5.0 : 2004-2005 :</code> Zend engine 2, Programmation objet
+</li>
+<li><code>5.3 : 2009-2014 :</code> Namespace, closure
+</li>
+<li><code>5.4 : 2012-2015 :</code> Trait
+</li>
+<li><code>6.0 : ......... :</code> Unicode
+</li>
+<li><code>7.0 : 2015-2018 :</code> Zend engine 3
+</li>
+</ul>
+
+</section>
+<section id="hello-world" >
+
+<h4>Hello world</h4>
+
+<ul class="org-ul">
+<li>Créer un fichier avec l'extension .php
+</li>
+<li>Insérer du code HTML et/ou PHP
+</li>
+<li>Le code PHP doit être délimité par les balises <code>&lt;?php</code> et <code>?&gt;</code>
+</li>
+<li>Les instructions se terminent par <code>;</code>
+</li>
+<li>Les commentaires sont délimités par :
+<ul class="org-ul">
+<li><code>//</code> pour un commentaire sur une ligne
+</li>
+<li><code>/*</code> pour un commentaire sur plusieurs lignes <code>*/</code>
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre  class="src src-php" id="phpjs-hello"><span class="org-constant">&lt;em&gt;</span><span class="org-preprocessor">&lt;?php</span>
+<span class="org-comment-delimiter">//</span><span class="org-comment">* Comment hack</span>
+<span class="org-keyword">echo</span> <span class="org-string">'Hello world'</span>;
+<span class="org-comment-delimiter">// </span><span class="org-comment">*/</span>
+<span class="org-preprocessor">?&gt;</span><span class="org-constant">&lt;/em&gt;</span>
+</pre>
+</div>
+
+</section>
+<section id="sec-1-3" >
+
+<h3>Les types en PHP</h3>
+<ul class="org-ul">
+<li>types simples :
+<ul class="org-ul">
+<li>boolean
+</li>
+<li>integer
+</li>
+<li>float (avant double)
+</li>
+<li>string
+</li>
+</ul>
+</li>
+<li>types composés :
+<ul class="org-ul">
+<li>array (tableau)
+</li>
+<li><i>object (objet)</i>
+</li>
+</ul>
+</li>
+<li>types spéciaux :
+<ul class="org-ul">
+<li><i>resource</i>
+</li>
+<li>NULL
+</li>
+</ul>
+</li>
+</ul>
+
+</section>
+<section id="sec-1-3-1" >
+
+<h4>Les booléens (boolean)</h4>
+<ul class="org-ul">
+<li>Type le plus simple pour exprimer une valeur de vérité.
+</li>
+<li>Deux constantes insensibles à la casse :
+<ul class="org-ul">
+<li>TRUE (vrai)
+</li>
+<li>FALSE (faux)
+</li>
+</ul>
+</li>
+</ul>
+<div class="org-src-container">
+
+<pre  class="src src-php" id="phpjs-true"><span class="org-preprocessor">&lt;?php</span> <span class="org-keyword">echo</span> <span class="org-constant">TRUE</span>; <span class="org-preprocessor">?&gt;</span> 
+<span class="org-preprocessor">&lt;?php</span> <span class="org-keyword">echo</span> <span class="org-constant">true</span>; <span class="org-preprocessor">?&gt;</span> 
+<span class="org-preprocessor">&lt;?php</span> <span class="org-default">var_dump(</span><span class="org-constant">TRUE</span>); <span class="org-preprocessor">?&gt;</span>
+</pre>
+</div>
+<div class="org-src-container">
+
+<pre  class="src src-php" id="phpjs-false"><span class="org-preprocessor">&lt;?php</span> <span class="org-keyword">echo</span> <span class="org-constant">FALSE</span>; <span class="org-preprocessor">?&gt;</span> 
+<span class="org-preprocessor">&lt;?php</span> <span class="org-keyword">echo</span> <span class="org-constant">false</span>; <span class="org-preprocessor">?&gt;</span> 
+<span class="org-preprocessor">&lt;?php</span> <span class="org-default">var_dump(</span><span class="org-constant">FALSE</span>); <span class="org-preprocessor">?&gt;</span>
+</pre>
+</div>
+
+</section>
+<section id="sec-1-3-2" >
+
+<h4>Les booléens (cast)</h4>
+<ul class="org-ul">
+<li>On utilise <code>(bool)</code> ou <code>(boolean)</code>
+</li>
+<li>Quand on convertit une valeur en booléen, sont considérés <code>false</code>  :
+<ul class="org-ul">
+<li>le booléen <code>false</code>
+</li>
+<li>l'entier <code>0</code>
+</li>
+<li>le réel <code>0.0</code>
+</li>
+<li>la chaîne vide <code> "" </code> et la chaîne <code> "0" </code>
+</li>
+<li>tout tableau vide
+</li>
+<li>tout objet sans membre ni variable (PHP4)
+</li>
+<li>le type <code>NULL</code> (ainsi que les variables non définies)
+</li>
+</ul>
+</li>
+<li>Toutes les autres valeurs sont considérées comme <code>true</code>
+</li>
+</ul>
+
+</section>
+<section id="sec-1-3-3" >
+
+<h4>Les booléens (exemple)</h4>
+<div class="org-src-container">
+
+<pre  class="src src-php" id="phpjs-boolean"><span class="org-preprocessor">&lt;?php</span>
+  <span class="org-default">var_dump(</span>(<span class="org-type">bool</span>) <span class="org-string">""</span>); 
+  <span class="org-default">var_dump(</span>(<span class="org-type">bool</span>) <span class="org-default">1</span>); 
+  <span class="org-default">var_dump(</span>(<span class="org-type">bool</span>) -<span class="org-default">2</span>); 
+  <span class="org-default">var_dump(</span>(<span class="org-type">bool</span>) <span class="org-string">"foo"</span>); 
+  <span class="org-default">var_dump(</span>(<span class="org-type">bool</span>) <span class="org-default">2</span>.<span class="org-default">3</span>); 
+  <span class="org-default">var_dump(</span>(<span class="org-type">bool</span>) <span class="org-default">array(12</span>)); 
+  <span class="org-default">var_dump(</span>(<span class="org-type">bool</span>) <span class="org-default">array(</span>)); 
+  <span class="org-default">var_dump(</span>(<span class="org-type">bool</span>) <span class="org-string">"false"</span>); 
+<span class="org-preprocessor">?&gt;</span>
+</pre>
+</div>
+
+</section>
+<section id="sec-1-3-4" >
+
+<h4>Les entiers (integer)</h4>
+<ul class="org-ul">
+<li>Un entier est un nombre de \({\mathbb{Z} = \{ \dots, -2, -1, 0, 1, 2, \dots\}}\)
+</li>
+<li>Il peut se définir en :
+<ul class="org-ul">
+<li>décimal (base 10) : <span style="color:chocolate">42</span>
+</li>
+<li>hexadécimal (base 16) : <span style="color:chocolate">0x2A</span>
+</li>
+<li>octal (base 8) : <span style="color:chocolate">052</span>
+</li>
+<li>binaire (base 2) :  <span style="color:chocolate">0b101010</span> (PHP 5.4)
+</li>
+</ul>
+</li>
+<li>Il peut être précédé du signe <code>-</code> ou <code>+</code>
+</li>
+</ul>
+
+</section>
+<section id="sec-1-3-5" >
+
+<h4>Les entiers (définis formellement)</h4>
+<div class="org-src-container">
+
+<pre  class="src src-text">decimal     : [1-9][0-9]*      
+            | 0                
+
+hexadecimal : 0[xX][0-9a-fA-F]+
+
+octal       : 0[0-7]+          
+
+binary      : 0b[01]+          
+
+integer     : [+-]?decimal     
+            | [+-]?hexadecimal 
+            | [+-]?octal       
+            | [+-]?binary
+</pre>
+</div>
+
+</section>
+<section id="sec-1-3-6" >
+
+<h4>Les entiers (cast)</h4>
+<ul class="org-ul">
+<li>On utilise <code>(int)</code> ou <code>(integer)</code>
+</li>
+<li><code>false</code> correspond à <code>0</code> et <code>true</code> à <code>1</code>
+</li>
+<li>Un réel sera arrondi vers <code>0</code>
+</li>
+<li>Seule la partie initiale d'une chaîne de caractères est prise en compte
+</li>
+<li>Faire attention de manière générale à la conversion des autres types
+</li>
+</ul>
+
+</section>
+<section id="sec-1-3-7" >
+
+<h4>Les réels (float/double)</h4>
+<ul class="org-ul">
+<li>Un réel (nombre à virgule flottante) appartient à \({\mathbb{R}}\)
+</li>
+<li>La taille d'un réel dépend de la plateforme, mais en général
+<ul class="org-ul">
+<li>max = ~1.8e308
+</li>
+<li>précision de 14 chiffres
+</li>
+</ul>
+</li>
+<li>Attention à la perte de précision : <a href="http://www.floating-point-gui.de/">http://www.floating-point-gui.de/</a>
+</li>
+</ul>
+
+</section>
+<section id="sec-1-3-8" >
+
+<h4>Les réels (définis formellement)</h4>
+<div class="org-src-container">
+
+<pre  class="src src-text">LNUM          [0-9]+                                   
+DNUM          ([0-9]*[\.]{LNUM}) | ({LNUM}[\.][0-9]*)  
+EXPONENT_DNUM [+-]?(({LNUM} | {DNUM}) [eE][+-]? {LNUM})
+</pre>
+</div>
+
+</section>
+<section id="sec-1-3-9" >
+
+<h4>Les réels (cast)</h4>
+<ul class="org-ul">
+<li>On utilise <code>(float)</code> ou <code>(double)</code>
+</li>
+<li>Seule la partie initiale d'une chaîne de caractères est prise en compte
+</li>
+<li>Pour les autres types, l'élément est d'abord converti en <code>int</code> puis en <code>float</code>
+</li>
+</ul>
+
+</section>
+<section id="sec-1-3-10" >
+
+<h4>Les entiers et les réels (exemple)</h4>
+<div class="org-src-container">
+
+<pre  class="src src-php" id="phpjs-int-float"><span class="org-preprocessor">&lt;?php</span>
+<span class="org-comment-delimiter">//</span><span class="org-comment">*</span>
+  <span class="org-default">var_dump(42</span>); 
+  <span class="org-default">var_dump(</span>-<span class="org-default">42</span>); 
+  <span class="org-default">var_dump(052</span>); 
+  <span class="org-default">var_dump(0</span>x2A); 
+  <span class="org-default">var_dump(</span>(<span class="org-type">int</span>)<span class="org-default">4</span>.<span class="org-default">2</span>);
+  <span class="org-default">var_dump(</span>(<span class="org-type">int</span>)<span class="org-string">"la r&#233;ponse est 42"</span>);
+  <span class="org-default">var_dump(</span>(<span class="org-type">int</span>)<span class="org-string">"42, la r&#233;ponse est"</span>);
+  <span class="org-default">var_dump(</span>(<span class="org-type">float</span>)<span class="org-string">"42.0 42"</span>);
+<span class="org-comment-delimiter">// </span><span class="org-comment">*/</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">Floating point problem</span>
+<span class="org-comment-delimiter">/*</span>
+<span class="org-comment">  var_dump((int) ((0.1+0.7)*10)); </span>
+<span class="org-comment">  var_dump((int)1.999999999999999);</span>
+<span class="org-comment">  var_dump((int)1.9999999999999999);</span>
+<span class="org-comment">// </span><span class="org-comment-delimiter">*/</span>
+<span class="org-preprocessor">?&gt;</span>
+</pre>
+</div>
+
+</section>
+<section id="sec-1-3-11" >
+
+<h4>Les chaînes de caractères (string)</h4>
+<ul class="org-ul">
+<li>Une chaîne de caractères correspond à un tableau d'octets.
+</li>
+<li>Elle se définit à l'aide des <code> ' </code> ou <code> " </code>
+</li>
+<li>Les guillemets simples :
+<ul class="org-ul">
+<li>pour afficher <code> ' </code> il faut le préfixer par <code>\</code>
+</li>
+<li>pour afficher <code>\</code> il faut utiliser <code>\\</code>
+</li>
+<li>tous les autres caractères préfixés par <code>\</code> sont affichés (<code>\n</code>, <code>\r</code>)
+</li>
+</ul>
+</li>
+<li>Les guillemets doubles :
+<ul class="org-ul">
+<li>pour afficher <code> " </code> il faut le préfixer par <code>\</code>
+</li>
+<li>les caractères préfixés par <code>\</code> sont interprêtés
+</li>
+<li>les variables sont également interprêtées
+</li>
+</ul>
+</li>
+</ul>
+
+</section>
+<section id="sec-1-3-12" >
+
+<h4>Les chaînes de caractères (cast)</h4>
+<ul class="org-ul">
+<li>On utilise <code>(string)</code>
+</li>
+<li>Convertion automatique avec certaines fonctions comme <code>echo</code>, <code>print</code>
+</li>
+<li><code>true</code> est converti en <code> "1" </code> et <code>false</code> en <code> "" </code>
+</li>
+</ul>
+
+</section>
+<section id="sec-1-3-13" >
+
+<h4>Les chaînes de caractères (affichage)</h4>
+<ul class="org-ul">
+<li><code>echo</code> et <code>print</code> ne sont pas de vraies fonctions (l'utilisation des parenthèses est facultative, mais recommandée)
+</li>
+<li>la fonction <a href="http://php.net/manual/en/function.printf.php"><code>printf</code></a> affiche une chaîne de caractère formatée et
+retourne la longueur de la chaîne affichée
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-warning">int</span> <span class="org-default">printf (</span><span class="org-type">string</span> $<span class="org-variable-name">format</span> [, <span class="org-type">mixed</span> $<span class="org-variable-name">args</span> [, <span class="org-warning">mixed</span> <span class="org-warning">$</span>... ]] )
+</pre>
+</div>
+</li>
+<li>la fonction <a href="http://php.net/manual/en/function.sprintf.php"><code>sprintf</code></a> retourne une chaîne formatée
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-warning">int</span> <span class="org-default">sprintf (</span><span class="org-type">string</span> $<span class="org-variable-name">format</span> [, <span class="org-type">mixed</span> $<span class="org-variable-name">args</span> [, <span class="org-warning">mixed</span> <span class="org-warning">$</span>... ]] )
+</pre>
+</div>
+</li>
+</ul>
+
+</section>
+<section id="sec-1-3-14" >
+
+<h4>Les chaînes de caractères (format)</h4>
+<ul class="org-ul">
+<li>Le format dépend du type du paramètre que l'on veut afficher
+<ul class="org-ul">
+<li><code> "%s" </code> pour une chaîne de caractères
+</li>
+<li><code> "%d" </code> pour un entier
+</li>
+<li><code> "%f" </code> pour un réel
+</li>
+</ul>
+</li>
+<li>Il peut spécifier un affichage personnalisé
+<ul class="org-ul">
+<li><code> "%4d" </code> affiche un entier de 4 caractères préfixé par des espaces
+</li>
+<li><code> "%'04d" </code> affiche un entier de 4 caractères préfixé par des <code>0</code>
+</li>
+</ul>
+</li>
+<li>Il permet de réordonner les paramètres
+<ul class="org-ul">
+<li><code> "%2$s" </code> affiche le 2<sup>e</sup> paramètre comme une chaîne de caractères
+</li>
+<li><code> "%1$'04d" </code> affiche le 1<sup>er</sup> paramètre sous forme d'entier de
+4 caractères minimum préfixé par des <code>0</code>
+</li>
+</ul>
+</li>
+</ul>
+
+</section>
+<section id="sec-1-3-15" >
+
+<h4>Les chaînes de caractères (fonctions de base)</h4>
+<ul class="org-ul">
+<li><code>strlen </code> : retourne la longueur de la chaîne <code>$str</code>
+</li>
+<li><code>strcmp </code> : compare deux chaînes
+</li>
+<li><code>trim   </code> : supprime les espaces ou un autre caractère<br  />
+     <code>       </code>   en début (<code>ltrim</code>) et fin de chaîne (<code>rtrim</code>)
+</li>
+<li><code>substr </code> : retourne une sous-chaîne 
+</li>
+<li><code>strpos </code> : cherche la position d'une sous-chaîne dans une autre chaîne
+</li>
+<li><code>nl2br  </code> : remplace <code>\n</code> en <code>&lt;br&gt;</code>
+</li>
+<li><code>ucfirst</code> : première lettre en majuscule
+</li>
+<li><code>ucwords</code> : première lettre de chaque mot en majuscule
+</li>
+<li>D'autres fonctions <code>str_replace</code>, <code>strtolower</code>, <code>strtoupper</code>, <code>implode</code>, <code>explode</code> sur : <a href="http://php.net/manual/en/ref.strings.php">http://php.net/manual/en/ref.strings.php</a>
+</li>
+</ul>
+
+</section>
+<section id="sec-1-3-16" >
+
+<h4>Résumé (types simples)</h4>
+<div class="org-src-container">
+
+<pre  class="src src-php" id="phpjs-string"><span class="org-preprocessor">&lt;?php</span>
+  <span class="org-default">var_dump(</span><span class="org-string">"0"</span>);
+  <span class="org-default">var_dump(</span><span class="org-string">"0"</span> + <span class="org-default">2</span>);
+  <span class="org-default">var_dump(</span><span class="org-string">"0"</span> + <span class="org-default">1</span>.<span class="org-default">3</span>);
+  <span class="org-default">var_dump(</span><span class="org-string">"0"</span> + <span class="org-constant">true</span>);
+<span class="org-preprocessor">?&gt;</span>
+</pre>
+</div>
+
+</section>
+<section id="sec-1-3-17" >
+
+<h4>Les tableaux (array)</h4>
+<ul class="org-ul">
+<li>Il faut utiliser le mot clé <code>array()</code> (<code>[]</code> autorisé depuis PHP 5.4)
+</li>
+<li>Chaque paramètre correspond à une paire <code>clé =&gt; valeur</code>
+</li>
+<li>Une clé peut-être un entier ou une chaîne de caractères
+<ul class="org-ul">
+<li>Une chaîne correspondant à un entier valide sera transformé en entier
+</li>
+<li>Les autres types sont convertis en entiers
+</li>
+</ul>
+</li>
+<li>Les clés sont optionnelles.
+</li>
+</ul>
+
+</section>
+<section id="sec-1-3-18" >
+
+<h4>Les tableaux (fonctions de base)</h4>
+<ul class="org-ul">
+<li><code>count       </code> : retourne le nombre d'éléments contenus dans un tableau
+</li>
+<li><code>sort        </code> : trie par rapport aux valeurs un tableau (<code>rsort</code> reverse)
+</li>
+<li><code>asort       </code> : trie les valeurs en conservant les clés (<code>arsort</code> reverse)
+</li>
+<li><code>ksort       </code> : trie les clés d'un tableau (<code>krsort</code> reverse)
+</li>
+<li><code>array_keys  </code> : retourne les clés d'un tableau sous forme d'un tableau
+</li>
+<li><code>array_values</code> : retourne les valeurs d'un tableau sous forme d'un tableau
+</li>
+<li>D'autres fonctions <code>array_pop</code>, <code>array_shift</code>, <code>array_map</code> sur : <a href="http://php.net/manual/en/function.array.php">http://php.net/manual/en/function.array.php</a>
+</li>
+</ul>
+
+</section>
+<section id="sec-1-3-19" >
+
+<h4>Les tableaux (exemple)</h4>
+<div class="org-src-container">
+
+<pre  class="src src-php" id="phpjs-array"><span class="org-preprocessor">&lt;?php</span>
+  <span class="org-default">var_dump(array(</span><span class="org-string">"a"</span>,<span class="org-string">"b"</span>,<span class="org-string">"c"</span>));
+  <span class="org-default">var_dump(array(</span><span class="org-string">"a"</span> =<span class="org-constant">&gt;</span> <span class="org-string">"b"</span>, <span class="org-default">3</span> =&gt; <span class="org-string">"c"</span>));
+  <span class="org-default">var_dump(array(</span><span class="org-string">"a"</span>, <span class="org-default">3</span> =&gt; <span class="org-string">"b"</span>, <span class="org-string">"c"</span>));
+<span class="org-preprocessor">?&gt;</span>
+</pre>
+</div>
+
+</section>
+<section id="sec-1-4" >
+
+<h3>Les variables et constantes</h3>
+</section>
+<section id="sec-1-4-1" >
+
+<h4>Les variables</h4>
+<ul class="org-ul">
+<li>Une variable est désignée par le signe <code>$</code>
+</li>
+<li>Le nom est sensible à la casse et commence par une lettre ou un
+tiret du bas <code>_</code> suivi de lettres, de chiffres ou <code>_</code>
+</li>
+<li><code>$this</code> est une variable spéciale qui ne peut pas être modifiée
+</li>
+<li>Il n'est pas obligatoire de déclarer et d'initialiser les variables (recommandé)
+</li>
+<li>Le nom d'une variable peut être dynamique
+</li>
+</ul>
+
+</section>
+<section id="sec-1-4-2" >
+
+<h4>Gérer le type d'une variable</h4>
+<ul class="org-ul">
+<li>La fonction <code>gettype()</code> permet d'obtenir une chaîne de caractères
+correspondant au type de l'argument : <code>boolean</code>, <code>integer</code>,
+<code>double</code>, <code>string</code>, <code>array</code>, <code>object</code>, <code>resource</code>, <code>NULL</code> ou
+<code>unknown type</code>.
+</li>
+<li>Les fonctions suivantes : <code>is_array()</code>, <code>is_bool()</code>,
+<code>is_float()</code>, <code>is_int()</code>, <code>is_null()</code>, <code>is_numeric()</code>,
+<code>is_object()</code>, <code>is_resource()</code>, <code>is_scalar()</code> (integer, float,
+string and booleen), <code>is_string()</code> permettent de vérifier si un
+argument est d'un type particulier.
+</li>
+<li>Le typage est dynamique en PHP
+</li>
+</ul>
+
+</section>
+<section id="sec-1-4-3" >
+
+<h4>Tester l'état d'une variable</h4>
+<ul class="org-ul">
+<li><code>empty()</code>
+</li>
+<li><code>is_null()</code>
+</li>
+<li><code>isset()</code>
+</li>
+<li><code>(bool)</code>
+</li>
+<li><a href="http://php.net/manual/en/types.comparisons.php">http://php.net/manual/en/types.comparisons.php</a>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre  class="src src-center">  empty() !== (bool) 
+is_null() !== isset()
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre  class="src src-center">'php' == 0     =&gt; true 
+0     == null  =&gt; true 
+null  == 'php' =&gt; false
+</pre>
+</div>
+
+</section>
+<section id="sec-1-4-4" >
+
+<h4>Les constantes</h4>
+<ul class="org-ul">
+<li>Par définition, la valeur d'une constante ne peut pas être modifiée
+</li>
+<li>On utilise par convention, un nom écrit en lettres capitales
+</li>
+<li>La fonction <code>define</code> est utilisée
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre  class="src src-php" id="phpjs-define"><span class="org-preprocessor">&lt;?php</span>
+  <span class="org-default">define(</span><span class="org-string">'HELLO'</span>, <span class="org-default">3</span>); 
+  $<span class="org-variable-name">a</span> = <span class="org-string">'hello'</span>; 
+  $<span class="org-variable-name">$a</span> = <span class="org-string">'world'</span>; 
+  <span class="org-default">var_dump(</span><span class="org-warning">HELLO</span>); 
+  <span class="org-comment-delimiter">//</span><span class="org-comment">var_dump('$a $hello HELLO'); </span>
+  <span class="org-comment-delimiter">//</span><span class="org-comment">var_dump("$a $hello $$a HELLO"); </span>
+<span class="org-preprocessor">?&gt;</span>
+</pre>
+</div>
+
+</section>
+<section id="sec-1-5" >
+
+<h3>Les opérateurs</h3>
+<ul class="org-ul">
+<li>Les opérateurs arithmétiques
+</li>
+<li>Les opérateurs d'affectation
+</li>
+<li>Les opérateurs de comparaison
+</li>
+<li>Les opérateurs d'incrémentation et décrémentation
+</li>
+<li>L'opérateur ternaire
+</li>
+<li>Les opérateurs logiques
+</li>
+<li>Les autres opérateurs
+</li>
+</ul>
+
+</section>
+<section id="sec-1-5-1" >
+
+<h4>Les opérateurs arithmétiques</h4>
+<ul class="org-ul">
+<li><code>-$a     </code> : la négation
+</li>
+<li><code>$a + $b </code> : l'addition
+</li>
+<li><code>$a - $b </code> : la soustraction
+</li>
+<li><code>$a * $b </code> : la multiplication
+</li>
+<li><code>$a / $b </code> : la division
+</li>
+<li><code>$a % $b </code> : le modulo
+</li>
+<li><code>$a ** $b</code> : l'exponentielle (PHP 5.6)
+</li>
+</ul>
+
+</section>
+<section id="sec-1-5-2" >
+
+<h4>Les opérateurs d'affectation</h4>
+<ul class="org-ul">
+<li>Le signe <code> = </code> 
+</li>
+<li>Il est possible de combiner le signe <code> = </code> avec d'autres opérateurs
+</li>
+<li>Le passage par référence est possible avec <code> &amp; </code>
+</li>
+<li>L'opérateur <code> * </code> du C n'a pas de signification en PHP
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre  class="src src-php" id="phpjs-assign"><span class="org-preprocessor">&lt;?php</span>
+  $<span class="org-variable-name">a</span> = <span class="org-default">3</span>;
+  $<span class="org-variable-name">b</span> = &amp;$<span class="org-variable-name">a</span>;
+  $<span class="org-variable-name">a</span> += <span class="org-default">4</span>;
+  <span class="org-default">var_dump(</span>$<span class="org-variable-name">a</span>); 
+  <span class="org-default">var_dump(</span>$<span class="org-variable-name">b</span>);
+<span class="org-preprocessor">?&gt;</span>
+</pre>
+</div>
+
+</section>
+<section id="sec-1-5-3" >
+
+<h4>Les opérateurs de comparaison</h4>
+<ul class="org-ul">
+<li><code>$a == $b </code> : égalité des valeurs
+</li>
+<li><code>$a === $b</code> : identité (égalité des valeurs et des types)
+</li>
+<li><code>$a != $b </code> : différence
+</li>
+<li><code>$a &lt;&gt; $b </code> : différence
+</li>
+<li><code>$a !== $b</code> : non identité (différence des valeurs ou des types)
+</li>
+<li><code>$a &lt; $b  </code> : infériorité
+</li>
+<li><code>$a &gt; $b  </code> : supériorité
+</li>
+<li><code>$a &lt;= $b </code> : infériorité ou égalité
+</li>
+<li><code>$a &gt;= $b </code> : supériorité ou égalité
+</li>
+</ul>
+
+</section>
+<section id="sec-1-5-4" >
+
+<h4>Les opérateurs d'incrémentation et décrémentation</h4>
+<ul class="org-ul">
+<li><code>++$a</code> : incrémente <code>$a</code>  de 1, puis retourne <code>$a</code>
+</li>
+<li><code>$a++</code> : retourne <code>$a</code> puis incrémente <code>$a</code>  de 1
+</li>
+<li><code>--$a</code> : décrémente <code>$a</code>  de 1, puis retourne <code>$a</code>
+</li>
+<li><code>$a--</code> : retourne <code>$a</code> puis décrémente <code>$a</code>  de 1
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre  class="src src-php" id="phpjs-incr-decr"><span class="org-preprocessor">&lt;?php</span>
+  $<span class="org-variable-name">a</span> = <span class="org-default">3</span>;
+  <span class="org-default">var_dump(</span>$<span class="org-variable-name">a</span>++); 
+  <span class="org-comment-delimiter">//</span><span class="org-comment">var_dump($a);</span>
+  <span class="org-comment-delimiter">//</span><span class="org-comment">var_dump(--$a); </span>
+  <span class="org-comment-delimiter">//</span><span class="org-comment">var_dump($a); </span>
+<span class="org-preprocessor">?&gt;</span>
+</pre>
+</div>
+
+</section>
+<section id="sec-1-5-5" >
+
+<h4>L'opérateur ternaire</h4>
+<ul class="org-ul">
+<li><code>?:</code> est un opérateur conditionnel ternaire
+</li>
+<li><code>(expr1) ? (expr2) : (expr3)</code> est évalué à :
+<ul class="org-ul">
+<li><code>expr2</code> si <code>expr1</code> est évaluée à <code>true</code>
+</li>
+<li><code>expr3</code> si <code>expr1</code> est évaluée à <code>false</code>
+</li>
+</ul>
+</li>
+<li><code>expr2</code> n'est plus obligatoire depuis PHP 5.3
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre  class="src src-php" id="phpjs-ternary"><span class="org-preprocessor">&lt;?php</span>
+  <span class="org-default">var_dump(</span><span class="org-string">'1'</span> == <span class="org-default">1</span> ? <span class="org-string">'oui'</span> : <span class="org-string">'non'</span>); 
+  <span class="org-default">var_dump(</span><span class="org-string">'1'</span> === <span class="org-default">1</span> ? <span class="org-string">'oui'</span> : <span class="org-string">'non'</span>); 
+<span class="org-preprocessor">?&gt;</span>
+</pre>
+</div>
+
+</section>
+<section id="sec-1-5-6" >
+
+<h4>Les opérateurs logiques</h4>
+<ul class="org-ul">
+<li><code>$a &amp;&amp; $b </code> : <code>true</code> si <code>$a</code> et <code>$b</code> valent <code>true</code>
+</li>
+<li><code>$a and $b</code> : <code>true</code> si <code>$a</code> et <code>$b</code> valent <code>true</code>
+</li>
+<li><code>$a || $b </code> : <code>true</code> si <code>$a</code> vaut <code>true</code> ou <code>$b</code> vaut <code>true</code>
+</li>
+<li><code>$a or $b </code> : <code>true</code> si <code>$a</code> vaut <code>true</code> ou <code>$b</code> vaut <code>true</code>
+</li>
+<li><code>$a xor $b</code> : <code>true</code> si <code>$a</code> vaut <code>true</code> ou <code>$b</code> vaut <code>true</code> mais pas les 2
+</li>
+<li><code>!$a      </code> : <code>true</code> si <code>$a</code> ne vaut pas <code>true</code>
+</li>
+</ul>
+
+</section>
+<section id="sec-1-5-7" >
+
+<h4>Les autres opérateurs</h4>
+<ul class="org-ul">
+<li><code>.</code> correspond à l'opération de concaténation pour les chaînes de caractères
+</li>
+<li><code>[index]</code> permet d'accéder à un élément particulier d'un tableau
+</li>
+<li><code>[]</code> permet assigner une valeur à la fin d'un tableau
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre  class="src src-php" id="phpjs-array-op"><span class="org-preprocessor">&lt;?php</span>
+  $<span class="org-variable-name">a</span> = <span class="org-string">"hello "</span>;
+  $<span class="org-variable-name">b</span> = <span class="org-default">array(</span>$<span class="org-variable-name">a</span>);
+  $<span class="org-variable-name">b</span>[] = <span class="org-string">"world"</span>;
+  <span class="org-default">var_dump(</span>$<span class="org-variable-name">a</span>[<span class="org-default">4</span>]);
+  <span class="org-default">var_dump(</span>$<span class="org-variable-name">a</span><span class="org-warning">.</span>$<span class="org-variable-name">b</span>[<span class="org-default">1</span>]);
+<span class="org-preprocessor">?&gt;</span>
+</pre>
+</div>
+
+</section>
+<section id="sec-1-6" >
+
+<h3>Les structures de contrôle</h3>
+<ul class="org-ul">
+<li>Les structures conditionnelles
+</li>
+<li>Les structures répétitives
+</li>
+<li>L'inclusion de fichiers
+</li>
+</ul>
+
+</section>
+<section id="sec-1-6-1" >
+
+<h4>Les structures conditionnelles (if, else, elseif)</h4>
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-keyword">if</span> (<span class="org-warning">condition</span>) {
+  <span class="org-warning">instructions</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">si condition &#233;valu&#233;e &#224; true</span>
+}
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-keyword">if</span> (<span class="org-warning">condition</span>) {
+  <span class="org-warning">instructions</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">si condition &#233;valu&#233;e &#224; true</span>
+} <span class="org-keyword">else</span> {
+  <span class="org-warning">instructions</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">si condition &#233;valu&#233;e &#224; false</span>
+}
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-keyword">if</span> (<span class="org-warning">condition1</span>) {
+  <span class="org-warning">instructions</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">si condition1 &#233;valu&#233;e &#224; true</span>
+} <span class="org-keyword">elseif</span> (<span class="org-warning">condition2</span>) {
+  <span class="org-warning">instructions</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">si condition1 &#233;valu&#233;e &#224; false et condition2 &#233;valu&#233;e &#224; true</span>
+} <span class="org-keyword">else</span> {
+  <span class="org-warning">instructions</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">si condition1 et condition 2 &#233;valu&#233;es &#224; false</span>
+}
+</pre>
+</div>
+
+</section>
+<section id="sec-1-6-2" >
+
+<h4>Les structures conditionnelles (switch)</h4>
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-keyword">switch</span> ($<span class="org-variable-name">i</span>) {
+ <span class="org-keyword">case</span> <span class="org-constant">0</span>:
+   <span class="org-keyword">echo</span> <span class="org-string">"i equals 0"</span>;
+   <span class="org-keyword">break</span>;
+ <span class="org-keyword">case</span> <span class="org-string">'a'</span>:
+   <span class="org-keyword">echo</span> <span class="org-string">"i equals a"</span>;
+   <span class="org-keyword">break</span>;
+ <span class="org-warning">default</span>:
+   <span class="org-keyword">echo</span> <span class="org-string">"aucune valeur correspondante"</span>;
+}
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>équivalent à :
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-keyword">if</span> ($<span class="org-variable-name">i</span> == <span class="org-default">0</span>) {
+  <span class="org-keyword">echo</span> <span class="org-string">"i equals 0"</span>;
+} <span class="org-keyword">elseif</span> ($<span class="org-variable-name">i</span> == <span class="org-string">'a'</span>) {
+  <span class="org-keyword">echo</span> <span class="org-string">"i equals 1"</span>;
+} <span class="org-keyword">else</span> {
+  <span class="org-keyword">echo</span> <span class="org-string">"aucune valeur correspondante"</span>;
+}
+</pre>
+</div>
+
+</section>
+<section id="sec-1-6-3" >
+
+<h4>Les structures répétitives (tant que)</h4>
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-keyword">while</span> (<span class="org-warning">condition</span>) {
+  <span class="org-warning">instructions</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">tant que condition est &#233;valu&#233;e &#224; true</span>
+}
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-keyword">do</span> {
+  <span class="org-warning">instructions</span>; <span class="org-comment-delimiter">// </span><span class="org-comment">tant que condition est &#233;valu&#233;e &#224; true</span>
+} <span class="org-keyword">while</span> (<span class="org-warning">condition</span>);
+</pre>
+</div>
+
+</section>
+<section id="sec-1-6-4" >
+
+<h4>Les structures répétitives (pour)</h4>
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-keyword">for</span> (<span class="org-warning">expr1</span>; <span class="org-warning">expr2</span>; <span class="org-warning">expr3</span>) { <span class="org-comment-delimiter">// </span><span class="org-comment">expr1 est ex&#233;cut&#233;e une seule fois au d&#233;but de la boucle</span>
+  <span class="org-warning">instructions</span>;             <span class="org-comment-delimiter">// </span><span class="org-comment">ex&#233;cut&#233; tant que expr2 est &#233;valu&#233;e &#224; true</span>
+                            <span class="org-comment-delimiter">// </span><span class="org-comment">expr3 est ex&#233;cut&#233;e &#224; la fin de chaque it&#233;ration</span>
+}
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>équivalent à :
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-warning">expr1</span>;
+<span class="org-keyword">while</span> (<span class="org-warning">expr2</span>) {
+  <span class="org-warning">instructions</span>;
+  <span class="org-warning">expr3</span>;
+}
+</pre>
+</div>
+
+</section>
+<section id="sec-1-6-5" >
+
+<h4>Les structures répétitives (tableau)</h4>
+<ul class="org-ul">
+<li><code>foreach</code> permet de parcourir les éléments d'un tableau
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-keyword">foreach</span> (<span class="org-warning">array</span> <span class="org-keyword">as</span> $<span class="org-variable-name">value</span>) {
+  <span class="org-warning">instructions</span>;
+}
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-keyword">foreach</span> (<span class="org-warning">array</span> <span class="org-keyword">as</span> $<span class="org-variable-name">key</span> =&gt; $<span class="org-variable-name">value</span>) {
+  <span class="org-warning">instructions</span>;
+}
+</pre>
+</div>
+
+</section>
+<section id="sec-1-6-6" >
+
+<h4>Exemple général sur les structures</h4>
+<div class="org-src-container">
+
+<pre  class="src src-php" id="phpjs-while-foreach-example"><span class="org-preprocessor">&lt;?php</span>
+  $<span class="org-variable-name">i</span> = <span class="org-default">0</span>;
+  $<span class="org-variable-name">values</span> = <span class="org-default">array(</span>);
+  <span class="org-keyword">while</span> (<span class="org-default">count(</span>$<span class="org-variable-name">values</span>) &lt; <span class="org-default">10</span>) {
+    $<span class="org-variable-name">values</span>[] = $<span class="org-variable-name">i</span>++;
+  }
+  $<span class="org-variable-name">output</span> = <span class="org-string">"values :"</span>;
+  <span class="org-keyword">foreach</span>($<span class="org-variable-name">values</span> <span class="org-keyword">as</span> $<span class="org-variable-name">value</span>) {
+    <span class="org-keyword">if</span> ($<span class="org-variable-name">value</span> % <span class="org-default">2</span>) {
+      $<span class="org-variable-name">output</span> .= <span class="org-string">' '</span> . $<span class="org-variable-name">value</span>;
+    }
+  }
+  <span class="org-keyword">echo</span> $<span class="org-variable-name">output</span>;
+<span class="org-preprocessor">?&gt;</span>
+</pre>
+</div>
+
+</section>
+<section id="sec-1-7" >
+
+<h3>Les fonctions</h3>
+<ul class="org-ul">
+<li>sont des blocs d'instructions que l'on peut répéter dans un programme
+</li>
+<li>ne sont pas exécutées directement après leurs définitions
+</li>
+<li>sont exécutées par un appel
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre  class="src src-php" id="phpjs-function"><span class="org-preprocessor">&lt;?php</span>
+  <span class="org-keyword">function</span> <span class="org-function-name">helloWorld</span>() {
+    <span class="org-keyword">echo</span> <span class="org-string">"Hello world!"</span>;
+  }
+
+  <span class="org-default">helloWorld(</span>);
+<span class="org-preprocessor">?&gt;</span>
+</pre>
+</div>
+
+</section>
+<section id="sec-1-7-1" >
+
+<h4>Les arguments</h4>
+<ul class="org-ul">
+<li>Un argument est une variable, défini après le nom de la fonction entre paranthèses
+</li>
+<li>Les arguments sont séparés par une virgule
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre  class="src src-php" id="phpjs-function-args"><span class="org-preprocessor">&lt;?php</span>
+  <span class="org-keyword">function</span> <span class="org-function-name">helloWorld</span>($<span class="org-variable-name">hello</span>, $<span class="org-variable-name">world</span>) {
+    <span class="org-keyword">echo</span> <span class="org-string">"$hello $world!&lt;br&gt;\n"</span>;
+  }
+
+  <span class="org-default">helloWorld(</span><span class="org-string">'Hello'</span>, <span class="org-string">'world'</span>);
+  <span class="org-default">helloWorld(</span><span class="org-string">'Bonjour'</span>, <span class="org-string">'tous'</span>);
+<span class="org-preprocessor">?&gt;</span>
+</pre>
+</div>
+
+</section>
+<section id="sec-1-7-2" >
+
+<h4>Les valeurs par défaut</h4>
+<ul class="org-ul">
+<li>Il est possible de définir une valeur par défaut à un argument
+</li>
+<li>Les arguments qui ont une valeur par défaut sont définis en dernier
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre  class="src src-php" id="phpjs-function-default-args"><span class="org-preprocessor">&lt;?php</span>
+  <span class="org-keyword">function</span> <span class="org-function-name">helloWorld</span>($<span class="org-variable-name">hello</span>, $<span class="org-variable-name">world</span> = <span class="org-string">'world'</span>) {
+    <span class="org-keyword">echo</span> <span class="org-string">"$hello $world!\n"</span>;
+  }
+
+  <span class="org-default">helloWorld(</span><span class="org-string">'Bonjour'</span>, <span class="org-string">'tous'</span>);
+  <span class="org-default">helloWorld(</span><span class="org-string">'Hello'</span>);
+<span class="org-preprocessor">?&gt;</span>
+</pre>
+</div>
+
+</section>
+<section id="sec-1-7-3" >
+
+<h4>Les retours</h4>
+<ul class="org-ul">
+<li>Tous les types de variables peuvent être retournés par une fonction
+</li>
+<li>Si <code>return</code> est absent, <code>null</code> est retourné
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre  class="src src-php" id="phpjs-function-return"><span class="org-preprocessor">&lt;?php</span>
+  <span class="org-keyword">function</span> <span class="org-function-name">helloWorld</span>() {
+    <span class="org-keyword">return</span> <span class="org-string">"Hello world!"</span>;
+  }
+
+  <span class="org-default">var_dump(helloWorld(</span>));
+<span class="org-preprocessor">?&gt;</span>
+</pre>
+</div>
+
+</section>
+<section id="sec-1-7-4" >
+
+<h4>Retourner plusieurs valeurs</h4>
+<ul class="org-ul">
+<li>Il faut utiliser un tableau
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre  class="src src-php" id="phpjs-function-return-array"><span class="org-preprocessor">&lt;?php</span>
+  <span class="org-keyword">function</span> <span class="org-function-name">helloWorld</span>() {
+    $<span class="org-variable-name">result</span> = <span class="org-default">array(</span>);
+
+    $<span class="org-variable-name">result</span>[] = <span class="org-string">"Hello"</span>;
+    $<span class="org-variable-name">result</span>[] = <span class="org-string">"world!"</span>;
+
+    <span class="org-keyword">return</span> $<span class="org-variable-name">result</span>;
+  }
+
+  <span class="org-keyword">echo</span> <span class="org-default">implode(</span><span class="org-string">" "</span>, <span class="org-default">helloWorld(</span>));
+<span class="org-preprocessor">?&gt;</span>
+</pre>
+</div>
+
+</section>
+<section id="sec-1-7-5" >
+
+<h4>Arguments par référence</h4>
+<div class="org-src-container">
+
+<pre  class="src src-php" id="phpjs-function-args-reference"><span class="org-preprocessor">&lt;?php</span>
+  $<span class="org-variable-name">hello</span> = <span class="org-string">"Hello"</span>;
+  $<span class="org-variable-name">world</span> = <span class="org-string">"World"</span>;
+  <span class="org-keyword">function</span> <span class="org-function-name">helloWorld</span>($<span class="org-variable-name">bonjour</span>, &amp;$<span class="org-variable-name">tous</span>) {
+    $<span class="org-variable-name">bonjour</span> = <span class="org-string">"Bonjour"</span>;
+    $<span class="org-variable-name">tous</span> = <span class="org-string">"tous"</span>;
+  }
+
+  <span class="org-default">helloWorld(</span>$<span class="org-variable-name">hello</span>, $<span class="org-variable-name">world</span>);
+  <span class="org-keyword">echo</span> $<span class="org-variable-name">hello</span>.<span class="org-string">" "</span>.$<span class="org-variable-name">world</span>;
+<span class="org-preprocessor">?&gt;</span>
+</pre>
+</div>
+
+</section>
+<section id="sec-1-7-6" >
+
+<h4>Une fonction récursive</h4>
+<div class="org-src-container">
+
+<pre  class="src src-php" id="phpjs-function-rec"><span class="org-preprocessor">&lt;?php</span>
+  <span class="org-comment-delimiter">// </span><span class="org-comment">affiche n fois la lettre 'o'</span>
+  <span class="org-keyword">function</span> <span class="org-function-name">o</span>($<span class="org-variable-name">n</span>) {
+    $<span class="org-variable-name">res</span> = <span class="org-string">''</span>;
+    <span class="org-keyword">if</span> ($<span class="org-variable-name">n</span> <span class="org-constant">&gt;</span> <span class="org-default">0</span>) {
+      $<span class="org-variable-name">res</span> = <span class="org-string">'o'</span>.<span class="org-default">o(</span>$<span class="org-variable-name">n</span> -<span class="org-default">1</span>);
+    }
+    <span class="org-keyword">return</span> $<span class="org-variable-name">res</span>;
+  }
+
+  <span class="org-keyword">function</span> <span class="org-function-name">helloWorld</span>($<span class="org-variable-name">n</span> = <span class="org-default">1</span>) {
+    <span class="org-keyword">echo</span> <span class="org-string">'Hell'</span>.<span class="org-default">o(</span>$<span class="org-variable-name">n</span>).<span class="org-string">" world!\n"</span>;
+  } 
+
+  <span class="org-default">helloWorld(</span>);
+  <span class="org-default">helloWorld(10</span>);
+<span class="org-preprocessor">?&gt;</span>
+</pre>
+</div>
+
+</section>
+<section id="sec-1-8" >
+
+<h3>Les variables prédéfinies</h3>
+<ul class="org-ul">
+<li><code>$_GET    </code> : variables de la méthode GET (dans l'url)
+</li>
+<li><code>$_POST   </code> : variables de la méthode POST (dans l'entête HTTP)
+</li>
+<li><code>$_REQUEST</code> : contenu de <code>$_GET</code>, <code>$_POST</code> (<code>$_COOKIE</code> : PHP &lt; 5.3)
+</li>
+<li><code>$_FILES  </code> : gestion des fichiers uploadés
+</li>
+<li><code>$_COOKIE </code> : variables des cookies HTTP (stockées chez le client)
+</li>
+<li><code>$_SESSION</code> : variables de session (stockées sur le serveur)
+</li>
+<li><code>$_SERVER </code> : variables de serveur et d'exécution
+</li>
+<li><code>$GLOBALS </code> : variables disponibles dans le contexte global (<i>à éviter</i>)
+</li>
+<li><code>$argc    </code> : nombre d'arguments passés au script (<code>CLI</code>)
+</li>
+<li><code>$argv    </code> : tableau avec les arguments passés au script (<code>CLI</code>)
+</li>
+</ul>
+
+</section>
+<section id="sec-1-9" >
+
+<h3><code>$_SERVER</code></h3>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left"><code>$_SERVER['DOCUMENT_ROOT']</code></td>
+<td class="left">Racine du serveur</td>
+</tr>
+
+<tr>
+<td class="left"><code>$_SERVER['HTTP_ACCEPT_LANGUAGE']</code></td>
+<td class="left">Langage accepté par le navigateur</td>
+</tr>
+
+<tr>
+<td class="left"><code>$_SERVER['HTTP_HOST']</code></td>
+<td class="left">Nom de domaine du serveur</td>
+</tr>
+
+<tr>
+<td class="left"><code>$_SERVER['HTTP_USER_AGENT']</code></td>
+<td class="left">Type de navigateur</td>
+</tr>
+
+<tr>
+<td class="left"><code>$_SERVER['PATH_INFO']</code></td>
+<td class="left">Chemin WEB du script</td>
+</tr>
+
+<tr>
+<td class="left"><code>$_SERVER['REQUEST_URI']</code></td>
+<td class="left">Chemin du script</td>
+</tr>
+
+<tr>
+<td class="left"><code>$_SERVER['REMOTE_ADDR']</code></td>
+<td class="left">Adresse IP du client</td>
+</tr>
+
+<tr>
+<td class="left"><code>$_SERVER['REMOTE_PORT']</code></td>
+<td class="left">Port de la requête HTTP</td>
+</tr>
+
+<tr>
+<td class="left"><code>$_SERVER['QUERY_STRING']</code></td>
+<td class="left">Liste des paramètres passés au script</td>
+</tr>
+
+<tr>
+<td class="left"><code>$_SERVER['SERVER_ADDR']</code></td>
+<td class="left">Adresse IP du serveur</td>
+</tr>
+</tbody>
+</table>
+
+</section>
+<section id="sec-2" >
+
+<h2>Les formulaires</h2>
+</section>
+<section id="sec-2-1" >
+
+<h3>GET</h3>
+<div class="org-src-container">
+
+<pre  class="src src-html">GET form
+&lt;<span class="org-function-name">form</span> <span class="org-variable-name">action</span>=<span class="org-string">"&lt;?php echo($_SERVER["</span>PHP_SELF<span class="org-string">"]); ?&gt;"</span> <span class="org-variable-name">method</span>=<span class="org-string">"get"</span>&gt;
+  &lt;<span class="org-function-name">label</span>&gt;input :&lt;<span class="org-function-name">input</span> <span class="org-variable-name">type</span>=<span class="org-string">"text"</span> <span class="org-variable-name">name</span>=<span class="org-string">"input"</span>/&gt;&lt;/<span class="org-function-name">label</span>&gt;&lt;<span class="org-function-name">br</span>&gt;
+  &lt;<span class="org-function-name">button</span> <span class="org-variable-name">type</span>=<span class="org-string">"submit"</span>&gt;Valider&lt;/<span class="org-function-name">button</span>&gt;
+&lt;/<span class="org-function-name">form</span>&gt;
+</pre>
+</div>
+
+<p>
+<a href="./examples/form.php?filename=form_get">exemple</a>
+</p>
+
+</section>
+<section id="sec-2-2"  data-state="alert">
+
+<h3>Sécurité</h3>
+
+<ul class="org-ul">
+<li>Attention à l'utilisation de <code>$_SERVER["PHP_SELF"]</code>
+</li>
+<li>Attention aux données de l'utilisateur
+</li>
+</ul>
+
+</section>
+<section id="sec-2-2-1" >
+
+<h4><code>$_SERVER["PHP_SELF"]</code></h4>
+<p>
+<code>$_SERVER["PHP_SELF"]</code> permet de faire référence au script en cours
+</p>
+
+<ul class="org-ul"><li class="fragment none">Problème<br/><div class="org-src-container">
+
+<pre  class="src src-html">&lt;<span class="org-function-name">form</span> <span class="org-variable-name">action</span>=<span class="org-string">"&lt;?php echo $_SERVER['PHP_SELF']; ?&gt;"</span> <span class="org-variable-name">method</span>=<span class="org-string">"POST"</span>&gt;
+</pre>
+</div>
+<ul class="org-ul">
+<li><code>/%22%3E%3Cscript%3Ealert('hacked')%3C/script%3E</code>
+</li>
+<li><a href="./examples/form.php/%22%3E%3Cscript%3Ealert('hacked')%3C/script%3E?filename=form_get">exemple</a>
+</li>
+</ul>
+</li>
+
+<li class="fragment none">Solution<br/><ul class="org-ul">
+<li><code>filter_var($_SERVER['PHP_SELF'], FILTER_SANITIZE_STRING);</code>
+</li>
+<li><code>htmlspecialchars($_SERVER["PHP_SELF"]);</code>
+</li>
+<li><a href="./examples/form.php/%22%3E%3Cscript%3Ealert('hacked')%3C/script%3E?filename=form_post">exemple</a>
+</li>
+<li>il est également possible d'utiliser <code>action="" </code>
+</li>
+</ul>
+</li></ul>
+
+</section>
+<section id="sec-2-2-2" >
+
+<h4>Filtrer les données des utilisateurs</h4>
+<p>
+Never Trust User Input
+</p>
+
+<ul class="org-ul"><li class="fragment none">Problème<br/><ul class="org-ul">
+<li>Un commentaire peut inclure du code malveillant
+</li>
+<li>cross site scripting (XSS)
+</li>
+<li><a href="./examples/form.php?input=<script>alert('hacked');</script>">exemple</a>
+</li>
+</ul>
+</li>
+
+<li class="fragment none">Solution<br/><ul class="org-ul">
+<li><code>htmlspecialchars()</code>
+</li>
+<li>Pas toujours suffisant si l'affichage est déjà dans une balise html
+</li>
+</ul>
+<div class="org-src-container">
+
+<pre  class="src src-php">$<span class="org-variable-name">data</span> = <span class="org-string">"javascript:alert('hacked');"</span>;
+<span class="org-constant">&lt;img</span> <span class="org-constant">src=</span><span class="org-string">"'.htmlspecialchars($data).'"</span><span class="org-constant">&gt;</span>
+</pre>
+</div>
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-constant">&lt;img</span> <span class="org-constant">src=</span><span class="org-string">"javascript:alert('hacked');"</span><span class="org-constant">&gt;</span>
+</pre>
+</div>
+</li></ul>
+
+</section>
+<section id="sec-2-3" >
+
+<h3>POST</h3>
+<div class="org-src-container">
+
+<pre  class="src src-html">POST form
+&lt;<span class="org-function-name">form</span> <span class="org-variable-name">action</span>=<span class="org-string">"&lt;?php echo htmlspecialchars($_SERVER["</span>PHP_SELF<span class="org-string">"]); ?&gt;"</span> <span class="org-variable-name">method</span>=<span class="org-string">"post"</span>&gt;
+  &lt;<span class="org-function-name">label</span>&gt;input :&lt;<span class="org-function-name">input</span> <span class="org-variable-name">type</span>=<span class="org-string">"text"</span> <span class="org-variable-name">name</span>=<span class="org-string">"input"</span>/&gt;&lt;/<span class="org-function-name">label</span>&gt;&lt;<span class="org-function-name">br</span>&gt;
+  &lt;<span class="org-function-name">button</span> <span class="org-variable-name">type</span>=<span class="org-string">"submit"</span>&gt;Valider&lt;/<span class="org-function-name">button</span>&gt;
+&lt;/<span class="org-function-name">form</span>&gt;
+</pre>
+</div>
+
+<p>
+<a href="./examples/form.php?filename=form_post">exemple</a>
+</p>
+
+</section>
+<section id="sec-2-4" >
+
+<h3>Valeurs multiples</h3>
+<div class="org-src-container">
+
+<pre  class="src src-html">Multiple POST form
+&lt;<span class="org-function-name">form</span> <span class="org-variable-name">action</span>=<span class="org-string">"&lt;?php echo htmlspecialchars($_SERVER["</span>PHP_SELF<span class="org-string">"]); ?&gt;"</span> <span class="org-variable-name">method</span>=<span class="org-string">"post"</span>&gt;
+  &lt;<span class="org-function-name">p</span>&gt;
+    Langues pratiqu&#233;es&#160;:&lt;<span class="org-function-name">br</span> /&gt;
+    &lt;<span class="org-function-name">select</span> <span class="org-variable-name">name</span>=<span class="org-string">"lang[]"</span> multiple <span class="org-variable-name">size</span>=<span class="org-string">"4"</span>&gt;
+      &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"fran&#231;ais"</span>&gt; fran&#231;ais&lt;/<span class="org-function-name">option</span>&gt;
+      &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"anglais"</span>&gt; anglais&lt;/<span class="org-function-name">option</span>&gt;
+      &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"allemand"</span>&gt; allemand&lt;/<span class="org-function-name">option</span>&gt;
+      &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"espagnol"</span>&gt; espagnol&lt;/<span class="org-function-name">option</span>&gt;
+  &lt;/<span class="org-function-name">select</span>&gt;
+  &lt;/<span class="org-function-name">p</span>&gt;
+  &lt;<span class="org-function-name">p</span>&gt;
+    Comp&#233;tences informatiques&#160;:&lt;<span class="org-function-name">br</span> /&gt;
+    &lt;<span class="org-function-name">label</span>&gt;HTML&lt;<span class="org-function-name">input</span> <span class="org-variable-name">type</span>=<span class="org-string">"checkbox"</span> <span class="org-variable-name">name</span>=<span class="org-string">"input[]"</span> <span class="org-variable-name">value</span>=<span class="org-string">"HTML"</span> /&gt;&lt;/<span class="org-function-name">label</span>&gt;
+    &lt;<span class="org-function-name">label</span>&gt;PHP&lt;<span class="org-function-name">input</span> <span class="org-variable-name">type</span>=<span class="org-string">"checkbox"</span> <span class="org-variable-name">name</span>=<span class="org-string">"input[]"</span> <span class="org-variable-name">value</span>=<span class="org-string">"PHP"</span> /&gt;&lt;/<span class="org-function-name">label</span>&gt;
+    &lt;<span class="org-function-name">label</span>&gt;MySQL&lt;<span class="org-function-name">input</span> <span class="org-variable-name">type</span>=<span class="org-string">"checkbox"</span> <span class="org-variable-name">name</span>=<span class="org-string">"input[]"</span> <span class="org-variable-name">value</span>=<span class="org-string">"MySQL"</span> /&gt;&lt;/<span class="org-function-name">label</span>&gt;
+  &lt;/<span class="org-function-name">p</span>&gt;
+  &lt;<span class="org-function-name">input</span> <span class="org-variable-name">type</span>=<span class="org-string">"reset"</span> <span class="org-variable-name">value</span>=<span class="org-string">"EFFACER"</span>/&gt;
+  &lt;<span class="org-function-name">input</span> <span class="org-variable-name">type</span>=<span class="org-string">"submit"</span> <span class="org-variable-name">value</span>=<span class="org-string">"ENVOI"</span>/&gt;
+&lt;/<span class="org-function-name">form</span>&gt;
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><a href="./examples/form.php?filename=form_multiple_post">exemple POST</a>
+</li>
+<li><a href="./examples/form.php?filename=form_multiple_get">exemple GET</a>
+</li>
+</ul>
+
+</section>
+<section id="sec-2-5" >
+
+<h3>Buttons multiples</h3>
+<div class="org-src-container">
+
+<pre  class="src src-html">Multiple button
+&lt;<span class="org-function-name">form</span> <span class="org-variable-name">action</span>=<span class="org-string">"&lt;?php echo htmlspecialchars($_SERVER["</span>PHP_SELF<span class="org-string">"]); ?&gt;"</span> <span class="org-variable-name">method</span>=<span class="org-string">"get"</span>&gt;
+    &lt;<span class="org-function-name">input</span> <span class="org-variable-name">type</span>=<span class="org-string">"submit"</span> <span class="org-variable-name">name</span>=<span class="org-string">"input"</span> <span class="org-variable-name">value</span>=<span class="org-string">"addition"</span>&gt;
+    &lt;<span class="org-function-name">input</span> <span class="org-variable-name">type</span>=<span class="org-string">"submit"</span> <span class="org-variable-name">name</span>=<span class="org-string">"input"</span> <span class="org-variable-name">value</span>=<span class="org-string">"soustraction"</span>&gt;
+    &lt;<span class="org-function-name">input</span> <span class="org-variable-name">type</span>=<span class="org-string">"submit"</span> <span class="org-variable-name">name</span>=<span class="org-string">"input"</span> <span class="org-variable-name">value</span>=<span class="org-string">"multiplication"</span>&gt;
+    &lt;<span class="org-function-name">input</span> <span class="org-variable-name">type</span>=<span class="org-string">"submit"</span> <span class="org-variable-name">name</span>=<span class="org-string">"input"</span> <span class="org-variable-name">value</span>=<span class="org-string">"division"</span>&gt;
+&lt;/<span class="org-function-name">form</span>&gt;
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><a href="./examples/form.php?filename=form_multiple_button">exemple</a>
+</li>
+</ul>
+
+</section>
+<section id="sec-2-6" >
+
+<h3><code>$_FILES</code></h3>
+<ul class="org-ul">
+<li>Envoi de fichiers (méthode <code>POST</code>)
+</li>
+<li>Balise form avec l'attribut <code>enctype="multipart/form-data" </code>
+</li>
+<li>Type de fichiers acceptés <code>&lt;input type="file" accept="image/jpg"&gt;</code>
+</li>
+<li>Limite de la taille du fichier envoyé :
+<ul class="org-ul">
+<li><code>upload_max_filesize</code> du fichier <code>php.ini</code>
+</li>
+<li><code>&lt;input type="hidden" name="MAX_FILE_SIZE" value="120000"&gt;</code> en octets
+</li>
+</ul>
+</li>
+</ul>
+
+</section>
+<section id="sec-2-7" >
+
+<h3>Informations liées aux fichiers</h3>
+<ul class="org-ul">
+<li><code>name    </code> : nom du fichier client
+</li>
+<li><code>type    </code> : MIME du fichier client
+</li>
+<li><code>tmp_name</code> : nom temporaire du fichier transféré
+</li>
+<li><code>error   </code> : code d'erreur associé au fichier
+</li>
+<li><code>size    </code> : taille du fichier transféré
+</li>
+</ul>
+
+</section>
+<section id="sec-2-8" >
+
+<h3>Codes d'erreur</h3>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left"><code> 0 </code></td>
+<td class="left"><code>UPLOAD_ERR_OK</code></td>
+<td class="left">transfert réalisé avec succès</td>
+</tr>
+
+<tr>
+<td class="left"><code> 1 </code></td>
+<td class="left"><code>UPLOAD_ERR_INI_SIZE</code></td>
+<td class="left">taille du fichier trop grande (<code>php.ini</code>)</td>
+</tr>
+
+<tr>
+<td class="left"><code> 2 </code></td>
+<td class="left"><code>UPLOAD_ERR_FORM_SIZE</code></td>
+<td class="left">taille du fichier trop grande (<code>MAX_FILE_SIZE</code>)</td>
+</tr>
+
+<tr>
+<td class="left"><code> 3 </code></td>
+<td class="left"><code>UPLOAD_ERR_PARTIAL</code></td>
+<td class="left">fichier partiellement transféré</td>
+</tr>
+
+<tr>
+<td class="left"><code> 4 </code></td>
+<td class="left"><code>UPLOAD_ERR_NOFILE</code></td>
+<td class="left">aucun fichier transféré</td>
+</tr>
+</tbody>
+</table>
+
+</section>
+<section id="sec-2-9" >
+
+<h3>POST et FILES</h3>
+<div class="org-src-container">
+
+<pre  class="src src-html">POST form with file
+&lt;<span class="org-function-name">form</span> <span class="org-variable-name">action</span>=<span class="org-string">"&lt;?php echo htmlspecialchars($_SERVER["</span>PHP_SELF<span class="org-string">"]); ?&gt;"</span>
+      <span class="org-variable-name">method</span>=<span class="org-string">"post"</span> <span class="org-variable-name">enctype</span>=<span class="org-string">"multipart/form-data"</span>&gt;
+  &lt;<span class="org-function-name">label</span>&gt;input :&lt;<span class="org-function-name">input</span> <span class="org-variable-name">type</span>=<span class="org-string">"text"</span> <span class="org-variable-name">name</span>=<span class="org-string">"input"</span>/&gt;&lt;/<span class="org-function-name">label</span>&gt;&lt;<span class="org-function-name">br</span>&gt;
+  &lt;<span class="org-function-name">label</span>&gt;file :&lt;<span class="org-function-name">input</span> <span class="org-variable-name">type</span>=<span class="org-string">"file"</span> <span class="org-variable-name">name</span>=<span class="org-string">"file"</span>/&gt;&lt;/<span class="org-function-name">label</span>&gt;&lt;<span class="org-function-name">br</span>&gt;
+  &lt;<span class="org-function-name">button</span> <span class="org-variable-name">type</span>=<span class="org-string">"submit"</span>&gt;Valider&lt;/<span class="org-function-name">button</span>&gt;
+&lt;/<span class="org-function-name">form</span>&gt;
+</pre>
+</div>
+
+<p>
+<a href="./examples/form.php?filename=form_post_file">exemple</a>
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-html">POST form with files
+&lt;<span class="org-function-name">form</span> <span class="org-variable-name">action</span>=<span class="org-string">"&lt;?php echo htmlspecialchars($_SERVER["</span>PHP_SELF<span class="org-string">"]); ?&gt;"</span>
+      <span class="org-variable-name">method</span>=<span class="org-string">"post"</span> <span class="org-variable-name">enctype</span>=<span class="org-string">"multipart/form-data"</span>&gt;
+  &lt;<span class="org-function-name">label</span>&gt;input :&lt;<span class="org-function-name">input</span> <span class="org-variable-name">type</span>=<span class="org-string">"text"</span> <span class="org-variable-name">name</span>=<span class="org-string">"input"</span>/&gt;&lt;/<span class="org-function-name">label</span>&gt;&lt;<span class="org-function-name">br</span>&gt;
+  &lt;<span class="org-function-name">label</span>&gt;file[] :&lt;<span class="org-function-name">input</span> <span class="org-variable-name">type</span>=<span class="org-string">"file"</span> <span class="org-variable-name">name</span>=<span class="org-string">"files[]"</span>/&gt;&lt;/<span class="org-function-name">label</span>&gt;&lt;<span class="org-function-name">br</span>&gt;
+  &lt;<span class="org-function-name">label</span>&gt;file[] :&lt;<span class="org-function-name">input</span> <span class="org-variable-name">type</span>=<span class="org-string">"file"</span> <span class="org-variable-name">name</span>=<span class="org-string">"files[]"</span>/&gt;&lt;/<span class="org-function-name">label</span>&gt;&lt;<span class="org-function-name">br</span>&gt;
+  &lt;<span class="org-function-name">button</span> <span class="org-variable-name">type</span>=<span class="org-string">"submit"</span>&gt;Valider&lt;/<span class="org-function-name">button</span>&gt;
+&lt;/<span class="org-function-name">form</span>&gt;
+</pre>
+</div>
+
+<p>
+<a href="./examples/form.php?filename=form_post_files">exemple</a>
+</p>
+
+</section>
+<section id="sec-2-10" >
+
+<h3>Déplacement des fichiers</h3>
+<ul class="org-ul">
+<li>Il faut utiliser la fonction <code>move_uploaded_file</code>
+</li>
+<li><code>move_uploaded_file($_FILES["file"]["tmp_name"], "monimage.jpg");</code>
+<ul class="org-ul">
+<li>retourne TRUE si le déplacement a réussi ou FALSE sinon
+</li>
+</ul>
+</li>
+</ul>
+
+</section>
+<section id="sec-2-11" >
+
+<h3>Validation</h3>
+<ul class="org-ul">
+<li>Never Trust User Input
+</li>
+<li>La validation html5 n'est pas suffisante
+</li>
+<li><a href="https://php.net/manual/en/function.filter-input.php"><code>filter_input</code></a>, <a href="https://php.net/manual/en/function.filter-var.php"><code>filter_var</code></a>
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-default">filter_var(</span>$<span class="org-variable-name">email</span>, <span class="org-warning">FILTER_VALIDATE_EMAIL</span>)
+</pre>
+</div>
+</li>
+</ul>
+
+</section>
+<section id="sec-3" >
+
+<h2>Cookies et sessions</h2>
+</section>
+<section id="sec-3-1" >
+
+<h3>Les cookies</h3>
+<ul class="org-ul">
+<li>Les cookies permettent de stocker des informations côté client<br  />
+     (Never Trust User Input)
+</li>
+<li>L'écriture de cookie se fait avant tout envoi de contenu HTML au client
+</li>
+</ul>
+
+</section>
+<section id="sec-3-2" >
+
+<h3><a href="http://php.net/manual/en/function.setcookie.php">setcookie()</a></h3>
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-default">setcookie(</span>$<span class="org-variable-name">name</span>, $<span class="org-variable-name">value</span>, $<span class="org-variable-name">expire</span>, $<span class="org-variable-name">path</span>, $<span class="org-variable-name">domain</span>, $<span class="org-variable-name">secure</span>, $<span class="org-variable-name">httponly</span>)
+</pre>
+</div>
+<p>
+ 
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left"><code>$name</code></td>
+<td class="left">(<i>obligatoire</i>)</td>
+<td class="left">nom du cookie</td>
+</tr>
+
+<tr>
+<td class="left"><code>$value</code></td>
+<td class="left">(<i>facultatif</i>)</td>
+<td class="left">valeur du cookie (chaîne de caractères)</td>
+</tr>
+
+<tr>
+<td class="left"><code>$expire</code></td>
+<td class="left">(<i>facultatif : 0</i>)</td>
+<td class="left">date de fin de validité du cookie</td>
+</tr>
+
+<tr>
+<td class="left"><code>$path</code></td>
+<td class="left">(<i>facultatif</i>)</td>
+<td class="left">chemin pour limiter l'accès au cookie</td>
+</tr>
+
+<tr>
+<td class="left"><code>$domain</code></td>
+<td class="left">(<i>facultatif</i>)</td>
+<td class="left">domaine pour limiter l'accès au cookie</td>
+</tr>
+
+<tr>
+<td class="left"><code>$secure</code></td>
+<td class="left">(<i>facultatif : false</i>)</td>
+<td class="left">HTTPS pour transmettre les cookies</td>
+</tr>
+
+<tr>
+<td class="left"><code>$httponly</code></td>
+<td class="left">(<i>facultatif : false</i>)</td>
+<td class="left">utilisation uniquement du protocole HTTP</td>
+</tr>
+</tbody>
+</table>
+
+</section>
+<section id="sec-3-3" >
+
+<h3>Affectation des cookies en PHP</h3>
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-default">setcookie(</span><span class="org-string">'hello'</span>,<span class="org-string">'world'</span>);
+<span class="org-default">setcookie(</span><span class="org-string">'couleur'</span>, <span class="org-string">'red'</span>, <span class="org-default">time(</span>)+<span class="org-default">86400</span>, <span class="org-string">'/mon-compte/'</span>, <span class="org-warning">www</span>.<span class="org-warning">monsite</span>.<span class="org-warning">com</span>, <span class="org-constant">TRUE</span>);
+
+<span class="org-default">setcookie(</span><span class="org-string">'tableau[index1]'</span>,<span class="org-string">'val1'</span>);
+<span class="org-default">setcookie(</span><span class="org-string">'tableau[index2]'</span>,<span class="org-string">'val2'</span>);
+<span class="org-default">setcookie(</span><span class="org-string">'tableau[index3]'</span>,<span class="org-string">'val3'</span>);
+</pre>
+</div>
+
+</section>
+<section id="sec-3-4" >
+
+<h3>Lecture des cookies</h3>
+<ul class="org-ul">
+<li><code>$_COOKIE</code> est utilisé pour récupérer les valeurs
+</li>
+<li>Attention, il n'est pas possible de lire une valeur associée
+après un appel de setcookie, il faut qu'une requête ait lieu
+entre le client et le serveur.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre  class="src src-php">$<span class="org-variable-name">hello</span> = $<span class="org-constant">_COOKIE</span>[<span class="org-string">'hello'</span>];
+
+<span class="org-keyword">foreach</span>($<span class="org-constant">_COOKIE</span>[<span class="org-string">'tableau'</span>] <span class="org-keyword">as</span> $<span class="org-variable-name">key</span> =&gt; $<span class="org-variable-name">value</span>) {
+  <span class="org-keyword">echo</span> <span class="org-string">'Cookie : '</span>. $<span class="org-variable-name">key</span>.<span class="org-string">' : '</span>. $<span class="org-variable-name">value</span>;
+}
+</pre>
+</div>
+
+<p>
+<a href="./examples/cookie.php">exemple</a>
+</p>
+
+</section>
+<section id="sec-3-5" >
+
+<h3>Les sessions</h3>
+<ul class="org-ul">
+<li>Les sessions permettent de stocker des informations côté serveur
+</li>
+<li>Les sessions ne sont pas partagées entre les visiteurs
+</li>
+</ul>
+
+</section>
+<section id="sec-3-6" >
+
+<h3>Différentes étapes</h3>
+<ul class="org-ul">
+<li>Ouverture d'une session avec <code>session_start()</code>
+</li>
+<li>Transmission d'un identifiant de session
+</li>
+<li>Utilisation de la variable <code>$_SESSION</code>
+</li>
+<li>Fermeture de la session
+</li>
+</ul>
+
+</section>
+<section id="sec-3-7" >
+
+<h3>Transmission de l'identifiant de session</h3>
+<ul class="org-ul">
+<li>Dans l'URL à l'aide de la variable <code>SID</code> (Pas recommandé <i>htmlspecialchars</i>)
+</li>
+<li>Avec les cookies (il faut que le client accepte les cookies)
+<ul class="org-ul">
+<li><code>ini_set('session.use_cookies', 1);</code>
+</li>
+<li><code>ini_set('session.use_only_cookies', 1);</code> par défaut depuis PHP 5.3
+</li>
+</ul>
+</li>
+</ul>
+
+</section>
+<section id="sec-3-8" >
+
+<h3>Utilisation des sessions - 1</h3>
+<div class="org-src-container">
+
+<pre  class="src src-c">&lt;?php
+session_start();
+<span class="org-keyword">if</span>(isset($_POST[<span class="org-string">'login'</span>]) &amp;&amp; isset($_POST[<span class="org-string">'pass'</span>])) {
+    <span class="org-keyword">if</span>($_POST[<span class="org-string">'login'</span>]==<span class="org-string">"login"</span> &amp;&amp; $_POST[<span class="org-string">'pass'</span>]==<span class="org-string">"pass"</span>) {
+        session_regenerate_id(<span class="org-constant">true</span>);
+        $_SESSION[<span class="org-string">'acces'</span>] = <span class="org-constant">true</span>;
+        $_SESSION[<span class="org-string">'nom'</span>] = $_POST[<span class="org-string">'login'</span>];
+    }
+} <span class="org-keyword">else</span> {
+    <span class="org-keyword">if</span> (isset($_GET[<span class="org-string">'logout'</span>])) {
+        session_unset();
+        session_destroy();
+        header(<span class="org-string">"Location:session.php"</span>);
+    }
+}
+?&gt;
+</pre>
+</div>
+
+</section>
+<section id="sec-3-9" >
+
+<h3>Utilisation des sessions - 2</h3>
+<div class="org-src-container">
+
+<pre  class="src src-html">&lt;<span class="org-function-name">form</span> <span class="org-variable-name">method</span>=<span class="org-string">"post"</span> <span class="org-variable-name">action</span>=<span class="org-string">""</span>&gt;
+  &lt;<span class="org-function-name">fieldset</span>&gt;
+    &lt;<span class="org-function-name">legend</span>&gt;Acc&#232;s r&#233;serv&#233; aux personnes autoris&#233;es: Identifiez vous !
+    &lt;/<span class="org-function-name">legend</span>&gt;
+    Login : &lt;<span class="org-function-name">input</span> <span class="org-variable-name">type</span>=<span class="org-string">"text"</span> <span class="org-variable-name">name</span>=<span class="org-string">"login"</span>&gt;
+    Pass : &lt;<span class="org-function-name">input</span> <span class="org-variable-name">type</span>=<span class="org-string">"password"</span> <span class="org-variable-name">name</span>=<span class="org-string">"pass"</span> /&gt;
+    &lt;<span class="org-function-name">input</span> <span class="org-variable-name">type</span>=<span class="org-string">"submit"</span> <span class="org-variable-name">name</span>=<span class="org-string">"envoi"</span> <span class="org-variable-name">value</span>=<span class="org-string">"Entrer"</span>/&gt;
+  &lt;/<span class="org-function-name">fieldset</span>&gt;
+&lt;/<span class="org-function-name">form</span>&gt;
+</pre>
+</div>
+
+</section>
+<section id="sec-3-10" >
+
+<h3>Utilisation des sessions - 3</h3>
+<div class="org-src-container">
+
+<pre  class="src src-html">&lt;<span class="org-function-name">p</span>&gt; Visiter les pages du site &lt;<span class="org-function-name">br</span> /&gt;
+&lt;<span class="org-function-name">ul</span>&gt;
+  &lt;<span class="org-function-name">li</span>&gt;&lt;<span class="org-function-name">a</span> <span class="org-variable-name">href</span>=<span class="org-string">"session.php"</span>&gt;Page d'accueil&lt;/<span class="org-function-name">a</span>&gt;&lt;/<span class="org-function-name">li</span>&gt;
+  &lt;<span class="org-function-name">li</span>&gt;
+    &lt;<span class="org-function-name">a</span> <span class="org-variable-name">href</span>=<span class="org-string">"session_public.php"</span>&gt;Page publique&lt;/<span class="org-function-name">a</span>&gt;
+    &lt;<span class="org-keyword">?php</span> if(isset($_SESSION['public'])) echo <span class="org-string">" vue "</span>. $_SESSION['public']. <span class="org-string">" fois"</span>; ?&gt;
+  &lt;/<span class="org-function-name">li</span>&gt;
+  &lt;<span class="org-function-name">li</span>&gt;
+    &lt;<span class="org-function-name">a</span> <span class="org-variable-name">href</span>=<span class="org-string">"session_protected.php"</span>&gt;Page prot&#233;g&#233;e &lt;/<span class="org-function-name">a</span>&gt;
+    &lt;<span class="org-keyword">?php</span> if(isset($_SESSION['protected'])) echo <span class="org-string">" vue "</span>. $_SESSION['protected'].<span class="org-string">" fois"</span>; ?&gt;
+  &lt;/<span class="org-function-name">li</span>&gt;
+  &lt;<span class="org-keyword">?php</span> if (isset($_SESSION['acces'])) { ?&gt;
+  &lt;<span class="org-function-name">li</span>&gt;&lt;<span class="org-function-name">a</span> <span class="org-variable-name">href</span>=<span class="org-string">"session.php?logout"</span>&gt;Logout&lt;/<span class="org-function-name">a</span>&gt;&lt;/<span class="org-function-name">li</span>&gt;
+  &lt;<span class="org-keyword">?php</span> } ?&gt;
+&lt;/<span class="org-function-name">ul</span>&gt;
+</pre>
+</div>
+
+</section>
+<section id="sec-3-11" >
+
+<h3>Utilisation des sessions - 4</h3>
+<div class="org-src-container">
+
+<pre  class="src src-html">&lt;<span class="org-function-name">p</span>&gt;
+&lt;<span class="org-keyword">?php</span>
+  echo <span class="org-string">"Nom de la session : "</span>, session_name(),<span class="org-string">"&lt;br&gt;\n"</span>;
+  echo <span class="org-string">"Id de la session : "</span>, session_id(),<span class="org-string">"&lt;br&gt;\n"</span>;
+?&gt;
+&lt;/<span class="org-function-name">p</span>&gt;
+</pre>
+</div>
+
+</section>
+<section id="sec-3-12" >
+
+<h3>Utilisation des sessions - 5</h3>
+<div class="org-src-container">
+
+<pre  class="src src-html">&lt;<span class="org-keyword">?php</span>
+session_start();
+$_SESSION['public'] ++;
+?&gt;
+&lt;<span class="org-keyword">!DOCTYPE</span> html&gt;
+&lt;<span class="org-function-name">html</span>&gt;
+  &lt;<span class="org-function-name">head</span>&gt;
+    &lt;<span class="org-function-name">meta</span> <span class="org-variable-name">charset</span>=<span class="org-string">"utf-8"</span>&gt;
+    &lt;<span class="org-function-name">title</span>&gt;<span class="org-underline"><span class="org-bold">La page publique</span></span>&lt;/<span class="org-function-name">title</span>&gt;
+  &lt;/<span class="org-function-name">head</span>&gt;
+  &lt;<span class="org-function-name">body</span>&gt;
+    &lt;<span class="org-function-name">p</span>&gt;
+      &lt;<span class="org-function-name">a</span> <span class="org-variable-name">href</span>=<span class="org-string">"session.php"</span>&gt;Page d'accueil&lt;/<span class="org-function-name">a</span>&gt;&lt;<span class="org-function-name">br</span>&gt;
+      &lt;<span class="org-keyword">?php</span> echo <span class="org-string">"Page publique vue "</span>. $_SESSION['public']. <span class="org-string">" fois"</span>; ?&gt;
+    &lt;/<span class="org-function-name">p</span>&gt;
+  &lt;/<span class="org-function-name">body</span>&gt;
+&lt;/<span class="org-function-name">html</span>&gt;
+</pre>
+</div>
+
+</section>
+<section id="sec-3-13" >
+
+<h3>Utilisation des sessions - 6</h3>
+<div class="org-src-container">
+
+<pre  class="src src-html">&lt;<span class="org-keyword">?php</span>
+session_start();
+if(!isset($_SESSION['acces'])) {
+    header(<span class="org-string">"Location:session.php"</span>);
+} else {
+    $_SESSION['protected'] ++;
+}
+?&gt;
+&lt;<span class="org-keyword">!DOCTYPE</span> html&gt;
+&lt;<span class="org-function-name">html</span>&gt;
+  &lt;<span class="org-function-name">head</span>&gt;
+    &lt;<span class="org-function-name">meta</span> <span class="org-variable-name">charset</span>=<span class="org-string">"utf-8"</span>&gt;
+    &lt;<span class="org-function-name">title</span>&gt;<span class="org-underline"><span class="org-bold">La page prot&#233;g&#233;e</span></span>&lt;/<span class="org-function-name">title</span>&gt;
+  &lt;/<span class="org-function-name">head</span>&gt;
+  &lt;<span class="org-function-name">body</span>&gt;
+    &lt;<span class="org-function-name">p</span>&gt;
+      &lt;<span class="org-function-name">a</span> <span class="org-variable-name">href</span>=<span class="org-string">"session.php"</span>&gt;Page d'accueil&lt;/<span class="org-function-name">a</span>&gt;&lt;<span class="org-function-name">br</span>&gt;
+      &lt;<span class="org-keyword">?php</span> echo <span class="org-string">"Page prot&#233;g&#233;e vue "</span>. $_SESSION['protected']. <span class="org-string">" fois"</span>; ?&gt;&lt;<span class="org-function-name">br</span>&gt;
+      &lt;<span class="org-keyword">?php</span> echo <span class="org-string">"&lt;h4&gt;</span><span class="org-string"><span class="org-underline">Bonjour "</span></span><span class="org-underline">. $_SESSION['nom'].</span><span class="org-string"><span class="org-underline">"</span></span><span class="org-string">&lt;/h4&gt;"</span>; ?&gt;
+      &lt;<span class="org-function-name">a</span> <span class="org-variable-name">href</span>=<span class="org-string">"session.php?logout"</span>&gt;Logout&lt;/<span class="org-function-name">a</span>&gt;
+    &lt;/<span class="org-function-name">p</span>&gt;
+  &lt;/<span class="org-function-name">body</span>&gt;
+&lt;/<span class="org-function-name">html</span>&gt;
+</pre>
+</div>
+
+<p>
+<a href="./examples/session.php">exemple</a>
+</p>
+
+</section>
+<section id="sec-4" >
+
+<h2>PHP et les fichiers</h2>
+</section>
+<section id="sec-4-1" >
+
+<h3>L'inclusion de fichiers</h3>
+<ul class="org-ul">
+<li>Il est possible d'utiliser du code PHP ou HTML provenant d'autres fichiers :
+<ul class="org-ul">
+<li><code>include('fichier.ext');</code>
+</li>
+<li><code>require('fichier.ext');</code>
+</li>
+<li><code>include_once('fichier.ext');</code>
+</li>
+<li><code>require_once('fichier.ext');</code>
+</li>
+</ul>
+</li>
+<li>L'interpréteur PHP remplace ces lignes par le contenu du fichier
+</li>
+</ul>
+
+</section>
+<section id="sec-4-2" >
+
+<h3>L'inclusion de fichiers</h3>
+<ul class="org-ul">
+<li>La différence entre <code>include</code> et <code>require</code> concerne la gestion des erreurs
+<ul class="org-ul">
+<li><code>include</code> génère un avertissement
+</li>
+<li><code>require</code> génère une erreur fatale
+</li>
+</ul>
+</li>
+<li>Le suffixe <code>_once</code> permet de ne remplacer qu'une seule fois le code
+</li>
+<li>L'extension généralement utilisée est <code>.php</code> pour protéger le contenu
+</li>
+<li>Permet d'extraire les fonctions d'usage
+</li>
+<li>Améliore la modularité du code
+</li>
+</ul>
+
+</section>
+<section id="sec-4-3" >
+
+<h3>Manipulation simple des fichiers</h3>
+<ul class="org-ul">
+<li><code>file_exists()</code> permet de vérifier l'existence d'un fichier
+</li>
+<li><code>file_get_contents()</code> permet de lire le contenu d'un fichier
+</li>
+<li><code>file_put_contents()</code> permet d'écrire dans un fichier
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-preprocessor">&lt;?php</span>
+  $<span class="org-variable-name">file</span> = <span class="org-string">'file.txt'</span>;
+  $<span class="org-variable-name">content</span> = <span class="org-string">''</span>;
+
+  <span class="org-keyword">if</span> (<span class="org-default">file_exists(</span>$<span class="org-variable-name">file</span>)) {
+    $<span class="org-variable-name">content</span> = <span class="org-default">file_get_contents(</span>$<span class="org-variable-name">file</span>);
+  }
+
+  $<span class="org-variable-name">content</span> .= <span class="org-string">"Hello world\n"</span>;
+
+  <span class="org-default">file_put_contents(</span>$<span class="org-variable-name">file</span>, $<span class="org-variable-name">content</span>);
+<span class="org-preprocessor">?&gt;</span>
+</pre>
+</div>
+
+</section>
+<section id="sec-4-4" >
+
+<h3>Manipulation simple des fichiers</h3>
+<ul class="org-ul">
+<li><a href="http://php.net/manual/en/function.readfile.php">readfile</a> lit et affiche le contenu d'un fichier 
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-warning">int</span> <span class="org-default">readfile (</span> <span class="org-type">string</span> $<span class="org-variable-name">filename</span> )
+</pre>
+</div>
+</li>
+<li><a href="http://php.net/manual/en/function.file.php">file</a> lit et retourne sous forme de tableau un fichier
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-warning">array</span> <span class="org-default">file (</span> <span class="org-type">string</span> $<span class="org-variable-name">filename</span> )
+</pre>
+</div>
+</li>
+</ul>
+
+</section>
+<section id="sec-4-5" >
+
+<h3>Manipulation avancée des fichiers</h3>
+<ul class="org-ul">
+<li><a href="http://php.net/manual/en/function.fopen.php">fopen</a> ouvre un fichier
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-warning">resource</span> <span class="org-default">fopen (</span> <span class="org-type">string</span> $<span class="org-variable-name">filename</span> , <span class="org-type">string</span> $<span class="org-variable-name">mode</span>)
+</pre>
+</div>
+</li>
+<li><code>$mode</code> :
+<ul class="org-ul">
+<li><code> 'r'  </code> : lecture seule
+</li>
+<li><code> 'r+' </code> : lecture et écriture
+</li>
+<li><code> 'w'  </code> : écriture seule (création du fichier si inexistant)
+</li>
+<li><code> 'w+' </code> : lecture et écriture (création du fichier si inexistant)
+</li>
+<li><code> 'a'  </code> : écriture seule comme <code>w</code> (écriture en fin de fichier)
+</li>
+<li><code> 'a+' </code> : écriture et lecture comme <code>w+</code> (écriture en fin de fichier)
+</li>
+</ul>
+</li>
+</ul>
+
+</section>
+<section id="sec-4-6" >
+
+<h3>Déplacement</h3>
+<ul class="org-ul">
+<li><a href="http://php.net/manual/en/function.fseek.php">fseek</a> déplace le pointeur à une position donnée
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-warning">int</span> <span class="org-default">fseek (</span> <span class="org-type">resource</span> $<span class="org-variable-name">handle</span> , <span class="org-type">int</span> $<span class="org-variable-name">offset</span> )
+</pre>
+</div>
+</li>
+<li><a href="http://php.net/manual/en/function.rewind.php">rewind</a>  remet le pointeur au début
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-warning">bool</span> <span class="org-default">rewind (</span> <span class="org-type">resource</span> $<span class="org-variable-name">handle</span> )
+</pre>
+</div>
+</li>
+<li><a href="http://php.net/manual/en/function.ftell.php">ftell</a> retourne la position du pointeur
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-warning">int</span> <span class="org-default">ftell (</span> <span class="org-type">resource</span> $<span class="org-variable-name">handle</span> )
+</pre>
+</div>
+</li>
+<li><a href="http://php.net/manual/en/function.feof.php">feof</a> test la fin du fichier
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-warning">bool</span> <span class="org-default">feof (</span> <span class="org-type">resource</span> $<span class="org-variable-name">handle</span> )
+</pre>
+</div>
+</li>
+</ul>
+
+</section>
+<section id="sec-4-7" >
+
+<h3>Lecture</h3>
+<ul class="org-ul">
+<li><a href="http://php.net/manual/en/function.fread.php">fread</a> lecture du fichier en mode binaire
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-warning">string</span> <span class="org-default">fread (</span> <span class="org-type">resource</span> $<span class="org-variable-name">handle</span> , <span class="org-type">int</span> $<span class="org-variable-name">length</span> )
+</pre>
+</div>
+</li>
+<li><a href="http://php.net/manual/en/function.fgets.php">fgets</a> lecture de la ligne courante
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-warning">string</span> <span class="org-default">fgets (</span> <span class="org-type">resource</span> $<span class="org-variable-name">handle</span> [, <span class="org-type">int</span> $<span class="org-variable-name">length</span> ] )
+</pre>
+</div>
+</li>
+<li><a href="http://php.net/manual/en/function.fgetc.php">fgetc</a> lecture du caractère courant
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-warning">string</span> <span class="org-default">fgetc (</span> <span class="org-type">resource</span> $<span class="org-variable-name">handle</span> )
+</pre>
+</div>
+</li>
+</ul>
+
+</section>
+<section id="sec-4-8" >
+
+<h3>Écriture/Fermeture d'un fichier</h3>
+<ul class="org-ul">
+<li><a href="http://php.net/manual/en/function.fwrite.php">fwrite</a>/fputs écriture du fichier en mode binaire
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-warning">int</span> <span class="org-default">fwrite (</span> <span class="org-type">resource</span> $<span class="org-variable-name">handle</span> , <span class="org-type">string</span> $<span class="org-variable-name">string</span> [, <span class="org-type">int</span> $<span class="org-variable-name">length</span> ] )
+</pre>
+</div>
+</li>
+<li><a href="http://php.net/manual/en/function.fclose.php">fclose</a> fermeture du fichier
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-warning">bool</span> <span class="org-default">fclose (</span> <span class="org-type">resource</span> $<span class="org-variable-name">handle</span> )
+</pre>
+</div>
+</li>
+</ul>
+
+</section>
+<section id="sec-4-9" >
+
+<h3>Vérrouillage d'un fichier</h3>
+<ul class="org-ul">
+<li><a href="http://php.net/manual/en/function.flock.php">flock</a> vérrouille un fichier
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-warning">bool</span> <span class="org-default">flock (</span> <span class="org-type">resource</span> $<span class="org-variable-name">handle</span> , <span class="org-type">int</span> $<span class="org-variable-name">operation</span> )
+</pre>
+</div>
+</li>
+<li><code>$operation</code> :
+<ul class="org-ul">
+<li><code>LOCK_SH</code> bloque l'écriture du fichier mais laisse le libre accès en lecture à tous les utilisateurs
+</li>
+<li><code>LOCK_EX</code> bloque l'écriture et la lecture du fichier
+</li>
+<li><code>LOCK_UN</code> libère le verrou installé précédemment (ne pas oublier cette fonction à la fin des opérations de lecture et écriture)
+</li>
+</ul>
+</li>
+</ul>
+
+</section>
+<section id="sec-4-10" >
+
+<h3>Résumé</h3>
+<a href="http://www.luc-damas.fr/humeurs/pedagogie-houblonnee-les-fichiers/"><img src="./inc/img/pedagogie-houblonnee-fichiers.jpg" alt="pedagogie-houblonnee-fichiers.jpg" /></a>
+
+</section>
+<section id="sec-4-11" >
+
+<h3>Exemple</h3>
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-preprocessor">&lt;?php</span>
+<span class="org-comment-delimiter">// </span><span class="org-comment">&#201;quivalent de file_get_contents</span>
+$<span class="org-variable-name">file</span> = <span class="org-string">"file.txt"</span>;
+$<span class="org-variable-name">handle</span> = <span class="org-default">fopen(</span>$<span class="org-variable-name">filename</span>, <span class="org-string">"r"</span>);
+<span class="org-keyword">if</span> ($<span class="org-variable-name">handle</span>) {
+  $<span class="org-variable-name">content</span> = <span class="org-default">fread(</span>$<span class="org-variable-name">handle</span>, <span class="org-default">filesize(</span>$<span class="org-variable-name">file</span>));
+  <span class="org-default">fclose(</span>$<span class="org-variable-name">handle</span>);
+}
+<span class="org-preprocessor">?&gt;</span>
+</pre>
+</div>
+
+</section>
+<section id="sec-4-12" >
+
+<h3>csv</h3>
+<ul class="org-ul">
+<li><a href="http://php.net/manual/en/function.fgetcsv.php">fgetcsv</a> retourne sous forme de tableau un fichier CSV
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-warning">array</span> <span class="org-default">fgetcsv (</span> <span class="org-type">resource</span> $<span class="org-variable-name">handle</span> 
+                [, <span class="org-type">int</span> $<span class="org-variable-name">length</span> = <span class="org-default">0</span>
+                [, <span class="org-type">string</span> $<span class="org-variable-name">delimiter</span> = <span class="org-string">","</span>
+                [, <span class="org-type">string</span> $<span class="org-variable-name">enclosure</span> = <span class="org-string">'"'</span>
+                [, <span class="org-type">string</span> $<span class="org-variable-name">escape</span> = <span class="org-string">"\\"</span> ]]]] )
+</pre>
+</div>
+</li>
+<li><a href="http://php.net/manual/en/function.fputcsv.php">fputcsv</a> écrit une ligne CSV dans un fichier
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-warning">int</span> <span class="org-default">fputcsv (</span> <span class="org-type">resource</span> $<span class="org-variable-name">handle</span> ,
+              <span class="org-warning">array</span> $<span class="org-variable-name">fields</span>
+              [, <span class="org-type">string</span> $<span class="org-variable-name">delimiter</span> = <span class="org-string">","</span>
+              [, <span class="org-type">string</span> $<span class="org-variable-name">enclosure</span> = <span class="org-string">'"'</span> ]] )
+</pre>
+</div>
+</li>
+</ul>
+
+</section>
+<section id="sec-4-13" >
+
+<h3>Action sur les fichiers</h3>
+<ul class="org-ul">
+<li><a href="http://php.net/manual/en/function.copy.php">copy</a> copie un fichier
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-warning">bool</span> <span class="org-default">copy (</span> <span class="org-type">string</span> $<span class="org-variable-name">source</span> , <span class="org-type">string</span> $<span class="org-variable-name">dest</span> )
+</pre>
+</div>
+</li>
+<li><a href="http://php.net/manual/en/function.rename.php">rename</a> renomme unfichier
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-warning">bool</span> <span class="org-default">rename (</span> <span class="org-type">string</span> $<span class="org-variable-name">oldname</span> , <span class="org-type">string</span> $<span class="org-variable-name">newname</span> )
+</pre>
+</div>
+</li>
+<li><a href="http://php.net/manual/en/function.unlink.php">unlink</a> supprime un fichier
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-warning">bool</span> <span class="org-default">unlink (</span> <span class="org-type">string</span> $<span class="org-variable-name">filename</span> )
+</pre>
+</div>
+</li>
+</ul>
+
+</section>
+<section id="sec-4-14" >
+
+<h3>Information sur les fichiers</h3>
+<ul class="org-ul">
+<li><a href="http://php.net/manual/en/function.filesize.php">filesize</a> récupère la taille du fichier
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-warning">int</span> <span class="org-default">filesize (</span> <span class="org-type">string</span> $<span class="org-variable-name">filename</span> )
+</pre>
+</div>
+</li>
+<li><a href="http://php.net/manual/en/function.fileatime.php">fileatime</a> donne la date du dernier accès à un fichier
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-warning">int</span> <span class="org-default">fileatime (</span> <span class="org-type">string</span> $<span class="org-variable-name">filename</span> )
+</pre>
+</div>
+</li>
+<li><a href="http://php.net/manual/en/function.filemtime.php">filemtime</a> donne la date de dernière modification d'un fichier
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-warning">int</span> <span class="org-default">filemtime (</span> <span class="org-type">string</span> $<span class="org-variable-name">filename</span> )
+</pre>
+</div>
+</li>
+<li><a href="http://php.net/manual/en/function.realpath.php">realpath</a> retourne le chemin absolu d'un chemin
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-warning">string</span> <span class="org-default">realpath (</span> <span class="org-type">string</span> $<span class="org-variable-name">path</span> )
+</pre>
+</div>
+</li>
+<li><a href="http://php.net/manual/en/function.basename.php">basename</a> retourne le nom du fichier d'un chemin
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-warning">string</span> <span class="org-default">basename (</span> <span class="org-type">string</span> $<span class="org-variable-name">path</span> [, <span class="org-type">string</span> $<span class="org-variable-name">suffix</span> ] )
+</pre>
+</div>
+</li>
+</ul>
+
+</section>
+<section id="sec-5" >
+
+<h2>Bases de données SQL</h2>
+</section>
+<section id="sec-5-1" >
+
+<h3>Approches</h3>
+<ul class="org-ul">
+<li>Approche spécifique
+<ul class="org-ul">
+<li>MySQL : <a href="http://php.net/manual/en/book.mysqli.php">mysqli</a> (<a href="http://php.net/manual/en/ref.mysql.php">mysql</a> obsolète depuis PHP 5.5)
+</li>
+<li>SQLite : <a href="http://php.net/manual/en/book.sqlite3.php">sqlite3</a>
+</li>
+<li>PostgreSQL : <a href="http://php.net/manual/en/book.pgsql.php">pgsql</a>
+</li>
+</ul>
+</li>
+<li>Approche générale
+<ul class="org-ul">
+<li>PHP Data Objects : <a href="http://php.net/manual/en/book.pdo.php">PDO</a>
+</li>
+</ul>
+</li>
+</ul>
+
+</section>
+<section id="sec-5-2" >
+
+<h3>Approche spécifique</h3>
+<ul class="org-ul">
+<li>Avantages :
+<ul class="org-ul">
+<li>Permet d'utiliser les spécificités/fonctionnalités avancées de la base
+</li>
+<li>Possède généralement de meilleures performances
+</li>
+</ul>
+</li>
+<li>Inconvénient :
+<ul class="org-ul">
+<li>Contraint la base de données avec un code spécifique
+</li>
+</ul>
+</li>
+</ul>
+
+</section>
+<section id="sec-5-3" >
+
+<h3>Approche générale</h3>
+<ul class="org-ul">
+<li>Avantages :
+<ul class="org-ul">
+<li>Code générique pour utiliser différents moteurs de bases de données
+</li>
+</ul>
+</li>
+<li>Inconvénient :
+<ul class="org-ul">
+<li>Généricité à nuancer (<code>AUTOINCREMENT</code>, <code>AUTO_INCREMENT</code>)
+</li>
+<li>Limité aux fonctionnalités de base
+</li>
+</ul>
+</li>
+</ul>
+
+</section>
+<section id="sec-5-4" >
+
+<h3>Exemple</h3>
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-preprocessor">&lt;?php</span>
+  <span class="org-comment-delimiter">// </span><span class="org-comment">mysqli</span>
+  $<span class="org-variable-name">mysqli</span> = <span class="org-keyword">new</span> <span class="org-type">mysqli</span>(<span class="org-string">'example.com'</span>, <span class="org-string">'user'</span>, <span class="org-string">'password'</span>, <span class="org-string">'database'</span>);
+  $<span class="org-variable-name">result</span> = $<span class="org-variable-name">mysqli</span>-<span class="org-constant">&gt;</span><span class="org-default">query</span>(<span class="org-string">"SELECT 'Bonjour, cher utilisateur de MySQL !' AS _message FROM DUAL"</span>);
+  $<span class="org-variable-name">row</span> = $<span class="org-variable-name">result</span>-&gt;<span class="org-default">fetch_assoc</span>();
+  <span class="org-keyword">echo</span> <span class="org-default">htmlentities(</span>$<span class="org-variable-name">row</span>[<span class="org-string">'_message'</span>]);
+
+  <span class="org-comment-delimiter">// </span><span class="org-comment">PDO</span>
+  $<span class="org-variable-name">pdo</span> = <span class="org-keyword">new</span> <span class="org-type">PDO</span>(<span class="org-string">'mysql:host=example.com;dbname=database'</span>, <span class="org-string">'user'</span>, <span class="org-string">'password'</span>);
+  $<span class="org-variable-name">statement</span> = $<span class="org-variable-name">pdo</span>-&gt;<span class="org-default">query</span>(<span class="org-string">"SELECT 'Bonjour, cher utilisateur de MySQL !' AS _message FROM DUAL"</span>);
+  $<span class="org-variable-name">row</span> = $<span class="org-variable-name">statement</span>-&gt;<span class="org-default">fetch</span>(<span class="org-type">PDO</span>::<span class="org-default">FETCH_ASSOC)</span>;
+  <span class="org-keyword">echo</span> <span class="org-default">htmlentities(</span>$<span class="org-variable-name">row</span>[<span class="org-string">'_message'</span>]);
+<span class="org-preprocessor">?&gt;</span>
+</pre>
+</div>
+
+<p>
+<a href="http://php.net/manual/fr/mysqlinfo.api.choosing.php">http://php.net/manual/fr/mysqlinfo.api.choosing.php</a>
+</p>
+
+</section>
+<section id="sec-5-5" >
+
+<h3>PDO : créer une connexion</h3>
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-preprocessor">&lt;?php</span>
+  <span class="org-default">ini_set(</span><span class="org-string">'display_errors'</span>, <span class="org-string">'1'</span>);
+  <span class="org-default">error_reporting(</span><span class="org-constant">E_ALL</span>);
+  $<span class="org-variable-name">pdo</span> = <span class="org-keyword">new</span> <span class="org-type">PDO</span>(<span class="org-string">'mysql:host=localhost;dbname=database'</span>, <span class="org-string">'user'</span>, <span class="org-string">'password'</span>);
+<span class="org-preprocessor">?&gt;</span>
+</pre>
+</div>
+
+<p>
+<a href="./examples/pdo_exception.php">exemple</a>
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-preprocessor">&lt;?php</span>
+  <span class="org-default">ini_set(</span><span class="org-string">'display_errors'</span>, <span class="org-string">'1'</span>);
+  <span class="org-default">error_reporting(</span><span class="org-constant">E_ALL</span>);
+  <span class="org-keyword">try</span> {
+    $<span class="org-variable-name">pdo</span> = <span class="org-keyword">new</span> <span class="org-type">PDO</span>(<span class="org-string">'mysql:host=localhost;dbname=database'</span>, <span class="org-string">'user'</span>, <span class="org-string">'password'</span>);
+  } <span class="org-keyword">catch</span>(<span class="org-type">PDOException</span> $<span class="org-variable-name">e</span>) {
+    <span class="org-keyword">echo</span> $<span class="org-variable-name">e</span>-<span class="org-constant">&gt;</span><span class="org-default">getMessage</span>();
+  }
+<span class="org-preprocessor">?&gt;</span>
+</pre>
+</div>
+
+<p>
+<a href="./examples/pdo_try.php">exemple</a>
+</p>
+
+</section>
+<section id="sec-5-6" >
+
+<h3>PDO : fermer une connexion</h3>
+<ul class="org-ul">
+<li>Fermeture automatique à la fin du script
+</li>
+<li>Mettre à null la variable qui gère la connexion
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-preprocessor">&lt;?php</span>
+  <span class="org-keyword">try</span> {
+    <span class="org-comment-delimiter">// </span><span class="org-comment">ouverture de la base de donn&#233;es</span>
+    $<span class="org-variable-name">pdo</span> = <span class="org-keyword">new</span> <span class="org-type">PDO</span>(<span class="org-string">'sqlite::memory:'</span>);
+
+    <span class="org-keyword">echo</span> <span class="org-string">"Connect&#233; &#224; la base de donn&#233;es"</span>;
+
+    <span class="org-comment-delimiter">// </span><span class="org-comment">fermeture de la base de donn&#233;es</span>
+    $<span class="org-variable-name">pdo</span> = <span class="org-constant">null</span>;
+  } <span class="org-keyword">catch</span>(<span class="org-type">PDOException</span> $<span class="org-variable-name">e</span>) {
+    <span class="org-keyword">echo</span> $<span class="org-variable-name">e</span>-<span class="org-constant">&gt;</span><span class="org-default">getMessage</span>();
+  }
+<span class="org-preprocessor">?&gt;</span>
+</pre>
+</div>
+
+</section>
+<section id="sec-5-7" >
+
+<h3>PDO : exec et query</h3>
+<ul class="org-ul">
+<li><a href="http://php.net/manual/en/pdo.exec.php">exec</a> execute une requête SQL et retourne le nombre de lignes affectées
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-keyword">public</span> <span class="org-warning">int</span> <span class="org-type">PDO</span>::<span class="org-default">exec </span>( <span class="org-type">string</span> $<span class="org-variable-name">statement</span> )
+</pre>
+</div>
+</li>
+<li><a href="http://php.net/manual/en/pdo.query.php">query</a> execute une requête SQL et retourne un objet <a href="http://php.net/manual/fr/class.pdostatement.php">PDOStatement</a>
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-keyword">public</span> <span class="org-warning">PDOStatement</span> <span class="org-type">PDO</span>::<span class="org-default">query </span>( <span class="org-type">string</span> $<span class="org-variable-name">statement</span> )
+</pre>
+</div>
+</li>
+</ul>
+
+</section>
+<section id="sec-5-8" >
+
+<h3>PDO : gestion des erreurs</h3>
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-preprocessor">&lt;?php</span>
+  <span class="org-default">ini_set(</span><span class="org-string">'display_errors'</span>, <span class="org-string">'1'</span>);
+  <span class="org-default">error_reporting(</span><span class="org-constant">E_ALL</span>);
+  $<span class="org-variable-name">error</span> = <span class="org-default">isset(</span>$<span class="org-constant">_GET</span>[<span class="org-string">'error'</span>])?$<span class="org-constant">_GET</span>[<span class="org-string">'error'</span>]:<span class="org-string">'default'</span>;
+  <span class="org-keyword">try</span> {
+    $<span class="org-variable-name">pdo</span> = <span class="org-keyword">new</span> <span class="org-type">PDO</span>(<span class="org-string">'sqlite::memory:'</span>);
+    <span class="org-keyword">switch</span>($<span class="org-variable-name">error</span>) {
+    <span class="org-keyword">case</span> <span class="org-string">'exception'</span>:
+      $<span class="org-variable-name">pdo</span>-<span class="org-constant">&gt;</span><span class="org-default">setAttribute</span>(<span class="org-type">PDO</span>::<span class="org-default">ATTR_ERRMODE,</span> <span class="org-type">PDO</span>::<span class="org-default">ERRMODE_EXCEPTION)</span>;
+      <span class="org-keyword">break</span>;
+    <span class="org-keyword">case</span> <span class="org-string">'warning'</span>:
+      $<span class="org-variable-name">pdo</span>-&gt;<span class="org-default">setAttribute</span>(<span class="org-type">PDO</span>::<span class="org-default">ATTR_ERRMODE,</span> <span class="org-type">PDO</span>::<span class="org-default">ERRMODE_WARNING)</span>;
+      <span class="org-keyword">break</span>;
+    <span class="org-keyword">case</span> <span class="org-string">'silent'</span>:
+      $<span class="org-variable-name">pdo</span>-&gt;<span class="org-default">setAttribute</span>(<span class="org-type">PDO</span>::<span class="org-default">ATTR_ERRMODE,</span> <span class="org-type">PDO</span>::<span class="org-default">ERRMODE_SILENT)</span>;
+      <span class="org-keyword">break</span>;
+    }
+
+    <span class="org-default">var_dump(</span>$<span class="org-variable-name">pdo</span>-&gt;<span class="org-default">exec</span>(<span class="org-string">"Hello world"</span>));
+    <span class="org-keyword">echo</span> <span class="org-string">'&lt;br&gt;Code erreur&#160;: '</span>.$<span class="org-variable-name">pdo</span>-&gt;<span class="org-default">errorCode</span>().<span class="org-string">'&lt;br&gt;'</span>;
+
+    $<span class="org-variable-name">pdo</span> = <span class="org-constant">null</span>;
+  } <span class="org-keyword">catch</span>(<span class="org-type">PDOException</span> $<span class="org-variable-name">e</span>) {
+    <span class="org-keyword">echo</span> $<span class="org-variable-name">e</span>-&gt;<span class="org-default">getMessage</span>();
+  }
+<span class="org-preprocessor">?&gt;</span>
+</pre>
+</div>
+
+<p>
+<a href="./examples/pdo_error.php">exemple</a>
+</p>
+
+</section>
+<section id="sec-5-9" >
+
+<h3>PDO : création</h3>
+<ul class="org-ul">
+<li>Pose le plus de problème pour la généricité du code car très
+spécifique à la base utilisée
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-preprocessor">&lt;?php</span>
+  <span class="org-default">error_reporting(</span><span class="org-constant">E_ALL</span>);
+  <span class="org-default">ini_set(</span><span class="org-string">'display_errors'</span>, <span class="org-string">'1'</span>);
+  <span class="org-keyword">try</span> {
+    $<span class="org-variable-name">pdo</span> = <span class="org-keyword">new</span> <span class="org-type">PDO</span>(<span class="org-string">'sqlite::memory:'</span>);
+    $<span class="org-variable-name">pdo</span>-<span class="org-constant">&gt;</span><span class="org-default">setAttribute</span>(<span class="org-type">PDO</span>::<span class="org-default">ATTR_ERRMODE,</span> <span class="org-type">PDO</span>::<span class="org-default">ERRMODE_EXCEPTION)</span>;
+
+    $<span class="org-variable-name">table</span> = <span class="org-string">"CREATE TABLE animals (</span>
+<span class="org-string">      animal_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,</span>
+<span class="org-string">      animal_type VARCHAR(25) NOT NULL,</span>
+<span class="org-string">      animal_name VARCHAR(25) NOT NULL </span>
+<span class="org-string">    )"</span>;
+    $<span class="org-variable-name">pdo</span>-&gt;<span class="org-default">exec</span>($<span class="org-variable-name">table</span>);
+  } <span class="org-keyword">catch</span>(<span class="org-type">PDOException</span> $<span class="org-variable-name">e</span>) {
+    <span class="org-keyword">echo</span> $<span class="org-variable-name">e</span>-&gt;<span class="org-default">getMessage</span>();
+  }
+<span class="org-preprocessor">?&gt;</span>
+</pre>
+</div>
+
+</section>
+<section id="sec-5-10" >
+
+<h3>PDO : insertion</h3>
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-preprocessor">&lt;?php</span>
+  <span class="org-keyword">include</span> <span class="org-string">'pdo_create.php'</span>;
+
+  $<span class="org-variable-name">pdo</span>-<span class="org-constant">&gt;</span><span class="org-default">exec</span>(<span class="org-string">"INSERT INTO animals (animal_type, animal_name) VALUES ('chien', 'm&#233;dor')"</span>);
+  $<span class="org-variable-name">pdo</span>-&gt;<span class="org-default">exec</span>(<span class="org-string">"INSERT INTO animals (animal_type, animal_name) VALUES ('vache', 'marguerite')"</span>);
+  $<span class="org-variable-name">pdo</span>-&gt;<span class="org-default">exec</span>(<span class="org-string">"INSERT INTO animals (animal_type, animal_name) VALUES ('souris', 'jerry')"</span>);
+  $<span class="org-variable-name">pdo</span>-&gt;<span class="org-default">exec</span>(<span class="org-string">"INSERT INTO animals (animal_type, animal_name) VALUES ('oiseau', 'titi')"</span>);
+  $<span class="org-variable-name">pdo</span>-&gt;<span class="org-default">exec</span>(<span class="org-string">"INSERT INTO animals (animal_type, animal_name) VALUES ('chat', 'minou')"</span>);
+  $<span class="org-variable-name">pdo</span>-&gt;<span class="org-default">exec</span>(<span class="org-string">"INSERT INTO animals (animal_type, animal_name) VALUES ('poisson', 'n&#233;mo')"</span>);
+  $<span class="org-variable-name">pdo</span>-&gt;<span class="org-default">exec</span>(<span class="org-string">"INSERT INTO animals (animal_type, animal_name) VALUES ('lapin', 'jeannot')"</span>);
+  <span class="org-keyword">echo</span> <span class="org-string">'id du dernier animal ins&#233;r&#233;&#160;: '</span>.$<span class="org-variable-name">pdo</span>-&gt;<span class="org-default">lastInsertId</span>().<span class="org-string">"&lt;br&gt;\n"</span>;
+<span class="org-preprocessor">?&gt;</span>
+</pre>
+</div>
+
+<p>
+<a href="./examples/pdo_insert.php">exemple</a>
+</p>
+
+</section>
+<section id="sec-5-11" >
+
+<h3>PDO : sélection</h3>
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-preprocessor">&lt;?php</span>
+  <span class="org-keyword">include</span> <span class="org-string">'pdo_insert.php'</span>;
+
+  $<span class="org-variable-name">sql</span> = <span class="org-string">"SELECT * FROM animals"</span>;
+  <span class="org-keyword">foreach</span> ($<span class="org-variable-name">pdo</span>-<span class="org-constant">&gt;</span><span class="org-default">query</span>($<span class="org-variable-name">sql</span>) <span class="org-keyword">as</span> $<span class="org-variable-name">row</span>) {
+    <span class="org-keyword">print</span> $<span class="org-variable-name">row</span>[<span class="org-string">'animal_type'</span>] .<span class="org-string">' - '</span>. $<span class="org-variable-name">row</span>[<span class="org-string">'animal_name'</span>] . <span class="org-string">'&lt;br /&gt;'</span>;
+  }
+<span class="org-preprocessor">?&gt;</span>
+</pre>
+</div>
+
+<p>
+<a href="./examples/pdo_select.php">exemple</a>
+</p>
+
+</section>
+<section id="sec-5-12" >
+
+<h3>PDO : parcours des données</h3>
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-preprocessor">&lt;?php</span>
+  <span class="org-keyword">include</span> <span class="org-string">'pdo_insert.php'</span>;
+
+  $<span class="org-variable-name">sql</span> = <span class="org-string">"SELECT * FROM animals"</span>;
+  $<span class="org-variable-name">stmt</span> = $<span class="org-variable-name">pdo</span>-<span class="org-constant">&gt;</span><span class="org-default">query</span>($<span class="org-variable-name">sql</span>);
+
+  <span class="org-keyword">echo</span> <span class="org-string">'&lt;br&gt;&lt;b&gt;PDO::FETCH_ASSOC&lt;/b&gt;&lt;br&gt;'</span>.<span class="org-string">"\n"</span>;
+  <span class="org-default">var_dump(</span>$<span class="org-variable-name">stmt</span>-&gt;<span class="org-default">fetch</span>(<span class="org-type">PDO</span>::<span class="org-default">FETCH_ASSOC)</span>);
+
+  <span class="org-keyword">echo</span> <span class="org-string">'&lt;br&gt;&lt;b&gt;PDO::FETCH_NUM&lt;/b&gt;&lt;br&gt;'</span>.<span class="org-string">"\n"</span>;
+  <span class="org-default">var_dump(</span>$<span class="org-variable-name">stmt</span>-&gt;<span class="org-default">fetch</span>(<span class="org-type">PDO</span>::<span class="org-default">FETCH_NUM)</span>);
+
+  <span class="org-keyword">echo</span> <span class="org-string">'&lt;br&gt;&lt;b&gt;PDO::FETCH_BOTH&lt;/b&gt;&lt;br&gt;'</span>.<span class="org-string">"\n"</span>;
+  <span class="org-default">var_dump(</span>$<span class="org-variable-name">stmt</span>-&gt;<span class="org-default">fetch</span>(<span class="org-type">PDO</span>::<span class="org-default">FETCH_BOTH)</span>);
+
+  <span class="org-keyword">echo</span> <span class="org-string">'&lt;br&gt;&lt;b&gt;fetchAll&lt;/b&gt;&lt;br&gt;'</span>.<span class="org-string">"\n"</span>;
+  <span class="org-default">var_dump(</span>$<span class="org-variable-name">stmt</span>-&gt;<span class="org-default">fetchAll</span>(<span class="org-type">PDO</span>::<span class="org-default">FETCH_ASSOC)</span>);
+<span class="org-preprocessor">?&gt;</span>
+</pre>
+</div>
+
+<p>
+<a href="./examples/pdo_select_fetch.php">exemple</a>
+</p>
+
+</section>
+<section id="sec-5-13" >
+
+<h3>PDO : mise à jour</h3>
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-preprocessor">&lt;?php</span>
+  <span class="org-keyword">include</span> <span class="org-string">'pdo_insert.php'</span>;
+
+  $<span class="org-variable-name">count</span> = $<span class="org-variable-name">pdo</span>-<span class="org-constant">&gt;</span><span class="org-default">exec</span>(<span class="org-string">"UPDATE animals SET animal_name='mickey' WHERE animal_name='jerry'"</span>);
+
+  <span class="org-keyword">echo</span> $<span class="org-variable-name">count</span>.<span class="org-string">' animaux mis &#224; jour'</span>;
+  <span class="org-default">var_dump(</span>$<span class="org-variable-name">pdo</span>-&gt;<span class="org-default">query</span>(<span class="org-string">"SELECT * FROM animals"</span>)-&gt;<span class="org-default">fetchAll</span>(<span class="org-type">PDO</span>::<span class="org-default">FETCH_ASSOC)</span>);
+<span class="org-preprocessor">?&gt;</span>
+</pre>
+</div>
+
+<p>
+<a href="./examples/pdo_update.php">exemple</a>
+</p>
+
+</section>
+<section id="sec-5-14" >
+
+<h3>PDO : suppression</h3>
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-preprocessor">&lt;?php</span>
+  <span class="org-keyword">include</span> <span class="org-string">'pdo_insert.php'</span>;
+
+  $<span class="org-variable-name">count</span> = $<span class="org-variable-name">pdo</span>-<span class="org-constant">&gt;</span><span class="org-default">exec</span>(<span class="org-string">"DELETE FROM animals</span>
+<span class="org-string">                       WHERE animal_name = 'm&#233;dor' OR animal_name = 'titi'"</span>);
+
+  <span class="org-keyword">echo</span> $<span class="org-variable-name">count</span>.<span class="org-string">' animaux supprim&#233;s'</span>;
+  <span class="org-default">var_dump(</span>$<span class="org-variable-name">pdo</span>-&gt;<span class="org-default">query</span>(<span class="org-string">"SELECT * FROM animals"</span>)-&gt;<span class="org-default">fetchAll</span>(<span class="org-type">PDO</span>::<span class="org-default">FETCH_ASSOC)</span>);
+<span class="org-preprocessor">?&gt;</span>
+</pre>
+</div>
+
+<p>
+<a href="./examples/pdo_delete.php">exemple</a>
+</p>
+
+</section>
+<section id="sec-5-15" >
+
+<h3>PDO : préparation</h3>
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-preprocessor">&lt;?php</span>
+  <span class="org-keyword">include</span> <span class="org-string">'pdo_insert.php'</span>;
+
+  <span class="org-comment-delimiter">// </span><span class="org-comment">pr&#233;paration d'une d&#233;claration SQL</span>
+  $<span class="org-variable-name">stmt</span> = $<span class="org-variable-name">pdo</span>-<span class="org-constant">&gt;</span><span class="org-default">prepare</span>(<span class="org-string">"SELECT * FROM animals</span>
+<span class="org-string">                         WHERE animal_name = :animal_name"</span>);
+
+  <span class="org-comment-delimiter">// </span><span class="org-comment">d&#233;claration d'une variable</span>
+  $<span class="org-variable-name">animal_name</span> = <span class="org-string">'minou'</span>;
+
+  <span class="org-comment-delimiter">// </span><span class="org-comment">lien entre la d&#233;claration SQL et la variable</span>
+  $<span class="org-variable-name">stmt</span>-&gt;<span class="org-default">bindParam</span>(<span class="org-string">':animal_name'</span>, $<span class="org-variable-name">animal_name</span>);
+
+  <span class="org-comment-delimiter">// </span><span class="org-comment">ex&#233;cution de la requ&#234;te et affichage des r&#233;sultats</span>
+  $<span class="org-variable-name">stmt</span>-&gt;<span class="org-default">execute</span>();
+  <span class="org-default">var_dump(</span>$<span class="org-variable-name">stmt</span>-&gt;<span class="org-default">fetchAll</span>());
+
+  <span class="org-comment-delimiter">// </span><span class="org-comment">modification des param&#232;tres</span>
+  $<span class="org-variable-name">animal_name</span> = <span class="org-string">'titi'</span>;
+  $<span class="org-variable-name">stmt</span>-&gt;<span class="org-default">execute</span>();
+  <span class="org-default">var_dump(</span>$<span class="org-variable-name">stmt</span>-&gt;<span class="org-default">fetchAll</span>());
+<span class="org-preprocessor">?&gt;</span>
+</pre>
+</div>
+
+<p>
+<a href="./examples/pdo_prepare.php">exemple</a>
+</p>
+</section>
+</div>
+</div>
+<div id="reveal-styles"><ul><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/default.css'); return false;" href="#">Black</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/blood.css'); return false;" href="#">Blood</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/sky.css'); return false;" href="#">Sky</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/beige.css'); return false;" href="#">Beige</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/simple.css'); return false;" href="#">Simple</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/serif.css'); return false;" href="#">Serif</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/night.css'); return false;" href="#">Night</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/moon.css'); return false;" href="#">Moon</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/solarized.css'); return false;" href="#">Solarized</a></li></ul></div>
+
+<script src="../lib/reveal.js/lib/js/head.min.js"></script>
+<script src="../lib/reveal.js/js/reveal.min.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: true,
+center: false,
+slideNumber: true,
+rollingLinks: true,
+keyboard: true,
+overview: true,
+width: 1200,
+height: 800,
+margin: 0.10,
+minScale: 0.50,
+maxScale: 2.50,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+{ src : '../lib/jquery/jquery.min.js' }, { src : '../lib/php.js/dist/php.min.js' }, { src : './inc/js/console.js' },
+ { src: '../lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+ { src: '../lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: '../lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: '../lib/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+]
+});
+</script>
+</body>
+</html>

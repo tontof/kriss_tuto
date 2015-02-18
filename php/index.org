@@ -1,0 +1,1311 @@
+#+Title: PHP
+#+Author: 
+#+Email: 
+
+#+LANGUAGE: fr
+#+OPTIONS: reveal_center:nil reveal_progress:t reveal_history:t reveal_control:t
+#+OPTIONS: reveal_mathjax:t reveal_rolling_links:t reveal_keyboard:t reveal_overview:t num:nil
+#+OPTIONS: reveal_width:1200 reveal_height:800
+#+OPTIONS: toc:1
+#+MACRO: BO @@latex:\char91@@ @@html:&#91;@@
+#+REVEAL_MARGIN: 0.1
+#+REVEAL_MIN_SCALE: 0.5
+#+REVEAL_MAX_SCALE: 2.5
+#+REVEAL_TRANS: fade
+#+REVEAL_THEME: serif
+#+REVEAL_HLEVEL: 0
+#+REVEAL_HEAD_PREAMBLE: <meta name="description" content="PHP Introduction.">
+#+REVEAL_POSTAMBLE: <div id="reveal-styles"><ul><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/default.css'); return false;" href="#">Black</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/blood.css'); return false;" href="#">Blood</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/sky.css'); return false;" href="#">Sky</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/beige.css'); return false;" href="#">Beige</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/simple.css'); return false;" href="#">Simple</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/serif.css'); return false;" href="#">Serif</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/night.css'); return false;" href="#">Night</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/moon.css'); return false;" href="#">Moon</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/solarized.css'); return false;" href="#">Solarized</a></li></ul></div>
+#+REVEAL_PLUGINS: (highlight markdown notes)
+#+REVEAL_ROOT: ../lib/reveal.js/
+#+REVEAL_MATHJAX_URL: ../lib/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+#+REVEAL_EXTRA_CSS: ./inc/css/custom.css
+#+REVEAL_EXTRA_JS: { src : '../lib/jquery/jquery.min.js' }, { src : '../lib/php.js/dist/php.min.js' }, { src : './inc/js/console.js' }
+#+REVEAL_TITLE_SLIDE_TEMPLATE: <div id="title"><h1>%t</h1><h2>%a</h2><h3>%e</h3></div>
+#+REVEAL_PREAMBLE: <div id="phpjs-compiler"><textarea id="phpjs-code"></textarea><div id="phpjs-results"><div id="phpjs-result"></div><div id="phpjs-html-result"></div></div><button id="phpjs-clear">Clear</button><button id="phpjs-close">Close</button><button id="phpjs-run">Run</button></div>
+
+* Les bases en PHP
+** Pourquoi PHP ?
+
+   [[http://www.commitstrip.com/fr/2015/01/12/the-right-tool-for-the-right-job/][file:./inc/img/Strip-PHP-doute650-Web.jpg]]
+
+** Introduction à PHP
+   
+  - *[[http://php.net][PHP]]* (PHP: Hypertext Preprocessor)
+  - Langage de programmation
+    - impératif, procédural (suite d'instructions)
+    - interprété côté serveur
+    - libre
+  - Pages Web dynamiques
+  - Logo : [[./inc/img/php.png]] 
+  - Mascotte (Elephpant) : [[./inc/img/elephpant.png]]
+
+
+*** Quelques versions de php
+
+  - =1.0 : 1995      := /PHP: Personal Home Page/
+  - =2.0 : 1997      := Base du langage PHP actuel
+  - =3.0 : 1998-2000 := /PHP: Hypertext Preprocessor/
+  - =4.0 : 2000-2001 := Zend engine
+  - =4.3 : 2002-2005 := /CLI: Command line interface/
+  - =5.0 : 2004-2005 := Zend engine 2, Programmation objet
+  - =5.3 : 2009-2014 := Namespace, closure
+  - =5.4 : 2012-2015 := Trait
+  - =6.0 : ......... := Unicode
+  - =7.0 : 2015-2018 := Zend engine 3
+    
+*** Hello world
+    :PROPERTIES:
+    :CUSTOM_ID: hello-world
+    :END:
+
+   - Créer un fichier avec l'extension .php
+   - Insérer du code HTML et/ou PHP
+   - Le code PHP doit être délimité par les balises =<?php= et =?>=
+   - Les instructions se terminent par =;=
+   - Les commentaires sont délimités par :
+     - =//= pour un commentaire sur une ligne
+     - =/*= pour un commentaire sur plusieurs lignes =*/=
+
+   #+NAME: phpjs-hello
+   #+BEGIN_SRC php
+<em><?php
+//* Comment hack
+echo 'Hello world';
+// */
+?></em>
+   #+END_SRC
+
+** Les types en PHP
+
+  - types simples :
+    - boolean
+    - integer
+    - float (avant double)
+    - string
+  - types composés :
+    - array (tableau)
+    - /object (objet)/
+  - types spéciaux :
+    - /resource/
+    - NULL
+
+*** Les booléens (boolean)
+
+   - Type le plus simple pour exprimer une valeur de vérité.
+   - Deux constantes insensibles à la casse :
+     - TRUE (vrai)
+     - FALSE (faux)
+   #+NAME: phpjs-true
+   #+BEGIN_SRC php
+<?php echo TRUE; ?> 
+<?php echo true; ?> 
+<?php var_dump(TRUE); ?> 
+   #+END_SRC
+   #+NAME: phpjs-false
+   #+BEGIN_SRC php
+<?php echo FALSE; ?> 
+<?php echo false; ?> 
+<?php var_dump(FALSE); ?> 
+   #+END_SRC
+
+*** Les booléens (cast)
+
+   - On utilise =(bool)= ou =(boolean)=
+   - Quand on convertit une valeur en booléen, sont considérés =false=  :
+     - le booléen =false=
+     - l'entier =0=
+     - le réel =0.0=
+     - la chaîne vide = "" = et la chaîne = "0" =
+     - tout tableau vide
+     - tout objet sans membre ni variable (PHP4)
+     - le type =NULL= (ainsi que les variables non définies)
+   - Toutes les autres valeurs sont considérées comme =true=
+
+*** Les booléens (exemple)
+
+   #+NAME: phpjs-boolean
+   #+BEGIN_SRC php
+<?php
+  var_dump((bool) ""); 
+  var_dump((bool) 1); 
+  var_dump((bool) -2); 
+  var_dump((bool) "foo"); 
+  var_dump((bool) 2.3); 
+  var_dump((bool) array(12)); 
+  var_dump((bool) array()); 
+  var_dump((bool) "false"); 
+?>
+   #+END_SRC
+
+*** Les entiers (integer)
+
+   - Un entier est un nombre de ${\mathbb{Z} = \{ \dots, -2, -1, 0, 1, 2, \dots\}}$
+   - Il peut se définir en :
+     - décimal (base 10) : @@html:<span style="color:chocolate">42</span>@@
+     - hexadécimal (base 16) : @@html:<span style="color:chocolate">0x2A</span>@@
+     - octal (base 8) : @@html:<span style="color:chocolate">052</span>@@
+     - binaire (base 2) :  @@html:<span style="color:chocolate">0b101010</span>@@ (PHP 5.4)
+   - Il peut être précédé du signe =-= ou =+=
+
+*** Les entiers (définis formellement)
+
+   #+BEGIN_SRC text
+     decimal     : [1-9][0-9]*      
+                 | 0                
+     
+     hexadecimal : 0[xX][0-9a-fA-F]+
+     
+     octal       : 0[0-7]+          
+     
+     binary      : 0b[01]+          
+     
+     integer     : [+-]?decimal     
+                 | [+-]?hexadecimal 
+                 | [+-]?octal       
+                 | [+-]?binary      
+   #+END_SRC
+
+*** Les entiers (cast)
+
+   - On utilise =(int)= ou =(integer)=
+   - =false= correspond à =0= et =true= à =1=
+   - Un réel sera arrondi vers =0=
+   - Seule la partie initiale d'une chaîne de caractères est prise en compte
+   - Faire attention de manière générale à la conversion des autres types
+
+*** Les réels (float/double)
+
+   - Un réel (nombre à virgule flottante) appartient à ${\mathbb{R}}$
+   - La taille d'un réel dépend de la plateforme, mais en général
+     - max = ~1.8e308
+     - précision de 14 chiffres
+   - Attention à la perte de précision : http://www.floating-point-gui.de/
+   
+*** Les réels (définis formellement)
+
+   #+BEGIN_SRC text
+     LNUM          [0-9]+                                   
+     DNUM          ([0-9]*[\.]{LNUM}) | ({LNUM}[\.][0-9]*)  
+     EXPONENT_DNUM [+-]?(({LNUM} | {DNUM}) [eE][+-]? {LNUM})
+   #+END_SRC
+
+*** Les réels (cast)
+
+   - On utilise =(float)= ou =(double)=
+   - Seule la partie initiale d'une chaîne de caractères est prise en compte
+   - Pour les autres types, l'élément est d'abord converti en =int= puis en =float=
+
+*** Les entiers et les réels (exemple)
+
+   #+NAME: phpjs-int-float
+   #+BEGIN_SRC php
+<?php
+//*
+  var_dump(42); 
+  var_dump(-42); 
+  var_dump(052); 
+  var_dump(0x2A); 
+  var_dump((int)4.2);
+  var_dump((int)"la réponse est 42");
+  var_dump((int)"42, la réponse est");
+  var_dump((float)"42.0 42");
+// */
+// Floating point problem
+/*
+  var_dump((int) ((0.1+0.7)*10)); 
+  var_dump((int)1.999999999999999);
+  var_dump((int)1.9999999999999999);
+// */
+?>
+   #+END_SRC
+
+*** Les chaînes de caractères (string)
+
+  - Une chaîne de caractères correspond à un tableau d'octets.
+  - Elle se définit à l'aide des = ' = ou = " =
+  - Les guillemets simples :
+    - pour afficher = ' = il faut le préfixer par =\=
+    - pour afficher =\= il faut utiliser =\\=
+    - tous les autres caractères préfixés par =\= sont affichés (=\n=, =\r=)
+  - Les guillemets doubles :
+    - pour afficher = " = il faut le préfixer par =\=
+    - les caractères préfixés par =\= sont interprêtés
+    - les variables sont également interprêtées
+  
+*** Les chaînes de caractères (cast)
+
+    - On utilise =(string)=
+    - Convertion automatique avec certaines fonctions comme =echo=, =print=
+    - =true= est converti en = "1" = et =false= en = "" =
+
+*** Les chaînes de caractères (affichage)
+
+    - =echo= et =print= ne sont pas de vraies fonctions (l'utilisation des parenthèses est facultative, mais recommandée)
+    - la fonction [[http://php.net/manual/en/function.printf.php][=printf=]] affiche une chaîne de caractère formatée et
+      retourne la longueur de la chaîne affichée
+      #+BEGIN_SRC php
+      int printf (string $format [, mixed $args [, mixed $... ]] )
+      #+END_SRC
+    - la fonction [[http://php.net/manual/en/function.sprintf.php][=sprintf=]] retourne une chaîne formatée
+      #+BEGIN_SRC php
+      int sprintf (string $format [, mixed $args [, mixed $... ]] )
+      #+END_SRC
+
+*** Les chaînes de caractères (format)
+
+    - Le format dépend du type du paramètre que l'on veut afficher
+      - ~ "%s" ~ pour une chaîne de caractères
+      - ~ "%d" ~ pour un entier
+      - ~ "%f" ~ pour un réel
+    - Il peut spécifier un affichage personnalisé
+      - ~ "%4d" ~ affiche un entier de 4 caractères préfixé par des espaces
+      - ~ "%'04d" ~ affiche un entier de 4 caractères préfixé par des ~0~
+    - Il permet de réordonner les paramètres
+      - ~ "%2$s" ~ affiche le 2^e paramètre comme une chaîne de caractères
+      - ~ "%1$'04d" ~ affiche le 1^{er} paramètre sous forme d'entier de
+        4 caractères minimum préfixé par des ~0~
+
+*** Les chaînes de caractères (fonctions de base)
+
+   - =strlen = : retourne la longueur de la chaîne =$str=
+   - =strcmp = : compare deux chaînes
+   - =trim   = : supprime les espaces ou un autre caractère\\
+     =       =   en début (=ltrim=) et fin de chaîne (=rtrim=)
+   - =substr = : retourne une sous-chaîne 
+   - =strpos = : cherche la position d'une sous-chaîne dans une autre chaîne
+   - =nl2br  = : remplace =\n= en =<br>=
+   - =ucfirst= : première lettre en majuscule
+   - =ucwords= : première lettre de chaque mot en majuscule
+   - D'autres fonctions =str_replace=, =strtolower=, =strtoupper=, =implode=, =explode= sur : http://php.net/manual/en/ref.strings.php
+
+*** Résumé (types simples)
+
+    #+NAME: phpjs-string
+    #+BEGIN_SRC php
+<?php
+  var_dump("0");
+  var_dump("0" + 2);
+  var_dump("0" + 1.3);
+  var_dump("0" + true);
+?>
+    #+END_SRC
+
+*** Les tableaux (array)
+
+   - Il faut utiliser le mot clé =array()= (=[]= autorisé depuis PHP 5.4)
+   - Chaque paramètre correspond à une paire =clé => valeur=
+   - Une clé peut-être un entier ou une chaîne de caractères
+     - Une chaîne correspondant à un entier valide sera transformé en entier
+     - Les autres types sont convertis en entiers
+   - Les clés sont optionnelles.
+   
+*** Les tableaux (fonctions de base)
+
+   - =count       = : retourne le nombre d'éléments contenus dans un tableau
+   - =sort        = : trie par rapport aux valeurs un tableau (=rsort= reverse)
+   - =asort       = : trie les valeurs en conservant les clés (=arsort= reverse)
+   - =ksort       = : trie les clés d'un tableau (=krsort= reverse)
+   - =array_keys  = : retourne les clés d'un tableau sous forme d'un tableau
+   - =array_values= : retourne les valeurs d'un tableau sous forme d'un tableau
+   - D'autres fonctions =array_pop=, =array_shift=, =array_map= sur : http://php.net/manual/en/function.array.php
+
+*** Les tableaux (exemple)
+
+   #+NAME: phpjs-array
+   #+BEGIN_SRC php
+<?php
+  var_dump(array("a","b","c"));
+  var_dump(array("a" => "b", 3 => "c"));
+  var_dump(array("a", 3 => "b", "c"));
+?>
+   #+END_SRC
+
+** Les variables et constantes
+*** Les variables
+
+   - Une variable est désignée par le signe =$=
+   - Le nom est sensible à la casse et commence par une lettre ou un
+     tiret du bas =_= suivi de lettres, de chiffres ou =_=
+   - =$this= est une variable spéciale qui ne peut pas être modifiée
+   - Il n'est pas obligatoire de déclarer et d'initialiser les variables (recommandé)
+   - Le nom d'une variable peut être dynamique
+
+*** Gérer le type d'une variable
+
+   - La fonction =gettype()= permet d'obtenir une chaîne de caractères
+     correspondant au type de l'argument : =boolean=, =integer=,
+     =double=, =string=, =array=, =object=, =resource=, =NULL= ou
+     =unknown type=.
+   - Les fonctions suivantes : =is_array()=, =is_bool()=,
+     =is_float()=, =is_int()=, =is_null()=, =is_numeric()=,
+     =is_object()=, =is_resource()=, =is_scalar()= (integer, float,
+     string and booleen), =is_string()= permettent de vérifier si un
+     argument est d'un type particulier.
+   - Le typage est dynamique en PHP
+
+*** Tester l'état d'une variable
+
+    - =empty()=
+    - =is_null()=
+    - =isset()=
+    - =(bool)=
+    - http://php.net/manual/en/types.comparisons.php
+
+#+BEGIN_SRC center
+    empty() !== (bool) 
+  is_null() !== isset()
+#+END_SRC
+
+#+BEGIN_SRC center
+  'php' == 0     => true 
+  0     == null  => true 
+  null  == 'php' => false
+#+END_SRC
+
+*** Les constantes 
+
+   - Par définition, la valeur d'une constante ne peut pas être modifiée
+   - On utilise par convention, un nom écrit en lettres capitales
+   - La fonction =define= est utilisée
+
+   #+NAME: phpjs-define
+   #+BEGIN_SRC php
+<?php
+  define('HELLO', 3); 
+  $a = 'hello'; 
+  $$a = 'world'; 
+  var_dump(HELLO); 
+  //var_dump('$a $hello HELLO'); 
+  //var_dump("$a $hello $$a HELLO"); 
+?>
+   #+END_SRC
+
+** Les opérateurs
+
+  - Les opérateurs arithmétiques
+  - Les opérateurs d'affectation
+  - Les opérateurs de comparaison
+  - Les opérateurs d'incrémentation et décrémentation
+  - L'opérateur ternaire
+  - Les opérateurs logiques
+  - Les autres opérateurs
+
+*** Les opérateurs arithmétiques
+
+   - =-$a     = : la négation
+   - =$a + $b = : l'addition
+   - =$a - $b = : la soustraction
+   - =$a * $b = : la multiplication
+   - =$a / $b = : la division
+   - =$a % $b = : le modulo
+   - =$a ** $b= : l'exponentielle (PHP 5.6)
+
+*** Les opérateurs d'affectation
+
+   - Le signe = = = 
+   - Il est possible de combiner le signe = = = avec d'autres opérateurs
+   - Le passage par référence est possible avec = & =
+   - L'opérateur = * = du C n'a pas de signification en PHP
+
+   #+NAME: phpjs-assign
+   #+BEGIN_SRC php
+<?php
+  $a = 3;
+  $b = &$a;
+  $a += 4;
+  var_dump($a); 
+  var_dump($b);
+?>
+   #+END_SRC
+
+*** Les opérateurs de comparaison
+
+   - =$a == $b = : égalité des valeurs
+   - =$a === $b= : identité (égalité des valeurs et des types)
+   - =$a != $b = : différence
+   - =$a <> $b = : différence
+   - =$a !== $b= : non identité (différence des valeurs ou des types)
+   - =$a < $b  = : infériorité
+   - =$a > $b  = : supériorité
+   - =$a <= $b = : infériorité ou égalité
+   - =$a >= $b = : supériorité ou égalité
+
+*** Les opérateurs d'incrémentation et décrémentation
+
+   - =++$a= : incrémente =$a=  de 1, puis retourne =$a=
+   - =$a++= : retourne =$a= puis incrémente =$a=  de 1
+   - =--$a= : décrémente =$a=  de 1, puis retourne =$a=
+   - =$a--= : retourne =$a= puis décrémente =$a=  de 1
+
+   #+NAME: phpjs-incr-decr
+   #+BEGIN_SRC php
+<?php
+  $a = 3;
+  var_dump($a++); 
+  //var_dump($a);
+  //var_dump(--$a); 
+  //var_dump($a); 
+?>
+   #+END_SRC
+
+*** L'opérateur ternaire
+
+   - =?:= est un opérateur conditionnel ternaire
+   - =(expr1) ? (expr2) : (expr3)= est évalué à :
+     - =expr2= si =expr1= est évaluée à =true=
+     - =expr3= si =expr1= est évaluée à =false=
+   - =expr2= n'est plus obligatoire depuis PHP 5.3
+
+   #+NAME: phpjs-ternary
+   #+BEGIN_SRC php
+<?php
+  var_dump('1' == 1 ? 'oui' : 'non'); 
+  var_dump('1' === 1 ? 'oui' : 'non'); 
+?>
+   #+END_SRC
+
+*** Les opérateurs logiques
+
+   - =$a && $b = : =true= si =$a= et =$b= valent =true=
+   - =$a and $b= : =true= si =$a= et =$b= valent =true=
+   - =$a || $b = : =true= si =$a= vaut =true= ou =$b= vaut =true=
+   - =$a or $b = : =true= si =$a= vaut =true= ou =$b= vaut =true=
+   - =$a xor $b= : =true= si =$a= vaut =true= ou =$b= vaut =true= mais pas les 2
+   - =!$a      = : =true= si =$a= ne vaut pas =true=
+   
+*** Les autres opérateurs
+
+   - =.= correspond à l'opération de concaténation pour les chaînes de caractères
+   - =[index]= permet d'accéder à un élément particulier d'un tableau
+   - =[]= permet assigner une valeur à la fin d'un tableau
+
+   #+NAME: phpjs-array-op
+   #+BEGIN_SRC php
+<?php
+  $a = "hello ";
+  $b = array($a);
+  $b[] = "world";
+  var_dump($a[4]);
+  var_dump($a.$b[1]);
+?>
+   #+END_SRC
+
+** Les structures de contrôle
+
+  - Les structures conditionnelles
+  - Les structures répétitives
+  - L'inclusion de fichiers
+
+*** Les structures conditionnelles (if, else, elseif)
+
+   #+BEGIN_SRC php
+   if (condition) {
+     instructions; // si condition évaluée à true
+   }
+   #+END_SRC
+
+   #+BEGIN_SRC php
+   if (condition) {
+     instructions; // si condition évaluée à true
+   } else {
+     instructions; // si condition évaluée à false
+   }
+   #+END_SRC
+
+   #+BEGIN_SRC php
+   if (condition1) {
+     instructions; // si condition1 évaluée à true
+   } elseif (condition2) {
+     instructions; // si condition1 évaluée à false et condition2 évaluée à true
+   } else {
+     instructions; // si condition1 et condition 2 évaluées à false
+   }
+   #+END_SRC
+
+*** Les structures conditionnelles (switch)
+
+   #+BEGIN_SRC php
+   switch ($i) {
+    case 0:
+      echo "i equals 0";
+      break;
+    case 'a':
+      echo "i equals a";
+      break;
+    default:
+      echo "aucune valeur correspondante";
+   }
+   #+END_SRC
+
+   - équivalent à :
+
+   #+BEGIN_SRC php
+   if ($i == 0) {
+     echo "i equals 0";
+   } elseif ($i == 'a') {
+     echo "i equals 1";
+   } else {
+     echo "aucune valeur correspondante";
+   }
+   #+END_SRC
+
+*** Les structures répétitives (tant que)
+
+   #+BEGIN_SRC php
+   while (condition) {
+     instructions; // tant que condition est évaluée à true
+   }
+   #+END_SRC
+
+   #+BEGIN_SRC php
+   do {
+     instructions; // tant que condition est évaluée à true
+   } while (condition);
+   #+END_SRC
+
+*** Les structures répétitives (pour)
+
+   #+BEGIN_SRC php
+   for (expr1; expr2; expr3) { // expr1 est exécutée une seule fois au début de la boucle
+     instructions;             // exécuté tant que expr2 est évaluée à true
+                               // expr3 est exécutée à la fin de chaque itération
+   }
+   #+END_SRC
+
+   - équivalent à :
+
+   #+BEGIN_SRC php
+   expr1;
+   while (expr2) {
+     instructions;
+     expr3;
+   }
+   #+END_SRC
+
+*** Les structures répétitives (tableau)
+
+   - =foreach= permet de parcourir les éléments d'un tableau
+
+   #+BEGIN_SRC php
+   foreach (array as $value) {
+     instructions;
+   }
+   #+END_SRC
+
+   #+BEGIN_SRC php
+   foreach (array as $key => $value) {
+     instructions;
+   }
+   #+END_SRC
+
+*** Exemple général sur les structures
+
+   #+NAME: phpjs-while-foreach-example
+   #+BEGIN_SRC php
+<?php
+  $i = 0;
+  $values = array();
+  while (count($values) < 10) {
+    $values[] = $i++;
+  }
+  $output = "values :";
+  foreach($values as $value) {
+    if ($value % 2) {
+      $output .= ' ' . $value;
+    }
+  }
+  echo $output;
+?>
+   #+END_SRC
+
+** Les fonctions
+
+   - sont des blocs d'instructions que l'on peut répéter dans un programme
+   - ne sont pas exécutées directement après leurs définitions
+   - sont exécutées par un appel
+
+   #+NAME: phpjs-function
+   #+BEGIN_SRC php
+<?php
+  function helloWorld() {
+    echo "Hello world!";
+  }
+
+  helloWorld();
+?>
+   #+END_SRC
+
+*** Les arguments
+
+    - Un argument est une variable, défini après le nom de la fonction entre paranthèses
+    - Les arguments sont séparés par une virgule
+
+   #+NAME: phpjs-function-args
+   #+BEGIN_SRC php
+<?php
+  function helloWorld($hello, $world) {
+    echo "$hello $world!<br>\n";
+  }
+
+  helloWorld('Hello', 'world');
+  helloWorld('Bonjour', 'tous');
+?>
+   #+END_SRC
+
+*** Les valeurs par défaut
+
+    - Il est possible de définir une valeur par défaut à un argument
+    - Les arguments qui ont une valeur par défaut sont définis en dernier
+
+   #+NAME: phpjs-function-default-args
+   #+BEGIN_SRC php
+<?php
+  function helloWorld($hello, $world = 'world') {
+    echo "$hello $world!\n";
+  }
+
+  helloWorld('Bonjour', 'tous');
+  helloWorld('Hello');
+?>
+   #+END_SRC
+
+*** Les retours
+
+    - Tous les types de variables peuvent être retournés par une fonction
+    - Si =return= est absent, =null= est retourné
+
+   #+NAME: phpjs-function-return
+   #+BEGIN_SRC php
+<?php
+  function helloWorld() {
+    return "Hello world!";
+  }
+
+  var_dump(helloWorld());
+?>
+   #+END_SRC
+
+*** Retourner plusieurs valeurs
+
+    - Il faut utiliser un tableau
+
+   #+NAME: phpjs-function-return-array
+   #+BEGIN_SRC php
+<?php
+  function helloWorld() {
+    $result = array();
+
+    $result[] = "Hello";
+    $result[] = "world!";
+
+    return $result;
+  }
+
+  echo implode(" ", helloWorld());
+?>
+   #+END_SRC
+
+*** Arguments par référence
+
+   #+NAME: phpjs-function-args-reference
+   #+BEGIN_SRC php
+<?php
+  $hello = "Hello";
+  $world = "World";
+  function helloWorld($bonjour, &$tous) {
+    $bonjour = "Bonjour";
+    $tous = "tous";
+  }
+
+  helloWorld($hello, $world);
+  echo $hello." ".$world;
+?>
+   #+END_SRC
+
+*** Une fonction récursive
+
+   #+NAME: phpjs-function-rec
+   #+BEGIN_SRC php
+<?php
+  // affiche n fois la lettre 'o'
+  function o($n) {
+    $res = '';
+    if ($n > 0) {
+      $res = 'o'.o($n -1);
+    }
+    return $res;
+  }
+
+  function helloWorld($n = 1) {
+    echo 'Hell'.o($n)." world!\n";
+  } 
+
+  helloWorld();
+  helloWorld(10);
+?>
+   #+END_SRC
+
+** Les variables prédéfinies
+
+   - =$_GET    = : variables de la méthode GET (dans l'url)
+   - =$_POST   = : variables de la méthode POST (dans l'entête HTTP)
+   - =$_REQUEST= : contenu de =$_GET=, =$_POST= (=$_COOKIE= : PHP < 5.3)
+   - =$_FILES  = : gestion des fichiers uploadés
+   - =$_COOKIE = : variables des cookies HTTP (stockées chez le client)
+   - =$_SESSION= : variables de session (stockées sur le serveur)
+   - =$_SERVER = : variables de serveur et d'exécution
+   - =$GLOBALS = : variables disponibles dans le contexte global (/à éviter/)
+   - =$argc    = : nombre d'arguments passés au script (=CLI=)
+   - =$argv    = : tableau avec les arguments passés au script (=CLI=)
+
+** =$_SERVER=
+
+   | =$_SERVER['DOCUMENT_ROOT']=        | Racine du serveur                     |
+   | =$_SERVER['HTTP_ACCEPT_LANGUAGE']= | Langage accepté par le navigateur     |
+   | =$_SERVER['HTTP_HOST']=            | Nom de domaine du serveur             |
+   | =$_SERVER['HTTP_USER_AGENT']=      | Type de navigateur                    |
+   | =$_SERVER['PATH_INFO']=            | Chemin WEB du script                  |
+   | =$_SERVER['REQUEST_URI']=          | Chemin du script                      |
+   | =$_SERVER['REMOTE_ADDR']=          | Adresse IP du client                  |
+   | =$_SERVER['REMOTE_PORT']=          | Port de la requête HTTP               |
+   | =$_SERVER['QUERY_STRING']=         | Liste des paramètres passés au script |
+   | =$_SERVER['SERVER_ADDR']=          | Adresse IP du serveur                 |
+
+* Les formulaires
+** GET
+
+#+INCLUDE: "./examples/form_get.php" src html
+
+   [[./examples/form.php?filename=form_get][exemple]]
+
+** Sécurité
+   :PROPERTIES:
+   :reveal_data_state: alert
+   :END:
+
+   - Attention à l'utilisation de =$_SERVER["PHP_SELF"]=
+   - Attention aux données de l'utilisateur
+
+*** =$_SERVER["PHP_SELF"]=
+
+    =$_SERVER["PHP_SELF"]= permet de faire référence au script en cours
+
+**** Problème
+
+     #+BEGIN_SRC html
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+     #+END_SRC  
+     - =/%22%3E%3Cscript%3Ealert('hacked')%3C/script%3E=
+     - [[./examples/form.php/%22%3E%3Cscript%3Ealert('hacked')%3C/script%3E?filename=form_get][exemple]]
+
+**** Solution
+    - =filter_var($_SERVER['PHP_SELF'], FILTER_SANITIZE_STRING);=
+    - =htmlspecialchars($_SERVER["PHP_SELF"]);=
+    - [[./examples/form.php/%22%3E%3Cscript%3Ealert('hacked')%3C/script%3E?filename=form_post][exemple]]
+    - il est également possible d'utiliser ~action="" ~
+
+*** Filtrer les données des utilisateurs
+
+    Never Trust User Input
+
+**** Problème
+
+     - Un commentaire peut inclure du code malveillant
+     - cross site scripting (XSS)
+     - [[./examples/form.php?input=<script>alert('hacked');</script>][exemple]]
+
+**** Solution
+
+     - =htmlspecialchars()=
+     - Pas toujours suffisant si l'affichage est déjà dans une balise html
+     #+BEGIN_SRC php
+$data = "javascript:alert('hacked');";
+<img src="'.htmlspecialchars($data).'">
+     #+END_SRC
+     #+BEGIN_SRC php
+<img src="javascript:alert('hacked');">
+     #+END_SRC
+
+** POST
+
+#+INCLUDE: "./examples/form_post.php" src html
+
+   [[./examples/form.php?filename=form_post][exemple]]
+
+** Valeurs multiples
+
+#+INCLUDE: "./examples/form_multiple_post.php" src html
+
+   - [[./examples/form.php?filename=form_multiple_post][exemple POST]]
+   - [[./examples/form.php?filename=form_multiple_get][exemple GET]]
+
+** Buttons multiples
+
+#+INCLUDE: "./examples/form_multiple_button.php" src html
+
+   - [[./examples/form.php?filename=form_multiple_button][exemple]]
+
+** =$_FILES=
+
+   - Envoi de fichiers (méthode =POST=)
+   - Balise form avec l'attribut ~enctype="multipart/form-data" ~
+   - Type de fichiers acceptés ~<input type="file" accept="image/jpg">~
+   - Limite de la taille du fichier envoyé :
+     - ~upload_max_filesize~ du fichier ~php.ini~
+     - ~<input type="hidden" name="MAX_FILE_SIZE" value="120000">~ en octets
+
+** Informations liées aux fichiers
+
+   - =name    = : nom du fichier client
+   - =type    = : MIME du fichier client
+   - =tmp_name= : nom temporaire du fichier transféré
+   - =error   = : code d'erreur associé au fichier
+   - =size    = : taille du fichier transféré
+
+** Codes d'erreur
+
+   | = 0 = | =UPLOAD_ERR_OK=        | transfert réalisé avec succès                   |
+   | = 1 = | =UPLOAD_ERR_INI_SIZE=  | taille du fichier trop grande (=php.ini=)       |
+   | = 2 = | =UPLOAD_ERR_FORM_SIZE= | taille du fichier trop grande (=MAX_FILE_SIZE=) |
+   | = 3 = | =UPLOAD_ERR_PARTIAL=   | fichier partiellement transféré                 |
+   | = 4 = | =UPLOAD_ERR_NOFILE=    | aucun fichier transféré                         |
+
+** POST et FILES
+   
+#+INCLUDE: "./examples/form_post_file.php" src html
+
+   [[./examples/form.php?filename=form_post_file][exemple]]
+
+#+INCLUDE: "./examples/form_post_files.php" src html
+
+   [[./examples/form.php?filename=form_post_files][exemple]]
+
+** Déplacement des fichiers
+
+   - Il faut utiliser la fonction =move_uploaded_file=
+   - =move_uploaded_file($_FILES["file"]["tmp_name"], "monimage.jpg");=
+     - retourne TRUE si le déplacement a réussi ou FALSE sinon
+
+** Validation
+
+   - Never Trust User Input
+   - La validation html5 n'est pas suffisante
+   - [[https://php.net/manual/en/function.filter-input.php][=filter_input=]], [[https://php.net/manual/en/function.filter-var.php][=filter_var=]]
+     #+BEGIN_SRC php
+filter_var($email, FILTER_VALIDATE_EMAIL)
+     #+END_SRC
+
+* Cookies et sessions
+** Les cookies
+
+   - Les cookies permettent de stocker des informations côté client\\
+     (Never Trust User Input)
+   - L'écriture de cookie se fait avant tout envoi de contenu HTML au client
+
+** [[http://php.net/manual/en/function.setcookie.php][setcookie()]]
+
+#+BEGIN_SRC php
+   setcookie($name, $value, $expire, $path, $domain, $secure, $httponly)
+#+END_SRC
+ 
+   | =$name=     | (/obligatoire/)        | nom du cookie                            |
+   | =$value=    | (/facultatif/)         | valeur du cookie (chaîne de caractères)  |
+   | =$expire=   | (/facultatif : 0/)     | date de fin de validité du cookie        |
+   | =$path=     | (/facultatif/)         | chemin pour limiter l'accès au cookie    |
+   | =$domain=   | (/facultatif/)         | domaine pour limiter l'accès au cookie   |
+   | =$secure=   | (/facultatif : false/) | HTTPS pour transmettre les cookies       |
+   | =$httponly= | (/facultatif : false/) | utilisation uniquement du protocole HTTP |
+
+** Affectation des cookies en PHP
+
+#+BEGIN_SRC php
+  setcookie('hello','world');
+  setcookie('couleur', 'red', time()+86400, '/mon-compte/', www.monsite.com, TRUE);
+
+  setcookie('tableau[index1]','val1');
+  setcookie('tableau[index2]','val2');
+  setcookie('tableau[index3]','val3');
+#+END_SRC
+
+** Lecture des cookies
+
+   - =$_COOKIE= est utilisé pour récupérer les valeurs
+   - Attention, il n'est pas possible de lire une valeur associée
+     après un appel de setcookie, il faut qu'une requête ait lieu
+     entre le client et le serveur.
+
+#+BEGIN_SRC php
+  $hello = $_COOKIE['hello'];
+
+  foreach($_COOKIE['tableau'] as $key => $value) {
+    echo 'Cookie : '. $key.' : '. $value;
+  }
+#+END_SRC
+
+     [[./examples/cookie.php][exemple]]
+
+** Les sessions
+
+   - Les sessions permettent de stocker des informations côté serveur
+   - Les sessions ne sont pas partagées entre les visiteurs
+
+** Différentes étapes
+
+   - Ouverture d'une session avec =session_start()=
+   - Transmission d'un identifiant de session
+   - Utilisation de la variable =$_SESSION=
+   - Fermeture de la session
+
+** Transmission de l'identifiant de session
+
+   - Dans l'URL à l'aide de la variable =SID= (Pas recommandé /htmlspecialchars/)
+   - Avec les cookies (il faut que le client accepte les cookies)
+     - =ini_set('session.use_cookies', 1);=
+     - =ini_set('session.use_only_cookies', 1);= par défaut depuis PHP 5.3
+
+** Utilisation des sessions - 1
+
+#+INCLUDE: "./examples/session_login.php" src c
+
+** Utilisation des sessions - 2
+
+#+INCLUDE: "./examples/session_form.php" src html
+
+** Utilisation des sessions - 3
+
+#+INCLUDE: "./examples/session_menu.php" src html
+
+** Utilisation des sessions - 4
+
+#+INCLUDE: "./examples/session_info.php" src html
+
+** Utilisation des sessions - 5
+
+#+INCLUDE: "./examples/session_public.php" src html
+
+** Utilisation des sessions - 6
+
+#+INCLUDE: "./examples/session_protected.php" src html
+
+   [[./examples/session.php][exemple]]
+
+* PHP et les fichiers
+** L'inclusion de fichiers
+
+   - Il est possible d'utiliser du code PHP ou HTML provenant d'autres fichiers :
+     - =include('fichier.ext');=
+     - =require('fichier.ext');=
+     - =include_once('fichier.ext');=
+     - =require_once('fichier.ext');=
+   - L'interpréteur PHP remplace ces lignes par le contenu du fichier
+
+** L'inclusion de fichiers
+
+   - La différence entre =include= et =require= concerne la gestion des erreurs
+     - =include= génère un avertissement
+     - =require= génère une erreur fatale
+   - Le suffixe =_once= permet de ne remplacer qu'une seule fois le code
+   - L'extension généralement utilisée est =.php= pour protéger le contenu
+   - Permet d'extraire les fonctions d'usage
+   - Améliore la modularité du code
+
+** Manipulation simple des fichiers
+
+   - =file_exists()= permet de vérifier l'existence d'un fichier
+   - =file_get_contents()= permet de lire le contenu d'un fichier
+   - =file_put_contents()= permet d'écrire dans un fichier
+
+#+BEGIN_SRC php
+<?php
+  $file = 'file.txt';
+  $content = '';
+
+  if (file_exists($file)) {
+    $content = file_get_contents($file);
+  }
+  
+  $content .= "Hello world\n";
+  
+  file_put_contents($file, $content);
+?>
+#+END_SRC
+     
+** Manipulation simple des fichiers
+
+   - [[http://php.net/manual/en/function.readfile.php][readfile]] lit et affiche le contenu d'un fichier 
+     #+BEGIN_SRC php
+     int readfile ( string $filename )
+     #+END_SRC
+   - [[http://php.net/manual/en/function.file.php][file]] lit et retourne sous forme de tableau un fichier
+     #+BEGIN_SRC php
+     array file ( string $filename )
+     #+END_SRC
+     
+** Manipulation avancée des fichiers
+
+   -  [[http://php.net/manual/en/function.fopen.php][fopen]] ouvre un fichier
+     #+BEGIN_SRC php
+     resource fopen ( string $filename , string $mode)
+     #+END_SRC
+   - =$mode= :
+     - ~ 'r'  ~ : lecture seule
+     - ~ 'r+' ~ : lecture et écriture
+     - ~ 'w'  ~ : écriture seule (création du fichier si inexistant)
+     - ~ 'w+' ~ : lecture et écriture (création du fichier si inexistant)
+     - ~ 'a'  ~ : écriture seule comme =w= (écriture en fin de fichier)
+     - ~ 'a+' ~ : écriture et lecture comme =w+= (écriture en fin de fichier)
+
+** Déplacement
+
+   - [[http://php.net/manual/en/function.fseek.php][fseek]] déplace le pointeur à une position donnée
+     #+BEGIN_SRC php
+     int fseek ( resource $handle , int $offset )
+     #+END_SRC
+   - [[http://php.net/manual/en/function.rewind.php][rewind]]  remet le pointeur au début
+     #+BEGIN_SRC php
+     bool rewind ( resource $handle )
+     #+END_SRC
+   - [[http://php.net/manual/en/function.ftell.php][ftell]] retourne la position du pointeur
+     #+BEGIN_SRC php
+     int ftell ( resource $handle )
+     #+END_SRC
+   - [[http://php.net/manual/en/function.feof.php][feof]] test la fin du fichier
+     #+BEGIN_SRC php
+     bool feof ( resource $handle )
+     #+END_SRC
+
+** Lecture
+
+   - [[http://php.net/manual/en/function.fread.php][fread]] lecture du fichier en mode binaire
+     #+BEGIN_SRC php
+     string fread ( resource $handle , int $length )
+     #+END_SRC
+   - [[http://php.net/manual/en/function.fgets.php][fgets]] lecture de la ligne courante
+     #+BEGIN_SRC php
+     string fgets ( resource $handle [, int $length ] )
+     #+END_SRC
+   - [[http://php.net/manual/en/function.fgetc.php][fgetc]] lecture du caractère courant
+     #+BEGIN_SRC php
+     string fgetc ( resource $handle )
+     #+END_SRC
+
+** Écriture/Fermeture d'un fichier
+
+   - [[http://php.net/manual/en/function.fwrite.php][fwrite]]/fputs écriture du fichier en mode binaire
+     #+BEGIN_SRC php
+     int fwrite ( resource $handle , string $string [, int $length ] )
+     #+END_SRC
+   - [[http://php.net/manual/en/function.fclose.php][fclose]] fermeture du fichier
+     #+BEGIN_SRC php
+     bool fclose ( resource $handle )
+     #+END_SRC
+
+** Vérrouillage d'un fichier
+
+   -  [[http://php.net/manual/en/function.flock.php][flock]] vérrouille un fichier
+     #+BEGIN_SRC php
+     bool flock ( resource $handle , int $operation )
+     #+END_SRC
+   - =$operation= :
+     - =LOCK_SH= bloque l'écriture du fichier mais laisse le libre accès en lecture à tous les utilisateurs
+     - =LOCK_EX= bloque l'écriture et la lecture du fichier
+     - =LOCK_UN= libère le verrou installé précédemment (ne pas oublier cette fonction à la fin des opérations de lecture et écriture)
+
+** Résumé
+
+[[http://www.luc-damas.fr/humeurs/pedagogie-houblonnee-les-fichiers/][file:./inc/img/pedagogie-houblonnee-fichiers.jpg]]
+
+** Exemple
+
+   #+BEGIN_SRC php
+<?php
+// Équivalent de file_get_contents
+$file = "file.txt";
+$handle = fopen($filename, "r");
+if ($handle) {
+  $content = fread($handle, filesize($file));
+  fclose($handle);
+}
+?>
+   #+END_SRC
+
+** csv
+
+   - [[http://php.net/manual/en/function.fgetcsv.php][fgetcsv]] retourne sous forme de tableau un fichier CSV
+     #+BEGIN_SRC php
+     array fgetcsv ( resource $handle 
+                     [, int $length = 0
+                     [, string $delimiter = ","
+                     [, string $enclosure = '"'
+                     [, string $escape = "\\" ]]]] )
+     #+END_SRC
+   - [[http://php.net/manual/en/function.fputcsv.php][fputcsv]] écrit une ligne CSV dans un fichier
+     #+BEGIN_SRC php
+     int fputcsv ( resource $handle ,
+                   array $fields
+                   [, string $delimiter = ","
+                   [, string $enclosure = '"' ]] )
+     #+END_SRC
+
+** Action sur les fichiers
+
+   -  [[http://php.net/manual/en/function.copy.php][copy]] copie un fichier
+     #+BEGIN_SRC php
+     bool copy ( string $source , string $dest )
+     #+END_SRC
+   -  [[http://php.net/manual/en/function.rename.php][rename]] renomme unfichier
+     #+BEGIN_SRC php
+     bool rename ( string $oldname , string $newname )
+     #+END_SRC
+   -  [[http://php.net/manual/en/function.unlink.php][unlink]] supprime un fichier
+     #+BEGIN_SRC php
+     bool unlink ( string $filename )
+     #+END_SRC
+
+** Information sur les fichiers
+
+   - [[http://php.net/manual/en/function.filesize.php][filesize]] récupère la taille du fichier
+     #+BEGIN_SRC php
+     int filesize ( string $filename )
+     #+END_SRC
+   - [[http://php.net/manual/en/function.fileatime.php][fileatime]] donne la date du dernier accès à un fichier
+     #+BEGIN_SRC php
+     int fileatime ( string $filename )
+     #+END_SRC
+   - [[http://php.net/manual/en/function.filemtime.php][filemtime]] donne la date de dernière modification d'un fichier
+     #+BEGIN_SRC php
+     int filemtime ( string $filename )
+     #+END_SRC
+   - [[http://php.net/manual/en/function.realpath.php][realpath]] retourne le chemin absolu d'un chemin
+     #+BEGIN_SRC php
+     string realpath ( string $path )
+     #+END_SRC
+   - [[http://php.net/manual/en/function.basename.php][basename]] retourne le nom du fichier d'un chemin
+     #+BEGIN_SRC php
+     string basename ( string $path [, string $suffix ] )
+     #+END_SRC
+
+* Bases de données SQL
+** Approches
+
+  - Approche spécifique
+    - MySQL : [[http://php.net/manual/en/book.mysqli.php][mysqli]] ([[http://php.net/manual/en/ref.mysql.php][mysql]] obsolète depuis PHP 5.5)
+    - SQLite : [[http://php.net/manual/en/book.sqlite3.php][sqlite3]]
+    - PostgreSQL : [[http://php.net/manual/en/book.pgsql.php][pgsql]]
+  - Approche générale
+    - PHP Data Objects : [[http://php.net/manual/en/book.pdo.php][PDO]]
+
+** Approche spécifique
+
+   - Avantages :
+     - Permet d'utiliser les spécificités/fonctionnalités avancées de la base
+     - Possède généralement de meilleures performances
+   - Inconvénient :
+     - Contraint la base de données avec un code spécifique
+
+** Approche générale
+
+   - Avantages :
+     - Code générique pour utiliser différents moteurs de bases de données
+   - Inconvénient :
+     - Généricité à nuancer (=AUTOINCREMENT=, =AUTO_INCREMENT=)
+     - Limité aux fonctionnalités de base
+
+** Exemple
+
+#+BEGIN_SRC php
+<?php
+  // mysqli
+  $mysqli = new mysqli('example.com', 'user', 'password', 'database');
+  $result = $mysqli->query("SELECT 'Bonjour, cher utilisateur de MySQL !' AS _message FROM DUAL");
+  $row = $result->fetch_assoc();
+  echo htmlentities($row['_message']);
+
+  // PDO
+  $pdo = new PDO('mysql:host=example.com;dbname=database', 'user', 'password');
+  $statement = $pdo->query("SELECT 'Bonjour, cher utilisateur de MySQL !' AS _message FROM DUAL");
+  $row = $statement->fetch(PDO::FETCH_ASSOC);
+  echo htmlentities($row['_message']);
+?>
+#+END_SRC
+
+   http://php.net/manual/fr/mysqlinfo.api.choosing.php
+
+** PDO : créer une connexion
+
+#+INCLUDE: "./examples/pdo_exception.php" src php
+
+   [[./examples/pdo_exception.php][exemple]]
+
+#+INCLUDE: "./examples/pdo_try.php" src php
+   
+   [[./examples/pdo_try.php][exemple]]
+
+** PDO : fermer une connexion
+
+   - Fermeture automatique à la fin du script
+   - Mettre à null la variable qui gère la connexion
+
+#+INCLUDE: "./examples/pdo_close.php" src php
+
+** PDO : exec et query
+
+   - [[http://php.net/manual/en/pdo.exec.php][exec]] execute une requête SQL et retourne le nombre de lignes affectées
+     #+BEGIN_SRC php
+     public int PDO::exec ( string $statement )
+     #+END_SRC
+   - [[http://php.net/manual/en/pdo.query.php][query]] execute une requête SQL et retourne un objet [[http://php.net/manual/fr/class.pdostatement.php][PDOStatement]]
+     #+BEGIN_SRC php
+     public PDOStatement PDO::query ( string $statement )
+     #+END_SRC
+
+** PDO : gestion des erreurs
+
+#+INCLUDE: "./examples/pdo_error.php" src php
+
+   [[./examples/pdo_error.php][exemple]]
+
+** PDO : création
+
+   - Pose le plus de problème pour la généricité du code car très
+     spécifique à la base utilisée
+
+#+INCLUDE: "./examples/pdo_create.php" src php
+
+** PDO : insertion
+
+#+INCLUDE: "./examples/pdo_insert.php" src php
+   
+   [[./examples/pdo_insert.php][exemple]]
+
+** PDO : sélection
+
+#+INCLUDE: "./examples/pdo_select.php" src php
+   
+   [[./examples/pdo_select.php][exemple]]
+
+** PDO : parcours des données
+
+#+INCLUDE: "./examples/pdo_select_fetch.php" src php
+   
+   [[./examples/pdo_select_fetch.php][exemple]]
+
+** PDO : mise à jour
+
+#+INCLUDE: "./examples/pdo_update.php" src php
+   
+   [[./examples/pdo_update.php][exemple]]
+
+** PDO : suppression
+
+#+INCLUDE: "./examples/pdo_delete.php" src php
+   
+   [[./examples/pdo_delete.php][exemple]]
+
+** PDO : préparation
+
+#+INCLUDE: "./examples/pdo_prepare.php" src php
+   
+   [[./examples/pdo_prepare.php][exemple]]
+
