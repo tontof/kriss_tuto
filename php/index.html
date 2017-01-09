@@ -2732,6 +2732,47 @@ spécifique à la base utilisée
 <p>
 <a href="./examples/pdo_prepare.php">exemple</a>
 </p>
+
+</section>
+<section id="sec-5-16" >
+
+<h3>PDO :</h3>
+<p>
+Ferme le curseur, permettant à la requête d'être de nouveau exécutée 
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-php"><span class="org-preprocessor">&lt;?php</span>
+  <span class="org-keyword">include</span> <span class="org-string">'pdo_insert.php'</span>;
+
+  <span class="org-comment-delimiter">// </span><span class="org-comment">Cr&#233;ation d'un objet PDOStatement</span>
+  $<span class="org-variable-name">stmt</span> = $<span class="org-variable-name">pdo</span>-<span class="org-constant">&gt;</span><span class="org-default">prepare</span>(<span class="org-string">'SELECT animal_id FROM animals'</span>);
+
+  <span class="org-comment-delimiter">// </span><span class="org-comment">Cr&#233;ation d'un second objet PDOStatement</span>
+  $<span class="org-variable-name">otherStmt</span> = $<span class="org-variable-name">pdo</span>-&gt;<span class="org-default">prepare</span>(<span class="org-string">'SELECT animal_name FROM animals'</span>);
+
+  <span class="org-comment-delimiter">// </span><span class="org-comment">Ex&#233;cute la premi&#232;re requ&#234;te</span>
+  $<span class="org-variable-name">stmt</span>-&gt;<span class="org-default">execute</span>();
+
+  <span class="org-comment-delimiter">// </span><span class="org-comment">R&#233;cup&#233;ration de la premi&#232;re ligne uniquement depuis le r&#233;sultat</span>
+  <span class="org-default">var_dump(</span>$<span class="org-variable-name">stmt</span>-&gt;<span class="org-default">fetch</span>());
+
+  <span class="org-comment-delimiter">// </span><span class="org-comment">L'appel suivant &#224; closeCursor() peut &#234;tre requis par quelques drivers</span>
+  $<span class="org-variable-name">stmt</span>-&gt;<span class="org-default">closeCursor</span>();
+
+  <span class="org-comment-delimiter">// </span><span class="org-comment">Maintenant, nous pouvons ex&#233;cuter la deuxi&#232;me requ&#234;te</span>
+  $<span class="org-variable-name">otherStmt</span>-&gt;<span class="org-default">execute</span>();
+
+  <span class="org-comment-delimiter">// </span><span class="org-comment">R&#233;cup&#233;ration de la premi&#232;re ligne uniquement depuis le r&#233;sultat</span>
+  <span class="org-default">var_dump(</span>$<span class="org-variable-name">otherStmt</span>-&gt;<span class="org-default">fetch</span>());
+<span class="org-preprocessor">?&gt;</span>
+</pre>
+</div>
+
+<p>
+<a href="./examples/pdo_close_cursor.php">exemple</a>
+</p>
 </section>
 </div>
 </div>

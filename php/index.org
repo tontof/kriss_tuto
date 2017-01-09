@@ -249,7 +249,7 @@ echo 'Hello world';
       #+END_SRC
     - la fonction [[http://php.net/manual/en/function.sprintf.php][=sprintf=]] retourne une chaîne formatée
       #+BEGIN_SRC php
-      int sprintf (string $format [, mixed $args [, mixed $... ]] )
+      string sprintf (string $format [, mixed $args [, mixed $... ]] )
       #+END_SRC
 
 *** Les chaînes de caractères (format)
@@ -541,6 +541,7 @@ echo 'Hello world';
    - équivalent à :
 
    #+BEGIN_SRC php
+   // == pas ===
    if ($i == 0) {
      echo "i equals 0";
    } elseif ($i == 'a') {
@@ -1288,7 +1289,7 @@ if ($handle) {
 ** PDO : parcours des données
 
 #+INCLUDE: "./examples/pdo_select_fetch.php" src php
-   
+
    [[./examples/pdo_select_fetch.php][exemple]]
 
 ** PDO : mise à jour
@@ -1309,3 +1310,8 @@ if ($handle) {
    
    [[./examples/pdo_prepare.php][exemple]]
 
+** PDO : fermeture du curseur
+
+#+INCLUDE: "./examples/pdo_close_cursor.php" src php
+   
+   [[./examples/pdo_close_cursor.php][exemple]]
