@@ -1,0 +1,1292 @@
+#+Title: HTML/CSS
+#+Author: 
+#+Email: 
+
+#+LANGUAGE: fr
+#+OPTIONS: reveal_center:nil reveal_progress:t reveal_history:t reveal_control:t
+#+OPTIONS: reveal_mathjax:t reveal_rolling_links:t reveal_keyboard:t reveal_overview:t num:nil
+#+OPTIONS: reveal_width:1200 reveal_height:800
+#+OPTIONS: toc:1
+#+MACRO: BO @@latex:\char91@@ @@html:&#91;@@
+#+REVEAL_MARGIN: 0.1
+#+REVEAL_MIN_SCALE: 0.5
+#+REVEAL_MAX_SCALE: 2.5
+#+REVEAL_TRANS: fade
+#+REVEAL_THEME: serif
+#+REVEAL_HLEVEL: 0
+#+REVEAL_HEAD_PREAMBLE: <meta name="description" content="PHP Introduction.">
+#+REVEAL_POSTAMBLE: <div id="reveal-styles"><ul><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/default.css'); return false;" href="#">Black</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/blood.css'); return false;" href="#">Blood</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/sky.css'); return false;" href="#">Sky</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/beige.css'); return false;" href="#">Beige</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/simple.css'); return false;" href="#">Simple</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/serif.css'); return false;" href="#">Serif</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/night.css'); return false;" href="#">Night</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/moon.css'); return false;" href="#">Moon</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/solarized.css'); return false;" href="#">Solarized</a></li></ul></div>
+#+REVEAL_PLUGINS: (highlight markdown notes)
+#+REVEAL_ROOT: ../lib/reveal.js/
+#+REVEAL_MATHJAX_URL: ../lib/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+#+REVEAL_EXTRA_CSS: ./inc/css/custom.css
+#+REVEAL_EXTRA_JS: { src : '../lib/jquery/jquery.min.js' }, { src : '../lib/php.js/dist/php.min.js' }, { src : './inc/js/console.js' }
+#+REVEAL_TITLE_SLIDE_TEMPLATE: <div id="title"><h1>%t</h1><h2>%a</h2><h3>%e</h3></div>
+#+REVEAL_PREAMBLE: <div id="phpjs-compiler"><textarea id="phpjs-code"></textarea><div id="phpjs-results"><div id="phpjs-result"></div><div id="phpjs-html-result"></div></div><button id="phpjs-clear">Clear</button><button id="phpjs-close">Close</button><button id="phpjs-run">Run</button></div>
+
+* Internet
+
+  - Historique
+  - Concepts de base
+
+** Chronologie 1/2
+
+   - Historique
+     - 1969 : Le réseau ARPANET initial constituée de 4 ordinateurs
+      (UCLA, Stanford Research Institute, Santa Barbara, Salt Lake
+      City ) est fonctionnel.
+     - 1973 : 35 machines connectées sur ARPANET
+     - 1975 : TCP + IP + UDP
+     - 1984 : TCP/IP au CERN
+   - Terminologie dans les années 80 : apparition du mot « Internet »
+     - « “Internet”, “l’Internet”, “internet” ou “l’internet” »
+     - [[http://www.assemblee-nationale.fr/14/amendements/3318/CION_LOIS/CL102.asp][Amendement pour « l'internet » rejeté le 5 janvier 2016]]
+
+** Chronologie 2/2
+
+   - Historique
+     - 1990 : Tim Berners Lee du CERN propose l'idée du World Wide Web
+     - 1993 : Premier navigateur Mosaic
+     - 1994 : Création de Yahoo!
+     - 1994 : Tim Berners Lee fonde le World Wide Web Consortium (W3C)
+
+** Concepts de base
+
+   - Réseaux
+   - Architecture client/serveur
+   - URL
+
+*** Le réseau
+
+   - Protocoles TCP/IP :
+     - _couche réseau-hôte_ : carte réseau (Ethernet/Wifi) + Drivers
+     - _couche internet_ : gestion du routage, e.g. le protocole
+       ICMP (Internet Control Message Protocol)
+     - _couche transport_ : régulation des flux de données, e.g. les
+       protocole TCP (Transmission Control Protocol) et UDP (User
+       Datagram Protocol)
+     - _couche application_ : programmes utilisateurs tel que
+       navigateur Web, FTP, Telnet, Ping, POP, SMTP, ...
+
+*** L'architecture client/serveur
+
+    - La notion de client/serveur : mode de communication entre au
+      moins deux ordinateurs
+      - l’un ou les uns, qualifiés de clients, envoient des requêtes
+      - l’autre ou les autres, qualifiés de serveurs, attendent ces
+        requêtes et y répondent
+    - Par extension, le client désigne également l’ordinateur sur
+      lequel s’exécute le programme client, et le serveur l’ordinateur
+      sur lequel s’exécute le programme serveur.
+
+*** Le protocole
+
+    - Le serveur et le client doivent donc utiliser le même protocole
+      pour pouvoir communiquer:
+      - HTTP (Hyper Text Transfert Protocol) pour les documents
+        hypertextes (text, images, vidéos, sons);
+      - FTP (File Transfert Protocol) pour le transfert des fichiers;
+      - SMTP (Simple Mail Transfert Protocol) pour l’envoi des
+        messages électroniques;
+      - POP et IMAP pour la réception de messages électroniques.
+
+*** Exemple d'application : le mail
+
+    - _Le client_ : le logiciel de messagerie électronique envoie des
+      requêtes et attends les réponses.
+    - _Le serveur_ : un logiciel serveur installé sur une machine
+      traite les requêtes des clients.
+    - L’émission de courrier :
+      - Le client utilise *SMTP* pour envoyer des messages au serveur
+        qui transmettra au serveur du destinataire final.
+    - La réception de courrier :
+      - Le destinateur final récupère par *POP/IMAP* son courrier
+        depuis son serveur qui reçoit les messages du serveur de
+        l'expéditeur
+
+    - Le navigateur (Webmail) peut représenter une alternative au
+      client de messagerie. Dans ce cas, les courriers transitent par
+      un serveur web.
+
+*** URL : Universal/Uniform Resource Locator
+
+    - Accéder à une ressource/serveur ⇒ décrire où elle se trouve.
+    - URL : Description de la localisation d’un fichier, une source de
+      données, ..., etc.
+    - Une URL peut désigner :
+      - un serveur ftp,
+      - un fichier sur votre disque,
+      - une adresse courrier,
+      - une page Web publiée par un serveur (serveur de Web).
+ 
+*** URL
+
+      #+BEGIN_SRC text-center
+        <protocole>://<nomserveur>[:port]/<chemin>
+      #+END_SRC
+      - Le nom du protocole (HTTP, FTP)
+      - Le nom du serveur (adresse IP, ou nom symbolique)
+      - Le chemin d’accès à la ressource
+      - Le nom de la ressource
+
+*** Description d'URL
+
+    - _Adresse IP_ : identifiant unique des ordinateurs
+      (ex. 127.0.0.1).
+    - _Nom de Domaine_ / _Nom de machine_ : nom symbolique d’une
+      machine sur Internet (ex. ent.univ-st-etienne.fr)
+    - _DNS_ (Domain Name Service / Serveur) : Service de
+      correspondance
+    IP ⇔ Nom de Domaine / Machine
+    - _Port_ : Valeur numérique unique pour chaque programme
+      (ex. FTP/21, SMTP/25, HTTP/80, POP3/110)
+
+* HTML
+
+   [[./inc/img/html5.png]]
+
+** Le langage HTML
+
+   - _HTML_ : HyperTexte Markup Language
+   - Langage de balisage pour structurer des pages web
+   - Langage de description ≠ Langage de programmation
+   - HTML correspond au code source interprêté dans un navigateur pour
+     afficher une page web.
+
+*** Historique
+
+   - 1991 : HTML
+   - 1995 : HTML 2.0
+   - 1997 : HTML 3.2
+   - 1999 : HTML 4.01
+   - 2000 : XHTML
+   - 2014 : HTML5
+
+*** 4 types d'éléments
+
+   - les balises
+   - les attributs de balises
+   - les commentaires
+   - les entités
+
+*** Les balises
+
+    - Une balise :
+      - commence par un =<=
+      - possède un =nom=
+      - se termine par un =>=
+
+*** Les balises de zone
+
+    - Les balises vont généralement par paires (ouvrante/fermante)
+    (ex : <p> </p> pour un paragraphe)
+    - Le nom de la balise est écrit en minuscule
+    - La balise fermante possède un */* avant le nom de la balise
+
+    #+BEGIN_SRC text-center
+      <balise>contenu</balise>
+    #+END_SRC
+
+*** Les balises ponctuelles
+
+    - Les balises peuvent ne pas avoir de contenu
+    (ex: <br/> <br> pour un saut de ligne)
+    - En HTML5 le slash de fin n'est pas obligatoire
+
+    #+BEGIN_SRC text-center
+      <balise/>
+      <balise>
+    #+END_SRC
+  
+*** Les attributs
+    
+    - Les attributs sont associés à une balise ouvrante
+    (ex: <img src="hello.jpg" alt="Hello"> pour afficher une image)
+    - Ils possèdent un nom et une valeur
+    - Certains attributs sont obligatoires pour certaines balises
+    - On utilise généralement des = " = pour définir la valeur d'un attribut
+
+    #+BEGIN_SRC text-center
+      <balise attribut="valeur">
+    #+END_SRC
+
+*** Les commentaires
+
+    - Les commentaires ne sont pas affichés dans le navigateur
+    - Ils sont visibles dans le code source =Ctrl+U=
+
+    #+BEGIN_SRC text-center
+      <!-- Ceci est un commentaire -->
+    #+END_SRC
+
+*** Les entités
+
+    - Les entités permettent d'afficher des caractères spéciaux
+      (accents, signes, etc.)
+    - Avec l'unicode, les entités sont surtout utilisés pour =<, >, ",
+      ' et &= qui pourraient être confondu avec le balisage HTML
+
+    #+BEGIN_SRC text-center
+      &entite;
+      &#numero; 
+    #+END_SRC
+
+    |    <    |     &lt;     |    &#60;    |
+    |    >    |     &gt;     |    &#62;    |
+    |    &    |    &amp;     |    &#38;    |
+    |    "    |    &quot;    |    &#34;    |
+    |    '    |    &apos;    |    &#39;    |
+
+*** Les entités : accents
+
+    - Pour les accents, il existe différents suffixes : =acute, grave,
+      circ, uml= mais en pratique, on ne les utilise plus.
+
+    #+BEGIN_SRC text-center
+      à : &agrave;
+      é : &eacute;
+      ö : &ouml;  
+      î : &icirc; 
+    #+END_SRC
+
+    [[http://ddg.gg/?q=html+entities][Il existe d'autres entités]] : =&nbsp;= =&euro;= etc.
+
+*** La grammaire HTML
+
+    - On peut définir 5 règles :
+      - définir une balise de zone
+      - définir une balise ponctuelle
+      - paramétrer une balise à l'aide d'attributs
+      - imbriquer des balises
+      - ajouter des commentaires
+    - Les espaces typographiques ne sont pas _prises_ en compte en HTML
+      sauf pour séparer 2 mots
+
+** Structure d'une page HTML
+*** Hello world
+    :PROPERTIES:
+    :CUSTOM_ID: hello-world
+    :END:
+
+   - Créer un fichier avec l'extension .html
+   - Insérer du code HTML
+
+   #+NAME: phpjs-hello
+   #+BEGIN_SRC html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Titre</title>
+  </head>
+  <body>
+    <!-- Commentaire : Hello world ! -->
+    Hello world &excl;
+  </body>
+</html>
+   #+END_SRC
+
+*** L'entête <!DOCTYPE>
+
+    - HTML 5
+      #+BEGIN_SRC text-center
+        <!DOCTYPE html>
+      #+END_SRC
+    - HTML 4.01 Strict
+      #+BEGIN_SRC text
+        <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+      #+END_SRC
+    - HTML 4.01 Transitional
+    - XHTML 1.0 Strict
+    - XHTML 1.0 Transitional
+      #+BEGIN_SRC text
+                    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                              "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+      #+END_SRC
+
+*** La balise <html>
+
+    - Une page HTML commence toujours par une balise =<html>=
+    - Une page HTML finit toujours par une balise =</html>=
+    - Entre ces deux balises, il y a toujours 2 autres balises de zone :
+      - la zone d'entête (la tête) : =<head></head>=
+      - la zone de contenu (le corps) : =<body></body>=
+
+*** La balise <head>
+
+    - La balise d'entête contient les informations caractéristiques de
+      la page :
+      - encodage de la page (obligatoire)
+        #+BEGIN_SRC text-center
+          <meta charset="utf-8">
+        #+END_SRC
+      - titre de la page (obligatoire)
+        #+BEGIN_SRC text-center
+          <title>Titre de la page</title>
+        #+END_SRC
+
+*** La balise <head>
+
+    - Elle peut contenir d'autres informations
+      - auteur, mots clés etc.
+        #+BEGIN_SRC text
+          <meta name="description" content="Techniques Internet de base">
+          <meta name="keywords" content="HTML, CSS, JavaScript, PHP, SQL">
+          <meta name="author" content="Toto">
+        #+END_SRC
+      - codes attachés (style, javascript)
+    - Les informations ne sont pas visibles directement dans le rendu
+      du navigateur (sauf le titre) mais sont visibles dans le code source
+
+*** La balise <body>
+
+    - La balise de contenu contient toutes les informations qui sont
+      affichées par le navigateur :
+      - le texte
+      - les liens
+      - les images
+      - etc.
+
+** Les balises de structure de la page
+
+   - HTML5 introduit des balises sémantiques
+     - =<section></section>= définit une section/partie de la page
+     - =<article></article>= définit un article/post/commentaire ou un autre
+       contenu important de la page.
+     - =<header></header>= définit l'entête de la page/section
+     - =<footer></footer>= dqéfinit le bas de page de la page/section
+     - =<aside></aside>= définit un texte qui se rapporte au sujet de la
+       page/section mais qui ne correspond pas directement au contenu
+       de la page
+     - =<nav></nav>= définit les liens de de navigation
+
+** Les balises de titre
+
+     #+NAME: phpjs-titre
+     #+BEGIN_SRC html
+       <h1>Titre de niveau H1</h1>
+       <h2>Titre de niveau H2</h2>
+       <h3>Titre de niveau H3</h3>
+       <h4>Titre de niveau H4</h4>
+       <h5>Titre de niveau H5</h5>
+       <h6>Titre de niveau H6</h6>
+     #+END_SRC
+
+** Les balises pour le texte
+
+   #+NAME: phpjs-text
+   #+BEGIN_SRC html
+     <p>Paragraphe</p>
+     <p>
+       <em>Emphase par défaut en italique</em>
+       <strong>Accentuation par défaut en gras</strong>
+       <br>Saut de ligne
+       <hr>ligne horizontale pour séparer du texte
+     </p>
+   #+END_SRC
+
+   - D'autres balises peuvent être utilisées
+     - =<cite></cite>= pour une citation
+     - =<code></code>= pour du code
+     - =<pre></pre>= pour du texte préformatté
+     - =<samp></samp>= pour un exemple
+     - =<blocknote></blocknote>= pour une note
+     - =<address></address>= pour une adresse
+     - =<sub></sub>= pour des indices
+     - =<sup></sup>= pour des exposants
+     - etc.
+
+** Les balises pour les images
+
+   - La balise =<img>= permet d'afficher une image
+   - Les attributs =src= et =alt= sont obligatoires
+     - =src= : URL de l'image
+     - =alt= : Texte alternatif qui remplace une image ne pouvant être
+       affichée ou qui est dicté par certains logiciels
+       d'accessibilité
+
+     #+NAME: phpjs-img
+     #+BEGIN_SRC html
+     <img src="inc/img/html5.png" alt="logo html5" height="120" width="120">
+     <img src="inc/img/html.png" alt="logo html">
+     #+END_SRC
+
+** Les balises pour les figures
+
+     #+NAME: phpjs-figure
+     #+BEGIN_SRC html
+     <figure>
+       <img src="inc/img/html5.png" alt="logo html5">
+       <figcaption>Titre de l'image</figcaption>
+     </figure> 
+     #+END_SRC
+
+** Format des images (JPEG)
+   
+   - Joint Photographic Experts Group / JPEG (=.jpg=, =.jpeg=) :
+     - Format idéal pour les photos et les illustrations compliquées.
+     - Contient des millions de couleurs.
+     - La Compression de l’image se fait avec une perte de qualité qui va de 0% à 99%.
+
+** Format des images (GIF)
+
+   - Graphics Interchange Format / GIF (=.gif=) :
+     - Très pratique pour les dessins et images avec peu de nuances.
+     - Peut contenir 256 couleurs ou moins.
+     - Gère la transparence et les animations.
+
+** Format des images (PNG)
+
+   - Portable Network Graphics / PNG (=.png=) :
+     - Format libre de droits.
+     - Images entrelacées (affichage progressif).
+     - Convient pour tout type d’image, la transparence mais pas les animations.
+     - Il existe en 8 bits (type GIF, 256 couleurs) et en 24 bits.
+
+** Les balises pour les liens
+   :PROPERTIES:
+   :CUSTOM_ID: html-link
+   :END:
+
+   - Lien hypertexte :
+     - Mécanisme qui permet de naviguer d’une pages web à une autre.
+     - Permet de ne plus apprendre les adresses des ressources
+     - Associé à un texte ou une image sur lesquels on peut cliquer
+   - l'attribut =href= permet de définir l'URL
+   - l'attribut =target= permet d'ouvrir le lien dans un autre onglet
+     #+NAME: phpjs-link
+     #+BEGIN_SRC html
+     <p>
+       <a href="#html-link" target="_blank">Un élément dans la même page</a><br>
+       <a href="./index.html?print-pdf" target="_blank">Une page du même site</a><br>
+       <a href="https://duckduckgo.com" target="_blank">Une page d'un autre site</a><br>
+     </p>
+     #+END_SRC
+
+** Les balises pour les listes
+
+   - Les listes ordonnées/non-ordonnées
+     #+NAME: phpjs-list
+     #+BEGIN_SRC html
+       <ol><!-- ordererd list -->
+         <li>élément 1</li>
+         <li>élément 2</li>
+       </ol>
+       <ul><!-- unordererd list -->
+         <li>élément 1</li>
+         <li>élément 2</li>
+       </ul>
+     #+END_SRC
+
+   - Les listes de définitions
+     #+NAME: phpjs-dl
+     #+BEGIN_SRC html
+       <dl><!-- definition list -->
+         <dt>terme 1</dt>
+         <dd>définition 1</dd>
+         <dt>terme 2</dt>
+         <dd>définition 2</dd>
+       </dl>
+     #+END_SRC
+
+** Les listes imbriquées
+
+     #+NAME: phpjs-list-list
+     #+BEGIN_SRC html
+       <ul>
+         <li>élément 1</li>
+         <li>élément 2
+           <ul>
+             <li>élément 2.1
+               <ul>
+                 <li>élément 2.1.1</li>
+               </ul>
+             </li>
+             <li>élément 2.2</li>
+           </ul>
+         </li>
+         <li>élément 3
+           <ol>
+             <li>élément 3.1</li>
+             <li>élément 3.2</li>
+           </ol>
+         </li>
+       </ul>
+     #+END_SRC
+
+** Les balises pour les tableaux
+
+   - HTML offre 4 balises pour créer des tableaux
+     - =<table></table>= début et fin de tableau
+     - =<tr></tr>= Ligne du tableau
+     - =<th></th>= Cellule du tableau (entête)
+     - =<td></td>= Cellule du tableau (contenu)
+   - Balises sémantiques
+     - =<caption></caption>= légende du tableau
+     - =<thead></thead>, <tbody></tbody>, <tfoot></tfoot>= structure
+       du tableau
+
+** Exemple d'un tableau
+
+   #+NAME: phpjs-table
+   #+BEGIN_SRC html
+<table>
+  <caption>Les chiffres</caption>
+  <tr>
+    <th>A</th><th>B</th><th>C</th><th>D</th>
+  </tr>
+  <tr>
+    <td>1</td><td>2</td><td>3</td><td>4</td>
+  </tr>
+  <tr>
+    <td>5</td><td>6</td><td>7</td><td>8</td>
+  </tr>
+</table>
+   #+END_SRC
+
+** Les attributs pour les tableaux
+
+   - Il est possible de fusionner des cellules <td>, <th>
+     - Fusionner des colonnes : attribut =colspan=
+     - Fusionner des lignes : attribut =rowspan=
+   - Les valeurs associées aux attributs correspondent au nombre de
+     cellules à fusionner
+
+** Exemple d'un tableau avancé
+
+   #+NAME: phpjs-table
+   #+BEGIN_SRC html
+<table>
+  <caption>Les chiffres</caption>
+  <tr>
+    <th>A</th><th>B</th><th>C</th><th>D</th>
+  </tr>
+  <tr>
+    <td rowspan="2">1</td><td colspan="3">2</td>
+  </tr>
+  <tr>
+    <td>3</td><td>4</td><td>5</td>
+  </tr>
+</table>
+<!--
+<style>table, td, th { border: 1px solid black; }</style>
+-->
+   #+END_SRC
+
+** Les balises neutres et attributs globaux
+
+   - Balises neutres
+     - =<span></span>= : balise de type /inline/ (pas de retour à la ligne)
+     - =<div></div>= : balise de type /block/ (retour à la ligne)
+   - Attributs globaux (toutes les balises)
+     - =id= : identifiant unique dans la page associé à une balise
+     - =class= : classe qui peut-être associée à plusieurs éléments dans la page
+     - =title= : information affichée au survol de la souris
+
+** Exemple d'utilisation de balises neutres
+
+   #+NAME: phpjs-div-span
+   #+BEGIN_SRC html
+     texte
+     <div id="id" class="class">
+       texte
+       <span class="class" title="title">
+         texte
+       </span>
+       texte
+     </div>
+     texte
+   #+END_SRC
+
+* CSS
+
+   [[./inc/img/css3.png]]
+
+** Le langage CSS
+
+   - _CSS_ : Cascading Style Sheets
+   - Langage qui définit comment les balises HTML doivent être
+     affichées par le navigateur
+   - HTML pour le fond, CSS pour la forme
+
+*** Historique
+
+    - 1996 : CSS 1 (base)
+    - 1998 : CSS 2 (position, z-index, type de media)
+    - 2004-2011 : CSS 2.1 (correction de CSS 2)
+    - 2011-2014 : CSS 3 (modules indépendants)
+
+*** La syntaxe
+
+   #+BEGIN_SRC css
+     /* commentaire */
+     selecteur { propriété: valeur; }
+     selecteur1, selecteur2 {
+       propriété1: valeur1;
+       propriété2: valeur2;
+     }
+   #+END_SRC
+
+*** Les sélecteurs de bases
+
+    | le sélecteur universel |      = * =       | tous les éléments de la page                        |
+    | les balises            |      =nom=       | toutes les balises « nom » de la page               |
+    | les identifiants       |    = #id =       | l'élément d'identifiant « id »                      |
+    | les classes            |   =.class=       | tous les éléments avec la classe « class »          |
+    | la combinaison simple  |   =nom.class=    | toutes les balises « nom » avec la classe « class » |
+
+** Comment appliquer du CSS à une page HTML
+*** Mise en place du CSS (Méthodes à éviter)
+
+   - Directement dans le HTML
+     - balise =<style>= dans =<head>=
+   - Directement dans les balises
+     - attribut =style=
+
+   #+NAME: phpjs-style
+   #+BEGIN_SRC html
+     <head>
+       <style>p {color: red;}</style>
+     </head>
+     <body>
+       <p>paragraphe</p>
+       <p style="color: blue;">paragraphe</p>
+     </body>
+   #+END_SRC
+
+*** Mise en place du CSS (Méthode conseillée)
+
+   - En utilisant un fichier externe =.css=
+     - balise =<link>= dans =<head>=
+
+   #+BEGIN_SRC html
+     <head>
+       <link rel="stylesheet" type="text/css" href="style.css">
+     </head>
+   #+END_SRC
+
+*** Exemple
+
+   #+NAME: phpjs-style
+   #+BEGIN_SRC html
+     <head>
+       <style>
+         /* * { color: red; } */
+         p { background-color: green; }
+         #unique { text-align: center; }
+         .multiple { color: white; }
+       </style>
+     </head>
+     <body>
+       <h1>titre</h1>
+       <p class="multiple">paragraphe</p>
+       <p id="unique" class="multiple">paragraphe</p>
+     </body>
+   #+END_SRC
+
+** La couleur
+   
+   - Propriétés basiques:
+     - =color= : couleur du texte
+     - =background-color= : couleur du fond
+
+*** La gestion de la couleur en CSS
+
+     - En CSS2 17 couleurs supportés officiellement
+       - _noir et blanc_ : black, gray, silver, white
+       - _couleurs primaires_ : red, lime, blue
+       - _couleurs secondaries_ : yellow, aqua, fuchsia
+       - _autres couleurs_ : maroon, orange, olive, purple, green, navy, teal
+     - Il en existe beaucoup, beaucoup d'autres inspirées du SVG
+       - Pas forcément supportées par tous les navigateurs...
+
+*** Les couleurs simples
+
+    - Possibilité de définir des couleurs en hexadécimal #RVB;
+      - #000 : noir : black
+      - #f00 : rouge : red
+      - #0f0 : vert : lime (pas green)
+      - #00f : bleu : blue
+      - #fff : blanc : white
+    - 16 valeurs possibles pour chaque couleur : 0-9a-f
+    - 4096 couleurs différentes
+
+*** Les couleurs complètes
+
+    - Possibilité de définir des couleurs en hexadécimal #RRVVBB;
+      - #000000 : noir
+      - #ff0000 : rouge
+      - #00ff00 : vert
+      - #0000ff : bleu
+      - #ffffff : blanc
+    - 256 valeurs possibles pour chaque couleur : 00-ff
+    - 16 millions de couleurs
+
+*** Exemple couleurs
+
+   #+NAME: phpjs-color-simple
+   #+BEGIN_SRC html
+     <head>
+       <style>
+         .vert-green { color: green; }
+         .vert-lime { color: #0f0; }
+         .vert-clair { color: #aaffaa; }
+       </style>
+     </head>
+     <body>
+       <p class="vert-green">vert</p>
+       <p class="vert-lime">vert</p>
+       <p class="vert-clair">vert</p>
+     </body>
+   #+END_SRC
+
+*** Les fonctions rgb, hsl
+
+    - Il est possible d'éclaircir la couleur grâce à la propriété =opacity=
+      - les valeurs sont comprises entre 0.0 et 1.0
+    - Il est possible d'utiliser des fonctions =rgb=, =hsl=
+      - =rgb(red, green, blue)= : 0-255 pour chaque couleur
+      - =hsl(hue, saturation, lightness)= : hue de 0-360 (0, 360 :
+        rouge, 120 : vert, 240 : bleu), saturation et lightness
+        pourcentage de 0% à 100%
+      - Possibilité d'ajouter la transparence avec =rgba= et =hsla=, le
+        dernier paramètre alpha est compris entre 0.0 et 1.0
+ 
+*** Exemple fonctions couleurs
+
+   #+NAME: phpjs-color-complete
+   #+BEGIN_SRC html
+     <head>
+       <style>
+         .vert-rgb { color: rgb(0, 255, 0); }
+         .vert-hsl { color: hsl(120, 100%, 50%); }
+         .vert-rgb-clair { color: rgba(0, 255, 0, 0.24); }
+         .vert-hsl-clair { color: hsla(120, 100%, 50%, 0.24); }
+         .vert-opacity { color: #0f0; opacity: 0.24; }
+       </style>
+     </head>
+     <body>
+       <p class="vert-rgb">rgb</p>
+       <p class="vert-hsl">hsl</p>
+       <p class="vert-rgb-clair">rgba</p>
+       <p class="vert-hsl-clair">hsla</p>
+       <p class="vert-opacity">opacity</p>
+     </body>
+   #+END_SRC
+
+** Les propriétés CSS
+
+*** Le fond
+
+   #+NAME: phpjs-color-background
+   #+BEGIN_SRC html
+     <head>
+       <style>
+         .background-detail {
+           background-color: lime;
+           background-image: url("inc/img/css3.png");
+           background-repeat: repeat; /* no-repeat, repeat-x, repeat-y */
+           background-attachment: scroll; /* fixed, local */
+           background-position: center center; /* left, right / top bottom */
+         }
+         .background-shorthand {
+           background: lime url("inc/img/css3.png") repeat scroll center center;
+         }
+       </style>
+     </head>
+     <body>
+       <p class="background-detail">les<br> propriétés<br> background<br> en<br> détails</p>
+       <p class="background-shorthand">Une<br> seule<br> propriété<br> background<br> pour tout</p>
+     </body>
+   #+END_SRC
+
+*** L'affichage en boîte
+
+   [[./inc/img/box-model.png]]
+
+   https://en.wikipedia.org/wiki/CSS_box_model
+
+*** La propriété =margin=
+
+   #+NAME: phpjs-margin
+   #+BEGIN_SRC html
+     <head>
+       <style>
+         .margin-detail {
+           margin-top: 6px; /* auto, % */
+           margin-right: 24px;
+           margin-bottom: 42px;
+           margin-left: 84px;
+         }
+         .margin-shorthand {
+           margin: 6px 24px 42px 84px;
+           /* 3 values : margin: top right/left bottom; */
+           /* 2 values : margin: top/bottom right/left; */
+           /* 1 value : margin: top/right/bottom/left; */
+         }
+       </style>
+     </head>
+     <body>
+       <p class="margin-detail">les<br> propriétés<br> margin<br> en<br> détails</p>
+       <p class="margin-shorthand">Une<br> seule<br> propriété<br> margin<br> pour tout</p>
+     </body>
+   #+END_SRC
+
+*** La propriété =padding=
+
+   #+NAME: phpjs-padding
+   #+BEGIN_SRC html
+     <head>
+       <style>
+         .padding-detail {
+           padding-top: 6px; /* auto, % */
+           padding-right: 24px;
+           padding-bottom: 42px;
+           padding-left: 84px;
+         }
+         .padding-shorthand {
+           padding: 6px 24px 42px 84px;
+           /* 3 values : padding: top right/left bottom; */
+           /* 2 values : padding: top/bottom right/left; */
+           /* 1 value : padding: top/right/bottom/left; */
+         }
+       </style>
+     </head>
+     <body>
+       <p class="padding-detail">les<br> propriétés<br> padding<br> en<br> détails</p>
+       <p class="padding-shorthand">Une<br> seule<br> propriété<br> padding<br> pour tout</p>
+     </body>
+   #+END_SRC
+
+*** La propriété =border-style=
+
+   #+NAME: phpjs-border-style
+   #+BEGIN_SRC html
+     <head>
+       <style>
+         .border-style-detail {
+           border-top-style: solid;
+           border-right-style: dotted;
+           border-bottom-style: double;
+           border-left-style: dashed;
+         }
+         .border-style-shorthand {
+           border-style: solid dotted double dashed;
+           /* 3, 2 et 1 valeurs cf margin */
+         }
+       </style>
+     </head>
+     <body>
+       <p class="border-style-detail">les<br> propriétés<br> border-style<br> en<br> détails</p>
+       <p class="border-style-shorthand">Une<br> seule<br> propriété<br> border-style<br> pour tout</p>
+     </body>
+   #+END_SRC
+
+*** La propriété =border-width=
+
+   #+NAME: phpjs-border-width
+   #+BEGIN_SRC html
+     <head>
+       <style>
+         .border-width-detail {
+           border-style: solid;
+           border-top-width: 1px;
+           border-right-width: 2px;
+           border-bottom-width: 3px;
+           border-left-width: 4px;
+         }
+         .border-width-shorthand {
+           border-style: solid;
+           border-width: 1px 2px 3px 4px;
+           /* 3, 2 et 1 valeurs cf margin */
+         }
+       </style>
+     </head>
+     <body>
+       <p class="border-width-detail">les<br> propriétés<br> border-width<br> en<br> détails</p>
+       <p class="border-width-shorthand">Une<br> seule<br> propriété<br> border-width<br> pour tout</p>
+     </body>
+   #+END_SRC
+
+*** La propriété =border-color=
+
+   #+NAME: phpjs-border-color
+   #+BEGIN_SRC html
+     <head>
+       <style>
+         .border-color-detail {
+           border-style: solid; border-width: 3px;
+           border-top-color: black;
+           border-right-color: red;
+           border-bottom-color: blue;
+           border-left-color: green;
+         }
+         .border-color-shorthand {
+           border-style: solid; border-width: 3px;
+           border-color: black red blue green;
+           /* 3, 2 et 1 valeurs cf margin */
+         }
+       </style>
+     </head>
+     <body>
+       <p class="border-color-detail">les<br> propriétés<br> border-color<br> en<br> détails</p>
+       <p class="border-color-shorthand">Une<br> seule<br> propriété<br> border-color<br> pour tout</p>
+     </body>
+   #+END_SRC
+
+*** La propriété =border=
+
+   #+NAME: phpjs-border
+   #+BEGIN_SRC html
+     <head>
+       <style>
+         .border-detail {
+           border-width: 1px;
+           border-style: solid;
+           border-color: black;
+         }
+         .border-shorthand {
+           border: 1px solid black;
+         }
+       </style>
+     </head>
+     <body>
+       <p class="border-detail">les<br> propriétés<br> border<br> en<br> détails</p>
+       <p class="border-shorthand">Une<br> seule<br> propriété<br> border<br> pour tout</p>
+     </body>
+   #+END_SRC
+
+*** Les dimensions en CSS
+
+   #+NAME: phpjs-dimension
+   #+BEGIN_SRC html
+     <head>
+       <style>
+         .dimension {
+           width: auto; /* px, % */
+           height: auto; /* px, % */
+           min-width: none; /* px, % */
+           max-width: none; /* px, % */
+           min-height: none; /* px, % */
+           max-height: none; /* px, % */
+           overflow: visible; /* hidden, scroll, auto */
+         }
+       </style>
+     </head>
+     <body>
+       <p class="dimension">les<br> propriétés<br> des<br> dimensions</p>
+     </body>
+   #+END_SRC
+
+*** La propriété =display=
+
+    - =display:= _block_;
+      - Éléments de la page qui commence sur une nouvelle ligne et qui
+        prend toute la largeur disponible (=<div>=, =<h1> - <h6>=,
+        =<p>=, =<header>=, =<footer>=, =<section>=, etc.)
+    - =display:= _inline_;
+      - Éléments de la page qui ne commence pas sur une nouvelle ligne
+        et qui prend juste la largeur nécessaire (=<span>=, =<a>=,
+        =<img>=, etc.)
+      - La dimension d'un élément =inline= ne peut pas être modifié
+    - =display:= _inline-block_; élément qui s'affiche comme un élément
+      =inline= mais sur lequel ont peut modifier les dimensions
+    - =display:= _none_; masque l'élément sur la page
+
+*** La propriété =position=
+
+   #+NAME: phpjs-position
+   #+BEGIN_SRC html
+     <head>
+       <style>
+         .position {
+           position: static; /* relative, fixed, absolute */
+           top: auto; /* px, % */
+           left: auto;
+           bottom: auto;
+           right: auto;
+         }
+       </style>
+     </head>
+     <body>
+       <p class="position">les<br> propriétés<br> des<br> positions</p>
+     </body>
+   #+END_SRC
+    
+*** La propriété =float=
+
+   #+NAME: phpjs-float
+   #+BEGIN_SRC html
+     <head>
+       <style>
+         .left {
+           float: left;
+         }
+         .right {
+           float: right;
+           /* clear: both; /* left, right */
+         }
+       </style>
+     </head>
+     <body>
+       <p class="left">float left</p>
+       <p class="right">float right</p>
+     </body>
+   #+END_SRC
+
+*** Les propriétés du texte
+
+   #+NAME: phpjs-text
+   #+BEGIN_SRC html
+     <head>
+       <style>
+         .text {
+           text-align: center; /* left, right, justify */
+           text-decoration: underline; /* overline, line-through */
+           text-transform: uppercase; /* lowercase, capitalize */
+           text-indent: 24px;
+           letter-spacing: 5px;
+           word-spacing: 10px;
+           line-height: 140%;
+         }
+       </style>
+     </head>
+     <body>
+       <p class="text">les<br> propriétés du<br> texte</p>
+     </body>
+   #+END_SRC
+
+*** Les propriétés de polices
+
+   #+NAME: phpjs-font
+   #+BEGIN_SRC html
+     <head>
+       <style>
+         .font-detail {
+           font-style: normal; /* italic, oblique */
+           font-variant: normal; /* small-caps */
+           font-weight: normal; /* bold, bolder, lighter */
+           font-size: medium; /* small, large, px, % */
+           font-family: "Times New Roman", Georgia, serif;
+           /* serif, sans-serif, cursive, fantasy, monospace */
+         }
+         .font-shorthand {
+           font: normal normal normal medium "Times New Roman", Georgia, serif;
+           /* font: medium "Times New Roman", Georgia, serif; */
+         }
+       </style>
+     </head>
+     <body>
+       <p class="font-detail">les<br> propriétés<br> d'une<br> police<br> en détails</p>
+       <p class="font-shorthand">Une<br> seule<br> propriété<br> font<br> pour tout</p>
+     </body>
+   #+END_SRC
+
+*** Les propriétés de tableaux
+
+   #+NAME: phpjs-table
+   #+BEGIN_SRC html
+     <head>
+       <style>
+         table, td { border: 1px solid black; }
+         .table {
+           border-collapse: separate; /* collapse */
+           border-spacing: 2px; /* px */
+           /* 2 values : horizontal, vertical spacing */
+           /* 1 value : horizontal/vertical spacing */
+         }
+       </style>
+     </head>
+     <body>
+       <table class="table">
+         <tr><td>cellule</td><td>cellule</td></tr>
+         <tr><td>cellule</td><td>cellule</td></tr>
+       </table>
+     </body>
+   #+END_SRC
+
+*** Les propriétés des listes
+
+   #+NAME: phpjs-list-style
+   #+BEGIN_SRC html
+     <head>
+       <style>
+         .list-style-detail {
+           list-style-type: circle; /* square, upper-roman, lower-alpha */
+           list-style-position: inside; /* outside */
+           list-style-image: url('inc/img/css3.png');
+         }
+         .list-style-shorthand {
+           list-style: circle inside url('inc/img/css3.png');
+         }
+       </style>
+     </head>
+     <body>
+       <ul class="list-style-detail"><li>élément 1</li><li>élément 2</li><li>élément 3</li></ul>
+       <ul class="list-style-shorthand"><li>élément 1</li><li>élément 2</li><li>élément 3</li></ul>
+     </body>
+   #+END_SRC
+
+
+*** D'autre propriétés CSS
+
+    - =vertical-align: top;= ~/* middle, bottom, etc. */~
+    - =box-sizing: content-box;= ~/* border-box */~
+    - =z-index: auto;=
+    - =animation=
+    - =transition=
+    - =counter-reset=
+    - =pointer=
+    - etc.
+
+** HTML/CSS
+*** La combinaison de sélecteur
+
+    - La descendance : =A B=
+      - =div p= : toutes les balises =<p>= qui sont contenues dans une balise =<div>=
+    - La descendance directe : =A > B=
+      - =div p= : toutes les balises =<p>= dont leur parent est une balise =<div>=
+    - Les voisins : =A ~ B=
+      - =div ~ p= : toutes les balises =<p>= qui suivent une balise =<div>=
+    - Les voisins directs: =A + B=
+      - =div + p= : toutes les balises =<p>= qui sont directement après une balise =<div>=
+
+*** Sélecteurs principaux pseudo-classe
+
+    - Spécifiques à la balise =<a>=
+      - =:link= : liens pas encore visités
+      - =:visited= : liens visités
+    - Pas spécifique
+      - =:hover= : la souris survole l'élément (après =:link= et =:visited=)
+      - =:active=  : la souris agit sur l'élément (après =:hover= )
+
+*** Autres sélecteurs pseudo-classe
+    
+    - =:first-child= : premier enfant d'une balise
+    - =:last-child= : dernier enfant d'une balise
+    - =:nth-child(n)= : n-ième enfant d'une balise
+      - =:nth-child(2)= : deuxième enfant d'une balise
+      - =:nth-child(2n)= : enfants pairs d'une balise
+      - =:nth-child(2n+1)= : enfants impairs d'une balise
+
+*** Sélecteur pseudo-éléments
+
+    - =::first-line= : applique le style sur la première ligne du texte
+    - =::first-letter= : applique le style sur la première lettre du
+      texte
+    - =::before= : permet d'ajouter du contenu avant la balise avec la
+      propriété =content=
+    - =::after= : permet d'ajouter du contenu après la
+      balise avec la propriété =content=
+
+*** Sélecteur sur attribut
+
+    - ~[attribut]~ : toutes les balises ayant cet =attribut=
+    - ~[attribute=value]~ : toutes les balises ayant cet =attribut=
+      dont la valeur est =value=
+    - ~[attribute*="value"]~ : toutes les balises ayant cet =attribut=
+      dont la valeur contient la valeur =value=
+    - ~[attribute^="value"]~ : toutes les balises ayant cet =attribut=
+      dont la valeur commence par la valeur =value=
+    - ~[attribute$="value"]~ : toutes les balises ayant cet =attribut=
+      dont la valeur finit par la valeur =value=
+
+* Les formulaires
+
+  - Interaction avec l'utilisateur
+    - Inscription/Connexion
+    - Recherche, etc.
+  - La balise =<form></form>=
+    - attribut =action= pour indiquer quelle page va traîter les données
+    - attribut =method= pour dire comment transférer les données (=get/post=)
+
+** La balise =<input>=
+
+   #+NAME: phpjs-list-style
+   #+BEGIN_SRC html
+     <form>
+       <label>default : <input name="default" value="value" placeholder="placeholder"></label><br>
+       <label>text : <input name="text" type="text"></label><br>
+       <label>password : <input name="password" type="password"></label><br>
+       <label>submit : <input name="submit" type="submit" value="submit"></label><br>
+       <label>button : <input name="button" type="button" value="button"></label><br>
+       <label>checkbox : <input name="checkbox[]" type="checkbox" value="checkbox1"></label><br>
+       <label>checkbox : <input name="checkbox[]" type="checkbox" value="checkbox2"></label><br>
+       <label>radio : <input name="radio" type="radio" value="radio1"></label><br>
+       <label>radio : <input name="radio" type="radio" value="radio2"></label><br>
+     </form>
+   #+END_SRC
+   
+** Les attributes de la balise =<input>=
+
+   - les attributs de base:
+     - =name= permet d'identifier les données
+     - =value= associe une valeur à une donnée identifiée
+     - =placeholder= texte affiché quand =value= est vide
+   - les attibuts avancés:
+     - =required= : ne peut valider le formulaire si la valeur est vide
+     - =disabled= : désactive et ignore les données associées 
+     - =readonly= : empêche la modification de la valeur
+     - =maxlength= : longueur max autorisée pour =value=
+
+** La balise =<input>= version html5
+
+   - =color=
+   - =date=
+   - =datetime=
+   - =email=
+   - =number=
+   - =tel=
+   - =url=
+   - /etc./
+
+** La balise =<select></select>=
+
+   #+NAME: phpjs-list-style
+   #+BEGIN_SRC html
+     <form>
+       <select name="select" multiple="multiple">
+         <optgroup label="Group 1">
+           <option value="value1">Valeur 1</option>
+           <option value="value2">Valeur 2</option>
+         </optgroup>
+         <optgroup label="Group 2">
+           <option value="value3">Valeur 3</option>
+           <option value="value4">Valeur 4</option>
+         </optgroup>
+       </select> 
+     </form>
+   #+END_SRC
+
+** Les balises =<textarea></textarea>= et =<button></button>=
+
+   #+NAME: phpjs-list-style
+   #+BEGIN_SRC html
+     <form>
+       <textarea name="textarea" rows="2" cols="20">value</textarea>
+       <button type="button">button</button>
+       <button type="reset">reset</button>
+       <button type="submit">submit</button>
+     </form>
+   #+END_SRC
+
+** La balise =<fieldset></fieldset>=
+
+   #+NAME: phpjs-list-style
+   #+BEGIN_SRC html
+     <form>
+       <fieldset>
+         <legend>Legend :</legend>
+         <label>Label : <input type="text"><br>
+       </fieldset>
+     </form>
+   #+END_SRC
+
+# Priorité des règles CSS
+# Astuce div dans div pour éviter le pb des margin/padding avec IE
+# Responsive
+# Exemple margin:auto
+# Exemples pour display
+# Format police
+# Websites: Codeacademy firebug W3schools openclassroom
+# Ancre html à ajouter
