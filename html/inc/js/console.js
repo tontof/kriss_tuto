@@ -74,13 +74,10 @@
                     $(this).text('Run');
                 }
             });
-
-            if ($element.children('.src').length) {
-                $element = $element.children('pre');
-                if ($element.attr('id') && $element.attr('id').substr(0,6) === "phpjs-") {
-                    $element.append($button);
-                }
-            }
+          if ($element.find('.html').length) {
+            $element = $element.children('pre');
+            $element.append($button);
+          }
         });
     }
     function addEvent(obj, evType, fn, useCapture) {

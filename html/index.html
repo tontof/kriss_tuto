@@ -1,13 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="utf-8"/>
 <title>HTML/CSS</title>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="../lib/reveal.js/css/reveal.css"/>
 
-<link rel="stylesheet" href="../lib/reveal.js/css/reveal.min.css"/>
 <link rel="stylesheet" href="../lib/reveal.js/css/theme/serif.css" id="theme"/>
+
 <link rel="stylesheet" href="./inc/css/custom.css"/>
+<link rel="stylesheet" href="../lib/reveal.js/lib/css/zenburn.css"/>
 <!-- If the query includes 'print-pdf', include the PDF print sheet -->
 <script>
     if( window.location.search.match( /print-pdf/gi ) ) {
@@ -18,513 +22,440 @@
         document.getElementsByTagName( 'head' )[0].appendChild( link );
     }
 </script>
-<script type="text/javascript" src="../lib/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <meta name="description" content="PHP Introduction.">
 </head>
 <body>
 <div id="phpjs-compiler"><textarea id="phpjs-code"></textarea><div id="phpjs-results"><div id="phpjs-result"></div><div id="phpjs-html-result"></div></div><button id="phpjs-clear">Clear</button><button id="phpjs-close">Close</button><button id="phpjs-run">Run</button></div>
 <div class="reveal">
 <div class="slides">
-<section>
-<div id="title"><h1>HTML/CSS</h1><h2></h2><h3><a href="mailto:"></a></h3></div></section>
-<section>
-<h2>Table des matières</h2><ul>
-<li>
-<a href="#sec-1">Internet</a>
-</li>
-<li>
-<a href="#sec-2">HTML</a>
-</li>
-<li>
-<a href="#sec-3">CSS</a>
-</li>
-<li>
-<a href="#sec-4">Les formulaires</a>
-</li>
+<section id="sec-title-slide"><div><h1>HTML/CSS</h1><h2></h2><h3><a href="mailto:"></a></h3></div>
+</section>
+<section id="table-of-contents">
+<div id="table-of-contents">
+<h2>Table des matières</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#/slide-orgcb6a035">1. Internet</a></li>
+<li><a href="#/slide-orga881b0c">2. HTML</a></li>
+<li><a href="#/slide-org432ee4d">3. CSS</a></li>
+<li><a href="#/slide-orgc311b9e">4. Les formulaires</a></li>
 </ul>
+</div>
+</div>
 </section>
 
-<section id="sec-1" >
+<section id="slide-sec-1">
+<h2 id="orgcb6a035"><span class="section-number-2">1</span> Internet</h2>
+<ul>
+<li>Historique</li>
+<li>Concepts de base</li>
 
-<h2>Internet</h2>
-<ul class="org-ul">
-<li>Historique
-</li>
-<li>Concepts de base
-</li>
 </ul>
 
 </section>
-<section id="sec-1-1" >
-
-<h3>Chronologie 1/2</h3>
-<ul class="org-ul">
+<section id="slide-sec-1-1">
+<h3 id="org0f99a50"><span class="section-number-3">1.1</span> Chronologie 1/2</h3>
+<ul>
 <li>Historique
-<ul class="org-ul">
+<ul>
 <li>1969 : Le réseau ARPANET initial constituée de 4 ordinateurs
 (UCLA, Stanford Research Institute, Santa Barbara, Salt Lake
-City ) est fonctionnel.
-</li>
-<li>1973 : 35 machines connectées sur ARPANET
-</li>
-<li>1975 : TCP + IP + UDP
-</li>
-<li>1984 : TCP/IP au CERN
-</li>
-</ul>
-</li>
+City ) est fonctionnel.</li>
+<li>1973 : 35 machines connectées sur ARPANET</li>
+<li>1975 : TCP + IP + UDP</li>
+<li>1984 : TCP/IP au CERN</li>
+
+</ul></li>
 <li>Terminologie dans les années 80 : apparition du mot « Internet »
-<ul class="org-ul">
-<li>« “Internet”, “l’Internet”, “internet” ou “l’internet” »
-</li>
-<li><a href="http://www.assemblee-nationale.fr/14/amendements/3318/CION_LOIS/CL102.asp">Amendement pour « l'internet » rejeté le 5 janvier 2016</a>
-</li>
-</ul>
-</li>
+<ul>
+<li>« “Internet”, “l’Internet”, “internet” ou “l’internet” »</li>
+<li><a href="http://www.assemblee-nationale.fr/14/amendements/3318/CION_LOIS/CL102.asp">Amendement pour « l'internet » rejeté le 5 janvier 2016</a></li>
+
+</ul></li>
+
 </ul>
 
 </section>
-<section id="sec-1-2" >
-
-<h3>Chronologie 2/2</h3>
-<ul class="org-ul">
+<section id="slide-sec-1-2">
+<h3 id="org6ab17b9"><span class="section-number-3">1.2</span> Chronologie 2/2</h3>
+<ul>
 <li>Historique
-<ul class="org-ul">
-<li>1990 : Tim Berners Lee du CERN propose l'idée du World Wide Web
-</li>
-<li>1993 : Premier navigateur Mosaic
-</li>
-<li>1994 : Création de Yahoo!
-</li>
-<li>1994 : Tim Berners Lee fonde le World Wide Web Consortium (W3C)
-</li>
-</ul>
-</li>
+<ul>
+<li>1990 : Tim Berners Lee du CERN propose l'idée du World Wide Web</li>
+<li>1993 : Premier navigateur Mosaic</li>
+<li>1994 : Création de Yahoo!</li>
+<li>1994 : Tim Berners Lee fonde le World Wide Web Consortium (W3C)</li>
+
+</ul></li>
+
 </ul>
 
 </section>
-<section id="sec-1-3" >
+<section id="slide-sec-1-3">
+<h3 id="org451657a"><span class="section-number-3">1.3</span> Concepts de base</h3>
+<ul>
+<li>Réseaux</li>
+<li>Architecture client/serveur</li>
+<li>URL</li>
 
-<h3>Concepts de base</h3>
-<ul class="org-ul">
-<li>Réseaux
-</li>
-<li>Architecture client/serveur
-</li>
-<li>URL
-</li>
 </ul>
 
 </section>
-<section id="sec-1-3-1" >
-
-<h4>Le réseau</h4>
-<ul class="org-ul">
+<section id="slide-sec-1-3-1">
+<h4 id="org1fa3233"><span class="section-number-4">1.3.1</span> Le réseau</h4>
+<ul>
 <li>Protocoles TCP/IP :
-<ul class="org-ul">
-<li><span class="underline">couche réseau-hôte</span> : carte réseau (Ethernet/Wifi) + Drivers
-</li>
+<ul>
+<li><span class="underline">couche réseau-hôte</span> : carte réseau (Ethernet/Wifi) + Drivers</li>
 <li><span class="underline">couche internet</span> : gestion du routage, e.g. le protocole
-ICMP (Internet Control Message Protocol)
-</li>
+ICMP (Internet Control Message Protocol)</li>
 <li><span class="underline">couche transport</span> : régulation des flux de données, e.g. les
 protocole TCP (Transmission Control Protocol) et UDP (User
-Datagram Protocol)
-</li>
+Datagram Protocol)</li>
 <li><span class="underline">couche application</span> : programmes utilisateurs tel que
-navigateur Web, FTP, Telnet, Ping, POP, SMTP, &#x2026;
-</li>
-</ul>
-</li>
+navigateur Web, FTP, Telnet, Ping, POP, SMTP, &#x2026;</li>
+
+</ul></li>
+
 </ul>
 
 </section>
-<section id="sec-1-3-2" >
-
-<h4>L'architecture client/serveur</h4>
-<ul class="org-ul">
+<section id="slide-sec-1-3-2">
+<h4 id="org4b93479"><span class="section-number-4">1.3.2</span> L'architecture client/serveur</h4>
+<ul>
 <li>La notion de client/serveur : mode de communication entre au
 moins deux ordinateurs
-<ul class="org-ul">
-<li>l’un ou les uns, qualifiés de clients, envoient des requêtes
-</li>
+<ul>
+<li>l’un ou les uns, qualifiés de clients, envoient des requêtes</li>
 <li>l’autre ou les autres, qualifiés de serveurs, attendent ces
-requêtes et y répondent
-</li>
-</ul>
-</li>
+requêtes et y répondent</li>
+
+</ul></li>
 <li>Par extension, le client désigne également l’ordinateur sur
 lequel s’exécute le programme client, et le serveur l’ordinateur
-sur lequel s’exécute le programme serveur.
-</li>
+sur lequel s’exécute le programme serveur.</li>
+
 </ul>
 
 </section>
-<section id="sec-1-3-3" >
-
-<h4>Le protocole</h4>
-<ul class="org-ul">
+<section id="slide-sec-1-3-3">
+<h4 id="org7197fb1"><span class="section-number-4">1.3.3</span> Le protocole</h4>
+<ul>
 <li>Le serveur et le client doivent donc utiliser le même protocole
 pour pouvoir communiquer:
-<ul class="org-ul">
+<ul>
 <li>HTTP (Hyper Text Transfert Protocol) pour les documents
-hypertextes (text, images, vidéos, sons);
-</li>
-<li>FTP (File Transfert Protocol) pour le transfert des fichiers;
-</li>
+hypertextes (text, images, vidéos, sons);</li>
+<li>FTP (File Transfert Protocol) pour le transfert des fichiers;</li>
 <li>SMTP (Simple Mail Transfert Protocol) pour l’envoi des
-messages électroniques;
-</li>
-<li>POP et IMAP pour la réception de messages électroniques.
-</li>
-</ul>
-</li>
+messages électroniques;</li>
+<li>POP et IMAP pour la réception de messages électroniques.</li>
+
+</ul></li>
+
 </ul>
 
 </section>
-<section id="sec-1-3-4" >
-
-<h4>Exemple d'application : le mail</h4>
-<ul class="org-ul">
+<section id="slide-sec-1-3-4">
+<h4 id="org55e7c01"><span class="section-number-4">1.3.4</span> Exemple d'application : le mail</h4>
+<ul>
 <li><span class="underline">Le client</span> : le logiciel de messagerie électronique envoie des
-requêtes et attends les réponses.
-</li>
+requêtes et attends les réponses.</li>
 <li><span class="underline">Le serveur</span> : un logiciel serveur installé sur une machine
-traite les requêtes des clients.
-</li>
+traite les requêtes des clients.</li>
 <li>L’émission de courrier :
-<ul class="org-ul">
+<ul>
 <li>Le client utilise <b>SMTP</b> pour envoyer des messages au serveur
-qui transmettra au serveur du destinataire final.
-</li>
-</ul>
-</li>
+qui transmettra au serveur du destinataire final.</li>
+
+</ul></li>
 <li>La réception de courrier :
-<ul class="org-ul">
+<ul>
 <li>Le destinateur final récupère par <b>POP/IMAP</b> son courrier
 depuis son serveur qui reçoit les messages du serveur de
-l'expéditeur
-</li>
-</ul>
-</li>
+l'expéditeur</li>
+
+</ul></li>
 
 <li>Le navigateur (Webmail) peut représenter une alternative au
 client de messagerie. Dans ce cas, les courriers transitent par
-un serveur web.
-</li>
+un serveur web.</li>
+
 </ul>
 
 </section>
-<section id="sec-1-3-5" >
-
-<h4>URL : Universal/Uniform Resource Locator</h4>
-<ul class="org-ul">
-<li>Accéder à une ressource/serveur ⇒ décrire où elle se trouve.
-</li>
+<section id="slide-sec-1-3-5">
+<h4 id="orgbc0df56"><span class="section-number-4">1.3.5</span> URL : Universal/Uniform Resource Locator</h4>
+<ul>
+<li>Accéder à une ressource/serveur ⇒ décrire où elle se trouve.</li>
 <li>URL : Description de la localisation d’un fichier, une source de
-données, &#x2026;, etc.
-</li>
+données, &#x2026;, etc.</li>
 <li>Une URL peut désigner :
-<ul class="org-ul">
-<li>un serveur ftp,
-</li>
-<li>un fichier sur votre disque,
-</li>
-<li>une adresse courrier,
-</li>
-<li>une page Web publiée par un serveur (serveur de Web).
-</li>
-</ul>
-</li>
+<ul>
+<li>un serveur ftp,</li>
+<li>un fichier sur votre disque,</li>
+<li>une adresse courrier,</li>
+<li>une page Web publiée par un serveur (serveur de Web).</li>
+
+</ul></li>
+
 </ul>
 
 </section>
-<section id="sec-1-3-6" >
-
-<h4>URL</h4>
+<section id="slide-sec-1-3-6">
+<h4 id="org8f2212e"><span class="section-number-4">1.3.6</span> URL</h4>
 <div class="org-src-container">
 
-<pre  class="src src-text-center">&lt;protocole&gt;://&lt;nomserveur&gt;[:port]/&lt;chemin&gt;
-</pre>
+<pre><code class="text-center" >&lt;protocole&gt;://&lt;nomserveur&gt;[:port]/&lt;chemin&gt;
+</code></pre>
 </div>
-<ul class="org-ul">
-<li>Le nom du protocole (HTTP, FTP)
-</li>
-<li>Le nom du serveur (adresse IP, ou nom symbolique)
-</li>
-<li>Le chemin d’accès à la ressource
-</li>
-<li>Le nom de la ressource
-</li>
+<ul>
+<li>Le nom du protocole (HTTP, FTP)</li>
+<li>Le nom du serveur (adresse IP, ou nom symbolique)</li>
+<li>Le chemin d’accès à la ressource</li>
+<li>Le nom de la ressource</li>
+
 </ul>
 
 </section>
-<section id="sec-1-3-7" >
-
-<h4>Description d'URL</h4>
-<ul class="org-ul">
+<section id="slide-sec-1-3-7">
+<h4 id="org6929ded"><span class="section-number-4">1.3.7</span> Description d'URL</h4>
+<ul>
 <li><span class="underline">Adresse IP</span> : identifiant unique des ordinateurs
-(ex. 127.0.0.1).
-</li>
+(ex. 127.0.0.1).</li>
 <li><span class="underline">Nom de Domaine</span> / <span class="underline">Nom de machine</span> : nom symbolique d’une
-machine sur Internet (ex. ent.univ-st-etienne.fr)
-</li>
+machine sur Internet (ex. ent.univ-st-etienne.fr)</li>
 <li><span class="underline">DNS</span> (Domain Name Service / Serveur) : Service de
-correspondance
-</li>
+correspondance</li>
+
 </ul>
 <p>
 IP ⇔ Nom de Domaine / Machine
 </p>
-<ul class="org-ul">
+<ul>
 <li><span class="underline">Port</span> : Valeur numérique unique pour chaque programme
-(ex. FTP/21, SMTP/25, HTTP/80, POP3/110)
-</li>
+(ex. FTP/21, SMTP/25, HTTP/80, POP3/110)</li>
+
 </ul>
 
 </section>
-<section id="sec-2" >
+<section id="slide-sec-2">
+<h2 id="orga881b0c"><span class="section-number-2">2</span> HTML</h2>
 
-<h2>HTML</h2>
-<img src="./inc/img/html5.png" alt="html5.png" />
+<div class="figure">
+<p><img src="./inc/img/html5.png" alt="html5.png" />
+</p>
+</div>
 
 </section>
-<section id="sec-2-1" >
-
-<h3>Le langage HTML</h3>
-<ul class="org-ul">
-<li><span class="underline">HTML</span> : HyperTexte Markup Language
-</li>
-<li>Langage de balisage pour structurer des pages web
-</li>
-<li>Langage de description ≠ Langage de programmation
-</li>
+<section id="slide-sec-2-1">
+<h3 id="org20a2df7"><span class="section-number-3">2.1</span> Le langage HTML</h3>
+<ul>
+<li><span class="underline">HTML</span> : HyperTexte Markup Language</li>
+<li>Langage de balisage pour structurer des pages web</li>
+<li>Langage de description ≠ Langage de programmation</li>
 <li>HTML correspond au code source interprêté dans un navigateur pour
-afficher une page web.
-</li>
+afficher une page web.</li>
+
 </ul>
 
 </section>
-<section id="sec-2-1-1" >
+<section id="slide-sec-2-1-1">
+<h4 id="orge1fc28d"><span class="section-number-4">2.1.1</span> Historique</h4>
+<ul>
+<li>1991 : HTML</li>
+<li>1995 : HTML 2.0</li>
+<li>1997 : HTML 3.2</li>
+<li>1999 : HTML 4.01</li>
+<li>2000 : XHTML</li>
+<li>2014 : HTML5</li>
 
-<h4>Historique</h4>
-<ul class="org-ul">
-<li>1991 : HTML
-</li>
-<li>1995 : HTML 2.0
-</li>
-<li>1997 : HTML 3.2
-</li>
-<li>1999 : HTML 4.01
-</li>
-<li>2000 : XHTML
-</li>
-<li>2014 : HTML5
-</li>
 </ul>
 
 </section>
-<section id="sec-2-1-2" >
+<section id="slide-sec-2-1-2">
+<h4 id="orgb956ffb"><span class="section-number-4">2.1.2</span> 4 types d'éléments</h4>
+<ul>
+<li>les balises</li>
+<li>les attributs de balises</li>
+<li>les commentaires</li>
+<li>les entités</li>
 
-<h4>4 types d'éléments</h4>
-<ul class="org-ul">
-<li>les balises
-</li>
-<li>les attributs de balises
-</li>
-<li>les commentaires
-</li>
-<li>les entités
-</li>
 </ul>
 
 </section>
-<section id="sec-2-1-3" >
-
-<h4>Les balises</h4>
-<ul class="org-ul">
+<section id="slide-sec-2-1-3">
+<h4 id="orgee6a5e1"><span class="section-number-4">2.1.3</span> Les balises</h4>
+<ul>
 <li>Une balise :
-<ul class="org-ul">
-<li>commence par un <code>&lt;</code>
-</li>
-<li>possède un <code>nom</code>
-</li>
-<li>se termine par un <code>&gt;</code>
-</li>
-</ul>
-</li>
+<ul>
+<li>commence par un <code>&lt;</code></li>
+<li>possède un <code>nom</code></li>
+<li>se termine par un <code>&gt;</code></li>
+
+</ul></li>
+
 </ul>
 
 </section>
-<section id="sec-2-1-4" >
+<section id="slide-sec-2-1-4">
+<h4 id="org593e611"><span class="section-number-4">2.1.4</span> Les balises de zone</h4>
+<ul>
+<li>Les balises vont généralement par paires (ouvrante/fermante)</li>
 
-<h4>Les balises de zone</h4>
-<ul class="org-ul">
-<li>Les balises vont généralement par paires (ouvrante/fermante)
-</li>
 </ul>
 <p>
 (ex : &lt;p&gt; &lt;/p&gt; pour un paragraphe)
 </p>
-<ul class="org-ul">
-<li>Le nom de la balise est écrit en minuscule
-</li>
-<li>La balise fermante possède un <b>/</b> avant le nom de la balise
-</li>
+<ul>
+<li>Le nom de la balise est écrit en minuscule</li>
+<li>La balise fermante possède un <b>/</b> avant le nom de la balise</li>
+
 </ul>
 
 <div class="org-src-container">
 
-<pre  class="src src-text-center">&lt;balise&gt;contenu&lt;/balise&gt;
-</pre>
+<pre><code class="text-center" >&lt;balise&gt;contenu&lt;/balise&gt;
+</code></pre>
 </div>
 
 </section>
-<section id="sec-2-1-5" >
+<section id="slide-sec-2-1-5">
+<h4 id="org9053519"><span class="section-number-4">2.1.5</span> Les balises ponctuelles</h4>
+<ul>
+<li>Les balises peuvent ne pas avoir de contenu</li>
 
-<h4>Les balises ponctuelles</h4>
-<ul class="org-ul">
-<li>Les balises peuvent ne pas avoir de contenu
-</li>
 </ul>
 <p>
 (ex: &lt;br/&gt; &lt;br&gt; pour un saut de ligne)
 </p>
-<ul class="org-ul">
-<li>En HTML5 le slash de fin n'est pas obligatoire
-</li>
+<ul>
+<li>En HTML5 le slash de fin n'est pas obligatoire</li>
+
 </ul>
 
 <div class="org-src-container">
 
-<pre  class="src src-text-center">&lt;balise/&gt;
+<pre><code class="text-center" >&lt;balise/&gt;
 &lt;balise&gt;
-</pre>
+</code></pre>
 </div>
 
 </section>
-<section id="sec-2-1-6" >
+<section id="slide-sec-2-1-6">
+<h4 id="org5ecae46"><span class="section-number-4">2.1.6</span> Les attributs</h4>
+<ul>
+<li>Les attributs sont associés à une balise ouvrante</li>
 
-<h4>Les attributs</h4>
-<ul class="org-ul">
-<li>Les attributs sont associés à une balise ouvrante
-</li>
 </ul>
 <p>
 (ex: &lt;img src="hello.jpg" alt="Hello"&gt; pour afficher une image)
 </p>
-<ul class="org-ul">
-<li>Ils possèdent un nom et une valeur
-</li>
-<li>Certains attributs sont obligatoires pour certaines balises
-</li>
-<li>On utilise généralement des <code> " </code> pour définir la valeur d'un attribut
-</li>
+<ul>
+<li>Ils possèdent un nom et une valeur</li>
+<li>Certains attributs sont obligatoires pour certaines balises</li>
+<li>On utilise généralement des <code> " </code> pour définir la valeur d'un attribut</li>
+
 </ul>
 
 <div class="org-src-container">
 
-<pre  class="src src-text-center">&lt;balise attribut="valeur"&gt;
-</pre>
+<pre><code class="text-center" >&lt;balise attribut="valeur"&gt;
+</code></pre>
 </div>
 
 </section>
-<section id="sec-2-1-7" >
+<section id="slide-sec-2-1-7">
+<h4 id="org7f435f0"><span class="section-number-4">2.1.7</span> Les commentaires</h4>
+<ul>
+<li>Les commentaires ne sont pas affichés dans le navigateur</li>
+<li>Ils sont visibles dans le code source <code>Ctrl+U</code></li>
 
-<h4>Les commentaires</h4>
-<ul class="org-ul">
-<li>Les commentaires ne sont pas affichés dans le navigateur
-</li>
-<li>Ils sont visibles dans le code source <code>Ctrl+U</code>
-</li>
 </ul>
 
 <div class="org-src-container">
 
-<pre  class="src src-text-center">&lt;!-- Ceci est un commentaire --&gt;
-</pre>
+<pre><code class="text-center" >&lt;!-- Ceci est un commentaire --&gt;
+</code></pre>
 </div>
 
 </section>
-<section id="sec-2-1-8" >
-
-<h4>Les entités</h4>
-<ul class="org-ul">
+<section id="slide-sec-2-1-8">
+<h4 id="org604ec68"><span class="section-number-4">2.1.8</span> Les entités</h4>
+<ul>
 <li>Les entités permettent d'afficher des caractères spéciaux
-(accents, signes, etc.)
-</li>
+(accents, signes, etc.)</li>
 <li>Avec l'unicode, les entités sont surtout utilisés pour <code>&lt;, &gt;, ",
-      ' et &amp;</code> qui pourraient être confondu avec le balisage HTML
-</li>
+      ' et &amp;</code> qui pourraient être confondu avec le balisage HTML</li>
+
 </ul>
 
 <div class="org-src-container">
 
-<pre  class="src src-text-center">&amp;entite;
-&amp;#numero;
-</pre>
+<pre><code class="text-center" >&amp;entite;
+&amp;#numero; 
+</code></pre>
 </div>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <tbody>
 <tr>
-<td class="left">   &lt;   </td>
-<td class="left">    &amp;lt;    </td>
-<td class="left">   &amp;#60;   </td>
+<td class="org-left">   &lt;   </td>
+<td class="org-left">    &amp;lt;    </td>
+<td class="org-left">   &amp;#60;   </td>
 </tr>
 
 <tr>
-<td class="left">   &gt;   </td>
-<td class="left">    &amp;gt;    </td>
-<td class="left">   &amp;#62;   </td>
+<td class="org-left">   &gt;   </td>
+<td class="org-left">    &amp;gt;    </td>
+<td class="org-left">   &amp;#62;   </td>
 </tr>
 
 <tr>
-<td class="left">   &amp;   </td>
-<td class="left">   &amp;amp;    </td>
-<td class="left">   &amp;#38;   </td>
+<td class="org-left">   &amp;   </td>
+<td class="org-left">   &amp;amp;    </td>
+<td class="org-left">   &amp;#38;   </td>
 </tr>
 
 <tr>
-<td class="left">   "   </td>
-<td class="left">   &amp;quot;   </td>
-<td class="left">   &amp;#34;   </td>
+<td class="org-left">   "   </td>
+<td class="org-left">   &amp;quot;   </td>
+<td class="org-left">   &amp;#34;   </td>
 </tr>
 
 <tr>
-<td class="left">   '   </td>
-<td class="left">   &amp;apos;   </td>
-<td class="left">   &amp;#39;   </td>
+<td class="org-left">   '   </td>
+<td class="org-left">   &amp;apos;   </td>
+<td class="org-left">   &amp;#39;   </td>
 </tr>
 </tbody>
 </table>
 
 </section>
-<section id="sec-2-1-9" >
-
-<h4>Les entités : accents</h4>
-<ul class="org-ul">
+<section id="slide-sec-2-1-9">
+<h4 id="org6dbbb54"><span class="section-number-4">2.1.9</span> Les entités : accents</h4>
+<ul>
 <li>Pour les accents, il existe différents suffixes : <code>acute, grave,
-      circ, uml</code> mais en pratique, on ne les utilise plus.
-</li>
+      circ, uml</code> mais en pratique, on ne les utilise plus.</li>
+
 </ul>
 
 <div class="org-src-container">
 
-<pre  class="src src-text-center">à : &amp;agrave;
+<pre><code class="text-center" >à : &amp;agrave;
 é : &amp;eacute;
 ö : &amp;ouml;  
 î : &amp;icirc; 
-</pre>
+</code></pre>
 </div>
 
 <p>
@@ -532,970 +463,875 @@ afficher une page web.
 </p>
 
 </section>
-<section id="sec-2-1-10" >
-
-<h4>La grammaire HTML</h4>
-<ul class="org-ul">
+<section id="slide-sec-2-1-10">
+<h4 id="orgd942552"><span class="section-number-4">2.1.10</span> La grammaire HTML</h4>
+<ul>
 <li>On peut définir 5 règles :
-<ul class="org-ul">
-<li>définir une balise de zone
-</li>
-<li>définir une balise ponctuelle
-</li>
-<li>paramétrer une balise à l'aide d'attributs
-</li>
-<li>imbriquer des balises
-</li>
-<li>ajouter des commentaires
-</li>
-</ul>
-</li>
+<ul>
+<li>définir une balise de zone</li>
+<li>définir une balise ponctuelle</li>
+<li>paramétrer une balise à l'aide d'attributs</li>
+<li>imbriquer des balises</li>
+<li>ajouter des commentaires</li>
+
+</ul></li>
 <li>Les espaces typographiques ne sont pas <span class="underline">prises</span> en compte en HTML
-sauf pour séparer 2 mots
-</li>
+sauf pour séparer 2 mots</li>
+
 </ul>
 
 </section>
-<section id="sec-2-2" >
-
-<h3>Structure d'une page HTML</h3>
+<section id="slide-sec-2-2">
+<h3 id="orge498eee"><span class="section-number-3">2.2</span> Structure d'une page HTML</h3>
+<div class="outline-text-3" id="text-2-2">
+</div>
 </section>
-<section id="hello-world" >
+<section id="slide-sec-hello-world">
+<h4 id="hello-world"><a id="org5be09d6"></a><span class="section-number-4">2.2.1</span> Hello world</h4>
+<ul>
+<li>Créer un fichier avec l'extension <code>.html</code></li>
+<li>Insérer du code HTML</li>
 
-<h4>Hello world</h4>
-
-<ul class="org-ul">
-<li>Créer un fichier avec l'extension .html
-</li>
-<li>Insérer du code HTML
-</li>
 </ul>
 
 <div class="org-src-container">
 
-<pre  class="src src-html" id="phpjs-hello">&lt;<span class="org-keyword">!DOCTYPE</span> html&gt;
-&lt;<span class="org-function-name">html</span>&gt;
-  &lt;<span class="org-function-name">head</span>&gt;
-    &lt;<span class="org-function-name">meta</span> <span class="org-variable-name">charset</span>=<span class="org-string">"utf-8"</span>&gt;
-    &lt;<span class="org-function-name">title</span>&gt;<span class="org-underline"><span class="org-bold">Titre</span></span>&lt;/<span class="org-function-name">title</span>&gt;
-  &lt;/<span class="org-function-name">head</span>&gt;
-  &lt;<span class="org-function-name">body</span>&gt;
-    <span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">Commentaire : Hello world ! </span><span class="org-comment-delimiter">--&gt;</span>
-    Hello world <span class="org-variable-name">&amp;excl;</span>
-  &lt;/<span class="org-function-name">body</span>&gt;
-&lt;/<span class="org-function-name">html</span>&gt;
-</pre>
+<pre id="phpjs-hello"><code class="html" >&lt;!DOCTYPE html>
+&lt;html>
+  &lt;head>
+    &lt;meta charset="utf-8">
+    &lt;title>Titre&lt;/title>
+  &lt;/head>
+  &lt;body>
+    <!-- Commentaire : Hello world ! -->
+    Hello world &excl;
+  &lt;/body>
+&lt;/html>
+</code></pre>
 </div>
 
 </section>
-<section id="sec-2-2-2" >
-
-<h4>L'entête &lt;!DOCTYPE&gt;</h4>
-<ul class="org-ul">
-<li>HTML 5
+<section id="slide-sec-2-2-2">
+<h4 id="org7bd4bff"><span class="section-number-4">2.2.2</span> L'entête &lt;!DOCTYPE&gt;</h4>
+<ul>
+<li><p>
+HTML 5
+</p>
 <div class="org-src-container">
 
-<pre  class="src src-text-center">&lt;!DOCTYPE html&gt;
-</pre>
-</div>
-</li>
-<li>HTML 4.01 Strict
+<pre><code class="text-center" >&lt;!DOCTYPE html&gt;
+</code></pre>
+</div></li>
+<li><p>
+HTML 4.01 Strict
+</p>
 <div class="org-src-container">
 
-<pre  class="src src-text">&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"&gt;
-</pre>
-</div>
-</li>
-<li>HTML 4.01 Transitional
-</li>
-<li>XHTML 1.0 Strict
-</li>
-<li>XHTML 1.0 Transitional
+<pre><code class="text" ><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+</code></pre>
+</div></li>
+<li>HTML 4.01 Transitional</li>
+<li>XHTML 1.0 Strict</li>
+<li><p>
+XHTML 1.0 Transitional
+</p>
 <div class="org-src-container">
 
-<pre  class="src src-text">&#160;           &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-&#160;                     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
-</pre>
-</div>
-</li>
+<pre><code class="text" >            <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+</code></pre>
+</div></li>
+
 </ul>
 
 </section>
-<section id="sec-2-2-3" >
-
-<h4>La balise &lt;html&gt;</h4>
-<ul class="org-ul">
-<li>Une page HTML commence toujours par une balise <code>&lt;html&gt;</code>
-</li>
-<li>Une page HTML finit toujours par une balise <code>&lt;/html&gt;</code>
-</li>
+<section id="slide-sec-2-2-3">
+<h4 id="orgdda8cda"><span class="section-number-4">2.2.3</span> La balise &lt;html&gt;</h4>
+<ul>
+<li>Une page HTML commence toujours par une balise <code>&lt;html&gt;</code></li>
+<li>Une page HTML finit toujours par une balise <code>&lt;/html&gt;</code></li>
 <li>Entre ces deux balises, il y a toujours 2 autres balises de zone :
-<ul class="org-ul">
-<li>la zone d'entête (la tête) : <code>&lt;head&gt;&lt;/head&gt;</code>
-</li>
-<li>la zone de contenu (le corps) : <code>&lt;body&gt;&lt;/body&gt;</code>
-</li>
-</ul>
-</li>
+<ul>
+<li>la zone d'entête (la tête) : <code>&lt;head&gt;&lt;/head&gt;</code></li>
+<li>la zone de contenu (le corps) : <code>&lt;body&gt;&lt;/body&gt;</code></li>
+
+</ul></li>
+
 </ul>
 
 </section>
-<section id="sec-2-2-4" >
-
-<h4>La balise &lt;head&gt;</h4>
-<ul class="org-ul">
+<section id="slide-sec-2-2-4">
+<h4 id="org9728efa"><span class="section-number-4">2.2.4</span> La balise &lt;head&gt;</h4>
+<ul>
 <li>La balise d'entête contient les informations caractéristiques de
 la page :
-<ul class="org-ul">
-<li>encodage de la page (obligatoire)
+<ul>
+<li><p>
+encodage de la page (obligatoire)
+</p>
 <div class="org-src-container">
 
-<pre  class="src src-text-center">&lt;meta charset="utf-8"&gt;
-</pre>
-</div>
-</li>
-<li>titre de la page (obligatoire)
+<pre><code class="text-center" >&lt;meta charset="utf-8"&gt;
+</code></pre>
+</div></li>
+<li><p>
+titre de la page (obligatoire)
+</p>
 <div class="org-src-container">
 
-<pre  class="src src-text-center">&lt;title&gt;Titre de la page&lt;/title&gt;
-</pre>
-</div>
-</li>
-</ul>
-</li>
+<pre><code class="text-center" >&lt;title&gt;Titre de la page&lt;/title&gt;
+</code></pre>
+</div></li>
+
+</ul></li>
+
 </ul>
 
 </section>
-<section id="sec-2-2-5" >
-
-<h4>La balise &lt;head&gt;</h4>
-<ul class="org-ul">
+<section id="slide-sec-2-2-5">
+<h4 id="org461601f"><span class="section-number-4">2.2.5</span> La balise &lt;head&gt;</h4>
+<ul>
 <li>Elle peut contenir d'autres informations
-<ul class="org-ul">
-<li>auteur, mots clés etc.
+<ul>
+<li><p>
+auteur, mots clés etc.
+</p>
 <div class="org-src-container">
 
-<pre  class="src src-text">&lt;meta name="description" content="Techniques Internet de base"&gt;
-&lt;meta name="keywords" content="HTML, CSS, JavaScript, PHP, SQL"&gt;
-&lt;meta name="author" content="Toto"&gt;
-</pre>
-</div>
-</li>
-<li>codes attachés (style, javascript)
-</li>
-</ul>
-</li>
+<pre><code class="text" ><meta name="description" content="Techniques Internet de base">
+<meta name="keywords" content="HTML, CSS, JavaScript, PHP, SQL">
+<meta name="author" content="Toto">
+</code></pre>
+</div></li>
+<li>codes attachés (style, javascript)</li>
+
+</ul></li>
 <li>Les informations ne sont pas visibles directement dans le rendu
-du navigateur (sauf le titre) mais sont visibles dans le code source
-</li>
+du navigateur (sauf le titre) mais sont visibles dans le code source</li>
+
 </ul>
 
 </section>
-<section id="sec-2-2-6" >
-
-<h4>La balise &lt;body&gt;</h4>
-<ul class="org-ul">
+<section id="slide-sec-2-2-6">
+<h4 id="org843df72"><span class="section-number-4">2.2.6</span> La balise &lt;body&gt;</h4>
+<ul>
 <li>La balise de contenu contient toutes les informations qui sont
 affichées par le navigateur :
-<ul class="org-ul">
-<li>le texte
-</li>
-<li>les liens
-</li>
-<li>les images
-</li>
-<li>etc.
-</li>
-</ul>
-</li>
+<ul>
+<li>le texte</li>
+<li>les liens</li>
+<li>les images</li>
+<li>etc.</li>
+
+</ul></li>
+
 </ul>
 
 </section>
-<section id="sec-2-3" >
-
-<h3>Les balises de structure de la page</h3>
-<ul class="org-ul">
+<section id="slide-sec-2-3">
+<h3 id="orge5ef1c4"><span class="section-number-3">2.3</span> Les balises de structure de la page</h3>
+<ul>
 <li>HTML5 introduit des balises sémantiques
-<ul class="org-ul">
-<li><code>&lt;section&gt;&lt;/section&gt;</code> définit une section/partie de la page
-</li>
+<ul>
+<li><code>&lt;section&gt;&lt;/section&gt;</code> définit une section/partie de la page</li>
 <li><code>&lt;article&gt;&lt;/article&gt;</code> définit un article/post/commentaire ou un autre
-contenu important de la page.
-</li>
-<li><code>&lt;header&gt;&lt;/header&gt;</code> définit l'entête de la page/section
-</li>
-<li><code>&lt;footer&gt;&lt;/footer&gt;</code> dqéfinit le bas de page de la page/section
-</li>
+contenu important de la page.</li>
+<li><code>&lt;header&gt;&lt;/header&gt;</code> définit l'entête de la page/section</li>
+<li><code>&lt;footer&gt;&lt;/footer&gt;</code> dqéfinit le bas de page de la page/section</li>
 <li><code>&lt;aside&gt;&lt;/aside&gt;</code> définit un texte qui se rapporte au sujet de la
 page/section mais qui ne correspond pas directement au contenu
-de la page
-</li>
-<li><code>&lt;nav&gt;&lt;/nav&gt;</code> définit les liens de de navigation
-</li>
-</ul>
-</li>
+de la page</li>
+<li><code>&lt;nav&gt;&lt;/nav&gt;</code> définit les liens de de navigation</li>
+
+</ul></li>
+
 </ul>
 
 </section>
-<section id="sec-2-4" >
-
-<h3>Les balises de titre</h3>
+<section id="slide-sec-balises-titre">
+<h3 id="balises-titre"><a id="org8604bdb"></a><span class="section-number-3">2.4</span> Les balises de titre</h3>
 <div class="org-src-container">
 
-<pre  class="src src-html" id="phpjs-titre">&lt;<span class="org-function-name">h1</span>&gt;<span class="org-underline"><span class="org-bold">Titre de niveau H1</span></span>&lt;/<span class="org-function-name">h1</span>&gt;
-&lt;<span class="org-function-name">h2</span>&gt;<span class="org-underline"><span class="org-bold-italic">Titre de niveau H2</span></span>&lt;/<span class="org-function-name">h2</span>&gt;
-&lt;<span class="org-function-name">h3</span>&gt;<span class="org-underline"><span class="org-italic">Titre de niveau H3</span></span>&lt;/<span class="org-function-name">h3</span>&gt;
-&lt;<span class="org-function-name">h4</span>&gt;<span class="org-underline">Titre de niveau H4</span>&lt;/<span class="org-function-name">h4</span>&gt;
-&lt;<span class="org-function-name">h5</span>&gt;<span class="org-underline">Titre de niveau H5</span>&lt;/<span class="org-function-name">h5</span>&gt;
-&lt;<span class="org-function-name">h6</span>&gt;<span class="org-underline">Titre de niveau H6</span>&lt;/<span class="org-function-name">h6</span>&gt;
-</pre>
+<pre id="phpjs-titre"><code class="html" ><h1>Titre de niveau H1</h1>
+<h2>Titre de niveau H2</h2>
+<h3>Titre de niveau H3</h3>
+<h4>Titre de niveau H4</h4>
+<h5>Titre de niveau H5</h5>
+<h6>Titre de niveau H6</h6>
+</code></pre>
 </div>
 
 </section>
-<section id="sec-2-5" >
-
-<h3>Les balises pour le texte</h3>
+<section id="slide-sec-2-5">
+<h3 id="orgf37f089"><span class="section-number-3">2.5</span> Les balises pour le texte</h3>
 <div class="org-src-container">
 
-<pre  class="src src-html" id="phpjs-text">&lt;<span class="org-function-name">p</span>&gt;Paragraphe&lt;/<span class="org-function-name">p</span>&gt;
-&lt;<span class="org-function-name">p</span>&gt;
-  &lt;<span class="org-function-name">em</span>&gt;<span class="org-italic">Emphase par d&#233;faut en italique</span>&lt;/<span class="org-function-name">em</span>&gt;
-  &lt;<span class="org-function-name">strong</span>&gt;<span class="org-bold">Accentuation par d&#233;faut en gras</span>&lt;/<span class="org-function-name">strong</span>&gt;
-  &lt;<span class="org-function-name">br</span>&gt;Saut de ligne
-  &lt;<span class="org-function-name">hr</span>&gt;ligne horizontale pour s&#233;parer du texte
-&lt;/<span class="org-function-name">p</span>&gt;
-</pre>
+<pre id="phpjs-text"><code class="html" ><p>Paragraphe</p>
+<p>
+  <em>Emphase par défaut en italique</em>
+  <strong>Accentuation par défaut en gras</strong>
+  <br>Saut de ligne
+  <hr>ligne horizontale pour séparer du texte
+</p>
+</code></pre>
 </div>
 
-<ul class="org-ul">
+<ul>
 <li>D'autres balises peuvent être utilisées
-<ul class="org-ul">
-<li><code>&lt;cite&gt;&lt;/cite&gt;</code> pour une citation
-</li>
-<li><code>&lt;code&gt;&lt;/code&gt;</code> pour du code
-</li>
-<li><code>&lt;pre&gt;&lt;/pre&gt;</code> pour du texte préformatté
-</li>
-<li><code>&lt;samp&gt;&lt;/samp&gt;</code> pour un exemple
-</li>
-<li><code>&lt;blocknote&gt;&lt;/blocknote&gt;</code> pour une note
-</li>
-<li><code>&lt;address&gt;&lt;/address&gt;</code> pour une adresse
-</li>
-<li><code>&lt;sub&gt;&lt;/sub&gt;</code> pour des indices
-</li>
-<li><code>&lt;sup&gt;&lt;/sup&gt;</code> pour des exposants
-</li>
-<li>etc.
-</li>
-</ul>
-</li>
+<ul>
+<li><code>&lt;cite&gt;&lt;/cite&gt;</code> pour une citation</li>
+<li><code>&lt;code&gt;&lt;/code&gt;</code> pour du code</li>
+<li><code>&lt;pre&gt;&lt;/pre&gt;</code> pour du texte préformatté</li>
+<li><code>&lt;samp&gt;&lt;/samp&gt;</code> pour un exemple</li>
+<li><code>&lt;blocknote&gt;&lt;/blocknote&gt;</code> pour une note</li>
+<li><code>&lt;address&gt;&lt;/address&gt;</code> pour une adresse</li>
+<li><code>&lt;sub&gt;&lt;/sub&gt;</code> pour des indices</li>
+<li><code>&lt;sup&gt;&lt;/sup&gt;</code> pour des exposants</li>
+<li>etc.</li>
+
+</ul></li>
+
 </ul>
 
 </section>
-<section id="sec-2-6" >
-
-<h3>Les balises pour les images</h3>
-<ul class="org-ul">
-<li>La balise <code>&lt;img&gt;</code> permet d'afficher une image
-</li>
-<li>Les attributs <code>src</code> et <code>alt</code> sont obligatoires
-<ul class="org-ul">
-<li><code>src</code> : URL de l'image
-</li>
+<section id="slide-sec-2-6">
+<h3 id="org597b997"><span class="section-number-3">2.6</span> Les balises pour les images</h3>
+<ul>
+<li>La balise <code>&lt;img&gt;</code> permet d'afficher une image</li>
+<li><p>
+Les attributs <code>src</code> et <code>alt</code> sont obligatoires
+</p>
+<ul>
+<li><code>src</code> : URL de l'image</li>
 <li><code>alt</code> : Texte alternatif qui remplace une image ne pouvant être
 affichée ou qui est dicté par certains logiciels
-d'accessibilité
-</li>
+d'accessibilité</li>
+
 </ul>
+
 <div class="org-src-container">
 
-<pre  class="src src-html" id="phpjs-img">&lt;<span class="org-function-name">img</span> <span class="org-variable-name">src</span>=<span class="org-string">"inc/img/html5.png"</span> <span class="org-variable-name">alt</span>=<span class="org-string">"logo html5"</span> <span class="org-variable-name">height</span>=<span class="org-string">"120"</span> <span class="org-variable-name">width</span>=<span class="org-string">"120"</span>&gt;
-&lt;<span class="org-function-name">img</span> <span class="org-variable-name">src</span>=<span class="org-string">"inc/img/html.png"</span> <span class="org-variable-name">alt</span>=<span class="org-string">"logo html"</span>&gt;
-</pre>
-</div>
-</li>
+<pre id="phpjs-img"><code class="html" ><img src="inc/img/html5.png" alt="logo html5" height="120" width="120">
+<img src="inc/img/html.png" alt="logo html">
+</code></pre>
+</div></li>
+
 </ul>
 
 </section>
-<section id="sec-2-7" >
-
-<h3>Les balises pour les figures</h3>
+<section id="slide-sec-2-7">
+<h3 id="org2be6033"><span class="section-number-3">2.7</span> Les balises pour les figures</h3>
 <div class="org-src-container">
 
-<pre  class="src src-html" id="phpjs-figure">&lt;<span class="org-function-name">figure</span>&gt;
-  &lt;<span class="org-function-name">img</span> <span class="org-variable-name">src</span>=<span class="org-string">"inc/img/html5.png"</span> <span class="org-variable-name">alt</span>=<span class="org-string">"logo html5"</span>&gt;
-  &lt;<span class="org-function-name">figcaption</span>&gt;Titre de l'image&lt;/<span class="org-function-name">figcaption</span>&gt;
-&lt;/<span class="org-function-name">figure</span>&gt;
-</pre>
+<pre id="phpjs-figure"><code class="html" ><figure>
+  <img src="inc/img/html5.png" alt="logo html5">
+  <figcaption>Titre de l'image</figcaption>
+</figure> 
+</code></pre>
 </div>
 
 </section>
-<section id="sec-2-8" >
-
-<h3>Format des images (JPEG)</h3>
-<ul class="org-ul">
+<section id="slide-sec-2-8">
+<h3 id="org1743a02"><span class="section-number-3">2.8</span> Format des images (JPEG)</h3>
+<ul>
 <li>Joint Photographic Experts Group / JPEG (<code>.jpg</code>, <code>.jpeg</code>) :
-<ul class="org-ul">
-<li>Format idéal pour les photos et les illustrations compliquées.
-</li>
-<li>Contient des millions de couleurs.
-</li>
-<li>La Compression de l’image se fait avec une perte de qualité qui va de 0% à 99%.
-</li>
-</ul>
-</li>
+<ul>
+<li>Format idéal pour les photos et les illustrations compliquées.</li>
+<li>Contient des millions de couleurs.</li>
+<li>La Compression de l’image se fait avec une perte de qualité qui va de 0% à 99%.</li>
+
+</ul></li>
+
 </ul>
 
 </section>
-<section id="sec-2-9" >
-
-<h3>Format des images (GIF)</h3>
-<ul class="org-ul">
+<section id="slide-sec-2-9">
+<h3 id="org2809d31"><span class="section-number-3">2.9</span> Format des images (GIF)</h3>
+<ul>
 <li>Graphics Interchange Format / GIF (<code>.gif</code>) :
-<ul class="org-ul">
-<li>Très pratique pour les dessins et images avec peu de nuances.
-</li>
-<li>Peut contenir 256 couleurs ou moins.
-</li>
-<li>Gère la transparence et les animations.
-</li>
-</ul>
-</li>
+<ul>
+<li>Très pratique pour les dessins et images avec peu de nuances.</li>
+<li>Peut contenir 256 couleurs ou moins.</li>
+<li>Gère la transparence et les animations.</li>
+
+</ul></li>
+
 </ul>
 
 </section>
-<section id="sec-2-10" >
-
-<h3>Format des images (PNG)</h3>
-<ul class="org-ul">
+<section id="slide-sec-2-10">
+<h3 id="org1aa47ae"><span class="section-number-3">2.10</span> Format des images (PNG)</h3>
+<ul>
 <li>Portable Network Graphics / PNG (<code>.png</code>) :
-<ul class="org-ul">
-<li>Format libre de droits.
-</li>
-<li>Images entrelacées (affichage progressif).
-</li>
-<li>Convient pour tout type d’image, la transparence mais pas les animations.
-</li>
-<li>Il existe en 8 bits (type GIF, 256 couleurs) et en 24 bits.
-</li>
-</ul>
-</li>
+<ul>
+<li>Format libre de droits.</li>
+<li>Images entrelacées (affichage progressif).</li>
+<li>Convient pour tout type d’image, la transparence mais pas les animations.</li>
+<li>Il existe en 8 bits (type GIF, 256 couleurs) et en 24 bits.</li>
+
+</ul></li>
+
 </ul>
 
 </section>
-<section id="html-link" >
-
-<h3>Les balises pour les liens</h3>
-
-<ul class="org-ul">
+<section id="slide-sec-html-link">
+<h3 id="html-link"><a id="org0dcdaab"></a><span class="section-number-3">2.11</span> Les balises pour les liens</h3>
+<ul>
 <li>Lien hypertexte :
-<ul class="org-ul">
-<li>Mécanisme qui permet de naviguer d’une pages web à une autre.
-</li>
-<li>Permet de ne plus apprendre les adresses des ressources
-</li>
-<li>Associé à un texte ou une image sur lesquels on peut cliquer
-</li>
-</ul>
-</li>
-<li>l'attribut <code>href</code> permet de définir l'URL
-</li>
-<li>l'attribut <code>target</code> permet d'ouvrir le lien dans un autre onglet
+<ul>
+<li>Mécanisme qui permet de naviguer d’une pages web à une autre.</li>
+<li>Permet de ne plus apprendre les adresses des ressources</li>
+<li>Associé à un texte ou une image sur lesquels on peut cliquer</li>
+
+</ul></li>
+<li>l'attribut <code>href</code> permet de définir l'URL</li>
+<li><p>
+l'attribut <code>target</code> permet d'ouvrir le lien dans un autre onglet
+</p>
 <div class="org-src-container">
 
-<pre  class="src src-html" id="phpjs-link">&lt;<span class="org-function-name">p</span>&gt;
-  &lt;<span class="org-function-name">a</span> <span class="org-variable-name">href</span>=<span class="org-string">"#html-link"</span> <span class="org-variable-name">target</span>=<span class="org-string">"_blank"</span>&gt;Un &#233;l&#233;ment dans la m&#234;me page&lt;/<span class="org-function-name">a</span>&gt;&lt;<span class="org-function-name">br</span>&gt;
-  &lt;<span class="org-function-name">a</span> <span class="org-variable-name">href</span>=<span class="org-string">"./index.html?print-pdf"</span> <span class="org-variable-name">target</span>=<span class="org-string">"_blank"</span>&gt;Une page du m&#234;me site&lt;/<span class="org-function-name">a</span>&gt;&lt;<span class="org-function-name">br</span>&gt;
-  &lt;<span class="org-function-name">a</span> <span class="org-variable-name">href</span>=<span class="org-string">"https://duckduckgo.com"</span> <span class="org-variable-name">target</span>=<span class="org-string">"_blank"</span>&gt;Une page d'un autre site&lt;/<span class="org-function-name">a</span>&gt;&lt;<span class="org-function-name">br</span>&gt;
-&lt;/<span class="org-function-name">p</span>&gt;
-</pre>
-</div>
-</li>
+<pre id="phpjs-link"><code class="html" ><p>
+  <a href="#html-link" target="_blank">Un élément dans la même page</a><br>
+  <a href="./index.html?print-pdf" target="_blank">Une page du même site</a><br>
+  <a href="https://duckduckgo.com" target="_blank">Une page d'un autre site</a><br>
+</p>
+</code></pre>
+</div></li>
+
 </ul>
 
 </section>
-<section id="sec-2-12" >
-
-<h3>Les balises pour les listes</h3>
-<ul class="org-ul">
-<li>Les listes ordonnées/non-ordonnées
+<section id="slide-sec-2-12">
+<h3 id="org6eb3073"><span class="section-number-3">2.12</span> Les balises pour les listes</h3>
+<ul>
+<li><p>
+Les listes ordonnées/non-ordonnées
+</p>
 <div class="org-src-container">
 
-<pre  class="src src-html" id="phpjs-list">&lt;<span class="org-function-name">ol</span>&gt;<span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">ordererd list </span><span class="org-comment-delimiter">--&gt;</span>
-  &lt;<span class="org-function-name">li</span>&gt;&#233;l&#233;ment 1&lt;/<span class="org-function-name">li</span>&gt;
-  &lt;<span class="org-function-name">li</span>&gt;&#233;l&#233;ment 2&lt;/<span class="org-function-name">li</span>&gt;
-&lt;/<span class="org-function-name">ol</span>&gt;
-&lt;<span class="org-function-name">ul</span>&gt;<span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">unordererd list </span><span class="org-comment-delimiter">--&gt;</span>
-  &lt;<span class="org-function-name">li</span>&gt;&#233;l&#233;ment 1&lt;/<span class="org-function-name">li</span>&gt;
-  &lt;<span class="org-function-name">li</span>&gt;&#233;l&#233;ment 2&lt;/<span class="org-function-name">li</span>&gt;
-&lt;/<span class="org-function-name">ul</span>&gt;
-</pre>
-</div>
-</li>
+<pre id="phpjs-list"><code class="html" ><ol><!-- ordererd list -->
+  <li>élément 1</li>
+  <li>élément 2</li>
+</ol>
+<ul><!-- unordererd list -->
+  <li>élément 1</li>
+  <li>élément 2</li>
+</ul>
+</code></pre>
+</div></li>
 
-<li>Les listes de définitions
+<li><p>
+Les listes de définitions
+</p>
 <div class="org-src-container">
 
-<pre  class="src src-html" id="phpjs-dl">&lt;<span class="org-function-name">dl</span>&gt;<span class="org-comment-delimiter">&lt;!-- </span><span class="org-comment">definition list </span><span class="org-comment-delimiter">--&gt;</span>
-  &lt;<span class="org-function-name">dt</span>&gt;terme 1&lt;/<span class="org-function-name">dt</span>&gt;
-  &lt;<span class="org-function-name">dd</span>&gt;d&#233;finition 1&lt;/<span class="org-function-name">dd</span>&gt;
-  &lt;<span class="org-function-name">dt</span>&gt;terme 2&lt;/<span class="org-function-name">dt</span>&gt;
-  &lt;<span class="org-function-name">dd</span>&gt;d&#233;finition 2&lt;/<span class="org-function-name">dd</span>&gt;
-&lt;/<span class="org-function-name">dl</span>&gt;
-</pre>
-</div>
-</li>
+<pre id="phpjs-dl"><code class="html" ><dl><!-- definition list -->
+  <dt>terme 1</dt>
+  <dd>définition 1</dd>
+  <dt>terme 2</dt>
+  <dd>définition 2</dd>
+</dl>
+</code></pre>
+</div></li>
+
 </ul>
 
 </section>
-<section id="sec-2-13" >
-
-<h3>Les listes imbriquées</h3>
+<section id="slide-sec-2-13">
+<h3 id="org3c1a551"><span class="section-number-3">2.13</span> Les listes imbriquées</h3>
 <div class="org-src-container">
 
-<pre  class="src src-html" id="phpjs-list-list">&lt;<span class="org-function-name">ul</span>&gt;
-  &lt;<span class="org-function-name">li</span>&gt;&#233;l&#233;ment 1&lt;/<span class="org-function-name">li</span>&gt;
-  &lt;<span class="org-function-name">li</span>&gt;&#233;l&#233;ment 2
-    &lt;<span class="org-function-name">ul</span>&gt;
-      &lt;<span class="org-function-name">li</span>&gt;&#233;l&#233;ment 2.1
-        &lt;<span class="org-function-name">ul</span>&gt;
-          &lt;<span class="org-function-name">li</span>&gt;&#233;l&#233;ment 2.1.1&lt;/<span class="org-function-name">li</span>&gt;
-        &lt;/<span class="org-function-name">ul</span>&gt;
-      &lt;/<span class="org-function-name">li</span>&gt;
-      &lt;<span class="org-function-name">li</span>&gt;&#233;l&#233;ment 2.2&lt;/<span class="org-function-name">li</span>&gt;
-    &lt;/<span class="org-function-name">ul</span>&gt;
-  &lt;/<span class="org-function-name">li</span>&gt;
-  &lt;<span class="org-function-name">li</span>&gt;&#233;l&#233;ment 3
-    &lt;<span class="org-function-name">ol</span>&gt;
-      &lt;<span class="org-function-name">li</span>&gt;&#233;l&#233;ment 3.1&lt;/<span class="org-function-name">li</span>&gt;
-      &lt;<span class="org-function-name">li</span>&gt;&#233;l&#233;ment 3.2&lt;/<span class="org-function-name">li</span>&gt;
-    &lt;/<span class="org-function-name">ol</span>&gt;
-  &lt;/<span class="org-function-name">li</span>&gt;
-&lt;/<span class="org-function-name">ul</span>&gt;
-</pre>
+<pre id="phpjs-list-list"><code class="html" ><ul>
+  <li>élément 1</li>
+  <li>élément 2
+    <ul>
+      <li>élément 2.1
+        <ul>
+          <li>élément 2.1.1</li>
+        </ul>
+      </li>
+      <li>élément 2.2</li>
+    </ul>
+  </li>
+  <li>élément 3
+    <ol>
+      <li>élément 3.1</li>
+      <li>élément 3.2</li>
+    </ol>
+  </li>
+</ul>
+</code></pre>
 </div>
 
 </section>
-<section id="sec-2-14" >
-
-<h3>Les balises pour les tableaux</h3>
-<ul class="org-ul">
+<section id="slide-sec-2-14">
+<h3 id="org2b612d6"><span class="section-number-3">2.14</span> Les balises pour les tableaux</h3>
+<ul>
 <li>HTML offre 4 balises pour créer des tableaux
-<ul class="org-ul">
-<li><code>&lt;table&gt;&lt;/table&gt;</code> début et fin de tableau
-</li>
-<li><code>&lt;tr&gt;&lt;/tr&gt;</code> Ligne du tableau
-</li>
-<li><code>&lt;th&gt;&lt;/th&gt;</code> Cellule du tableau (entête)
-</li>
-<li><code>&lt;td&gt;&lt;/td&gt;</code> Cellule du tableau (contenu)
-</li>
-</ul>
-</li>
+<ul>
+<li><code>&lt;table&gt;&lt;/table&gt;</code> début et fin de tableau</li>
+<li><code>&lt;tr&gt;&lt;/tr&gt;</code> Ligne du tableau</li>
+<li><code>&lt;th&gt;&lt;/th&gt;</code> Cellule du tableau (entête)</li>
+<li><code>&lt;td&gt;&lt;/td&gt;</code> Cellule du tableau (contenu)</li>
+
+</ul></li>
 <li>Balises sémantiques
-<ul class="org-ul">
-<li><code>&lt;caption&gt;&lt;/caption&gt;</code> légende du tableau
-</li>
+<ul>
+<li><code>&lt;caption&gt;&lt;/caption&gt;</code> légende du tableau</li>
 <li><code>&lt;thead&gt;&lt;/thead&gt;, &lt;tbody&gt;&lt;/tbody&gt;, &lt;tfoot&gt;&lt;/tfoot&gt;</code> structure
-du tableau
-</li>
-</ul>
-</li>
+du tableau</li>
+
+</ul></li>
+
 </ul>
 
 </section>
-<section id="sec-2-15" >
-
-<h3>Exemple d'un tableau</h3>
+<section id="slide-sec-2-15">
+<h3 id="orgffe2a7b"><span class="section-number-3">2.15</span> Exemple d'un tableau</h3>
 <div class="org-src-container">
 
-<pre  class="src src-html" id="phpjs-table">&lt;<span class="org-function-name">table</span>&gt;
-  &lt;<span class="org-function-name">caption</span>&gt;Les chiffres&lt;/<span class="org-function-name">caption</span>&gt;
-  &lt;<span class="org-function-name">tr</span>&gt;
-    &lt;<span class="org-function-name">th</span>&gt;A&lt;/<span class="org-function-name">th</span>&gt;&lt;<span class="org-function-name">th</span>&gt;B&lt;/<span class="org-function-name">th</span>&gt;&lt;<span class="org-function-name">th</span>&gt;C&lt;/<span class="org-function-name">th</span>&gt;&lt;<span class="org-function-name">th</span>&gt;D&lt;/<span class="org-function-name">th</span>&gt;
-  &lt;/<span class="org-function-name">tr</span>&gt;
-  &lt;<span class="org-function-name">tr</span>&gt;
-    &lt;<span class="org-function-name">td</span>&gt;1&lt;/<span class="org-function-name">td</span>&gt;&lt;<span class="org-function-name">td</span>&gt;2&lt;/<span class="org-function-name">td</span>&gt;&lt;<span class="org-function-name">td</span>&gt;3&lt;/<span class="org-function-name">td</span>&gt;&lt;<span class="org-function-name">td</span>&gt;4&lt;/<span class="org-function-name">td</span>&gt;
-  &lt;/<span class="org-function-name">tr</span>&gt;
-  &lt;<span class="org-function-name">tr</span>&gt;
-    &lt;<span class="org-function-name">td</span>&gt;5&lt;/<span class="org-function-name">td</span>&gt;&lt;<span class="org-function-name">td</span>&gt;6&lt;/<span class="org-function-name">td</span>&gt;&lt;<span class="org-function-name">td</span>&gt;7&lt;/<span class="org-function-name">td</span>&gt;&lt;<span class="org-function-name">td</span>&gt;8&lt;/<span class="org-function-name">td</span>&gt;
-  &lt;/<span class="org-function-name">tr</span>&gt;
-&lt;/<span class="org-function-name">table</span>&gt;
-</pre>
+<pre id="phpjs-table"><code class="html" ><table>
+  <caption>Les chiffres</caption>
+  <tr>
+    <th>A</th><th>B</th><th>C</th><th>D</th>
+  </tr>
+  <tr>
+    <td>1</td><td>2</td><td>3</td><td>4</td>
+  </tr>
+  <tr>
+    <td>5</td><td>6</td><td>7</td><td>8</td>
+  </tr>
+</table>
+</code></pre>
 </div>
 
 </section>
-<section id="sec-2-16" >
-
-<h3>Les attributs pour les tableaux</h3>
-<ul class="org-ul">
+<section id="slide-sec-2-16">
+<h3 id="org10eda29"><span class="section-number-3">2.16</span> Les attributs pour les tableaux</h3>
+<ul>
 <li>Il est possible de fusionner des cellules &lt;td&gt;, &lt;th&gt;
-<ul class="org-ul">
-<li>Fusionner des colonnes : attribut <code>colspan</code>
-</li>
-<li>Fusionner des lignes : attribut <code>rowspan</code>
-</li>
-</ul>
-</li>
+<ul>
+<li>Fusionner des colonnes : attribut <code>colspan</code></li>
+<li>Fusionner des lignes : attribut <code>rowspan</code></li>
+
+</ul></li>
 <li>Les valeurs associées aux attributs correspondent au nombre de
-cellules à fusionner
-</li>
+cellules à fusionner</li>
+
 </ul>
 
 </section>
-<section id="sec-2-17" >
-
-<h3>Exemple d'un tableau avancé</h3>
+<section id="slide-sec-2-17">
+<h3 id="org1e03c95"><span class="section-number-3">2.17</span> Exemple d'un tableau avancé</h3>
 <div class="org-src-container">
 
-<pre  class="src src-html" id="phpjs-table">&lt;<span class="org-function-name">table</span>&gt;
-  &lt;<span class="org-function-name">caption</span>&gt;Les chiffres&lt;/<span class="org-function-name">caption</span>&gt;
-  &lt;<span class="org-function-name">tr</span>&gt;
-    &lt;<span class="org-function-name">th</span>&gt;A&lt;/<span class="org-function-name">th</span>&gt;&lt;<span class="org-function-name">th</span>&gt;B&lt;/<span class="org-function-name">th</span>&gt;&lt;<span class="org-function-name">th</span>&gt;C&lt;/<span class="org-function-name">th</span>&gt;&lt;<span class="org-function-name">th</span>&gt;D&lt;/<span class="org-function-name">th</span>&gt;
-  &lt;/<span class="org-function-name">tr</span>&gt;
-  &lt;<span class="org-function-name">tr</span>&gt;
-    &lt;<span class="org-function-name">td</span> <span class="org-variable-name">rowspan</span>=<span class="org-string">"2"</span>&gt;1&lt;/<span class="org-function-name">td</span>&gt;&lt;<span class="org-function-name">td</span> <span class="org-variable-name">colspan</span>=<span class="org-string">"3"</span>&gt;2&lt;/<span class="org-function-name">td</span>&gt;
-  &lt;/<span class="org-function-name">tr</span>&gt;
-  &lt;<span class="org-function-name">tr</span>&gt;
-    &lt;<span class="org-function-name">td</span>&gt;3&lt;/<span class="org-function-name">td</span>&gt;&lt;<span class="org-function-name">td</span>&gt;4&lt;/<span class="org-function-name">td</span>&gt;&lt;<span class="org-function-name">td</span>&gt;5&lt;/<span class="org-function-name">td</span>&gt;
-  &lt;/<span class="org-function-name">tr</span>&gt;
-&lt;/<span class="org-function-name">table</span>&gt;
-<span class="org-comment-delimiter">&lt;!--</span>
-<span class="org-comment">&lt;style&gt;table, td, th { border: 1px solid black; }&lt;/style&gt;</span>
-<span class="org-comment-delimiter">--&gt;</span>
-</pre>
+<pre id="phpjs-table"><code class="html" ><table>
+  <caption>Les chiffres</caption>
+  <tr>
+    <th>A</th><th>B</th><th>C</th><th>D</th>
+  </tr>
+  <tr>
+    <td rowspan="2">1</td><td colspan="3">2</td>
+  </tr>
+  <tr>
+    <td>3</td><td>4</td><td>5</td>
+  </tr>
+</table>
+<!--
+<style>table, td, th { border: 1px solid black; }</style>
+-->
+</code></pre>
 </div>
 
 </section>
-<section id="sec-2-18" >
-
-<h3>Les balises neutres et attributs globaux</h3>
-<ul class="org-ul">
+<section id="slide-sec-2-18">
+<h3 id="org00e3010"><span class="section-number-3">2.18</span> Les balises neutres et attributs globaux</h3>
+<ul>
 <li>Balises neutres
-<ul class="org-ul">
-<li><code>&lt;span&gt;&lt;/span&gt;</code> : balise de type <i>inline</i> (pas de retour à la ligne)
-</li>
-<li><code>&lt;div&gt;&lt;/div&gt;</code> : balise de type <i>block</i> (retour à la ligne)
-</li>
-</ul>
-</li>
+<ul>
+<li><code>&lt;span&gt;&lt;/span&gt;</code> : balise de type <i>inline</i> (pas de retour à la ligne)</li>
+<li><code>&lt;div&gt;&lt;/div&gt;</code> : balise de type <i>block</i> (retour à la ligne)</li>
+
+</ul></li>
 <li>Attributs globaux (toutes les balises)
-<ul class="org-ul">
-<li><code>id</code> : identifiant unique dans la page associé à une balise
-</li>
-<li><code>class</code> : classe qui peut-être associée à plusieurs éléments dans la page
-</li>
-<li><code>title</code> : information affichée au survol de la souris
-</li>
-</ul>
-</li>
+<ul>
+<li><code>id</code> : identifiant unique dans la page associé à une balise</li>
+<li><code>class</code> : classe qui peut-être associée à plusieurs éléments dans la page</li>
+<li><code>title</code> : information affichée au survol de la souris</li>
+
+</ul></li>
+
 </ul>
 
 </section>
-<section id="sec-2-19" >
-
-<h3>Exemple d'utilisation de balises neutres</h3>
+<section id="slide-sec-2-19">
+<h3 id="orgbe70cda"><span class="section-number-3">2.19</span> Exemple d'utilisation de balises neutres</h3>
 <div class="org-src-container">
 
-<pre  class="src src-html" id="phpjs-div-span">texte
-&lt;<span class="org-function-name">div</span> <span class="org-variable-name">id</span>=<span class="org-string">"id"</span> <span class="org-variable-name">class</span>=<span class="org-string">"class"</span>&gt;
+<pre id="phpjs-div-span"><code class="html" >texte
+<div id="id" class="class">
   texte
-  &lt;<span class="org-function-name">span</span> <span class="org-variable-name">class</span>=<span class="org-string">"class"</span> <span class="org-variable-name">title</span>=<span class="org-string">"title"</span>&gt;
+  <span class="class" title="title">
     texte
-  &lt;/<span class="org-function-name">span</span>&gt;
+  </span>
   texte
-&lt;/<span class="org-function-name">div</span>&gt;
+</div>
 texte
-</pre>
+</code></pre>
 </div>
 
 </section>
-<section id="sec-3" >
+<section id="slide-sec-3">
+<h2 id="org432ee4d"><span class="section-number-2">3</span> CSS</h2>
 
-<h2>CSS</h2>
-<img src="./inc/img/css3.png" alt="css3.png" />
+<div class="figure">
+<p><img src="./inc/img/css3.png" alt="css3.png" />
+</p>
+</div>
 
 </section>
-<section id="sec-3-1" >
-
-<h3>Le langage CSS</h3>
-<ul class="org-ul">
-<li><span class="underline">CSS</span> : Cascading Style Sheets
-</li>
+<section id="slide-sec-3-1">
+<h3 id="org16c6130"><span class="section-number-3">3.1</span> Le langage CSS</h3>
+<ul>
+<li><span class="underline">CSS</span> : Cascading Style Sheets</li>
 <li>Langage qui définit comment les balises HTML doivent être
-affichées par le navigateur
-</li>
-<li>HTML pour le fond, CSS pour la forme
-</li>
+affichées par le navigateur</li>
+<li>HTML pour le fond, CSS pour la forme</li>
+
 </ul>
 
 </section>
-<section id="sec-3-1-1" >
+<section id="slide-sec-3-1-1">
+<h4 id="org4a27181"><span class="section-number-4">3.1.1</span> Historique</h4>
+<ul>
+<li>1996 : CSS 1 (base)</li>
+<li>1998 : CSS 2 (position, z-index, type de media)</li>
+<li>2004-2011 : CSS 2.1 (correction de CSS 2)</li>
+<li>2011-2014 : CSS 3 (modules indépendants)</li>
 
-<h4>Historique</h4>
-<ul class="org-ul">
-<li>1996 : CSS 1 (base)
-</li>
-<li>1998 : CSS 2 (position, z-index, type de media)
-</li>
-<li>2004-2011 : CSS 2.1 (correction de CSS 2)
-</li>
-<li>2011-2014 : CSS 3 (modules indépendants)
-</li>
 </ul>
 
 </section>
-<section id="sec-3-1-2" >
-
-<h4>La syntaxe</h4>
+<section id="slide-sec-3-1-2">
+<h4 id="org6925477"><span class="section-number-4">3.1.2</span> La syntaxe</h4>
 <div class="org-src-container">
 
-<pre  class="src src-css"><span class="org-css-selector"><span class="org-comment-delimiter">/* </span></span><span class="org-css-selector"><span class="org-comment">commentaire </span></span><span class="org-css-selector"><span class="org-comment-delimiter">*/</span></span>
-<span class="org-css-selector">selecteur </span>{ <span class="org-css-property">propri&#233;t&#233;</span>: valeur; }
-<span class="org-css-selector">selecteur1, selecteur2 </span>{
-  <span class="org-css-property">propri&#233;t&#233;1</span>: valeur1;
-  <span class="org-css-property">propri&#233;t&#233;2</span>: valeur2;
+<pre><code class="css" >/* commentaire */
+selecteur { propriété: valeur; }
+selecteur1, selecteur2 {
+  propriété1: valeur1;
+  propriété2: valeur2;
 }
-</pre>
+</code></pre>
 </div>
 
 </section>
-<section id="sec-3-1-3" >
-
-<h4>Les sélecteurs de bases</h4>
+<section id="slide-sec-3-1-3">
+<h4 id="org7f5c913"><span class="section-number-4">3.1.3</span> Les sélecteurs de bases</h4>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <tbody>
 <tr>
-<td class="left">le sélecteur universel</td>
-<td class="left">     <code> * </code>    </td>
-<td class="left">tous les éléments de la page</td>
+<td class="org-left">le sélecteur universel</td>
+<td class="org-left">     <code> * </code>    </td>
+<td class="org-left">tous les éléments de la page</td>
 </tr>
 
 <tr>
-<td class="left">les balises</td>
-<td class="left">     <code>nom</code>   </td>
-<td class="left">toutes les balises « nom » de la page</td>
+<td class="org-left">les balises</td>
+<td class="org-left">     <code>nom</code>   </td>
+<td class="org-left">toutes les balises « nom » de la page</td>
 </tr>
 
 <tr>
-<td class="left">les identifiants</td>
-<td class="left">   <code> #id </code>    </td>
-<td class="left">l'élément d'identifiant « id »</td>
+<td class="org-left">les identifiants</td>
+<td class="org-left">   <code> #id </code>    </td>
+<td class="org-left">l'élément d'identifiant « id »</td>
 </tr>
 
 <tr>
-<td class="left">les classes</td>
-<td class="left">  <code>.class</code>   </td>
-<td class="left">tous les éléments avec la classe « class »</td>
+<td class="org-left">les classes</td>
+<td class="org-left">  <code>.class</code>   </td>
+<td class="org-left">tous les éléments avec la classe « class »</td>
 </tr>
 
 <tr>
-<td class="left">la combinaison simple</td>
-<td class="left">  <code>nom.class</code>   </td>
-<td class="left">toutes les balises « nom » avec la classe « class »</td>
+<td class="org-left">la combinaison simple</td>
+<td class="org-left">  <code>nom.class</code>   </td>
+<td class="org-left">toutes les balises « nom » avec la classe « class »</td>
 </tr>
 </tbody>
 </table>
 
 </section>
-<section id="sec-3-2" >
-
-<h3>Comment appliquer du CSS à une page HTML</h3>
+<section id="slide-sec-3-2">
+<h3 id="org3eb00dd"><span class="section-number-3">3.2</span> Comment appliquer du CSS à une page HTML</h3>
+<div class="outline-text-3" id="text-3-2">
+</div>
 </section>
-<section id="sec-3-2-1" >
-
-<h4>Mise en place du CSS (Méthodes à éviter)</h4>
-<ul class="org-ul">
+<section id="slide-sec-3-2-1">
+<h4 id="org7ab2ce4"><span class="section-number-4">3.2.1</span> Mise en place du CSS (Méthodes à éviter)</h4>
+<ul>
 <li>Directement dans le HTML
-<ul class="org-ul">
-<li>balise <code>&lt;style&gt;</code> dans <code>&lt;head&gt;</code>
-</li>
-</ul>
-</li>
+<ul>
+<li>balise <code>&lt;style&gt;</code> dans <code>&lt;head&gt;</code></li>
+
+</ul></li>
 <li>Directement dans les balises
-<ul class="org-ul">
-<li>attribut <code>style</code>
-</li>
-</ul>
-</li>
+<ul>
+<li>attribut <code>style</code></li>
+
+</ul></li>
+
 </ul>
 
 <div class="org-src-container">
 
-<pre  class="src src-html" id="phpjs-style">&lt;<span class="org-function-name">head</span>&gt;
-  &lt;<span class="org-function-name">style</span>&gt;p {color: red;}&lt;/<span class="org-function-name">style</span>&gt;
-&lt;/<span class="org-function-name">head</span>&gt;
-&lt;<span class="org-function-name">body</span>&gt;
-  &lt;<span class="org-function-name">p</span>&gt;paragraphe&lt;/<span class="org-function-name">p</span>&gt;
-  &lt;<span class="org-function-name">p</span> <span class="org-variable-name">style</span>=<span class="org-string">"color: blue;"</span>&gt;paragraphe&lt;/<span class="org-function-name">p</span>&gt;
-&lt;/<span class="org-function-name">body</span>&gt;
-</pre>
+<pre id="phpjs-style"><code class="html" ><head>
+  <style>p {color: red;}</style>
+</head>
+<body>
+  <p>paragraphe</p>
+  <p style="color: blue;">paragraphe</p>
+</body>
+</code></pre>
 </div>
 
 </section>
-<section id="sec-3-2-2" >
-
-<h4>Mise en place du CSS (Méthode conseillée)</h4>
-<ul class="org-ul">
+<section id="slide-sec-3-2-2">
+<h4 id="orgaddce8e"><span class="section-number-4">3.2.2</span> Mise en place du CSS (Méthode conseillée)</h4>
+<ul>
 <li>En utilisant un fichier externe <code>.css</code>
-<ul class="org-ul">
-<li>balise <code>&lt;link&gt;</code> dans <code>&lt;head&gt;</code>
-</li>
-</ul>
-</li>
+<ul>
+<li>balise <code>&lt;link&gt;</code> dans <code>&lt;head&gt;</code></li>
+
+</ul></li>
+
 </ul>
 
 <div class="org-src-container">
 
-<pre  class="src src-html">&lt;<span class="org-function-name">head</span>&gt;
-  &lt;<span class="org-function-name">link</span> <span class="org-variable-name">rel</span>=<span class="org-string">"stylesheet"</span> <span class="org-variable-name">type</span>=<span class="org-string">"text/css"</span> <span class="org-variable-name">href</span>=<span class="org-string">"style.css"</span>&gt;
-&lt;/<span class="org-function-name">head</span>&gt;
-</pre>
+<pre><code class="html" ><head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+</code></pre>
 </div>
 
 </section>
-<section id="sec-3-2-3" >
-
-<h4>Exemple</h4>
+<section id="slide-sec-3-2-3">
+<h4 id="org1083807"><span class="section-number-4">3.2.3</span> Exemple</h4>
 <div class="org-src-container">
 
-<pre  class="src src-html" id="phpjs-style">&lt;<span class="org-function-name">head</span>&gt;
-  &lt;<span class="org-function-name">style</span>&gt;
+<pre id="phpjs-style"><code class="html" ><head>
+  <style>
     /* * { color: red; } */
     p { background-color: green; }
     #unique { text-align: center; }
     .multiple { color: white; }
-  &lt;/<span class="org-function-name">style</span>&gt;
-&lt;/<span class="org-function-name">head</span>&gt;
-&lt;<span class="org-function-name">body</span>&gt;
-  &lt;<span class="org-function-name">h1</span>&gt;<span class="org-underline"><span class="org-bold">titre</span></span>&lt;/<span class="org-function-name">h1</span>&gt;
-  &lt;<span class="org-function-name">p</span> <span class="org-variable-name">class</span>=<span class="org-string">"multiple"</span>&gt;paragraphe&lt;/<span class="org-function-name">p</span>&gt;
-  &lt;<span class="org-function-name">p</span> <span class="org-variable-name">id</span>=<span class="org-string">"unique"</span> <span class="org-variable-name">class</span>=<span class="org-string">"multiple"</span>&gt;paragraphe&lt;/<span class="org-function-name">p</span>&gt;
-&lt;/<span class="org-function-name">body</span>&gt;
-</pre>
+  </style>
+</head>
+<body>
+  <h1>titre</h1>
+  <p class="multiple">paragraphe</p>
+  <p id="unique" class="multiple">paragraphe</p>
+</body>
+</code></pre>
 </div>
 
 </section>
-<section id="sec-3-3" >
-
-<h3>La couleur</h3>
-<ul class="org-ul">
+<section id="slide-sec-3-3">
+<h3 id="orge87541b"><span class="section-number-3">3.3</span> La couleur</h3>
+<ul>
 <li>Propriétés basiques:
-<ul class="org-ul">
-<li><code>color</code> : couleur du texte
-</li>
-<li><code>background-color</code> : couleur du fond
-</li>
-</ul>
-</li>
+<ul>
+<li><code>color</code> : couleur du texte</li>
+<li><code>background-color</code> : couleur du fond</li>
+
+</ul></li>
+
 </ul>
 
 </section>
-<section id="sec-3-3-1" >
-
-<h4>La gestion de la couleur en CSS</h4>
-<ul class="org-ul">
+<section id="slide-sec-3-3-1">
+<h4 id="org6d7357a"><span class="section-number-4">3.3.1</span> La gestion de la couleur en CSS</h4>
+<ul>
 <li>En CSS2 17 couleurs supportés officiellement
-<ul class="org-ul">
-<li><span class="underline">noir et blanc</span> : black, gray, silver, white
-</li>
-<li><span class="underline">couleurs primaires</span> : red, lime, blue
-</li>
-<li><span class="underline">couleurs secondaries</span> : yellow, aqua, fuchsia
-</li>
-<li><span class="underline">autres couleurs</span> : maroon, orange, olive, purple, green, navy, teal
-</li>
-</ul>
-</li>
+<ul>
+<li><span class="underline">noir et blanc</span> : black, gray, silver, white</li>
+<li><span class="underline">couleurs primaires</span> : red, lime, blue</li>
+<li><span class="underline">couleurs secondaries</span> : yellow, aqua, fuchsia</li>
+<li><span class="underline">autres couleurs</span> : maroon, orange, olive, purple, green, navy, teal</li>
+
+</ul></li>
 <li>Il en existe beaucoup, beaucoup d'autres inspirées du SVG
-<ul class="org-ul">
-<li>Pas forcément supportées par tous les navigateurs&#x2026;
-</li>
-</ul>
-</li>
+<ul>
+<li>Pas forcément supportées par tous les navigateurs&#x2026;</li>
+
+</ul></li>
+
 </ul>
 
 </section>
-<section id="sec-3-3-2" >
-
-<h4>Les couleurs simples</h4>
-<ul class="org-ul">
+<section id="slide-sec-3-3-2">
+<h4 id="orga148d8a"><span class="section-number-4">3.3.2</span> Les couleurs simples</h4>
+<ul>
 <li>Possibilité de définir des couleurs en hexadécimal #RVB;
-<ul class="org-ul">
-<li>#000 : noir : black
-</li>
-<li>#f00 : rouge : red
-</li>
-<li>#0f0 : vert : lime (pas green)
-</li>
-<li>#00f : bleu : blue
-</li>
-<li>#fff : blanc : white
-</li>
-</ul>
-</li>
-<li>16 valeurs possibles pour chaque couleur : 0-9a-f
-</li>
-<li>4096 couleurs différentes
-</li>
+<ul>
+<li>#000 : noir : black</li>
+<li>#f00 : rouge : red</li>
+<li>#0f0 : vert : lime (pas green)</li>
+<li>#00f : bleu : blue</li>
+<li>#fff : blanc : white</li>
+
+</ul></li>
+<li>16 valeurs possibles pour chaque couleur : 0-9a-f</li>
+<li>4096 couleurs différentes</li>
+
 </ul>
 
 </section>
-<section id="sec-3-3-3" >
-
-<h4>Les couleurs complètes</h4>
-<ul class="org-ul">
+<section id="slide-sec-3-3-3">
+<h4 id="orgb7e73a4"><span class="section-number-4">3.3.3</span> Les couleurs complètes</h4>
+<ul>
 <li>Possibilité de définir des couleurs en hexadécimal #RRVVBB;
-<ul class="org-ul">
-<li>#000000 : noir
-</li>
-<li>#ff0000 : rouge
-</li>
-<li>#00ff00 : vert
-</li>
-<li>#0000ff : bleu
-</li>
-<li>#ffffff : blanc
-</li>
-</ul>
-</li>
-<li>256 valeurs possibles pour chaque couleur : 00-ff
-</li>
-<li>16 millions de couleurs
-</li>
+<ul>
+<li>#000000 : noir</li>
+<li>#ff0000 : rouge</li>
+<li>#00ff00 : vert</li>
+<li>#0000ff : bleu</li>
+<li>#ffffff : blanc</li>
+
+</ul></li>
+<li>256 valeurs possibles pour chaque couleur : 00-ff</li>
+<li>16 millions de couleurs</li>
+
 </ul>
 
 </section>
-<section id="sec-3-3-4" >
-
-<h4>Exemple couleurs</h4>
+<section id="slide-sec-3-3-4">
+<h4 id="org6700d21"><span class="section-number-4">3.3.4</span> Exemple couleurs</h4>
 <div class="org-src-container">
 
-<pre  class="src src-html" id="phpjs-color-simple">&lt;<span class="org-function-name">head</span>&gt;
-  &lt;<span class="org-function-name">style</span>&gt;
+<pre id="phpjs-color-simple"><code class="html" ><head>
+  <style>
     .vert-green { color: green; }
     .vert-lime { color: #0f0; }
     .vert-clair { color: #aaffaa; }
-  &lt;/<span class="org-function-name">style</span>&gt;
-&lt;/<span class="org-function-name">head</span>&gt;
-&lt;<span class="org-function-name">body</span>&gt;
-  &lt;<span class="org-function-name">p</span> <span class="org-variable-name">class</span>=<span class="org-string">"vert-green"</span>&gt;vert&lt;/<span class="org-function-name">p</span>&gt;
-  &lt;<span class="org-function-name">p</span> <span class="org-variable-name">class</span>=<span class="org-string">"vert-lime"</span>&gt;vert&lt;/<span class="org-function-name">p</span>&gt;
-  &lt;<span class="org-function-name">p</span> <span class="org-variable-name">class</span>=<span class="org-string">"vert-clair"</span>&gt;vert&lt;/<span class="org-function-name">p</span>&gt;
-&lt;/<span class="org-function-name">body</span>&gt;
-</pre>
+  </style>
+</head>
+<body>
+  <p class="vert-green">vert</p>
+  <p class="vert-lime">vert</p>
+  <p class="vert-clair">vert</p>
+</body>
+</code></pre>
 </div>
 
 </section>
-<section id="sec-3-3-5" >
-
-<h4>Les fonctions rgb, hsl</h4>
-<ul class="org-ul">
+<section id="slide-sec-3-3-5">
+<h4 id="org6a345eb"><span class="section-number-4">3.3.5</span> Les fonctions rgb, hsl</h4>
+<ul>
 <li>Il est possible d'éclaircir la couleur grâce à la propriété <code>opacity</code>
-<ul class="org-ul">
-<li>les valeurs sont comprises entre 0.0 et 1.0
-</li>
-</ul>
-</li>
+<ul>
+<li>les valeurs sont comprises entre 0.0 et 1.0</li>
+
+</ul></li>
 <li>Il est possible d'utiliser des fonctions <code>rgb</code>, <code>hsl</code>
-<ul class="org-ul">
-<li><code>rgb(red, green, blue)</code> : 0-255 pour chaque couleur
-</li>
+<ul>
+<li><code>rgb(red, green, blue)</code> : 0-255 pour chaque couleur</li>
 <li><code>hsl(hue, saturation, lightness)</code> : hue de 0-360 (0, 360 :
 rouge, 120 : vert, 240 : bleu), saturation et lightness
-pourcentage de 0% à 100%
-</li>
+pourcentage de 0% à 100%</li>
 <li>Possibilité d'ajouter la transparence avec <code>rgba</code> et <code>hsla</code>, le
-dernier paramètre alpha est compris entre 0.0 et 1.0
-</li>
-</ul>
-</li>
+dernier paramètre alpha est compris entre 0.0 et 1.0</li>
+
+</ul></li>
+
 </ul>
 
 </section>
-<section id="sec-3-3-6" >
-
-<h4>Exemple fonctions couleurs</h4>
+<section id="slide-sec-3-3-6">
+<h4 id="org3be7313"><span class="section-number-4">3.3.6</span> Exemple fonctions couleurs</h4>
 <div class="org-src-container">
 
-<pre  class="src src-html" id="phpjs-color-complete">&lt;<span class="org-function-name">head</span>&gt;
-  &lt;<span class="org-function-name">style</span>&gt;
+<pre id="phpjs-color-complete"><code class="html" ><head>
+  <style>
     .vert-rgb { color: rgb(0, 255, 0); }
     .vert-hsl { color: hsl(120, 100%, 50%); }
     .vert-rgb-clair { color: rgba(0, 255, 0, 0.24); }
     .vert-hsl-clair { color: hsla(120, 100%, 50%, 0.24); }
     .vert-opacity { color: #0f0; opacity: 0.24; }
-  &lt;/<span class="org-function-name">style</span>&gt;
-&lt;/<span class="org-function-name">head</span>&gt;
-&lt;<span class="org-function-name">body</span>&gt;
-  &lt;<span class="org-function-name">p</span> <span class="org-variable-name">class</span>=<span class="org-string">"vert-rgb"</span>&gt;rgb&lt;/<span class="org-function-name">p</span>&gt;
-  &lt;<span class="org-function-name">p</span> <span class="org-variable-name">class</span>=<span class="org-string">"vert-hsl"</span>&gt;hsl&lt;/<span class="org-function-name">p</span>&gt;
-  &lt;<span class="org-function-name">p</span> <span class="org-variable-name">class</span>=<span class="org-string">"vert-rgb-clair"</span>&gt;rgba&lt;/<span class="org-function-name">p</span>&gt;
-  &lt;<span class="org-function-name">p</span> <span class="org-variable-name">class</span>=<span class="org-string">"vert-hsl-clair"</span>&gt;hsla&lt;/<span class="org-function-name">p</span>&gt;
-  &lt;<span class="org-function-name">p</span> <span class="org-variable-name">class</span>=<span class="org-string">"vert-opacity"</span>&gt;opacity&lt;/<span class="org-function-name">p</span>&gt;
-&lt;/<span class="org-function-name">body</span>&gt;
-</pre>
+  </style>
+</head>
+<body>
+  <p class="vert-rgb">rgb</p>
+  <p class="vert-hsl">hsl</p>
+  <p class="vert-rgb-clair">rgba</p>
+  <p class="vert-hsl-clair">hsla</p>
+  <p class="vert-opacity">opacity</p>
+</body>
+</code></pre>
 </div>
 
 </section>
-<section id="sec-3-4" >
-
-<h3>Les propriétés CSS</h3>
+<section id="slide-sec-3-4">
+<h3 id="org0d5cd87"><span class="section-number-3">3.4</span> Les propriétés CSS</h3>
+<div class="outline-text-3" id="text-3-4">
+</div>
 </section>
-<section id="sec-3-4-1" >
-
-<h4>Le fond</h4>
+<section id="slide-sec-3-4-1">
+<h4 id="org6603066"><span class="section-number-4">3.4.1</span> Le fond</h4>
 <div class="org-src-container">
 
-<pre  class="src src-html" id="phpjs-color-background">&lt;<span class="org-function-name">head</span>&gt;
-  &lt;<span class="org-function-name">style</span>&gt;
+<pre id="phpjs-color-background"><code class="html" ><head>
+  <style>
     .background-detail {
       background-color: lime;
-      background-image: url(<span class="org-string">"inc/img/css3.png"</span>);
+      background-image: url("inc/img/css3.png");
       background-repeat: repeat; /* no-repeat, repeat-x, repeat-y */
       background-attachment: scroll; /* fixed, local */
       background-position: center center; /* left, right / top bottom */
     }
     .background-shorthand {
-      background: lime url(<span class="org-string">"inc/img/css3.png"</span>) repeat scroll center center;
+      background: lime url("inc/img/css3.png") repeat scroll center center;
     }
-  &lt;/<span class="org-function-name">style</span>&gt;
-&lt;/<span class="org-function-name">head</span>&gt;
-&lt;<span class="org-function-name">body</span>&gt;
-  &lt;<span class="org-function-name">p</span> <span class="org-variable-name">class</span>=<span class="org-string">"background-detail"</span>&gt;les&lt;<span class="org-function-name">br</span>&gt; propri&#233;t&#233;s&lt;<span class="org-function-name">br</span>&gt; background&lt;<span class="org-function-name">br</span>&gt; en&lt;<span class="org-function-name">br</span>&gt; d&#233;tails&lt;/<span class="org-function-name">p</span>&gt;
-  &lt;<span class="org-function-name">p</span> <span class="org-variable-name">class</span>=<span class="org-string">"background-shorthand"</span>&gt;Une&lt;<span class="org-function-name">br</span>&gt; seule&lt;<span class="org-function-name">br</span>&gt; propri&#233;t&#233;&lt;<span class="org-function-name">br</span>&gt; background&lt;<span class="org-function-name">br</span>&gt; pour tout&lt;/<span class="org-function-name">p</span>&gt;
-&lt;/<span class="org-function-name">body</span>&gt;
-</pre>
+  </style>
+</head>
+<body>
+  <p class="background-detail">les<br> propriétés<br> background<br> en<br> détails</p>
+  <p class="background-shorthand">Une<br> seule<br> propriété<br> background<br> pour tout</p>
+</body>
+</code></pre>
 </div>
 
 </section>
-<section id="sec-3-4-2" >
+<section id="slide-sec-3-4-2">
+<h4 id="orgd383a2a"><span class="section-number-4">3.4.2</span> L'affichage en boîte</h4>
 
-<h4>L'affichage en boîte</h4>
-<img src="./inc/img/box-model.png" alt="box-model.png" />
+<div class="figure">
+<p><img src="./inc/img/box-model.png" alt="box-model.png" />
+</p>
+</div>
 
 <p>
 <a href="https://en.wikipedia.org/wiki/CSS_box_model">https://en.wikipedia.org/wiki/CSS_box_model</a>
 </p>
 
 </section>
-<section id="sec-3-4-3" >
-
-<h4>La propriété <code>margin</code></h4>
+<section id="slide-sec-3-4-3">
+<h4 id="org5d0ce0f"><span class="section-number-4">3.4.3</span> La propriété <code>margin</code></h4>
 <div class="org-src-container">
 
-<pre  class="src src-html" id="phpjs-margin">&lt;<span class="org-function-name">head</span>&gt;
-  &lt;<span class="org-function-name">style</span>&gt;
+<pre id="phpjs-margin"><code class="html" ><head>
+  <style>
     .margin-detail {
       margin-top: 6px; /* auto, % */
       margin-right: 24px;
@@ -1508,23 +1344,22 @@ dernier paramètre alpha est compris entre 0.0 et 1.0
       /* 2 values : margin: top/bottom right/left; */
       /* 1 value : margin: top/right/bottom/left; */
     }
-  &lt;/<span class="org-function-name">style</span>&gt;
-&lt;/<span class="org-function-name">head</span>&gt;
-&lt;<span class="org-function-name">body</span>&gt;
-  &lt;<span class="org-function-name">p</span> <span class="org-variable-name">class</span>=<span class="org-string">"margin-detail"</span>&gt;les&lt;<span class="org-function-name">br</span>&gt; propri&#233;t&#233;s&lt;<span class="org-function-name">br</span>&gt; margin&lt;<span class="org-function-name">br</span>&gt; en&lt;<span class="org-function-name">br</span>&gt; d&#233;tails&lt;/<span class="org-function-name">p</span>&gt;
-  &lt;<span class="org-function-name">p</span> <span class="org-variable-name">class</span>=<span class="org-string">"margin-shorthand"</span>&gt;Une&lt;<span class="org-function-name">br</span>&gt; seule&lt;<span class="org-function-name">br</span>&gt; propri&#233;t&#233;&lt;<span class="org-function-name">br</span>&gt; margin&lt;<span class="org-function-name">br</span>&gt; pour tout&lt;/<span class="org-function-name">p</span>&gt;
-&lt;/<span class="org-function-name">body</span>&gt;
-</pre>
+  </style>
+</head>
+<body>
+  <p class="margin-detail">les<br> propriétés<br> margin<br> en<br> détails</p>
+  <p class="margin-shorthand">Une<br> seule<br> propriété<br> margin<br> pour tout</p>
+</body>
+</code></pre>
 </div>
 
 </section>
-<section id="sec-3-4-4" >
-
-<h4>La propriété <code>padding</code></h4>
+<section id="slide-sec-3-4-4">
+<h4 id="org78c132d"><span class="section-number-4">3.4.4</span> La propriété <code>padding</code></h4>
 <div class="org-src-container">
 
-<pre  class="src src-html" id="phpjs-padding">&lt;<span class="org-function-name">head</span>&gt;
-  &lt;<span class="org-function-name">style</span>&gt;
+<pre id="phpjs-padding"><code class="html" ><head>
+  <style>
     .padding-detail {
       padding-top: 6px; /* auto, % */
       padding-right: 24px;
@@ -1537,23 +1372,22 @@ dernier paramètre alpha est compris entre 0.0 et 1.0
       /* 2 values : padding: top/bottom right/left; */
       /* 1 value : padding: top/right/bottom/left; */
     }
-  &lt;/<span class="org-function-name">style</span>&gt;
-&lt;/<span class="org-function-name">head</span>&gt;
-&lt;<span class="org-function-name">body</span>&gt;
-  &lt;<span class="org-function-name">p</span> <span class="org-variable-name">class</span>=<span class="org-string">"padding-detail"</span>&gt;les&lt;<span class="org-function-name">br</span>&gt; propri&#233;t&#233;s&lt;<span class="org-function-name">br</span>&gt; padding&lt;<span class="org-function-name">br</span>&gt; en&lt;<span class="org-function-name">br</span>&gt; d&#233;tails&lt;/<span class="org-function-name">p</span>&gt;
-  &lt;<span class="org-function-name">p</span> <span class="org-variable-name">class</span>=<span class="org-string">"padding-shorthand"</span>&gt;Une&lt;<span class="org-function-name">br</span>&gt; seule&lt;<span class="org-function-name">br</span>&gt; propri&#233;t&#233;&lt;<span class="org-function-name">br</span>&gt; padding&lt;<span class="org-function-name">br</span>&gt; pour tout&lt;/<span class="org-function-name">p</span>&gt;
-&lt;/<span class="org-function-name">body</span>&gt;
-</pre>
+  </style>
+</head>
+<body>
+  <p class="padding-detail">les<br> propriétés<br> padding<br> en<br> détails</p>
+  <p class="padding-shorthand">Une<br> seule<br> propriété<br> padding<br> pour tout</p>
+</body>
+</code></pre>
 </div>
 
 </section>
-<section id="sec-3-4-5" >
-
-<h4>La propriété <code>border-style</code></h4>
+<section id="slide-sec-3-4-5">
+<h4 id="orgc05ef4f"><span class="section-number-4">3.4.5</span> La propriété <code>border-style</code></h4>
 <div class="org-src-container">
 
-<pre  class="src src-html" id="phpjs-border-style">&lt;<span class="org-function-name">head</span>&gt;
-  &lt;<span class="org-function-name">style</span>&gt;
+<pre id="phpjs-border-style"><code class="html" ><head>
+  <style>
     .border-style-detail {
       border-top-style: solid;
       border-right-style: dotted;
@@ -1564,23 +1398,22 @@ dernier paramètre alpha est compris entre 0.0 et 1.0
       border-style: solid dotted double dashed;
       /* 3, 2 et 1 valeurs cf margin */
     }
-  &lt;/<span class="org-function-name">style</span>&gt;
-&lt;/<span class="org-function-name">head</span>&gt;
-&lt;<span class="org-function-name">body</span>&gt;
-  &lt;<span class="org-function-name">p</span> <span class="org-variable-name">class</span>=<span class="org-string">"border-style-detail"</span>&gt;les&lt;<span class="org-function-name">br</span>&gt; propri&#233;t&#233;s&lt;<span class="org-function-name">br</span>&gt; border-style&lt;<span class="org-function-name">br</span>&gt; en&lt;<span class="org-function-name">br</span>&gt; d&#233;tails&lt;/<span class="org-function-name">p</span>&gt;
-  &lt;<span class="org-function-name">p</span> <span class="org-variable-name">class</span>=<span class="org-string">"border-style-shorthand"</span>&gt;Une&lt;<span class="org-function-name">br</span>&gt; seule&lt;<span class="org-function-name">br</span>&gt; propri&#233;t&#233;&lt;<span class="org-function-name">br</span>&gt; border-style&lt;<span class="org-function-name">br</span>&gt; pour tout&lt;/<span class="org-function-name">p</span>&gt;
-&lt;/<span class="org-function-name">body</span>&gt;
-</pre>
+  </style>
+</head>
+<body>
+  <p class="border-style-detail">les<br> propriétés<br> border-style<br> en<br> détails</p>
+  <p class="border-style-shorthand">Une<br> seule<br> propriété<br> border-style<br> pour tout</p>
+</body>
+</code></pre>
 </div>
 
 </section>
-<section id="sec-3-4-6" >
-
-<h4>La propriété <code>border-width</code></h4>
+<section id="slide-sec-3-4-6">
+<h4 id="org364d602"><span class="section-number-4">3.4.6</span> La propriété <code>border-width</code></h4>
 <div class="org-src-container">
 
-<pre  class="src src-html" id="phpjs-border-width">&lt;<span class="org-function-name">head</span>&gt;
-  &lt;<span class="org-function-name">style</span>&gt;
+<pre id="phpjs-border-width"><code class="html" ><head>
+  <style>
     .border-width-detail {
       border-style: solid;
       border-top-width: 1px;
@@ -1593,23 +1426,22 @@ dernier paramètre alpha est compris entre 0.0 et 1.0
       border-width: 1px 2px 3px 4px;
       /* 3, 2 et 1 valeurs cf margin */
     }
-  &lt;/<span class="org-function-name">style</span>&gt;
-&lt;/<span class="org-function-name">head</span>&gt;
-&lt;<span class="org-function-name">body</span>&gt;
-  &lt;<span class="org-function-name">p</span> <span class="org-variable-name">class</span>=<span class="org-string">"border-width-detail"</span>&gt;les&lt;<span class="org-function-name">br</span>&gt; propri&#233;t&#233;s&lt;<span class="org-function-name">br</span>&gt; border-width&lt;<span class="org-function-name">br</span>&gt; en&lt;<span class="org-function-name">br</span>&gt; d&#233;tails&lt;/<span class="org-function-name">p</span>&gt;
-  &lt;<span class="org-function-name">p</span> <span class="org-variable-name">class</span>=<span class="org-string">"border-width-shorthand"</span>&gt;Une&lt;<span class="org-function-name">br</span>&gt; seule&lt;<span class="org-function-name">br</span>&gt; propri&#233;t&#233;&lt;<span class="org-function-name">br</span>&gt; border-width&lt;<span class="org-function-name">br</span>&gt; pour tout&lt;/<span class="org-function-name">p</span>&gt;
-&lt;/<span class="org-function-name">body</span>&gt;
-</pre>
+  </style>
+</head>
+<body>
+  <p class="border-width-detail">les<br> propriétés<br> border-width<br> en<br> détails</p>
+  <p class="border-width-shorthand">Une<br> seule<br> propriété<br> border-width<br> pour tout</p>
+</body>
+</code></pre>
 </div>
 
 </section>
-<section id="sec-3-4-7" >
-
-<h4>La propriété <code>border-color</code></h4>
+<section id="slide-sec-3-4-7">
+<h4 id="org1317c51"><span class="section-number-4">3.4.7</span> La propriété <code>border-color</code></h4>
 <div class="org-src-container">
 
-<pre  class="src src-html" id="phpjs-border-color">&lt;<span class="org-function-name">head</span>&gt;
-  &lt;<span class="org-function-name">style</span>&gt;
+<pre id="phpjs-border-color"><code class="html" ><head>
+  <style>
     .border-color-detail {
       border-style: solid; border-width: 3px;
       border-top-color: black;
@@ -1622,23 +1454,22 @@ dernier paramètre alpha est compris entre 0.0 et 1.0
       border-color: black red blue green;
       /* 3, 2 et 1 valeurs cf margin */
     }
-  &lt;/<span class="org-function-name">style</span>&gt;
-&lt;/<span class="org-function-name">head</span>&gt;
-&lt;<span class="org-function-name">body</span>&gt;
-  &lt;<span class="org-function-name">p</span> <span class="org-variable-name">class</span>=<span class="org-string">"border-color-detail"</span>&gt;les&lt;<span class="org-function-name">br</span>&gt; propri&#233;t&#233;s&lt;<span class="org-function-name">br</span>&gt; border-color&lt;<span class="org-function-name">br</span>&gt; en&lt;<span class="org-function-name">br</span>&gt; d&#233;tails&lt;/<span class="org-function-name">p</span>&gt;
-  &lt;<span class="org-function-name">p</span> <span class="org-variable-name">class</span>=<span class="org-string">"border-color-shorthand"</span>&gt;Une&lt;<span class="org-function-name">br</span>&gt; seule&lt;<span class="org-function-name">br</span>&gt; propri&#233;t&#233;&lt;<span class="org-function-name">br</span>&gt; border-color&lt;<span class="org-function-name">br</span>&gt; pour tout&lt;/<span class="org-function-name">p</span>&gt;
-&lt;/<span class="org-function-name">body</span>&gt;
-</pre>
+  </style>
+</head>
+<body>
+  <p class="border-color-detail">les<br> propriétés<br> border-color<br> en<br> détails</p>
+  <p class="border-color-shorthand">Une<br> seule<br> propriété<br> border-color<br> pour tout</p>
+</body>
+</code></pre>
 </div>
 
 </section>
-<section id="sec-3-4-8" >
-
-<h4>La propriété <code>border</code></h4>
+<section id="slide-sec-3-4-8">
+<h4 id="org0574ba5"><span class="section-number-4">3.4.8</span> La propriété <code>border</code></h4>
 <div class="org-src-container">
 
-<pre  class="src src-html" id="phpjs-border">&lt;<span class="org-function-name">head</span>&gt;
-  &lt;<span class="org-function-name">style</span>&gt;
+<pre id="phpjs-border"><code class="html" ><head>
+  <style>
     .border-detail {
       border-width: 1px;
       border-style: solid;
@@ -1647,23 +1478,22 @@ dernier paramètre alpha est compris entre 0.0 et 1.0
     .border-shorthand {
       border: 1px solid black;
     }
-  &lt;/<span class="org-function-name">style</span>&gt;
-&lt;/<span class="org-function-name">head</span>&gt;
-&lt;<span class="org-function-name">body</span>&gt;
-  &lt;<span class="org-function-name">p</span> <span class="org-variable-name">class</span>=<span class="org-string">"border-detail"</span>&gt;les&lt;<span class="org-function-name">br</span>&gt; propri&#233;t&#233;s&lt;<span class="org-function-name">br</span>&gt; border&lt;<span class="org-function-name">br</span>&gt; en&lt;<span class="org-function-name">br</span>&gt; d&#233;tails&lt;/<span class="org-function-name">p</span>&gt;
-  &lt;<span class="org-function-name">p</span> <span class="org-variable-name">class</span>=<span class="org-string">"border-shorthand"</span>&gt;Une&lt;<span class="org-function-name">br</span>&gt; seule&lt;<span class="org-function-name">br</span>&gt; propri&#233;t&#233;&lt;<span class="org-function-name">br</span>&gt; border&lt;<span class="org-function-name">br</span>&gt; pour tout&lt;/<span class="org-function-name">p</span>&gt;
-&lt;/<span class="org-function-name">body</span>&gt;
-</pre>
+  </style>
+</head>
+<body>
+  <p class="border-detail">les<br> propriétés<br> border<br> en<br> détails</p>
+  <p class="border-shorthand">Une<br> seule<br> propriété<br> border<br> pour tout</p>
+</body>
+</code></pre>
 </div>
 
 </section>
-<section id="sec-3-4-9" >
-
-<h4>Les dimensions en CSS</h4>
+<section id="slide-sec-3-4-9">
+<h4 id="org3ca34b2"><span class="section-number-4">3.4.9</span> Les dimensions en CSS</h4>
 <div class="org-src-container">
 
-<pre  class="src src-html" id="phpjs-dimension">&lt;<span class="org-function-name">head</span>&gt;
-  &lt;<span class="org-function-name">style</span>&gt;
+<pre id="phpjs-dimension"><code class="html" ><head>
+  <style>
     .dimension {
       width: auto; /* px, % */
       height: auto; /* px, % */
@@ -1673,52 +1503,46 @@ dernier paramètre alpha est compris entre 0.0 et 1.0
       max-height: none; /* px, % */
       overflow: visible; /* hidden, scroll, auto */
     }
-  &lt;/<span class="org-function-name">style</span>&gt;
-&lt;/<span class="org-function-name">head</span>&gt;
-&lt;<span class="org-function-name">body</span>&gt;
-  &lt;<span class="org-function-name">p</span> <span class="org-variable-name">class</span>=<span class="org-string">"dimension"</span>&gt;les&lt;<span class="org-function-name">br</span>&gt; propri&#233;t&#233;s&lt;<span class="org-function-name">br</span>&gt; des&lt;<span class="org-function-name">br</span>&gt; dimensions&lt;/<span class="org-function-name">p</span>&gt;
-&lt;/<span class="org-function-name">body</span>&gt;
-</pre>
+  </style>
+</head>
+<body>
+  <p class="dimension">les<br> propriétés<br> des<br> dimensions</p>
+</body>
+</code></pre>
 </div>
 
 </section>
-<section id="sec-3-4-10" >
-
-<h4>La propriété <code>display</code></h4>
-<ul class="org-ul">
+<section id="slide-sec-3-4-10">
+<h4 id="org60d5145"><span class="section-number-4">3.4.10</span> La propriété <code>display</code></h4>
+<ul>
 <li><code>display:</code> <span class="underline">block</span>;
-<ul class="org-ul">
+<ul>
 <li>Éléments de la page qui commence sur une nouvelle ligne et qui
 prend toute la largeur disponible (<code>&lt;div&gt;</code>, <code>&lt;h1&gt; - &lt;h6&gt;</code>,
-<code>&lt;p&gt;</code>, <code>&lt;header&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;section&gt;</code>, etc.)
-</li>
-</ul>
-</li>
+<code>&lt;p&gt;</code>, <code>&lt;header&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;section&gt;</code>, etc.)</li>
+
+</ul></li>
 <li><code>display:</code> <span class="underline">inline</span>;
-<ul class="org-ul">
+<ul>
 <li>Éléments de la page qui ne commence pas sur une nouvelle ligne
 et qui prend juste la largeur nécessaire (<code>&lt;span&gt;</code>, <code>&lt;a&gt;</code>,
-<code>&lt;img&gt;</code>, etc.)
-</li>
-<li>La dimension d'un élément <code>inline</code> ne peut pas être modifié
-</li>
-</ul>
-</li>
+<code>&lt;img&gt;</code>, etc.)</li>
+<li>La dimension d'un élément <code>inline</code> ne peut pas être modifié</li>
+
+</ul></li>
 <li><code>display:</code> <span class="underline">inline-block</span>; élément qui s'affiche comme un élément
-<code>inline</code> mais sur lequel ont peut modifier les dimensions
-</li>
-<li><code>display:</code> <span class="underline">none</span>; masque l'élément sur la page
-</li>
+<code>inline</code> mais sur lequel ont peut modifier les dimensions</li>
+<li><code>display:</code> <span class="underline">none</span>; masque l'élément sur la page</li>
+
 </ul>
 
 </section>
-<section id="sec-3-4-11" >
-
-<h4>La propriété <code>position</code></h4>
+<section id="slide-sec-3-4-11">
+<h4 id="orgec5e2ba"><span class="section-number-4">3.4.11</span> La propriété <code>position</code></h4>
 <div class="org-src-container">
 
-<pre  class="src src-html" id="phpjs-position">&lt;<span class="org-function-name">head</span>&gt;
-  &lt;<span class="org-function-name">style</span>&gt;
+<pre id="phpjs-position"><code class="html" ><head>
+  <style>
     .position {
       position: static; /* relative, fixed, absolute */
       top: auto; /* px, % */
@@ -1726,22 +1550,21 @@ et qui prend juste la largeur nécessaire (<code>&lt;span&gt;</code>, <code>&lt;
       bottom: auto;
       right: auto;
     }
-  &lt;/<span class="org-function-name">style</span>&gt;
-&lt;/<span class="org-function-name">head</span>&gt;
-&lt;<span class="org-function-name">body</span>&gt;
-  &lt;<span class="org-function-name">p</span> <span class="org-variable-name">class</span>=<span class="org-string">"position"</span>&gt;les&lt;<span class="org-function-name">br</span>&gt; propri&#233;t&#233;s&lt;<span class="org-function-name">br</span>&gt; des&lt;<span class="org-function-name">br</span>&gt; positions&lt;/<span class="org-function-name">p</span>&gt;
-&lt;/<span class="org-function-name">body</span>&gt;
-</pre>
+  </style>
+</head>
+<body>
+  <p class="position">les<br> propriétés<br> des<br> positions</p>
+</body>
+</code></pre>
 </div>
 
 </section>
-<section id="sec-3-4-12" >
-
-<h4>La propriété <code>float</code></h4>
+<section id="slide-sec-3-4-12">
+<h4 id="org5c3067a"><span class="section-number-4">3.4.12</span> La propriété <code>float</code></h4>
 <div class="org-src-container">
 
-<pre  class="src src-html" id="phpjs-float">&lt;<span class="org-function-name">head</span>&gt;
-  &lt;<span class="org-function-name">style</span>&gt;
+<pre id="phpjs-float"><code class="html" ><head>
+  <style>
     .left {
       float: left;
     }
@@ -1749,23 +1572,22 @@ et qui prend juste la largeur nécessaire (<code>&lt;span&gt;</code>, <code>&lt;
       float: right;
       /* clear: both; /* left, right */
     }
-  &lt;/<span class="org-function-name">style</span>&gt;
-&lt;/<span class="org-function-name">head</span>&gt;
-&lt;<span class="org-function-name">body</span>&gt;
-  &lt;<span class="org-function-name">p</span> <span class="org-variable-name">class</span>=<span class="org-string">"left"</span>&gt;float left&lt;/<span class="org-function-name">p</span>&gt;
-  &lt;<span class="org-function-name">p</span> <span class="org-variable-name">class</span>=<span class="org-string">"right"</span>&gt;float right&lt;/<span class="org-function-name">p</span>&gt;
-&lt;/<span class="org-function-name">body</span>&gt;
-</pre>
+  </style>
+</head>
+<body>
+  <p class="left">float left</p>
+  <p class="right">float right</p>
+</body>
+</code></pre>
 </div>
 
 </section>
-<section id="sec-3-4-13" >
-
-<h4>Les propriétés du texte</h4>
+<section id="slide-sec-3-4-13">
+<h4 id="org821aa3b"><span class="section-number-4">3.4.13</span> Les propriétés du texte</h4>
 <div class="org-src-container">
 
-<pre  class="src src-html" id="phpjs-text">&lt;<span class="org-function-name">head</span>&gt;
-  &lt;<span class="org-function-name">style</span>&gt;
+<pre id="phpjs-text"><code class="html" ><head>
+  <style>
     .text {
       text-align: center; /* left, right, justify */
       text-decoration: underline; /* overline, line-through */
@@ -1775,51 +1597,49 @@ et qui prend juste la largeur nécessaire (<code>&lt;span&gt;</code>, <code>&lt;
       word-spacing: 10px;
       line-height: 140%;
     }
-  &lt;/<span class="org-function-name">style</span>&gt;
-&lt;/<span class="org-function-name">head</span>&gt;
-&lt;<span class="org-function-name">body</span>&gt;
-  &lt;<span class="org-function-name">p</span> <span class="org-variable-name">class</span>=<span class="org-string">"text"</span>&gt;les&lt;<span class="org-function-name">br</span>&gt; propri&#233;t&#233;s du&lt;<span class="org-function-name">br</span>&gt; texte&lt;/<span class="org-function-name">p</span>&gt;
-&lt;/<span class="org-function-name">body</span>&gt;
-</pre>
+  </style>
+</head>
+<body>
+  <p class="text">les<br> propriétés du<br> texte</p>
+</body>
+</code></pre>
 </div>
 
 </section>
-<section id="sec-3-4-14" >
-
-<h4>Les propriétés de polices</h4>
+<section id="slide-sec-3-4-14">
+<h4 id="org39810a1"><span class="section-number-4">3.4.14</span> Les propriétés de polices</h4>
 <div class="org-src-container">
 
-<pre  class="src src-html" id="phpjs-font">&lt;<span class="org-function-name">head</span>&gt;
-  &lt;<span class="org-function-name">style</span>&gt;
+<pre id="phpjs-font"><code class="html" ><head>
+  <style>
     .font-detail {
       font-style: normal; /* italic, oblique */
       font-variant: normal; /* small-caps */
       font-weight: normal; /* bold, bolder, lighter */
       font-size: medium; /* small, large, px, % */
-      font-family: <span class="org-string">"Times New Roman"</span>, Georgia, serif;
+      font-family: "Times New Roman", Georgia, serif;
       /* serif, sans-serif, cursive, fantasy, monospace */
     }
     .font-shorthand {
-      font: normal normal normal medium <span class="org-string">"Times New Roman"</span>, Georgia, serif;
-      /* font: medium <span class="org-string">"Times New Roman"</span>, Georgia, serif; */
+      font: normal normal normal medium "Times New Roman", Georgia, serif;
+      /* font: medium "Times New Roman", Georgia, serif; */
     }
-  &lt;/<span class="org-function-name">style</span>&gt;
-&lt;/<span class="org-function-name">head</span>&gt;
-&lt;<span class="org-function-name">body</span>&gt;
-  &lt;<span class="org-function-name">p</span> <span class="org-variable-name">class</span>=<span class="org-string">"font-detail"</span>&gt;les&lt;<span class="org-function-name">br</span>&gt; propri&#233;t&#233;s&lt;<span class="org-function-name">br</span>&gt; d'une&lt;<span class="org-function-name">br</span>&gt; police&lt;<span class="org-function-name">br</span>&gt; en d&#233;tails&lt;/<span class="org-function-name">p</span>&gt;
-  &lt;<span class="org-function-name">p</span> <span class="org-variable-name">class</span>=<span class="org-string">"font-shorthand"</span>&gt;Une&lt;<span class="org-function-name">br</span>&gt; seule&lt;<span class="org-function-name">br</span>&gt; propri&#233;t&#233;&lt;<span class="org-function-name">br</span>&gt; font&lt;<span class="org-function-name">br</span>&gt; pour tout&lt;/<span class="org-function-name">p</span>&gt;
-&lt;/<span class="org-function-name">body</span>&gt;
-</pre>
+  </style>
+</head>
+<body>
+  <p class="font-detail">les<br> propriétés<br> d'une<br> police<br> en détails</p>
+  <p class="font-shorthand">Une<br> seule<br> propriété<br> font<br> pour tout</p>
+</body>
+</code></pre>
 </div>
 
 </section>
-<section id="sec-3-4-15" >
-
-<h4>Les propriétés de tableaux</h4>
+<section id="slide-sec-3-4-15">
+<h4 id="org60d906f"><span class="section-number-4">3.4.15</span> Les propriétés de tableaux</h4>
 <div class="org-src-container">
 
-<pre  class="src src-html" id="phpjs-table">&lt;<span class="org-function-name">head</span>&gt;
-  &lt;<span class="org-function-name">style</span>&gt;
+<pre id="phpjs-table"><code class="html" ><head>
+  <style>
     table, td { border: 1px solid black; }
     .table {
       border-collapse: separate; /* collapse */
@@ -1827,25 +1647,24 @@ et qui prend juste la largeur nécessaire (<code>&lt;span&gt;</code>, <code>&lt;
       /* 2 values : horizontal, vertical spacing */
       /* 1 value : horizontal/vertical spacing */
     }
-  &lt;/<span class="org-function-name">style</span>&gt;
-&lt;/<span class="org-function-name">head</span>&gt;
-&lt;<span class="org-function-name">body</span>&gt;
-  &lt;<span class="org-function-name">table</span> <span class="org-variable-name">class</span>=<span class="org-string">"table"</span>&gt;
-    &lt;<span class="org-function-name">tr</span>&gt;&lt;<span class="org-function-name">td</span>&gt;cellule&lt;/<span class="org-function-name">td</span>&gt;&lt;<span class="org-function-name">td</span>&gt;cellule&lt;/<span class="org-function-name">td</span>&gt;&lt;/<span class="org-function-name">tr</span>&gt;
-    &lt;<span class="org-function-name">tr</span>&gt;&lt;<span class="org-function-name">td</span>&gt;cellule&lt;/<span class="org-function-name">td</span>&gt;&lt;<span class="org-function-name">td</span>&gt;cellule&lt;/<span class="org-function-name">td</span>&gt;&lt;/<span class="org-function-name">tr</span>&gt;
-  &lt;/<span class="org-function-name">table</span>&gt;
-&lt;/<span class="org-function-name">body</span>&gt;
-</pre>
+  </style>
+</head>
+<body>
+  <table class="table">
+    <tr><td>cellule</td><td>cellule</td></tr>
+    <tr><td>cellule</td><td>cellule</td></tr>
+  </table>
+</body>
+</code></pre>
 </div>
 
 </section>
-<section id="sec-3-4-16" >
-
-<h4>Les propriétés des listes</h4>
+<section id="slide-sec-3-4-16">
+<h4 id="orgefff775"><span class="section-number-4">3.4.16</span> Les propriétés des listes</h4>
 <div class="org-src-container">
 
-<pre  class="src src-html" id="phpjs-list-style">&lt;<span class="org-function-name">head</span>&gt;
-  &lt;<span class="org-function-name">style</span>&gt;
+<pre id="phpjs-list-style"><code class="html" ><head>
+  <style>
     .list-style-detail {
       list-style-type: circle; /* square, upper-roman, lower-alpha */
       list-style-position: inside; /* outside */
@@ -1854,309 +1673,257 @@ et qui prend juste la largeur nécessaire (<code>&lt;span&gt;</code>, <code>&lt;
     .list-style-shorthand {
       list-style: circle inside url('inc/img/css3.png');
     }
-  &lt;/<span class="org-function-name">style</span>&gt;
-&lt;/<span class="org-function-name">head</span>&gt;
-&lt;<span class="org-function-name">body</span>&gt;
-  &lt;<span class="org-function-name">ul</span> <span class="org-variable-name">class</span>=<span class="org-string">"list-style-detail"</span>&gt;&lt;<span class="org-function-name">li</span>&gt;&#233;l&#233;ment 1&lt;/<span class="org-function-name">li</span>&gt;&lt;<span class="org-function-name">li</span>&gt;&#233;l&#233;ment 2&lt;/<span class="org-function-name">li</span>&gt;&lt;<span class="org-function-name">li</span>&gt;&#233;l&#233;ment 3&lt;/<span class="org-function-name">li</span>&gt;&lt;/<span class="org-function-name">ul</span>&gt;
-  &lt;<span class="org-function-name">ul</span> <span class="org-variable-name">class</span>=<span class="org-string">"list-style-shorthand"</span>&gt;&lt;<span class="org-function-name">li</span>&gt;&#233;l&#233;ment 1&lt;/<span class="org-function-name">li</span>&gt;&lt;<span class="org-function-name">li</span>&gt;&#233;l&#233;ment 2&lt;/<span class="org-function-name">li</span>&gt;&lt;<span class="org-function-name">li</span>&gt;&#233;l&#233;ment 3&lt;/<span class="org-function-name">li</span>&gt;&lt;/<span class="org-function-name">ul</span>&gt;
-&lt;/<span class="org-function-name">body</span>&gt;
-</pre>
+  </style>
+</head>
+<body>
+  <ul class="list-style-detail"><li>élément 1</li><li>élément 2</li><li>élément 3</li></ul>
+  <ul class="list-style-shorthand"><li>élément 1</li><li>élément 2</li><li>élément 3</li></ul>
+</body>
+</code></pre>
 </div>
 
 
 </section>
-<section id="sec-3-4-17" >
+<section id="slide-sec-3-4-17">
+<h4 id="org462f844"><span class="section-number-4">3.4.17</span> D'autre propriétés CSS</h4>
+<ul>
+<li><code>vertical-align: top;</code> <code>/* middle, bottom, etc. */</code></li>
+<li><code>box-sizing: content-box;</code> <code>/* border-box */</code></li>
+<li><code>z-index: auto;</code></li>
+<li><code>animation</code></li>
+<li><code>transition</code></li>
+<li><code>counter-reset</code></li>
+<li><code>pointer</code></li>
+<li>etc.</li>
 
-<h4>D'autre propriétés CSS</h4>
-<ul class="org-ul">
-<li><code>vertical-align: top;</code> <code>/* middle, bottom, etc. */</code>
-</li>
-<li><code>box-sizing: content-box;</code> <code>/* border-box */</code>
-</li>
-<li><code>z-index: auto;</code>
-</li>
-<li><code>animation</code>
-</li>
-<li><code>transition</code>
-</li>
-<li><code>counter-reset</code>
-</li>
-<li><code>pointer</code>
-</li>
-<li>etc.
-</li>
 </ul>
 
 </section>
-<section id="sec-3-5" >
-
-<h3>HTML/CSS</h3>
+<section id="slide-sec-3-5">
+<h3 id="org6ccda68"><span class="section-number-3">3.5</span> HTML/CSS</h3>
+<div class="outline-text-3" id="text-3-5">
+</div>
 </section>
-<section id="sec-3-5-1" >
-
-<h4>La combinaison de sélecteur</h4>
-<ul class="org-ul">
+<section id="slide-sec-3-5-1">
+<h4 id="org3914db4"><span class="section-number-4">3.5.1</span> La combinaison de sélecteur</h4>
+<ul>
 <li>La descendance : <code>A B</code>
-<ul class="org-ul">
-<li><code>div p</code> : toutes les balises <code>&lt;p&gt;</code> qui sont contenues dans une balise <code>&lt;div&gt;</code>
-</li>
-</ul>
-</li>
+<ul>
+<li><code>div p</code> : toutes les balises <code>&lt;p&gt;</code> qui sont contenues dans une balise <code>&lt;div&gt;</code></li>
+
+</ul></li>
 <li>La descendance directe : <code>A &gt; B</code>
-<ul class="org-ul">
-<li><code>div p</code> : toutes les balises <code>&lt;p&gt;</code> dont leur parent est une balise <code>&lt;div&gt;</code>
-</li>
-</ul>
-</li>
+<ul>
+<li><code>div p</code> : toutes les balises <code>&lt;p&gt;</code> dont leur parent est une balise <code>&lt;div&gt;</code></li>
+
+</ul></li>
 <li>Les voisins : <code>A ~ B</code>
-<ul class="org-ul">
-<li><code>div ~ p</code> : toutes les balises <code>&lt;p&gt;</code> qui suivent une balise <code>&lt;div&gt;</code>
-</li>
-</ul>
-</li>
+<ul>
+<li><code>div ~ p</code> : toutes les balises <code>&lt;p&gt;</code> qui suivent une balise <code>&lt;div&gt;</code></li>
+
+</ul></li>
 <li>Les voisins directs: <code>A + B</code>
-<ul class="org-ul">
-<li><code>div + p</code> : toutes les balises <code>&lt;p&gt;</code> qui sont directement après une balise <code>&lt;div&gt;</code>
-</li>
-</ul>
-</li>
+<ul>
+<li><code>div + p</code> : toutes les balises <code>&lt;p&gt;</code> qui sont directement après une balise <code>&lt;div&gt;</code></li>
+
+</ul></li>
+
 </ul>
 
 </section>
-<section id="sec-3-5-2" >
-
-<h4>Sélecteurs principaux pseudo-classe</h4>
-<ul class="org-ul">
+<section id="slide-sec-3-5-2">
+<h4 id="orgf666d0a"><span class="section-number-4">3.5.2</span> Sélecteurs principaux pseudo-classe</h4>
+<ul>
 <li>Spécifiques à la balise <code>&lt;a&gt;</code>
-<ul class="org-ul">
-<li><code>:link</code> : liens pas encore visités
-</li>
-<li><code>:visited</code> : liens visités
-</li>
-</ul>
-</li>
+<ul>
+<li><code>:link</code> : liens pas encore visités</li>
+<li><code>:visited</code> : liens visités</li>
+
+</ul></li>
 <li>Pas spécifique
-<ul class="org-ul">
-<li><code>:hover</code> : la souris survole l'élément (après <code>:link</code> et <code>:visited</code>)
-</li>
-<li><code>:active</code>  : la souris agit sur l'élément (après <code>:hover</code> )
-</li>
-</ul>
-</li>
+<ul>
+<li><code>:hover</code> : la souris survole l'élément (après <code>:link</code> et <code>:visited</code>)</li>
+<li><code>:active</code>  : la souris agit sur l'élément (après <code>:hover</code> )</li>
+
+</ul></li>
+
 </ul>
 
 </section>
-<section id="sec-3-5-3" >
-
-<h4>Autres sélecteurs pseudo-classe</h4>
-<ul class="org-ul">
-<li><code>:first-child</code> : premier enfant d'une balise
-</li>
-<li><code>:last-child</code> : dernier enfant d'une balise
-</li>
+<section id="slide-sec-3-5-3">
+<h4 id="org772c72b"><span class="section-number-4">3.5.3</span> Autres sélecteurs pseudo-classe</h4>
+<ul>
+<li><code>:first-child</code> : premier enfant d'une balise</li>
+<li><code>:last-child</code> : dernier enfant d'une balise</li>
 <li><code>:nth-child(n)</code> : n-ième enfant d'une balise
-<ul class="org-ul">
-<li><code>:nth-child(2)</code> : deuxième enfant d'une balise
-</li>
-<li><code>:nth-child(2n)</code> : enfants pairs d'une balise
-</li>
-<li><code>:nth-child(2n+1)</code> : enfants impairs d'une balise
-</li>
-</ul>
-</li>
+<ul>
+<li><code>:nth-child(2)</code> : deuxième enfant d'une balise</li>
+<li><code>:nth-child(2n)</code> : enfants pairs d'une balise</li>
+<li><code>:nth-child(2n+1)</code> : enfants impairs d'une balise</li>
+
+</ul></li>
+
 </ul>
 
 </section>
-<section id="sec-3-5-4" >
-
-<h4>Sélecteur pseudo-éléments</h4>
-<ul class="org-ul">
-<li><code>::first-line</code> : applique le style sur la première ligne du texte
-</li>
+<section id="slide-sec-3-5-4">
+<h4 id="org73c59d8"><span class="section-number-4">3.5.4</span> Sélecteur pseudo-éléments</h4>
+<ul>
+<li><code>::first-line</code> : applique le style sur la première ligne du texte</li>
 <li><code>::first-letter</code> : applique le style sur la première lettre du
-texte
-</li>
+texte</li>
 <li><code>::before</code> : permet d'ajouter du contenu avant la balise avec la
-propriété <code>content</code>
-</li>
+propriété <code>content</code></li>
 <li><code>::after</code> : permet d'ajouter du contenu après la
-balise avec la propriété <code>content</code>
-</li>
+balise avec la propriété <code>content</code></li>
+
 </ul>
 
 </section>
-<section id="sec-3-5-5" >
-
-<h4>Sélecteur sur attribut</h4>
-<ul class="org-ul">
-<li><code>[attribut]</code> : toutes les balises ayant cet <code>attribut</code>
-</li>
+<section id="slide-sec-3-5-5">
+<h4 id="org953f906"><span class="section-number-4">3.5.5</span> Sélecteur sur attribut</h4>
+<ul>
+<li><code>[attribut]</code> : toutes les balises ayant cet <code>attribut</code></li>
 <li><code>[attribute=value]</code> : toutes les balises ayant cet <code>attribut</code>
-      dont la valeur est <code>value</code>
-</li>
+dont la valeur est <code>value</code></li>
 <li><code>[attribute*="value"]</code> : toutes les balises ayant cet <code>attribut</code>
-      dont la valeur contient la valeur <code>value</code>
-</li>
+dont la valeur contient la valeur <code>value</code></li>
 <li><code>[attribute^="value"]</code> : toutes les balises ayant cet <code>attribut</code>
-      dont la valeur commence par la valeur <code>value</code>
-</li>
+dont la valeur commence par la valeur <code>value</code></li>
 <li><code>[attribute$="value"]</code> : toutes les balises ayant cet <code>attribut</code>
-      dont la valeur finit par la valeur <code>value</code>
-</li>
+dont la valeur finit par la valeur <code>value</code></li>
+
 </ul>
 
 </section>
-<section id="sec-4" >
-
-<h2>Les formulaires</h2>
-<ul class="org-ul">
+<section id="slide-sec-4">
+<h2 id="orgc311b9e"><span class="section-number-2">4</span> Les formulaires</h2>
+<ul>
 <li>Interaction avec l'utilisateur
-<ul class="org-ul">
-<li>Inscription/Connexion
-</li>
-<li>Recherche, etc.
-</li>
-</ul>
-</li>
+<ul>
+<li>Inscription/Connexion</li>
+<li>Recherche, etc.</li>
+
+</ul></li>
 <li>La balise <code>&lt;form&gt;&lt;/form&gt;</code>
-<ul class="org-ul">
-<li>attribut <code>action</code> pour indiquer quelle page va traîter les données
-</li>
-<li>attribut <code>method</code> pour dire comment transférer les données (<code>get/post</code>)
-</li>
-</ul>
-</li>
+<ul>
+<li>attribut <code>action</code> pour indiquer quelle page va traîter les données</li>
+<li>attribut <code>method</code> pour dire comment transférer les données (<code>get/post</code>)</li>
+
+</ul></li>
+
 </ul>
 
 </section>
-<section id="sec-4-1" >
-
-<h3>La balise <code>&lt;input&gt;</code></h3>
+<section id="slide-sec-4-1">
+<h3 id="org2fd5e6c"><span class="section-number-3">4.1</span> La balise <code>&lt;input&gt;</code></h3>
 <div class="org-src-container">
 
-<pre  class="src src-html" id="phpjs-list-style">&lt;<span class="org-function-name">form</span>&gt;
-  &lt;<span class="org-function-name">label</span>&gt;default : &lt;<span class="org-function-name">input</span> <span class="org-variable-name">name</span>=<span class="org-string">"default"</span> <span class="org-variable-name">value</span>=<span class="org-string">"value"</span> <span class="org-variable-name">placeholder</span>=<span class="org-string">"placeholder"</span>&gt;&lt;/<span class="org-function-name">label</span>&gt;&lt;<span class="org-function-name">br</span>&gt;
-  &lt;<span class="org-function-name">label</span>&gt;text : &lt;<span class="org-function-name">input</span> <span class="org-variable-name">name</span>=<span class="org-string">"text"</span> <span class="org-variable-name">type</span>=<span class="org-string">"text"</span>&gt;&lt;/<span class="org-function-name">label</span>&gt;&lt;<span class="org-function-name">br</span>&gt;
-  &lt;<span class="org-function-name">label</span>&gt;password : &lt;<span class="org-function-name">input</span> <span class="org-variable-name">name</span>=<span class="org-string">"password"</span> <span class="org-variable-name">type</span>=<span class="org-string">"password"</span>&gt;&lt;/<span class="org-function-name">label</span>&gt;&lt;<span class="org-function-name">br</span>&gt;
-  &lt;<span class="org-function-name">label</span>&gt;submit : &lt;<span class="org-function-name">input</span> <span class="org-variable-name">name</span>=<span class="org-string">"submit"</span> <span class="org-variable-name">type</span>=<span class="org-string">"submit"</span> <span class="org-variable-name">value</span>=<span class="org-string">"submit"</span>&gt;&lt;/<span class="org-function-name">label</span>&gt;&lt;<span class="org-function-name">br</span>&gt;
-  &lt;<span class="org-function-name">label</span>&gt;button : &lt;<span class="org-function-name">input</span> <span class="org-variable-name">name</span>=<span class="org-string">"button"</span> <span class="org-variable-name">type</span>=<span class="org-string">"button"</span> <span class="org-variable-name">value</span>=<span class="org-string">"button"</span>&gt;&lt;/<span class="org-function-name">label</span>&gt;&lt;<span class="org-function-name">br</span>&gt;
-  &lt;<span class="org-function-name">label</span>&gt;checkbox : &lt;<span class="org-function-name">input</span> <span class="org-variable-name">name</span>=<span class="org-string">"checkbox[]"</span> <span class="org-variable-name">type</span>=<span class="org-string">"checkbox"</span> <span class="org-variable-name">value</span>=<span class="org-string">"checkbox1"</span>&gt;&lt;/<span class="org-function-name">label</span>&gt;&lt;<span class="org-function-name">br</span>&gt;
-  &lt;<span class="org-function-name">label</span>&gt;checkbox : &lt;<span class="org-function-name">input</span> <span class="org-variable-name">name</span>=<span class="org-string">"checkbox[]"</span> <span class="org-variable-name">type</span>=<span class="org-string">"checkbox"</span> <span class="org-variable-name">value</span>=<span class="org-string">"checkbox2"</span>&gt;&lt;/<span class="org-function-name">label</span>&gt;&lt;<span class="org-function-name">br</span>&gt;
-  &lt;<span class="org-function-name">label</span>&gt;radio : &lt;<span class="org-function-name">input</span> <span class="org-variable-name">name</span>=<span class="org-string">"radio"</span> <span class="org-variable-name">type</span>=<span class="org-string">"radio"</span> <span class="org-variable-name">value</span>=<span class="org-string">"radio1"</span>&gt;&lt;/<span class="org-function-name">label</span>&gt;&lt;<span class="org-function-name">br</span>&gt;
-  &lt;<span class="org-function-name">label</span>&gt;radio : &lt;<span class="org-function-name">input</span> <span class="org-variable-name">name</span>=<span class="org-string">"radio"</span> <span class="org-variable-name">type</span>=<span class="org-string">"radio"</span> <span class="org-variable-name">value</span>=<span class="org-string">"radio2"</span>&gt;&lt;/<span class="org-function-name">label</span>&gt;&lt;<span class="org-function-name">br</span>&gt;
-&lt;/<span class="org-function-name">form</span>&gt;
-</pre>
+<pre id="phpjs-list-style"><code class="html" ><form>
+  <label>default : <input name="default" value="value" placeholder="placeholder"></label><br>
+  <label>text : <input name="text" type="text"></label><br>
+  <label>password : <input name="password" type="password"></label><br>
+  <label>submit : <input name="submit" type="submit" value="submit"></label><br>
+  <label>button : <input name="button" type="button" value="button"></label><br>
+  <label>checkbox : <input name="checkbox[]" type="checkbox" value="checkbox1"></label><br>
+  <label>checkbox : <input name="checkbox[]" type="checkbox" value="checkbox2"></label><br>
+  <label>radio : <input name="radio" type="radio" value="radio1"></label><br>
+  <label>radio : <input name="radio" type="radio" value="radio2"></label><br>
+</form>
+</code></pre>
 </div>
 
 </section>
-<section id="sec-4-2" >
-
-<h3>Les attributes de la balise <code>&lt;input&gt;</code></h3>
-<ul class="org-ul">
+<section id="slide-sec-4-2">
+<h3 id="org0485a07"><span class="section-number-3">4.2</span> Les attributes de la balise <code>&lt;input&gt;</code></h3>
+<ul>
 <li>les attributs de base:
-<ul class="org-ul">
-<li><code>name</code> permet d'identifier les données
-</li>
-<li><code>value</code> associe une valeur à une donnée identifiée
-</li>
-<li><code>placeholder</code> texte affiché quand <code>value</code> est vide
-</li>
-</ul>
-</li>
+<ul>
+<li><code>name</code> permet d'identifier les données</li>
+<li><code>value</code> associe une valeur à une donnée identifiée</li>
+<li><code>placeholder</code> texte affiché quand <code>value</code> est vide</li>
+
+</ul></li>
 <li>les attibuts avancés:
-<ul class="org-ul">
-<li><code>required</code> : ne peut valider le formulaire si la valeur est vide
-</li>
-<li><code>disabled</code> : désactive et ignore les données associées 
-</li>
-<li><code>readonly</code> : empêche la modification de la valeur
-</li>
-<li><code>maxlength</code> : longueur max autorisée pour <code>value</code>
-</li>
-</ul>
-</li>
+<ul>
+<li><code>required</code> : ne peut valider le formulaire si la valeur est vide</li>
+<li><code>disabled</code> : désactive et ignore les données associées</li>
+<li><code>readonly</code> : empêche la modification de la valeur</li>
+<li><code>maxlength</code> : longueur max autorisée pour <code>value</code></li>
+
+</ul></li>
+
 </ul>
 
 </section>
-<section id="sec-4-3" >
+<section id="slide-sec-4-3">
+<h3 id="org1cc32d8"><span class="section-number-3">4.3</span> La balise <code>&lt;input&gt;</code> version html5</h3>
+<ul>
+<li><code>color</code></li>
+<li><code>date</code></li>
+<li><code>datetime</code></li>
+<li><code>email</code></li>
+<li><code>number</code></li>
+<li><code>tel</code></li>
+<li><code>url</code></li>
+<li><i>etc.</i></li>
 
-<h3>La balise <code>&lt;input&gt;</code> version html5</h3>
-<ul class="org-ul">
-<li><code>color</code>
-</li>
-<li><code>date</code>
-</li>
-<li><code>datetime</code>
-</li>
-<li><code>email</code>
-</li>
-<li><code>number</code>
-</li>
-<li><code>tel</code>
-</li>
-<li><code>url</code>
-</li>
-<li><i>etc.</i>
-</li>
 </ul>
 
 </section>
-<section id="sec-4-4" >
-
-<h3>La balise <code>&lt;select&gt;&lt;/select&gt;</code></h3>
+<section id="slide-sec-4-4">
+<h3 id="orga280a77"><span class="section-number-3">4.4</span> La balise <code>&lt;select&gt;&lt;/select&gt;</code></h3>
 <div class="org-src-container">
 
-<pre  class="src src-html" id="phpjs-list-style">&lt;<span class="org-function-name">form</span>&gt;
-  &lt;<span class="org-function-name">select</span> <span class="org-variable-name">name</span>=<span class="org-string">"select"</span> <span class="org-variable-name">multiple</span>=<span class="org-string">"multiple"</span>&gt;
-    &lt;<span class="org-function-name">optgroup</span> <span class="org-variable-name">label</span>=<span class="org-string">"Group 1"</span>&gt;
-      &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"value1"</span>&gt;Valeur 1&lt;/<span class="org-function-name">option</span>&gt;
-      &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"value2"</span>&gt;Valeur 2&lt;/<span class="org-function-name">option</span>&gt;
-    &lt;/<span class="org-function-name">optgroup</span>&gt;
-    &lt;<span class="org-function-name">optgroup</span> <span class="org-variable-name">label</span>=<span class="org-string">"Group 2"</span>&gt;
-      &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"value3"</span>&gt;Valeur 3&lt;/<span class="org-function-name">option</span>&gt;
-      &lt;<span class="org-function-name">option</span> <span class="org-variable-name">value</span>=<span class="org-string">"value4"</span>&gt;Valeur 4&lt;/<span class="org-function-name">option</span>&gt;
-    &lt;/<span class="org-function-name">optgroup</span>&gt;
-  &lt;/<span class="org-function-name">select</span>&gt; 
-&lt;/<span class="org-function-name">form</span>&gt;
-</pre>
+<pre id="phpjs-list-style"><code class="html" ><form>
+  <select name="select" multiple="multiple">
+    <optgroup label="Group 1">
+      <option value="value1">Valeur 1</option>
+      <option value="value2">Valeur 2</option>
+    </optgroup>
+    <optgroup label="Group 2">
+      <option value="value3">Valeur 3</option>
+      <option value="value4">Valeur 4</option>
+    </optgroup>
+  </select> 
+</form>
+</code></pre>
 </div>
 
 </section>
-<section id="sec-4-5" >
-
-<h3>Les balises <code>&lt;textarea&gt;&lt;/textarea&gt;</code> et <code>&lt;button&gt;&lt;/button&gt;</code></h3>
+<section id="slide-sec-4-5">
+<h3 id="org0fc8563"><span class="section-number-3">4.5</span> Les balises <code>&lt;textarea&gt;&lt;/textarea&gt;</code> et <code>&lt;button&gt;&lt;/button&gt;</code></h3>
 <div class="org-src-container">
 
-<pre  class="src src-html" id="phpjs-list-style">&lt;<span class="org-function-name">form</span>&gt;
-  &lt;<span class="org-function-name">textarea</span> <span class="org-variable-name">name</span>=<span class="org-string">"textarea"</span> <span class="org-variable-name">rows</span>=<span class="org-string">"2"</span> <span class="org-variable-name">cols</span>=<span class="org-string">"20"</span>&gt;value&lt;/<span class="org-function-name">textarea</span>&gt;
-  &lt;<span class="org-function-name">button</span> <span class="org-variable-name">type</span>=<span class="org-string">"button"</span>&gt;button&lt;/<span class="org-function-name">button</span>&gt;
-  &lt;<span class="org-function-name">button</span> <span class="org-variable-name">type</span>=<span class="org-string">"reset"</span>&gt;reset&lt;/<span class="org-function-name">button</span>&gt;
-  &lt;<span class="org-function-name">button</span> <span class="org-variable-name">type</span>=<span class="org-string">"submit"</span>&gt;submit&lt;/<span class="org-function-name">button</span>&gt;
-&lt;/<span class="org-function-name">form</span>&gt;
-</pre>
+<pre id="phpjs-list-style"><code class="html" ><form>
+  <textarea name="textarea" rows="2" cols="20">value</textarea>
+  <button type="button">button</button>
+  <button type="reset">reset</button>
+  <button type="submit">submit</button>
+</form>
+</code></pre>
 </div>
 
 </section>
-<section id="sec-4-6" >
-
-<h3>La balise <code>&lt;fieldset&gt;&lt;/fieldset&gt;</code></h3>
+<section id="slide-sec-4-6">
+<h3 id="org3bf0a05"><span class="section-number-3">4.6</span> La balise <code>&lt;fieldset&gt;&lt;/fieldset&gt;</code></h3>
 <div class="org-src-container">
 
-<pre  class="src src-html" id="phpjs-list-style">&lt;<span class="org-function-name">form</span>&gt;
-  &lt;<span class="org-function-name">fieldset</span>&gt;
-    &lt;<span class="org-function-name">legend</span>&gt;Legend :&lt;/<span class="org-function-name">legend</span>&gt;
-    &lt;<span class="org-function-name">label</span>&gt;Label : &lt;<span class="org-function-name">input</span> <span class="org-variable-name">type</span>=<span class="org-string">"text"</span>&gt;&lt;<span class="org-function-name">br</span>&gt;
-  &lt;/<span class="org-function-name">fieldset</span>&gt;
-&lt;/<span class="org-function-name">form</span>&gt;
-</pre>
+<pre id="phpjs-list-style"><code class="html" ><form>
+  <fieldset>
+    <legend>Legend :</legend>
+    <label>Label : <input type="text"><br>
+  </fieldset>
+</form>
+</code></pre>
 </div>
+</section>
 </section>
 </div>
 </div>
 <div id="reveal-styles"><ul><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/default.css'); return false;" href="#">Black</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/blood.css'); return false;" href="#">Blood</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/sky.css'); return false;" href="#">Sky</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/beige.css'); return false;" href="#">Beige</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/simple.css'); return false;" href="#">Simple</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/serif.css'); return false;" href="#">Serif</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/night.css'); return false;" href="#">Night</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/moon.css'); return false;" href="#">Moon</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/solarized.css'); return false;" href="#">Solarized</a></li></ul></div>
-
 <script src="../lib/reveal.js/lib/js/head.min.js"></script>
-<script src="../lib/reveal.js/js/reveal.min.js"></script>
+<script src="../lib/reveal.js/js/reveal.js"></script>
 
 <script>
 // Full list of configuration options available here:
@@ -2167,7 +1934,7 @@ controls: true,
 progress: true,
 history: true,
 center: false,
-slideNumber: true,
+slideNumber: 'c',
 rollingLinks: true,
 keyboard: true,
 overview: true,
@@ -2180,6 +1947,11 @@ maxScale: 2.50,
 theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
 transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
 transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
 
 // Optional libraries used to extend on reveal.js
 dependencies: [
@@ -2187,8 +1959,7 @@ dependencies: [
  { src: '../lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
  { src: '../lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
  { src: '../lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
- { src: '../lib/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
-]
+ { src: '../lib/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
 });
 </script>
 </body>

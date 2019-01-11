@@ -1,4 +1,5 @@
 #+Title: HTML/CSS
+#+DATE: 
 #+Author: 
 #+Email: 
 
@@ -7,6 +8,8 @@
 #+OPTIONS: reveal_mathjax:t reveal_rolling_links:t reveal_keyboard:t reveal_overview:t num:nil
 #+OPTIONS: reveal_width:1200 reveal_height:800
 #+OPTIONS: toc:1
+#+OPTIONS: num:t
+#+OPTIONS: reveal_title_slide:"<div><h1>%t</h1><h2>%a</h2><h3>%e</h3></div>"
 #+MACRO: BO @@latex:\char91@@ @@html:&#91;@@
 #+REVEAL_MARGIN: 0.1
 #+REVEAL_MIN_SCALE: 0.5
@@ -21,7 +24,6 @@
 #+REVEAL_MATHJAX_URL: ../lib/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 #+REVEAL_EXTRA_CSS: ./inc/css/custom.css
 #+REVEAL_EXTRA_JS: { src : '../lib/jquery/jquery.min.js' }, { src : '../lib/php.js/dist/php.min.js' }, { src : './inc/js/console.js' }
-#+REVEAL_TITLE_SLIDE_TEMPLATE: <div id="title"><h1>%t</h1><h2>%a</h2><h3>%e</h3></div>
 #+REVEAL_PREAMBLE: <div id="phpjs-compiler"><textarea id="phpjs-code"></textarea><div id="phpjs-results"><div id="phpjs-result"></div><div id="phpjs-html-result"></div></div><button id="phpjs-clear">Clear</button><button id="phpjs-close">Close</button><button id="phpjs-run">Run</button></div>
 
 * Internet
@@ -268,22 +270,22 @@
     :CUSTOM_ID: hello-world
     :END:
 
-   - Créer un fichier avec l'extension .html
+   - Créer un fichier avec l'extension =.html=
    - Insérer du code HTML
 
    #+NAME: phpjs-hello
    #+BEGIN_SRC html
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Titre</title>
-  </head>
-  <body>
-    <!-- Commentaire : Hello world ! -->
-    Hello world &excl;
-  </body>
-</html>
+   &lt;!DOCTYPE html>
+   &lt;html>
+     &lt;head>
+       &lt;meta charset="utf-8">
+       &lt;title>Titre&lt;/title>
+     &lt;/head>
+     &lt;body>
+       <!-- Commentaire : Hello world ! -->
+       Hello world &excl;
+     &lt;/body>
+   &lt;/html>
    #+END_SRC
 
 *** L'entête <!DOCTYPE>
@@ -361,6 +363,9 @@
      - =<nav></nav>= définit les liens de de navigation
 
 ** Les balises de titre
+   :PROPERTIES:
+   :CUSTOM_ID: balises-titre
+   :END:
 
      #+NAME: phpjs-titre
      #+BEGIN_SRC html

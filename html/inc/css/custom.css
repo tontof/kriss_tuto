@@ -148,7 +148,11 @@ pre.fragment, pre.src {
     text-decoration: underline;
 }
 
-.reveal pre.src-text-center {
+.reveal pre code.text-center {
     text-align: center;
     font-size: 1.2em;
+}
+
+h1>span, h2>span, h3>span, h4>span {
+  display: none;
 }
