@@ -29,6 +29,10 @@
 #+REVEAL_PREAMBLE: <div id="phpjs-compiler"><textarea id="phpjs-code"></textarea><div id="phpjs-results"><div id="phpjs-result"></div><div id="phpjs-html-result"></div></div><button id="phpjs-clear">Clear</button><button id="phpjs-close">Close</button><button id="phpjs-run">Run</button></div>
 
 * Les bases en PHP
+    :PROPERTIES:
+    :CUSTOM_ID: bases-php
+    :END:
+
 ** Pourquoi PHP ?
 
    [[http://www.commitstrip.com/fr/2015/01/12/the-right-tool-for-the-right-job/][file:./inc/img/Strip-PHP-doute650-Web.jpg]]
@@ -778,6 +782,10 @@
    | =$_SERVER['SERVER_ADDR']=          | Adresse IP du serveur                 |
 
 * Les formulaires
+    :PROPERTIES:
+    :CUSTOM_ID: php-form
+    :END:
+
 ** GET
 
 #+INCLUDE: "./examples/form_get.php" src html
@@ -902,6 +910,10 @@ filter_var($email, FILTER_VALIDATE_EMAIL)
      #+END_SRC
 
 * Cookies et sessions
+    :PROPERTIES:
+    :CUSTOM_ID: cookies-sessions
+    :END:
+
 ** Les cookies
 
    - Les cookies permettent de stocker des informations côté client\\
@@ -996,6 +1008,10 @@ filter_var($email, FILTER_VALIDATE_EMAIL)
    [[./examples/session.php][exemple]]
 
 * PHP et les fichiers
+    :PROPERTIES:
+    :CUSTOM_ID: php-fichiers
+    :END:
+
 ** L'inclusion de fichiers
 
    - Il est possible d'utiliser du code PHP ou HTML provenant d'autres fichiers :
@@ -1192,6 +1208,10 @@ if ($handle) {
      #+END_SRC
 
 * Bases de données SQL
+    :PROPERTIES:
+    :CUSTOM_ID: php-sql
+    :END:
+
 ** Approches
 
   - Approche spécifique

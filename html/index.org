@@ -10,6 +10,7 @@
 #+OPTIONS: toc:1
 #+OPTIONS: num:t
 #+OPTIONS: reveal_title_slide:"<div><h1>%t</h1><h2>%a</h2><h3>%e</h3></div>"
+#+OPTIONS: auto-id:f 
 #+MACRO: BO @@latex:\char91@@ @@html:&#91;@@
 #+REVEAL_MARGIN: 0.1
 #+REVEAL_MIN_SCALE: 0.5
@@ -27,6 +28,9 @@
 #+REVEAL_PREAMBLE: <div id="phpjs-compiler"><textarea id="phpjs-code"></textarea><div id="phpjs-results"><div id="phpjs-result"></div><div id="phpjs-html-result"></div></div><button id="phpjs-clear">Clear</button><button id="phpjs-close">Close</button><button id="phpjs-run">Run</button></div>
 
 * Internet
+    :PROPERTIES:
+    :CUSTOM_ID: internet
+    :END:
 
   - Historique
   - Concepts de base
@@ -144,6 +148,9 @@
       (ex. FTP/21, SMTP/25, HTTP/80, POP3/110)
 
 * HTML
+    :PROPERTIES:
+    :CUSTOM_ID: html
+    :END:
 
    [[./inc/img/html5.png]]
 
@@ -604,6 +611,9 @@
    #+END_SRC
 
 * CSS
+    :PROPERTIES:
+    :CUSTOM_ID: css
+    :END:
 
    [[./inc/img/css3.png]]
 
@@ -1197,6 +1207,9 @@
       dont la valeur finit par la valeur =value=
 
 * Les formulaires
+    :PROPERTIES:
+    :CUSTOM_ID: form
+    :END:
 
   - Interaction avec l'utilisateur
     - Inscription/Connexion

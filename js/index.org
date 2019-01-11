@@ -8,6 +8,7 @@
 #+OPTIONS: reveal_mathjax:t reveal_rolling_links:t reveal_keyboard:t reveal_overview:t num:nil
 #+OPTIONS: reveal_width:1200 reveal_height:800
 #+OPTIONS: toc:1
+#+OPTIONS: num:t
 #+OPTIONS: reveal_title_slide:"<div><h1>%t</h1><h2>%a</h2><h3>%e</h3></div>"
 #+MACRO: BO @@latex:\char91@@ @@html:&#91;@@
 #+REVEAL_MARGIN: 0.1
@@ -24,7 +25,6 @@
 #+REVEAL_EXTRA_CSS: ./inc/css/custom.css
 #+REVEAL_EXTRA_JS: { src : '../lib/jquery/jquery.min.js' }, { src : '../lib/php.js/dist/php.min.js' }, { src : './inc/js/console.js' }
 #+REVEAL_PREAMBLE: <div id="phpjs-compiler"><textarea id="phpjs-code"></textarea><div id="phpjs-results"><div id="phpjs-result"></div><div id="phpjs-html-result"></div></div><button id="phpjs-clear">Clear</button><button id="phpjs-close">Close</button><button id="phpjs-run">Run</button></div>
-#+OPTIONS: auto-id:t 
 
 * Les bases en JS
   :PROPERTIES:

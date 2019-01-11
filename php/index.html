@@ -36,23 +36,21 @@
 <h2>Table des matières</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#/slide-orgbbde7af">1. Les bases en PHP</a></li>
-<li><a href="#/slide-org8d2a3a7">2. Les formulaires</a></li>
-<li><a href="#/slide-orge2a0da4">3. Cookies et sessions</a></li>
-<li><a href="#/slide-org5ca49aa">4. PHP et les fichiers</a></li>
-<li><a href="#/slide-org4724776">5. Bases de données SQL</a></li>
+<li><a href="#/slide-sec-bases-php">1. Les bases en PHP</a></li>
+<li><a href="#/slide-sec-php-form">2. Les formulaires</a></li>
+<li><a href="#/slide-sec-cookies-sessions">3. Cookies et sessions</a></li>
+<li><a href="#/slide-sec-php-fichiers">4. PHP et les fichiers</a></li>
+<li><a href="#/slide-sec-php-sql">5. Bases de données SQL</a></li>
 </ul>
 </div>
 </div>
 </section>
 
-<section id="slide-sec-1">
-<h2 id="orgbbde7af"><span class="section-number-2">1</span> Les bases en PHP</h2>
-<div class="outline-text-2" id="text-1">
-</div>
+<section id="slide-sec-bases-php">
+<h2 id="bases-php"><a id="orge91ee9c"></a><span class="section-number-2">1</span> Les bases en PHP</h2>
 </section>
 <section id="slide-sec-1-1">
-<h3 id="orge03a7ae"><span class="section-number-3">1.1</span> Pourquoi PHP ?</h3>
+<h3 id="org3e099c3"><span class="section-number-3">1.1</span> Pourquoi PHP ?</h3>
 
 <div class="figure">
 <p><a href="http://www.commitstrip.com/fr/2015/01/12/the-right-tool-for-the-right-job/"><img src="./inc/img/Strip-PHP-doute650-Web.jpg" alt="Strip-PHP-doute650-Web.jpg" /></a>
@@ -61,7 +59,7 @@
 
 </section>
 <section id="slide-sec-1-2">
-<h3 id="org90c18a3"><span class="section-number-3">1.2</span> Introduction à PHP</h3>
+<h3 id="orgc01424a"><span class="section-number-3">1.2</span> Introduction à PHP</h3>
 <ul>
 <li><b><a href="http://php.net">PHP</a></b> (PHP: Hypertext Preprocessor)</li>
 <li>Langage de programmation
@@ -80,7 +78,7 @@
 
 </section>
 <section id="slide-sec-1-2-1">
-<h4 id="orgaf6b680"><span class="section-number-4">1.2.1</span> Quelques versions de php</h4>
+<h4 id="org61b2e31"><span class="section-number-4">1.2.1</span> Quelques versions de php</h4>
 <ul>
 <li><code>1.0 : 1995      :</code> <i>PHP: Personal Home Page</i></li>
 <li><code>2.0 : 1997      :</code> Base du langage PHP actuel</li>
@@ -97,7 +95,7 @@
 
 </section>
 <section id="slide-sec-hello-world">
-<h4 id="hello-world"><a id="org4a25e01"></a><span class="section-number-4">1.2.2</span> Hello world</h4>
+<h4 id="hello-world"><a id="org590b4ef"></a><span class="section-number-4">1.2.2</span> Hello world</h4>
 <ul>
 <li>Créer un fichier avec l'extension .php</li>
 <li>Insérer du code HTML et/ou PHP</li>
@@ -124,7 +122,7 @@ echo 'Hello world';
 
 </section>
 <section id="slide-sec-1-3">
-<h3 id="orga380358"><span class="section-number-3">1.3</span> Les types en PHP</h3>
+<h3 id="org0888574"><span class="section-number-3">1.3</span> Les types en PHP</h3>
 <ul>
 <li>types simples :
 <ul>
@@ -151,7 +149,7 @@ echo 'Hello world';
 
 </section>
 <section id="slide-sec-1-3-1">
-<h4 id="org70db671"><span class="section-number-4">1.3.1</span> Les booléens (boolean)</h4>
+<h4 id="orgb44f7cb"><span class="section-number-4">1.3.1</span> Les booléens (boolean)</h4>
 <ul>
 <li>Type le plus simple pour exprimer une valeur de vérité.</li>
 <li>Deux constantes insensibles à la casse :
@@ -179,7 +177,7 @@ echo 'Hello world';
 
 </section>
 <section id="slide-sec-1-3-2">
-<h4 id="orgba62293"><span class="section-number-4">1.3.2</span> Les booléens (cast)</h4>
+<h4 id="orgeb48d27"><span class="section-number-4">1.3.2</span> Les booléens (cast)</h4>
 <ul>
 <li>On utilise <code>(bool)</code> ou <code>(boolean)</code></li>
 <li>Quand on convertit une valeur en booléen, sont considérés <code>false</code>  :
@@ -199,7 +197,7 @@ echo 'Hello world';
 
 </section>
 <section id="slide-sec-1-3-3">
-<h4 id="orgc192e72"><span class="section-number-4">1.3.3</span> Les booléens (exemple)</h4>
+<h4 id="org294d88c"><span class="section-number-4">1.3.3</span> Les booléens (exemple)</h4>
 <div class="org-src-container">
 
 <pre id="phpjs-boolean"><code class="src-" >&lt;?php
@@ -217,7 +215,7 @@ echo 'Hello world';
 
 </section>
 <section id="slide-sec-1-3-4">
-<h4 id="org2ae442f"><span class="section-number-4">1.3.4</span> Les entiers (integer)</h4>
+<h4 id="org97c858f"><span class="section-number-4">1.3.4</span> Les entiers (integer)</h4>
 <ul>
 <li>Un entier est un nombre de \({\mathbb{Z} = \{ \dots, -2, -1, 0, 1, 2, \dots\}}\)</li>
 <li>Il peut se définir en :
@@ -234,7 +232,7 @@ echo 'Hello world';
 
 </section>
 <section id="slide-sec-1-3-5">
-<h4 id="orgfa72900"><span class="section-number-4">1.3.5</span> Les entiers (définis formellement)</h4>
+<h4 id="orgec0a396"><span class="section-number-4">1.3.5</span> Les entiers (définis formellement)</h4>
 <div class="org-src-container">
 
 <pre><code class="text" >decimal     : [1-9][0-9]*      
@@ -255,7 +253,7 @@ integer     : [+-]?decimal
 
 </section>
 <section id="slide-sec-1-3-6">
-<h4 id="orgd8c1b72"><span class="section-number-4">1.3.6</span> Les entiers (cast)</h4>
+<h4 id="org4162d0b"><span class="section-number-4">1.3.6</span> Les entiers (cast)</h4>
 <ul>
 <li>On utilise <code>(int)</code> ou <code>(integer)</code></li>
 <li><code>false</code> correspond à <code>0</code> et <code>true</code> à <code>1</code></li>
@@ -267,7 +265,7 @@ integer     : [+-]?decimal
 
 </section>
 <section id="slide-sec-1-3-7">
-<h4 id="org8787e83"><span class="section-number-4">1.3.7</span> Les réels (float/double)</h4>
+<h4 id="org0d8f16c"><span class="section-number-4">1.3.7</span> Les réels (float/double)</h4>
 <ul>
 <li>Un réel (nombre à virgule flottante) appartient à \({\mathbb{R}}\)</li>
 <li>La taille d'un réel dépend de la plateforme, mais en général
@@ -282,7 +280,7 @@ integer     : [+-]?decimal
 
 </section>
 <section id="slide-sec-1-3-8">
-<h4 id="orgb48909d"><span class="section-number-4">1.3.8</span> Les réels (définis formellement)</h4>
+<h4 id="org9964f57"><span class="section-number-4">1.3.8</span> Les réels (définis formellement)</h4>
 <div class="org-src-container">
 
 <pre><code class="text" >LNUM          [0-9]+                                   
@@ -293,7 +291,7 @@ EXPONENT_DNUM [+-]?(({LNUM} | {DNUM}) [eE][+-]? {LNUM})
 
 </section>
 <section id="slide-sec-1-3-9">
-<h4 id="org29eed8b"><span class="section-number-4">1.3.9</span> Les réels (cast)</h4>
+<h4 id="org164075a"><span class="section-number-4">1.3.9</span> Les réels (cast)</h4>
 <ul>
 <li>On utilise <code>(float)</code> ou <code>(double)</code></li>
 <li>Seule la partie initiale d'une chaîne de caractères est prise en compte</li>
@@ -303,7 +301,7 @@ EXPONENT_DNUM [+-]?(({LNUM} | {DNUM}) [eE][+-]? {LNUM})
 
 </section>
 <section id="slide-sec-1-3-10">
-<h4 id="org3d10276"><span class="section-number-4">1.3.10</span> Les entiers et les réels (exemple)</h4>
+<h4 id="orgca0de03"><span class="section-number-4">1.3.10</span> Les entiers et les réels (exemple)</h4>
 <div class="org-src-container">
 
 <pre id="phpjs-int-float"><code class="src-" >&lt;?php
@@ -329,7 +327,7 @@ EXPONENT_DNUM [+-]?(({LNUM} | {DNUM}) [eE][+-]? {LNUM})
 
 </section>
 <section id="slide-sec-1-3-11">
-<h4 id="org45d7984"><span class="section-number-4">1.3.11</span> Les chaînes de caractères (string)</h4>
+<h4 id="orge986a2f"><span class="section-number-4">1.3.11</span> Les chaînes de caractères (string)</h4>
 <ul>
 <li>Une chaîne de caractères correspond à un tableau d'octets.</li>
 <li>Elle se définit à l'aide des <code> ' </code> ou <code> " </code></li>
@@ -352,7 +350,7 @@ EXPONENT_DNUM [+-]?(({LNUM} | {DNUM}) [eE][+-]? {LNUM})
 
 </section>
 <section id="slide-sec-1-3-12">
-<h4 id="org74d544d"><span class="section-number-4">1.3.12</span> Les chaînes de caractères (cast)</h4>
+<h4 id="org236e3c3"><span class="section-number-4">1.3.12</span> Les chaînes de caractères (cast)</h4>
 <ul>
 <li>On utilise <code>(string)</code></li>
 <li>Convertion automatique avec certaines fonctions comme <code>echo</code>, <code>print</code></li>
@@ -362,7 +360,7 @@ EXPONENT_DNUM [+-]?(({LNUM} | {DNUM}) [eE][+-]? {LNUM})
 
 </section>
 <section id="slide-sec-1-3-13">
-<h4 id="org7e115d5"><span class="section-number-4">1.3.13</span> Les chaînes de caractères (affichage)</h4>
+<h4 id="org28cc8b3"><span class="section-number-4">1.3.13</span> Les chaînes de caractères (affichage)</h4>
 <ul>
 <li><code>echo</code> et <code>print</code> ne sont pas de vraies fonctions (l'utilisation des parenthèses est facultative, mais recommandée)</li>
 <li><p>
@@ -387,7 +385,7 @@ la fonction <a href="http://php.net/manual/en/function.sprintf.php"><code>sprint
 
 </section>
 <section id="slide-sec-1-3-14">
-<h4 id="orgf9f1505"><span class="section-number-4">1.3.14</span> Les chaînes de caractères (format)</h4>
+<h4 id="org526eca0"><span class="section-number-4">1.3.14</span> Les chaînes de caractères (format)</h4>
 <ul>
 <li>Le format dépend du type du paramètre que l'on veut afficher
 <ul>
@@ -414,7 +412,7 @@ la fonction <a href="http://php.net/manual/en/function.sprintf.php"><code>sprint
 
 </section>
 <section id="slide-sec-1-3-15">
-<h4 id="org76ea556"><span class="section-number-4">1.3.15</span> Les chaînes de caractères (fonctions de base)</h4>
+<h4 id="org3b07b6b"><span class="section-number-4">1.3.15</span> Les chaînes de caractères (fonctions de base)</h4>
 <ul>
 <li><code>strlen </code> : retourne la longueur de la chaîne <code>$str</code></li>
 <li><code>strcmp </code> : compare deux chaînes</li>
@@ -431,7 +429,7 @@ la fonction <a href="http://php.net/manual/en/function.sprintf.php"><code>sprint
 
 </section>
 <section id="slide-sec-1-3-16">
-<h4 id="orga3aedbc"><span class="section-number-4">1.3.16</span> Résumé (types simples)</h4>
+<h4 id="org4ef231a"><span class="section-number-4">1.3.16</span> Résumé (types simples)</h4>
 <div class="org-src-container">
 
 <pre id="phpjs-string"><code class="src-" >&lt;?php
@@ -445,7 +443,7 @@ la fonction <a href="http://php.net/manual/en/function.sprintf.php"><code>sprint
 
 </section>
 <section id="slide-sec-1-3-17">
-<h4 id="org46193ed"><span class="section-number-4">1.3.17</span> Les tableaux (array)</h4>
+<h4 id="org995bf9c"><span class="section-number-4">1.3.17</span> Les tableaux (array)</h4>
 <ul>
 <li>Il faut utiliser le mot clé <code>array()</code> (<code>[]</code> autorisé depuis PHP 5.4)</li>
 <li>Chaque paramètre correspond à une paire <code>clé =&gt; valeur</code></li>
@@ -461,7 +459,7 @@ la fonction <a href="http://php.net/manual/en/function.sprintf.php"><code>sprint
 
 </section>
 <section id="slide-sec-1-3-18">
-<h4 id="orge986050"><span class="section-number-4">1.3.18</span> Les tableaux (fonctions de base)</h4>
+<h4 id="org7af84fd"><span class="section-number-4">1.3.18</span> Les tableaux (fonctions de base)</h4>
 <ul>
 <li><code>count       </code> : retourne le nombre d'éléments contenus dans un tableau</li>
 <li><code>sort        </code> : trie par rapport aux valeurs un tableau (<code>rsort</code> reverse)</li>
@@ -475,7 +473,7 @@ la fonction <a href="http://php.net/manual/en/function.sprintf.php"><code>sprint
 
 </section>
 <section id="slide-sec-1-3-19">
-<h4 id="org52fa07b"><span class="section-number-4">1.3.19</span> Les tableaux (exemple)</h4>
+<h4 id="org8f9b8fc"><span class="section-number-4">1.3.19</span> Les tableaux (exemple)</h4>
 <div class="org-src-container">
 
 <pre id="phpjs-array"><code class="src-" >&lt;?php
@@ -488,12 +486,12 @@ la fonction <a href="http://php.net/manual/en/function.sprintf.php"><code>sprint
 
 </section>
 <section id="slide-sec-1-4">
-<h3 id="org363d59d"><span class="section-number-3">1.4</span> Les variables et constantes</h3>
+<h3 id="org9e5e37f"><span class="section-number-3">1.4</span> Les variables et constantes</h3>
 <div class="outline-text-3" id="text-1-4">
 </div>
 </section>
 <section id="slide-sec-1-4-1">
-<h4 id="orga193de2"><span class="section-number-4">1.4.1</span> Les variables</h4>
+<h4 id="orgf8bccbb"><span class="section-number-4">1.4.1</span> Les variables</h4>
 <ul>
 <li>Une variable est désignée par le signe <code>$</code></li>
 <li>Le nom est sensible à la casse et commence par une lettre ou un
@@ -506,7 +504,7 @@ tiret du bas <code>_</code> suivi de lettres, de chiffres ou <code>_</code></li>
 
 </section>
 <section id="slide-sec-1-4-2">
-<h4 id="org5d92413"><span class="section-number-4">1.4.2</span> Gérer le type d'une variable</h4>
+<h4 id="orgfc714df"><span class="section-number-4">1.4.2</span> Gérer le type d'une variable</h4>
 <ul>
 <li>La fonction <code>gettype()</code> permet d'obtenir une chaîne de caractères
 correspondant au type de l'argument : <code>boolean</code>, <code>integer</code>,
@@ -523,7 +521,7 @@ argument est d'un type particulier.</li>
 
 </section>
 <section id="slide-sec-1-4-3">
-<h4 id="orgaec47cd"><span class="section-number-4">1.4.3</span> Tester l'état d'une variable</h4>
+<h4 id="org6131802"><span class="section-number-4">1.4.3</span> Tester l'état d'une variable</h4>
 <ul>
 <li><code>empty()</code></li>
 <li><code>is_null()</code></li>
@@ -550,7 +548,7 @@ null  == 'php' =&gt; false
 
 </section>
 <section id="slide-sec-1-4-4">
-<h4 id="orgb832f17"><span class="section-number-4">1.4.4</span> Les constantes</h4>
+<h4 id="org461d6ba"><span class="section-number-4">1.4.4</span> Les constantes</h4>
 <ul>
 <li>Par définition, la valeur d'une constante ne peut pas être modifiée</li>
 <li>On utilise par convention, un nom écrit en lettres capitales</li>
@@ -573,7 +571,7 @@ null  == 'php' =&gt; false
 
 </section>
 <section id="slide-sec-1-5">
-<h3 id="orgb395ba9"><span class="section-number-3">1.5</span> Les opérateurs</h3>
+<h3 id="org5c4ce4c"><span class="section-number-3">1.5</span> Les opérateurs</h3>
 <ul>
 <li>Les opérateurs arithmétiques</li>
 <li>Les opérateurs d'affectation</li>
@@ -587,7 +585,7 @@ null  == 'php' =&gt; false
 
 </section>
 <section id="slide-sec-1-5-1">
-<h4 id="org21521df"><span class="section-number-4">1.5.1</span> Les opérateurs arithmétiques</h4>
+<h4 id="org2b79251"><span class="section-number-4">1.5.1</span> Les opérateurs arithmétiques</h4>
 <ul>
 <li><code>-$a     </code> : la négation</li>
 <li><code>$a + $b </code> : l'addition</li>
@@ -601,7 +599,7 @@ null  == 'php' =&gt; false
 
 </section>
 <section id="slide-sec-1-5-2">
-<h4 id="org11555ca"><span class="section-number-4">1.5.2</span> Les opérateurs d'affectation</h4>
+<h4 id="org530b3b8"><span class="section-number-4">1.5.2</span> Les opérateurs d'affectation</h4>
 <ul>
 <li>Le signe <code> = </code></li>
 <li>Il est possible de combiner le signe <code> = </code> avec d'autres opérateurs</li>
@@ -624,7 +622,7 @@ null  == 'php' =&gt; false
 
 </section>
 <section id="slide-sec-1-5-3">
-<h4 id="orgcaa8061"><span class="section-number-4">1.5.3</span> Les opérateurs de comparaison</h4>
+<h4 id="org7350be0"><span class="section-number-4">1.5.3</span> Les opérateurs de comparaison</h4>
 <ul>
 <li><code>$a == $b </code> : égalité des valeurs</li>
 <li><code>$a === $b</code> : identité (égalité des valeurs et des types)</li>
@@ -640,7 +638,7 @@ null  == 'php' =&gt; false
 
 </section>
 <section id="slide-sec-1-5-4">
-<h4 id="org2c96aa4"><span class="section-number-4">1.5.4</span> Les opérateurs d'incrémentation et décrémentation</h4>
+<h4 id="org8d5c5a0"><span class="section-number-4">1.5.4</span> Les opérateurs d'incrémentation et décrémentation</h4>
 <ul>
 <li><code>++$a</code> : incrémente <code>$a</code>  de 1, puis retourne <code>$a</code></li>
 <li><code>$a++</code> : retourne <code>$a</code> puis incrémente <code>$a</code>  de 1</li>
@@ -663,7 +661,7 @@ null  == 'php' =&gt; false
 
 </section>
 <section id="slide-sec-1-5-5">
-<h4 id="org5fbdb61"><span class="section-number-4">1.5.5</span> L'opérateur ternaire</h4>
+<h4 id="orgaaf9740"><span class="section-number-4">1.5.5</span> L'opérateur ternaire</h4>
 <ul>
 <li><code>?:</code> est un opérateur conditionnel ternaire</li>
 <li><code>(expr1) ? (expr2) : (expr3)</code> est évalué à :
@@ -687,7 +685,7 @@ null  == 'php' =&gt; false
 
 </section>
 <section id="slide-sec-1-5-6">
-<h4 id="org8b79248"><span class="section-number-4">1.5.6</span> Les opérateurs logiques</h4>
+<h4 id="org7e28dbe"><span class="section-number-4">1.5.6</span> Les opérateurs logiques</h4>
 <ul>
 <li><code>$a &amp;&amp; $b </code> : <code>true</code> si <code>$a</code> et <code>$b</code> valent <code>true</code></li>
 <li><code>$a and $b</code> : <code>true</code> si <code>$a</code> et <code>$b</code> valent <code>true</code></li>
@@ -700,7 +698,7 @@ null  == 'php' =&gt; false
 
 </section>
 <section id="slide-sec-1-5-7">
-<h4 id="org4f84390"><span class="section-number-4">1.5.7</span> Les autres opérateurs</h4>
+<h4 id="org3efdabf"><span class="section-number-4">1.5.7</span> Les autres opérateurs</h4>
 <ul>
 <li><code>.</code> correspond à l'opération de concaténation pour les chaînes de caractères</li>
 <li><code>[index]</code> permet d'accéder à un élément particulier d'un tableau</li>
@@ -722,7 +720,7 @@ null  == 'php' =&gt; false
 
 </section>
 <section id="slide-sec-1-6">
-<h3 id="orgd60e51c"><span class="section-number-3">1.6</span> Les structures de contrôle</h3>
+<h3 id="orgf741a54"><span class="section-number-3">1.6</span> Les structures de contrôle</h3>
 <ul>
 <li>Les structures conditionnelles</li>
 <li>Les structures répétitives</li>
@@ -732,7 +730,7 @@ null  == 'php' =&gt; false
 
 </section>
 <section id="slide-sec-1-6-1">
-<h4 id="org4a196c7"><span class="section-number-4">1.6.1</span> Les structures conditionnelles (if, else, elseif)</h4>
+<h4 id="org4b13442"><span class="section-number-4">1.6.1</span> Les structures conditionnelles (if, else, elseif)</h4>
 <div class="org-src-container">
 
 <pre><code class="src-" >if (condition) {
@@ -765,7 +763,7 @@ null  == 'php' =&gt; false
 
 </section>
 <section id="slide-sec-1-6-2">
-<h4 id="org0fd5f7d"><span class="section-number-4">1.6.2</span> Les structures conditionnelles (switch)</h4>
+<h4 id="org49260b4"><span class="section-number-4">1.6.2</span> Les structures conditionnelles (switch)</h4>
 <div class="org-src-container">
 
 <pre><code class="src-" >switch ($i) {
@@ -801,7 +799,7 @@ if ($i == 0) {
 
 </section>
 <section id="slide-sec-1-6-3">
-<h4 id="orgc528ccd"><span class="section-number-4">1.6.3</span> Les structures répétitives (tant que)</h4>
+<h4 id="org4fd4df1"><span class="section-number-4">1.6.3</span> Les structures répétitives (tant que)</h4>
 <div class="org-src-container">
 
 <pre><code class="src-" >while (condition) {
@@ -820,7 +818,7 @@ if ($i == 0) {
 
 </section>
 <section id="slide-sec-1-6-4">
-<h4 id="org65e8203"><span class="section-number-4">1.6.4</span> Les structures répétitives (pour)</h4>
+<h4 id="org1b608f1"><span class="section-number-4">1.6.4</span> Les structures répétitives (pour)</h4>
 <div class="org-src-container">
 
 <pre><code class="src-" >for (expr1; expr2; expr3) { // expr1 est exécutée une seule fois au début de la boucle
@@ -847,7 +845,7 @@ while (expr2) {
 
 </section>
 <section id="slide-sec-1-6-5">
-<h4 id="org437449c"><span class="section-number-4">1.6.5</span> Les structures répétitives (tableau)</h4>
+<h4 id="org36a262c"><span class="section-number-4">1.6.5</span> Les structures répétitives (tableau)</h4>
 <ul>
 <li><code>foreach</code> permet de parcourir les éléments d'un tableau</li>
 
@@ -871,7 +869,7 @@ while (expr2) {
 
 </section>
 <section id="slide-sec-1-6-6">
-<h4 id="org7286723"><span class="section-number-4">1.6.6</span> Exemple général sur les structures</h4>
+<h4 id="org060a2d0"><span class="section-number-4">1.6.6</span> Exemple général sur les structures</h4>
 <div class="org-src-container">
 
 <pre id="phpjs-while-foreach-example"><code class="src-" >&lt;?php
@@ -893,7 +891,7 @@ while (expr2) {
 
 </section>
 <section id="slide-sec-1-7">
-<h3 id="orge80d9b1"><span class="section-number-3">1.7</span> Les fonctions</h3>
+<h3 id="orgbb1c748"><span class="section-number-3">1.7</span> Les fonctions</h3>
 <ul>
 <li>sont des blocs d'instructions que l'on peut répéter dans un programme</li>
 <li>ne sont pas exécutées directement après leurs définitions</li>
@@ -915,7 +913,7 @@ while (expr2) {
 
 </section>
 <section id="slide-sec-1-7-1">
-<h4 id="org040b41c"><span class="section-number-4">1.7.1</span> Les arguments</h4>
+<h4 id="org6cb1cf1"><span class="section-number-4">1.7.1</span> Les arguments</h4>
 <ul>
 <li>Un argument est une variable, défini après le nom de la fonction entre paranthèses</li>
 <li>Les arguments sont séparés par une virgule</li>
@@ -937,7 +935,7 @@ while (expr2) {
 
 </section>
 <section id="slide-sec-1-7-2">
-<h4 id="org5ac6dfa"><span class="section-number-4">1.7.2</span> Les valeurs par défaut</h4>
+<h4 id="orgf9e0ef4"><span class="section-number-4">1.7.2</span> Les valeurs par défaut</h4>
 <ul>
 <li>Il est possible de définir une valeur par défaut à un argument</li>
 <li>Les arguments qui ont une valeur par défaut sont définis en dernier</li>
@@ -959,7 +957,7 @@ while (expr2) {
 
 </section>
 <section id="slide-sec-1-7-3">
-<h4 id="orgbc4ba29"><span class="section-number-4">1.7.3</span> Les retours</h4>
+<h4 id="org828dd9e"><span class="section-number-4">1.7.3</span> Les retours</h4>
 <ul>
 <li>Tous les types de variables peuvent être retournés par une fonction</li>
 <li>Si <code>return</code> est absent, <code>null</code> est retourné</li>
@@ -980,7 +978,7 @@ while (expr2) {
 
 </section>
 <section id="slide-sec-1-7-4">
-<h4 id="orgecb7175"><span class="section-number-4">1.7.4</span> Retourner plusieurs valeurs</h4>
+<h4 id="orge3d11d0"><span class="section-number-4">1.7.4</span> Retourner plusieurs valeurs</h4>
 <ul>
 <li>Il faut utiliser un tableau</li>
 
@@ -1005,7 +1003,7 @@ while (expr2) {
 
 </section>
 <section id="slide-sec-1-7-5">
-<h4 id="org2222932"><span class="section-number-4">1.7.5</span> Arguments par référence</h4>
+<h4 id="org59f493c"><span class="section-number-4">1.7.5</span> Arguments par référence</h4>
 <div class="org-src-container">
 
 <pre id="phpjs-function-args-reference"><code class="src-" >&lt;?php
@@ -1024,7 +1022,7 @@ while (expr2) {
 
 </section>
 <section id="slide-sec-1-7-6">
-<h4 id="orgda0aaf6"><span class="section-number-4">1.7.6</span> Une fonction récursive</h4>
+<h4 id="orga0f2db4"><span class="section-number-4">1.7.6</span> Une fonction récursive</h4>
 <div class="org-src-container">
 
 <pre id="phpjs-function-rec"><code class="src-" >&lt;?php
@@ -1049,7 +1047,7 @@ while (expr2) {
 
 </section>
 <section id="slide-sec-1-8">
-<h3 id="orgaf48db4"><span class="section-number-3">1.8</span> Les variables prédéfinies</h3>
+<h3 id="org76feb1b"><span class="section-number-3">1.8</span> Les variables prédéfinies</h3>
 <ul>
 <li><code>$_GET    </code> : variables de la méthode GET (dans l'url)</li>
 <li><code>$_POST   </code> : variables de la méthode POST (dans l'entête HTTP)</li>
@@ -1066,7 +1064,7 @@ while (expr2) {
 
 </section>
 <section id="slide-sec-1-9">
-<h3 id="org91f4364"><span class="section-number-3">1.9</span> <code>$_SERVER</code></h3>
+<h3 id="org31f2743"><span class="section-number-3">1.9</span> <code>$_SERVER</code></h3>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -1129,13 +1127,11 @@ while (expr2) {
 </table>
 
 </section>
-<section id="slide-sec-2">
-<h2 id="org8d2a3a7"><span class="section-number-2">2</span> Les formulaires</h2>
-<div class="outline-text-2" id="text-2">
-</div>
+<section id="slide-sec-php-form">
+<h2 id="php-form"><a id="org473449a"></a><span class="section-number-2">2</span> Les formulaires</h2>
 </section>
 <section id="slide-sec-2-1">
-<h3 id="orgf97ffd7"><span class="section-number-3">2.1</span> GET</h3>
+<h3 id="org9f4cf82"><span class="section-number-3">2.1</span> GET</h3>
 <div class="org-src-container">
 
 <pre><code class="html" >GET form
@@ -1152,7 +1148,7 @@ while (expr2) {
 
 </section>
 <section id="slide-sec-2-2" data-state="alert">
-<h3 id="orgdeee59b"><span class="section-number-3">2.2</span> Sécurité</h3>
+<h3 id="org22700f5"><span class="section-number-3">2.2</span> Sécurité</h3>
 <ul>
 <li>Attention à l'utilisation de <code>$_SERVER["PHP_SELF"]</code></li>
 <li>Attention aux données de l'utilisateur</li>
@@ -1161,13 +1157,13 @@ while (expr2) {
 
 </section>
 <section id="slide-sec-2-2-1">
-<h4 id="org1c6be89"><span class="section-number-4">2.2.1</span> <code>$_SERVER["PHP_SELF"]</code></h4>
+<h4 id="org041c363"><span class="section-number-4">2.2.1</span> <code>$_SERVER["PHP_SELF"]</code></h4>
 <p>
 <code>$_SERVER["PHP_SELF"]</code> permet de faire référence au script en cours
 </p>
 
 <ol class="org-ol">
-<li><a id="org1bf6870"></a>Problème<br />
+<li><a id="org0bb6bec"></a>Problème<br />
 <div class="org-src-container">
 
 <pre><code class="html" ><form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
@@ -1180,7 +1176,7 @@ while (expr2) {
 </ul>
 </li>
 
-<li><a id="org0965611"></a>Solution<br />
+<li><a id="orgf9d5b27"></a>Solution<br />
 <ul>
 <li><code>filter_var($_SERVER['PHP_SELF'], FILTER_SANITIZE_STRING);</code></li>
 <li><code>htmlspecialchars($_SERVER["PHP_SELF"]);</code></li>
@@ -1193,13 +1189,13 @@ while (expr2) {
 
 </section>
 <section id="slide-sec-2-2-2">
-<h4 id="orge320034"><span class="section-number-4">2.2.2</span> Filtrer les données des utilisateurs</h4>
+<h4 id="org94ccdf4"><span class="section-number-4">2.2.2</span> Filtrer les données des utilisateurs</h4>
 <p>
 Never Trust User Input
 </p>
 
 <ol class="org-ol">
-<li><a id="orgcd8c80f"></a>Problème<br />
+<li><a id="orga84ecc2"></a>Problème<br />
 <ul>
 <li>Un commentaire peut inclure du code malveillant</li>
 <li>cross site scripting (XSS)</li>
@@ -1208,7 +1204,7 @@ Never Trust User Input
 </ul>
 </li>
 
-<li><a id="org09effcd"></a>Solution<br />
+<li><a id="org748995f"></a>Solution<br />
 <ul>
 <li><code>htmlspecialchars()</code></li>
 <li>Pas toujours suffisant si l'affichage est déjà dans une balise html</li>
@@ -1230,7 +1226,7 @@ Never Trust User Input
 
 </section>
 <section id="slide-sec-2-3">
-<h3 id="orgee40c10"><span class="section-number-3">2.3</span> POST</h3>
+<h3 id="org939736b"><span class="section-number-3">2.3</span> POST</h3>
 <div class="org-src-container">
 
 <pre><code class="html" >POST form
@@ -1247,7 +1243,7 @@ Never Trust User Input
 
 </section>
 <section id="slide-sec-2-4">
-<h3 id="org5519e07"><span class="section-number-3">2.4</span> Valeurs multiples</h3>
+<h3 id="org1c2b67f"><span class="section-number-3">2.4</span> Valeurs multiples</h3>
 <div class="org-src-container">
 
 <pre><code class="html" >Multiple POST form
@@ -1281,7 +1277,7 @@ Never Trust User Input
 
 </section>
 <section id="slide-sec-2-5">
-<h3 id="org573d751"><span class="section-number-3">2.5</span> Buttons multiples</h3>
+<h3 id="org043bbd6"><span class="section-number-3">2.5</span> Buttons multiples</h3>
 <div class="org-src-container">
 
 <pre><code class="html" >Multiple button
@@ -1301,7 +1297,7 @@ Never Trust User Input
 
 </section>
 <section id="slide-sec-2-6">
-<h3 id="orga44ab9b"><span class="section-number-3">2.6</span> <code>$_FILES</code></h3>
+<h3 id="orgd19de2e"><span class="section-number-3">2.6</span> <code>$_FILES</code></h3>
 <ul>
 <li>Envoi de fichiers (méthode <code>POST</code>)</li>
 <li>Balise form avec l'attribut <code>enctype="multipart/form-data" </code></li>
@@ -1317,7 +1313,7 @@ Never Trust User Input
 
 </section>
 <section id="slide-sec-2-7">
-<h3 id="org4e9b034"><span class="section-number-3">2.7</span> Informations liées aux fichiers</h3>
+<h3 id="orga32fe4f"><span class="section-number-3">2.7</span> Informations liées aux fichiers</h3>
 <ul>
 <li><code>name    </code> : nom du fichier client</li>
 <li><code>type    </code> : MIME du fichier client</li>
@@ -1329,7 +1325,7 @@ Never Trust User Input
 
 </section>
 <section id="slide-sec-2-8">
-<h3 id="org3bb569a"><span class="section-number-3">2.8</span> Codes d'erreur</h3>
+<h3 id="orgceabb12"><span class="section-number-3">2.8</span> Codes d'erreur</h3>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -1375,7 +1371,7 @@ Never Trust User Input
 
 </section>
 <section id="slide-sec-2-9">
-<h3 id="orge541c02"><span class="section-number-3">2.9</span> POST et FILES</h3>
+<h3 id="org9afd00b"><span class="section-number-3">2.9</span> POST et FILES</h3>
 <div class="org-src-container">
 
 <pre><code class="html" >POST form with file
@@ -1411,7 +1407,7 @@ Never Trust User Input
 
 </section>
 <section id="slide-sec-2-10">
-<h3 id="orge2a7db1"><span class="section-number-3">2.10</span> Déplacement des fichiers</h3>
+<h3 id="orgfced31f"><span class="section-number-3">2.10</span> Déplacement des fichiers</h3>
 <ul>
 <li>Il faut utiliser la fonction <code>move_uploaded_file</code></li>
 <li><code>move_uploaded_file($_FILES["file"]["tmp_name"], "monimage.jpg");</code>
@@ -1424,7 +1420,7 @@ Never Trust User Input
 
 </section>
 <section id="slide-sec-2-11">
-<h3 id="org29214ec"><span class="section-number-3">2.11</span> Validation</h3>
+<h3 id="org7442ca6"><span class="section-number-3">2.11</span> Validation</h3>
 <ul>
 <li>Never Trust User Input</li>
 <li>La validation html5 n'est pas suffisante</li>
@@ -1440,13 +1436,11 @@ Never Trust User Input
 </ul>
 
 </section>
-<section id="slide-sec-3">
-<h2 id="orge2a0da4"><span class="section-number-2">3</span> Cookies et sessions</h2>
-<div class="outline-text-2" id="text-3">
-</div>
+<section id="slide-sec-cookies-sessions">
+<h2 id="cookies-sessions"><a id="orgcf486d9"></a><span class="section-number-2">3</span> Cookies et sessions</h2>
 </section>
 <section id="slide-sec-3-1">
-<h3 id="org94d3875"><span class="section-number-3">3.1</span> Les cookies</h3>
+<h3 id="orgb13606c"><span class="section-number-3">3.1</span> Les cookies</h3>
 <ul>
 <li>Les cookies permettent de stocker des informations côté client<br />
 (Never Trust User Input)</li>
@@ -1456,7 +1450,7 @@ Never Trust User Input
 
 </section>
 <section id="slide-sec-3-2">
-<h3 id="org7f62efb"><span class="section-number-3">3.2</span> <a href="http://php.net/manual/en/function.setcookie.php">setcookie()</a></h3>
+<h3 id="org186277b"><span class="section-number-3">3.2</span> <a href="http://php.net/manual/en/function.setcookie.php">setcookie()</a></h3>
 <div class="org-src-container">
 
 <pre><code class="src-" >setcookie($name, $value, $expire, $path, $domain, $secure, $httponly)
@@ -1522,7 +1516,7 @@ Never Trust User Input
 
 </section>
 <section id="slide-sec-3-3">
-<h3 id="org74ed6d9"><span class="section-number-3">3.3</span> Affectation des cookies en PHP</h3>
+<h3 id="orga2e56e8"><span class="section-number-3">3.3</span> Affectation des cookies en PHP</h3>
 <div class="org-src-container">
 
 <pre><code class="src-" >setcookie('hello','world');
@@ -1536,7 +1530,7 @@ setcookie('tableau[index3]','val3');
 
 </section>
 <section id="slide-sec-3-4">
-<h3 id="org1f67c4b"><span class="section-number-3">3.4</span> Lecture des cookies</h3>
+<h3 id="org961f459"><span class="section-number-3">3.4</span> Lecture des cookies</h3>
 <ul>
 <li><code>$_COOKIE</code> est utilisé pour récupérer les valeurs</li>
 <li>Attention, il n'est pas possible de lire une valeur associée
@@ -1561,7 +1555,7 @@ foreach($_COOKIE['tableau'] as $key =&gt; $value) {
 
 </section>
 <section id="slide-sec-3-5">
-<h3 id="orgb45b8d6"><span class="section-number-3">3.5</span> Les sessions</h3>
+<h3 id="orgcad6a30"><span class="section-number-3">3.5</span> Les sessions</h3>
 <ul>
 <li>Les sessions permettent de stocker des informations côté serveur</li>
 <li>Les sessions ne sont pas partagées entre les visiteurs</li>
@@ -1570,7 +1564,7 @@ foreach($_COOKIE['tableau'] as $key =&gt; $value) {
 
 </section>
 <section id="slide-sec-3-6">
-<h3 id="org5fa0c59"><span class="section-number-3">3.6</span> Différentes étapes</h3>
+<h3 id="orgfc6a973"><span class="section-number-3">3.6</span> Différentes étapes</h3>
 <ul>
 <li>Ouverture d'une session avec <code>session_start()</code></li>
 <li>Transmission d'un identifiant de session</li>
@@ -1581,7 +1575,7 @@ foreach($_COOKIE['tableau'] as $key =&gt; $value) {
 
 </section>
 <section id="slide-sec-3-7">
-<h3 id="org80b8675"><span class="section-number-3">3.7</span> Transmission de l'identifiant de session</h3>
+<h3 id="org78c64a0"><span class="section-number-3">3.7</span> Transmission de l'identifiant de session</h3>
 <ul>
 <li>Dans l'URL à l'aide de la variable <code>SID</code> (Pas recommandé <i>htmlspecialchars</i>)</li>
 <li>Avec les cookies (il faut que le client accepte les cookies)
@@ -1595,7 +1589,7 @@ foreach($_COOKIE['tableau'] as $key =&gt; $value) {
 
 </section>
 <section id="slide-sec-3-8">
-<h3 id="org7a8c96a"><span class="section-number-3">3.8</span> Utilisation des sessions - 1</h3>
+<h3 id="orgbf4976a"><span class="section-number-3">3.8</span> Utilisation des sessions - 1</h3>
 <div class="org-src-container">
 
 <pre><code class="src" >&lt;?php
@@ -1619,7 +1613,7 @@ if(isset($_POST['login']) &amp;&amp; isset($_POST['pass'])) {
 
 </section>
 <section id="slide-sec-3-9">
-<h3 id="orgef68638"><span class="section-number-3">3.9</span> Utilisation des sessions - 2</h3>
+<h3 id="org04cf630"><span class="section-number-3">3.9</span> Utilisation des sessions - 2</h3>
 <div class="org-src-container">
 
 <pre><code class="src" >&lt;form method="post" action=""&gt;
@@ -1636,7 +1630,7 @@ if(isset($_POST['login']) &amp;&amp; isset($_POST['pass'])) {
 
 </section>
 <section id="slide-sec-3-10">
-<h3 id="orgf24f2cd"><span class="section-number-3">3.10</span> Utilisation des sessions - 3</h3>
+<h3 id="orgad79a75"><span class="section-number-3">3.10</span> Utilisation des sessions - 3</h3>
 <div class="org-src-container">
 
 <pre><code class="src" >&lt;p&gt; Visiter les pages du site &lt;br /&gt;
@@ -1659,7 +1653,7 @@ if(isset($_POST['login']) &amp;&amp; isset($_POST['pass'])) {
 
 </section>
 <section id="slide-sec-3-11">
-<h3 id="org214f328"><span class="section-number-3">3.11</span> Utilisation des sessions - 4</h3>
+<h3 id="org05f34ed"><span class="section-number-3">3.11</span> Utilisation des sessions - 4</h3>
 <div class="org-src-container">
 
 <pre><code class="src" >&lt;p&gt;
@@ -1673,7 +1667,7 @@ if(isset($_POST['login']) &amp;&amp; isset($_POST['pass'])) {
 
 </section>
 <section id="slide-sec-3-12">
-<h3 id="org460e12c"><span class="section-number-3">3.12</span> Utilisation des sessions - 5</h3>
+<h3 id="orgb348cdc"><span class="section-number-3">3.12</span> Utilisation des sessions - 5</h3>
 <div class="org-src-container">
 
 <pre><code class="src" >&lt;?php
@@ -1698,7 +1692,7 @@ $_SESSION['public'] ++;
 
 </section>
 <section id="slide-sec-3-13">
-<h3 id="org34badf1"><span class="section-number-3">3.13</span> Utilisation des sessions - 6</h3>
+<h3 id="org40c4e16"><span class="section-number-3">3.13</span> Utilisation des sessions - 6</h3>
 <div class="org-src-container">
 
 <pre><code class="src" >&lt;?php
@@ -1732,13 +1726,11 @@ if(!isset($_SESSION['acces'])) {
 </p>
 
 </section>
-<section id="slide-sec-4">
-<h2 id="org5ca49aa"><span class="section-number-2">4</span> PHP et les fichiers</h2>
-<div class="outline-text-2" id="text-4">
-</div>
+<section id="slide-sec-php-fichiers">
+<h2 id="php-fichiers"><a id="orge90783d"></a><span class="section-number-2">4</span> PHP et les fichiers</h2>
 </section>
 <section id="slide-sec-4-1">
-<h3 id="org27566ea"><span class="section-number-3">4.1</span> L'inclusion de fichiers</h3>
+<h3 id="org627006a"><span class="section-number-3">4.1</span> L'inclusion de fichiers</h3>
 <ul>
 <li>Il est possible d'utiliser du code PHP ou HTML provenant d'autres fichiers :
 <ul>
@@ -1754,7 +1746,7 @@ if(!isset($_SESSION['acces'])) {
 
 </section>
 <section id="slide-sec-4-2">
-<h3 id="org6ddc60e"><span class="section-number-3">4.2</span> L'inclusion de fichiers</h3>
+<h3 id="org528623c"><span class="section-number-3">4.2</span> L'inclusion de fichiers</h3>
 <ul>
 <li>La différence entre <code>include</code> et <code>require</code> concerne la gestion des erreurs
 <ul>
@@ -1771,7 +1763,7 @@ if(!isset($_SESSION['acces'])) {
 
 </section>
 <section id="slide-sec-4-3">
-<h3 id="orge54aae4"><span class="section-number-3">4.3</span> Manipulation simple des fichiers</h3>
+<h3 id="org71a5888"><span class="section-number-3">4.3</span> Manipulation simple des fichiers</h3>
 <ul>
 <li><code>file_exists()</code> permet de vérifier l'existence d'un fichier</li>
 <li><code>file_get_contents()</code> permet de lire le contenu d'un fichier</li>
@@ -1798,7 +1790,7 @@ if(!isset($_SESSION['acces'])) {
 
 </section>
 <section id="slide-sec-4-4">
-<h3 id="orgb6b0a09"><span class="section-number-3">4.4</span> Manipulation simple des fichiers</h3>
+<h3 id="org7bba464"><span class="section-number-3">4.4</span> Manipulation simple des fichiers</h3>
 <ul>
 <li><p>
 <a href="http://php.net/manual/en/function.readfile.php">readfile</a> lit et affiche le contenu d'un fichier 
@@ -1821,7 +1813,7 @@ if(!isset($_SESSION['acces'])) {
 
 </section>
 <section id="slide-sec-4-5">
-<h3 id="org90a5818"><span class="section-number-3">4.5</span> Manipulation avancée des fichiers</h3>
+<h3 id="org6ef84da"><span class="section-number-3">4.5</span> Manipulation avancée des fichiers</h3>
 <ul>
 <li><p>
 <a href="http://php.net/manual/en/function.fopen.php">fopen</a> ouvre un fichier
@@ -1846,7 +1838,7 @@ if(!isset($_SESSION['acces'])) {
 
 </section>
 <section id="slide-sec-4-6">
-<h3 id="org3c71ccc"><span class="section-number-3">4.6</span> Déplacement</h3>
+<h3 id="org28e92c4"><span class="section-number-3">4.6</span> Déplacement</h3>
 <ul>
 <li><p>
 <a href="http://php.net/manual/en/function.fseek.php">fseek</a> déplace le pointeur à une position donnée
@@ -1885,7 +1877,7 @@ if(!isset($_SESSION['acces'])) {
 
 </section>
 <section id="slide-sec-4-7">
-<h3 id="org56ad711"><span class="section-number-3">4.7</span> Lecture</h3>
+<h3 id="orgdaf4c40"><span class="section-number-3">4.7</span> Lecture</h3>
 <ul>
 <li><p>
 <a href="http://php.net/manual/en/function.fread.php">fread</a> lecture du fichier en mode binaire
@@ -1916,7 +1908,7 @@ if(!isset($_SESSION['acces'])) {
 
 </section>
 <section id="slide-sec-4-8">
-<h3 id="orge678ce5"><span class="section-number-3">4.8</span> Écriture/Fermeture d'un fichier</h3>
+<h3 id="org6d5208c"><span class="section-number-3">4.8</span> Écriture/Fermeture d'un fichier</h3>
 <ul>
 <li><p>
 <a href="http://php.net/manual/en/function.fwrite.php">fwrite</a>/fputs écriture du fichier en mode binaire
@@ -1939,7 +1931,7 @@ if(!isset($_SESSION['acces'])) {
 
 </section>
 <section id="slide-sec-4-9">
-<h3 id="orgac163c7"><span class="section-number-3">4.9</span> Vérrouillage d'un fichier</h3>
+<h3 id="orgad6b71e"><span class="section-number-3">4.9</span> Vérrouillage d'un fichier</h3>
 <ul>
 <li><p>
 <a href="http://php.net/manual/en/function.flock.php">flock</a> vérrouille un fichier
@@ -1961,7 +1953,7 @@ if(!isset($_SESSION['acces'])) {
 
 </section>
 <section id="slide-sec-4-10">
-<h3 id="org0540cd9"><span class="section-number-3">4.10</span> Résumé</h3>
+<h3 id="org1a7cc56"><span class="section-number-3">4.10</span> Résumé</h3>
 
 <div class="figure">
 <p><a href="http://www.luc-damas.fr/humeurs/pedagogie-houblonnee-les-fichiers/"><img src="./inc/img/pedagogie-houblonnee-fichiers.jpg" alt="pedagogie-houblonnee-fichiers.jpg" /></a>
@@ -1970,7 +1962,7 @@ if(!isset($_SESSION['acces'])) {
 
 </section>
 <section id="slide-sec-4-11">
-<h3 id="orgb719c2b"><span class="section-number-3">4.11</span> Exemple</h3>
+<h3 id="org9a18bb6"><span class="section-number-3">4.11</span> Exemple</h3>
 <div class="org-src-container">
 
 <pre><code class="src-" >&lt;?php
@@ -1987,7 +1979,7 @@ if ($handle) {
 
 </section>
 <section id="slide-sec-4-12">
-<h3 id="org1f4f660"><span class="section-number-3">4.12</span> csv</h3>
+<h3 id="org737a165"><span class="section-number-3">4.12</span> csv</h3>
 <ul>
 <li><p>
 <a href="http://php.net/manual/en/function.fgetcsv.php">fgetcsv</a> retourne sous forme de tableau un fichier CSV
@@ -2017,7 +2009,7 @@ if ($handle) {
 
 </section>
 <section id="slide-sec-4-13">
-<h3 id="org2f7de5d"><span class="section-number-3">4.13</span> Action sur les fichiers</h3>
+<h3 id="org5ab1a73"><span class="section-number-3">4.13</span> Action sur les fichiers</h3>
 <ul>
 <li><p>
 <a href="http://php.net/manual/en/function.copy.php">copy</a> copie un fichier
@@ -2048,7 +2040,7 @@ if ($handle) {
 
 </section>
 <section id="slide-sec-4-14">
-<h3 id="orgf0f9a77"><span class="section-number-3">4.14</span> Information sur les fichiers</h3>
+<h3 id="org34921d4"><span class="section-number-3">4.14</span> Information sur les fichiers</h3>
 <ul>
 <li><p>
 <a href="http://php.net/manual/en/function.filesize.php">filesize</a> récupère la taille du fichier
@@ -2094,13 +2086,11 @@ if ($handle) {
 </ul>
 
 </section>
-<section id="slide-sec-5">
-<h2 id="org4724776"><span class="section-number-2">5</span> Bases de données SQL</h2>
-<div class="outline-text-2" id="text-5">
-</div>
+<section id="slide-sec-php-sql">
+<h2 id="php-sql"><a id="orga2d466f"></a><span class="section-number-2">5</span> Bases de données SQL</h2>
 </section>
 <section id="slide-sec-5-1">
-<h3 id="org74d903d"><span class="section-number-3">5.1</span> Approches</h3>
+<h3 id="org6c883b4"><span class="section-number-3">5.1</span> Approches</h3>
 <ul>
 <li>Approche spécifique
 <ul>
@@ -2119,7 +2109,7 @@ if ($handle) {
 
 </section>
 <section id="slide-sec-5-2">
-<h3 id="org026449f"><span class="section-number-3">5.2</span> Approche spécifique</h3>
+<h3 id="orgee12f4c"><span class="section-number-3">5.2</span> Approche spécifique</h3>
 <ul>
 <li>Avantages :
 <ul>
@@ -2137,7 +2127,7 @@ if ($handle) {
 
 </section>
 <section id="slide-sec-5-3">
-<h3 id="org36b7d35"><span class="section-number-3">5.3</span> Approche générale</h3>
+<h3 id="orgf9b3805"><span class="section-number-3">5.3</span> Approche générale</h3>
 <ul>
 <li>Avantages :
 <ul>
@@ -2155,7 +2145,7 @@ if ($handle) {
 
 </section>
 <section id="slide-sec-5-4">
-<h3 id="org194279a"><span class="section-number-3">5.4</span> Exemple</h3>
+<h3 id="org0f1784a"><span class="section-number-3">5.4</span> Exemple</h3>
 <div class="org-src-container">
 
 <pre><code class="src-" >&lt;?php
@@ -2180,7 +2170,7 @@ if ($handle) {
 
 </section>
 <section id="slide-sec-5-5">
-<h3 id="org1296bf4"><span class="section-number-3">5.5</span> PDO : créer une connexion</h3>
+<h3 id="orga37b0bd"><span class="section-number-3">5.5</span> PDO : créer une connexion</h3>
 <div class="org-src-container">
 
 <pre><code class="src" >&lt;?php
@@ -2215,7 +2205,7 @@ if ($handle) {
 
 </section>
 <section id="slide-sec-5-6">
-<h3 id="orgf0b0c9a"><span class="section-number-3">5.6</span> PDO : fermer une connexion</h3>
+<h3 id="org8637c04"><span class="section-number-3">5.6</span> PDO : fermer une connexion</h3>
 <ul>
 <li>Fermeture automatique à la fin du script</li>
 <li>Mettre à null la variable qui gère la connexion</li>
@@ -2242,7 +2232,7 @@ if ($handle) {
 
 </section>
 <section id="slide-sec-5-7">
-<h3 id="org8c52a04"><span class="section-number-3">5.7</span> PDO : exec et query</h3>
+<h3 id="orgfbfc90e"><span class="section-number-3">5.7</span> PDO : exec et query</h3>
 <ul>
 <li><p>
 <a href="http://php.net/manual/en/pdo.exec.php">exec</a> execute une requête SQL et retourne le nombre de lignes affectées
@@ -2265,7 +2255,7 @@ if ($handle) {
 
 </section>
 <section id="slide-sec-5-8">
-<h3 id="orgb195dcc"><span class="section-number-3">5.8</span> PDO : gestion des erreurs</h3>
+<h3 id="org0ec0c1a"><span class="section-number-3">5.8</span> PDO : gestion des erreurs</h3>
 <div class="org-src-container">
 
 <pre><code class="src" >&lt;?php
@@ -2303,7 +2293,7 @@ if ($handle) {
 
 </section>
 <section id="slide-sec-5-9">
-<h3 id="org1d461ac"><span class="section-number-3">5.9</span> PDO : création</h3>
+<h3 id="org05ed0e4"><span class="section-number-3">5.9</span> PDO : création</h3>
 <ul>
 <li>Pose le plus de problème pour la généricité du code car très
 spécifique à la base utilisée</li>
@@ -2334,7 +2324,7 @@ spécifique à la base utilisée</li>
 
 </section>
 <section id="slide-sec-5-10">
-<h3 id="org39ec6f8"><span class="section-number-3">5.10</span> PDO : insertion</h3>
+<h3 id="org9dc93e0"><span class="section-number-3">5.10</span> PDO : insertion</h3>
 <div class="org-src-container">
 
 <pre><code class="src" >&lt;?php
@@ -2358,7 +2348,7 @@ spécifique à la base utilisée</li>
 
 </section>
 <section id="slide-sec-5-11">
-<h3 id="org8660ec7"><span class="section-number-3">5.11</span> PDO : sélection</h3>
+<h3 id="org38f881e"><span class="section-number-3">5.11</span> PDO : sélection</h3>
 <div class="org-src-container">
 
 <pre><code class="src" >&lt;?php
@@ -2378,7 +2368,7 @@ spécifique à la base utilisée</li>
 
 </section>
 <section id="slide-sec-5-12">
-<h3 id="org840dac1"><span class="section-number-3">5.12</span> PDO : parcours des données</h3>
+<h3 id="org9c13123"><span class="section-number-3">5.12</span> PDO : parcours des données</h3>
 <div class="org-src-container">
 
 <pre><code class="src" >&lt;?php
@@ -2408,7 +2398,7 @@ spécifique à la base utilisée</li>
 
 </section>
 <section id="slide-sec-5-13">
-<h3 id="orgf69618d"><span class="section-number-3">5.13</span> PDO : mise à jour</h3>
+<h3 id="org9bb9479"><span class="section-number-3">5.13</span> PDO : mise à jour</h3>
 <div class="org-src-container">
 
 <pre><code class="src" >&lt;?php
@@ -2428,7 +2418,7 @@ spécifique à la base utilisée</li>
 
 </section>
 <section id="slide-sec-5-14">
-<h3 id="org7ea59f0"><span class="section-number-3">5.14</span> PDO : suppression</h3>
+<h3 id="org92b4e86"><span class="section-number-3">5.14</span> PDO : suppression</h3>
 <div class="org-src-container">
 
 <pre><code class="src" >&lt;?php
@@ -2449,7 +2439,7 @@ spécifique à la base utilisée</li>
 
 </section>
 <section id="slide-sec-5-15">
-<h3 id="orgf3825a5"><span class="section-number-3">5.15</span> PDO : préparation</h3>
+<h3 id="org69b28d1"><span class="section-number-3">5.15</span> PDO : préparation</h3>
 <div class="org-src-container">
 
 <pre><code class="src" >&lt;?php
@@ -2483,7 +2473,7 @@ spécifique à la base utilisée</li>
 
 </section>
 <section id="slide-sec-5-16">
-<h3 id="orgdd87116"><span class="section-number-3">5.16</span> PDO : fermeture du curseur</h3>
+<h3 id="orgdc4d138"><span class="section-number-3">5.16</span> PDO : fermeture du curseur</h3>
 <div class="org-src-container">
 
 <pre><code class="src" >&lt;?php

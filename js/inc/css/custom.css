@@ -166,3 +166,7 @@ section table > thead > tr:nth-child(2n+1) {
 .reveal table {
   margin: 0 auto;
 }
+
+h1>span, h2>span, h3>span, h4>span {
+  display: none;
+}
