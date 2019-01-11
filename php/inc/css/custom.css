@@ -141,3 +141,7 @@ pre.fragment, pre.src {
 .org-builtin {
    color: #7f9f7f;
 }
+
+h1>span, h2>span, h3>span, h4>span {
+  display: none;
+}

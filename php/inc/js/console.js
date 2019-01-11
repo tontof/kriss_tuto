@@ -1,3 +1,4 @@
+/*global  */
 var content = document.getElementById("phpjs-code"),
     result = document.getElementById("phpjs-result"),
     htmlResult = document.getElementById("phpjs-html-result"),
@@ -73,10 +74,8 @@ $('.org-src-container').each(function(index, value){
         }
       });
 
-  if ($element.children('.src-php').length) {
-    $element = $element.children('pre');
-    if ($element.attr('id') && $element.attr('id').substr(0,6) === "phpjs-") {
-      $element.append($button);
-    }
-  }
+      if ($element.find('.src-php').length) {
+        $element = $element.children('pre');
+        $element.append($button);
+      }
 });

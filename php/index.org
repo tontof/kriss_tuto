@@ -1,4 +1,5 @@
 #+Title: PHP
+#+DATE: 
 #+Author: 
 #+Email: 
 
@@ -7,6 +8,10 @@
 #+OPTIONS: reveal_mathjax:t reveal_rolling_links:t reveal_keyboard:t reveal_overview:t num:nil
 #+OPTIONS: reveal_width:1200 reveal_height:800
 #+OPTIONS: toc:1
+#+OPTIONS: timestamp:nil
+#+OPTIONS: num:t
+#+OPTIONS: reveal_title_slide:"<div><h1>%t</h1><h2>%a</h2><h3>%e</h3></div>"
+#+OPTIONS: auto-id:t 
 #+MACRO: BO @@latex:\char91@@ @@html:&#91;@@
 #+REVEAL_MARGIN: 0.1
 #+REVEAL_MIN_SCALE: 0.5
@@ -21,7 +26,6 @@
 #+REVEAL_MATHJAX_URL: ../lib/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 #+REVEAL_EXTRA_CSS: ./inc/css/custom.css
 #+REVEAL_EXTRA_JS: { src : '../lib/jquery/jquery.min.js' }, { src : '../lib/php.js/dist/php.min.js' }, { src : './inc/js/console.js' }
-#+REVEAL_TITLE_SLIDE_TEMPLATE: <div id="title"><h1>%t</h1><h2>%a</h2><h3>%e</h3></div>
 #+REVEAL_PREAMBLE: <div id="phpjs-compiler"><textarea id="phpjs-code"></textarea><div id="phpjs-results"><div id="phpjs-result"></div><div id="phpjs-html-result"></div></div><button id="phpjs-clear">Clear</button><button id="phpjs-close">Close</button><button id="phpjs-run">Run</button></div>
 
 * Les bases en PHP
@@ -68,12 +72,12 @@
      - =/*= pour un commentaire sur plusieurs lignes =*/=
 
    #+NAME: phpjs-hello
-   #+BEGIN_SRC php
-<em><?php
-//* Comment hack
-echo 'Hello world';
-// */
-?></em>
+   #+BEGIN_SRC src-php
+   <em><?php
+   //* Comment hack
+   echo 'Hello world';
+   // */
+   ?></em>
    #+END_SRC
 
 ** Les types en PHP
@@ -97,13 +101,13 @@ echo 'Hello world';
      - TRUE (vrai)
      - FALSE (faux)
    #+NAME: phpjs-true
-   #+BEGIN_SRC php
+   #+BEGIN_SRC src-php
 <?php echo TRUE; ?> 
 <?php echo true; ?> 
 <?php var_dump(TRUE); ?> 
    #+END_SRC
    #+NAME: phpjs-false
-   #+BEGIN_SRC php
+   #+BEGIN_SRC src-php
 <?php echo FALSE; ?> 
 <?php echo false; ?> 
 <?php var_dump(FALSE); ?> 
@@ -125,7 +129,7 @@ echo 'Hello world';
 *** Les booléens (exemple)
 
    #+NAME: phpjs-boolean
-   #+BEGIN_SRC php
+   #+BEGIN_SRC src- src-phpphp
 <?php
   var_dump((bool) ""); 
   var_dump((bool) 1); 
@@ -199,7 +203,7 @@ echo 'Hello world';
 *** Les entiers et les réels (exemple)
 
    #+NAME: phpjs-int-float
-   #+BEGIN_SRC php
+   #+BEGIN_SRC src- src-phpphp
 <?php
 //*
   var_dump(42); 
@@ -244,11 +248,11 @@ echo 'Hello world';
     - =echo= et =print= ne sont pas de vraies fonctions (l'utilisation des parenthèses est facultative, mais recommandée)
     - la fonction [[http://php.net/manual/en/function.printf.php][=printf=]] affiche une chaîne de caractère formatée et
       retourne la longueur de la chaîne affichée
-      #+BEGIN_SRC php
+      #+BEGIN_SRC src- src-phpphp
       int printf (string $format [, mixed $args [, mixed $... ]] )
       #+END_SRC
     - la fonction [[http://php.net/manual/en/function.sprintf.php][=sprintf=]] retourne une chaîne formatée
-      #+BEGIN_SRC php
+      #+BEGIN_SRC src- src-phpphp
       string sprintf (string $format [, mixed $args [, mixed $... ]] )
       #+END_SRC
 
@@ -282,7 +286,7 @@ echo 'Hello world';
 *** Résumé (types simples)
 
     #+NAME: phpjs-string
-    #+BEGIN_SRC php
+    #+BEGIN_SRC src- src-phpphp
 <?php
   var_dump("0");
   var_dump("0" + 2);
@@ -313,7 +317,7 @@ echo 'Hello world';
 *** Les tableaux (exemple)
 
    #+NAME: phpjs-array
-   #+BEGIN_SRC php
+   #+BEGIN_SRC src- src-phpphp
 <?php
   var_dump(array("a","b","c"));
   var_dump(array("a" => "b", 3 => "c"));
@@ -370,7 +374,7 @@ echo 'Hello world';
    - La fonction =define= est utilisée
 
    #+NAME: phpjs-define
-   #+BEGIN_SRC php
+   #+BEGIN_SRC src- src-phpphp
 <?php
   define('HELLO', 3); 
   $a = 'hello'; 
@@ -409,7 +413,7 @@ echo 'Hello world';
    - L'opérateur = * = du C n'a pas de signification en PHP
 
    #+NAME: phpjs-assign
-   #+BEGIN_SRC php
+   #+BEGIN_SRC src- src-phpphp
 <?php
   $a = 3;
   $b = &$a;
@@ -439,7 +443,7 @@ echo 'Hello world';
    - =$a--= : retourne =$a= puis décrémente =$a=  de 1
 
    #+NAME: phpjs-incr-decr
-   #+BEGIN_SRC php
+   #+BEGIN_SRC src- src-phpphp
 <?php
   $a = 3;
   var_dump($a++); 
@@ -458,7 +462,7 @@ echo 'Hello world';
    - =expr2= n'est plus obligatoire depuis PHP 5.3
 
    #+NAME: phpjs-ternary
-   #+BEGIN_SRC php
+   #+BEGIN_SRC src- src-phpphp
 <?php
   var_dump('1' == 1 ? 'oui' : 'non'); 
   var_dump('1' === 1 ? 'oui' : 'non'); 
@@ -481,7 +485,7 @@ echo 'Hello world';
    - =[]= permet assigner une valeur à la fin d'un tableau
 
    #+NAME: phpjs-array-op
-   #+BEGIN_SRC php
+   #+BEGIN_SRC src- src-phpphp
 <?php
   $a = "hello ";
   $b = array($a);
@@ -499,13 +503,13 @@ echo 'Hello world';
 
 *** Les structures conditionnelles (if, else, elseif)
 
-   #+BEGIN_SRC php
+   #+BEGIN_SRC src- src-phpphp
    if (condition) {
      instructions; // si condition évaluée à true
    }
    #+END_SRC
 
-   #+BEGIN_SRC php
+   #+BEGIN_SRC src- src-phpphp
    if (condition) {
      instructions; // si condition évaluée à true
    } else {
@@ -513,7 +517,7 @@ echo 'Hello world';
    }
    #+END_SRC
 
-   #+BEGIN_SRC php
+   #+BEGIN_SRC src- src-phpphp
    if (condition1) {
      instructions; // si condition1 évaluée à true
    } elseif (condition2) {
@@ -525,7 +529,7 @@ echo 'Hello world';
 
 *** Les structures conditionnelles (switch)
 
-   #+BEGIN_SRC php
+   #+BEGIN_SRC src- src-phpphp
    switch ($i) {
     case 0:
       echo "i equals 0";
@@ -540,7 +544,7 @@ echo 'Hello world';
 
    - équivalent à :
 
-   #+BEGIN_SRC php
+   #+BEGIN_SRC src- src-phpphp
    // == pas ===
    if ($i == 0) {
      echo "i equals 0";
@@ -553,13 +557,13 @@ echo 'Hello world';
 
 *** Les structures répétitives (tant que)
 
-   #+BEGIN_SRC php
+   #+BEGIN_SRC src- src-phpphp
    while (condition) {
      instructions; // tant que condition est évaluée à true
    }
    #+END_SRC
 
-   #+BEGIN_SRC php
+   #+BEGIN_SRC src- src-phpphp
    do {
      instructions; // tant que condition est évaluée à true
    } while (condition);
@@ -567,7 +571,7 @@ echo 'Hello world';
 
 *** Les structures répétitives (pour)
 
-   #+BEGIN_SRC php
+   #+BEGIN_SRC src- src-phpphp
    for (expr1; expr2; expr3) { // expr1 est exécutée une seule fois au début de la boucle
      instructions;             // exécuté tant que expr2 est évaluée à true
                                // expr3 est exécutée à la fin de chaque itération
@@ -576,7 +580,7 @@ echo 'Hello world';
 
    - équivalent à :
 
-   #+BEGIN_SRC php
+   #+BEGIN_SRC src- src-phpphp
    expr1;
    while (expr2) {
      instructions;
@@ -588,13 +592,13 @@ echo 'Hello world';
 
    - =foreach= permet de parcourir les éléments d'un tableau
 
-   #+BEGIN_SRC php
+   #+BEGIN_SRC src- src-phpphp
    foreach (array as $value) {
      instructions;
    }
    #+END_SRC
 
-   #+BEGIN_SRC php
+   #+BEGIN_SRC src- src-phpphp
    foreach (array as $key => $value) {
      instructions;
    }
@@ -603,7 +607,7 @@ echo 'Hello world';
 *** Exemple général sur les structures
 
    #+NAME: phpjs-while-foreach-example
-   #+BEGIN_SRC php
+   #+BEGIN_SRC src- src-phpphp
 <?php
   $i = 0;
   $values = array();
@@ -627,7 +631,7 @@ echo 'Hello world';
    - sont exécutées par un appel
 
    #+NAME: phpjs-function
-   #+BEGIN_SRC php
+   #+BEGIN_SRC src- src-phpphp
 <?php
   function helloWorld() {
     echo "Hello world!";
@@ -643,7 +647,7 @@ echo 'Hello world';
     - Les arguments sont séparés par une virgule
 
    #+NAME: phpjs-function-args
-   #+BEGIN_SRC php
+   #+BEGIN_SRC src- src-phpphp
 <?php
   function helloWorld($hello, $world) {
     echo "$hello $world!<br>\n";
@@ -660,7 +664,7 @@ echo 'Hello world';
     - Les arguments qui ont une valeur par défaut sont définis en dernier
 
    #+NAME: phpjs-function-default-args
-   #+BEGIN_SRC php
+   #+BEGIN_SRC src- src-phpphp
 <?php
   function helloWorld($hello, $world = 'world') {
     echo "$hello $world!\n";
@@ -677,7 +681,7 @@ echo 'Hello world';
     - Si =return= est absent, =null= est retourné
 
    #+NAME: phpjs-function-return
-   #+BEGIN_SRC php
+   #+BEGIN_SRC src- src-phpphp
 <?php
   function helloWorld() {
     return "Hello world!";
@@ -692,7 +696,7 @@ echo 'Hello world';
     - Il faut utiliser un tableau
 
    #+NAME: phpjs-function-return-array
-   #+BEGIN_SRC php
+   #+BEGIN_SRC src- src-phpphp
 <?php
   function helloWorld() {
     $result = array();
@@ -710,7 +714,7 @@ echo 'Hello world';
 *** Arguments par référence
 
    #+NAME: phpjs-function-args-reference
-   #+BEGIN_SRC php
+   #+BEGIN_SRC src- src-phpphp
 <?php
   $hello = "Hello";
   $world = "World";
@@ -727,7 +731,7 @@ echo 'Hello world';
 *** Une fonction récursive
 
    #+NAME: phpjs-function-rec
-   #+BEGIN_SRC php
+   #+BEGIN_SRC src- src-phpphp
 <?php
   // affiche n fois la lettre 'o'
   function o($n) {
@@ -820,11 +824,11 @@ echo 'Hello world';
 
      - =htmlspecialchars()=
      - Pas toujours suffisant si l'affichage est déjà dans une balise html
-     #+BEGIN_SRC php
+     #+BEGIN_SRC html
 $data = "javascript:alert('hacked');";
 <img src="'.htmlspecialchars($data).'">
      #+END_SRC
-     #+BEGIN_SRC php
+     #+BEGIN_SRC html
 <img src="javascript:alert('hacked');">
      #+END_SRC
 
@@ -893,7 +897,7 @@ $data = "javascript:alert('hacked');";
    - Never Trust User Input
    - La validation html5 n'est pas suffisante
    - [[https://php.net/manual/en/function.filter-input.php][=filter_input=]], [[https://php.net/manual/en/function.filter-var.php][=filter_var=]]
-     #+BEGIN_SRC php
+     #+BEGIN_SRC src- src-phpphp
 filter_var($email, FILTER_VALIDATE_EMAIL)
      #+END_SRC
 
@@ -906,7 +910,7 @@ filter_var($email, FILTER_VALIDATE_EMAIL)
 
 ** [[http://php.net/manual/en/function.setcookie.php][setcookie()]]
 
-#+BEGIN_SRC php
+#+BEGIN_SRC src- src-phpphp
    setcookie($name, $value, $expire, $path, $domain, $secure, $httponly)
 #+END_SRC
  
@@ -920,7 +924,7 @@ filter_var($email, FILTER_VALIDATE_EMAIL)
 
 ** Affectation des cookies en PHP
 
-#+BEGIN_SRC php
+#+BEGIN_SRC src- src-phpphp
   setcookie('hello','world');
   setcookie('couleur', 'red', time()+86400, '/mon-compte/', www.monsite.com, TRUE);
 
@@ -936,7 +940,7 @@ filter_var($email, FILTER_VALIDATE_EMAIL)
      après un appel de setcookie, il faut qu'une requête ait lieu
      entre le client et le serveur.
 
-#+BEGIN_SRC php
+#+BEGIN_SRC src- src-phpphp
   $hello = $_COOKIE['hello'];
 
   foreach($_COOKIE['tableau'] as $key => $value) {
@@ -967,27 +971,27 @@ filter_var($email, FILTER_VALIDATE_EMAIL)
 
 ** Utilisation des sessions - 1
 
-#+INCLUDE: "./examples/session_login.php" src c
+#+INCLUDE: "./examples/session_login.php" src src
 
 ** Utilisation des sessions - 2
 
-#+INCLUDE: "./examples/session_form.php" src html
+#+INCLUDE: "./examples/session_form.php" src src
 
 ** Utilisation des sessions - 3
 
-#+INCLUDE: "./examples/session_menu.php" src html
+#+INCLUDE: "./examples/session_menu.php" src src
 
 ** Utilisation des sessions - 4
 
-#+INCLUDE: "./examples/session_info.php" src html
+#+INCLUDE: "./examples/session_info.php" src src
 
 ** Utilisation des sessions - 5
 
-#+INCLUDE: "./examples/session_public.php" src html
+#+INCLUDE: "./examples/session_public.php" src src
 
 ** Utilisation des sessions - 6
 
-#+INCLUDE: "./examples/session_protected.php" src html
+#+INCLUDE: "./examples/session_protected.php" src src
 
    [[./examples/session.php][exemple]]
 
@@ -1017,7 +1021,7 @@ filter_var($email, FILTER_VALIDATE_EMAIL)
    - =file_get_contents()= permet de lire le contenu d'un fichier
    - =file_put_contents()= permet d'écrire dans un fichier
 
-#+BEGIN_SRC php
+#+BEGIN_SRC src- src-phpphp
 <?php
   $file = 'file.txt';
   $content = '';
@@ -1035,18 +1039,18 @@ filter_var($email, FILTER_VALIDATE_EMAIL)
 ** Manipulation simple des fichiers
 
    - [[http://php.net/manual/en/function.readfile.php][readfile]] lit et affiche le contenu d'un fichier 
-     #+BEGIN_SRC php
+     #+BEGIN_SRC src- src-phpphp
      int readfile ( string $filename )
      #+END_SRC
    - [[http://php.net/manual/en/function.file.php][file]] lit et retourne sous forme de tableau un fichier
-     #+BEGIN_SRC php
+     #+BEGIN_SRC src- src-phpphp
      array file ( string $filename )
      #+END_SRC
      
 ** Manipulation avancée des fichiers
 
    -  [[http://php.net/manual/en/function.fopen.php][fopen]] ouvre un fichier
-     #+BEGIN_SRC php
+     #+BEGIN_SRC src- src-phpphp
      resource fopen ( string $filename , string $mode)
      #+END_SRC
    - =$mode= :
@@ -1060,52 +1064,52 @@ filter_var($email, FILTER_VALIDATE_EMAIL)
 ** Déplacement
 
    - [[http://php.net/manual/en/function.fseek.php][fseek]] déplace le pointeur à une position donnée
-     #+BEGIN_SRC php
+     #+BEGIN_SRC src- src-phpphp
      int fseek ( resource $handle , int $offset )
      #+END_SRC
    - [[http://php.net/manual/en/function.rewind.php][rewind]]  remet le pointeur au début
-     #+BEGIN_SRC php
+     #+BEGIN_SRC src- src-phpphp
      bool rewind ( resource $handle )
      #+END_SRC
    - [[http://php.net/manual/en/function.ftell.php][ftell]] retourne la position du pointeur
-     #+BEGIN_SRC php
+     #+BEGIN_SRC src- src-phpphp
      int ftell ( resource $handle )
      #+END_SRC
    - [[http://php.net/manual/en/function.feof.php][feof]] test la fin du fichier
-     #+BEGIN_SRC php
+     #+BEGIN_SRC src- src-phpphp
      bool feof ( resource $handle )
      #+END_SRC
 
 ** Lecture
 
    - [[http://php.net/manual/en/function.fread.php][fread]] lecture du fichier en mode binaire
-     #+BEGIN_SRC php
+     #+BEGIN_SRC src- src-phpphp
      string fread ( resource $handle , int $length )
      #+END_SRC
    - [[http://php.net/manual/en/function.fgets.php][fgets]] lecture de la ligne courante
-     #+BEGIN_SRC php
+     #+BEGIN_SRC src- src-phpphp
      string fgets ( resource $handle [, int $length ] )
      #+END_SRC
    - [[http://php.net/manual/en/function.fgetc.php][fgetc]] lecture du caractère courant
-     #+BEGIN_SRC php
+     #+BEGIN_SRC src- src-phpphp
      string fgetc ( resource $handle )
      #+END_SRC
 
 ** Écriture/Fermeture d'un fichier
 
    - [[http://php.net/manual/en/function.fwrite.php][fwrite]]/fputs écriture du fichier en mode binaire
-     #+BEGIN_SRC php
+     #+BEGIN_SRC src- src-phpphp
      int fwrite ( resource $handle , string $string [, int $length ] )
      #+END_SRC
    - [[http://php.net/manual/en/function.fclose.php][fclose]] fermeture du fichier
-     #+BEGIN_SRC php
+     #+BEGIN_SRC src- src-phpphp
      bool fclose ( resource $handle )
      #+END_SRC
 
 ** Vérrouillage d'un fichier
 
    -  [[http://php.net/manual/en/function.flock.php][flock]] vérrouille un fichier
-     #+BEGIN_SRC php
+     #+BEGIN_SRC src- src-phpphp
      bool flock ( resource $handle , int $operation )
      #+END_SRC
    - =$operation= :
@@ -1119,7 +1123,7 @@ filter_var($email, FILTER_VALIDATE_EMAIL)
 
 ** Exemple
 
-   #+BEGIN_SRC php
+   #+BEGIN_SRC src- src-phpphp
 <?php
 // Équivalent de file_get_contents
 $file = "file.txt";
@@ -1134,7 +1138,7 @@ if ($handle) {
 ** csv
 
    - [[http://php.net/manual/en/function.fgetcsv.php][fgetcsv]] retourne sous forme de tableau un fichier CSV
-     #+BEGIN_SRC php
+     #+BEGIN_SRC src- src-phpphp
      array fgetcsv ( resource $handle 
                      [, int $length = 0
                      [, string $delimiter = ","
@@ -1142,7 +1146,7 @@ if ($handle) {
                      [, string $escape = "\\" ]]]] )
      #+END_SRC
    - [[http://php.net/manual/en/function.fputcsv.php][fputcsv]] écrit une ligne CSV dans un fichier
-     #+BEGIN_SRC php
+     #+BEGIN_SRC src- src-phpphp
      int fputcsv ( resource $handle ,
                    array $fields
                    [, string $delimiter = ","
@@ -1152,38 +1156,38 @@ if ($handle) {
 ** Action sur les fichiers
 
    -  [[http://php.net/manual/en/function.copy.php][copy]] copie un fichier
-     #+BEGIN_SRC php
+     #+BEGIN_SRC src- src-phpphp
      bool copy ( string $source , string $dest )
      #+END_SRC
    -  [[http://php.net/manual/en/function.rename.php][rename]] renomme unfichier
-     #+BEGIN_SRC php
+     #+BEGIN_SRC src- src-phpphp
      bool rename ( string $oldname , string $newname )
      #+END_SRC
    -  [[http://php.net/manual/en/function.unlink.php][unlink]] supprime un fichier
-     #+BEGIN_SRC php
+     #+BEGIN_SRC src- src-phpphp
      bool unlink ( string $filename )
      #+END_SRC
 
 ** Information sur les fichiers
 
    - [[http://php.net/manual/en/function.filesize.php][filesize]] récupère la taille du fichier
-     #+BEGIN_SRC php
+     #+BEGIN_SRC src- src-phpphp
      int filesize ( string $filename )
      #+END_SRC
    - [[http://php.net/manual/en/function.fileatime.php][fileatime]] donne la date du dernier accès à un fichier
-     #+BEGIN_SRC php
+     #+BEGIN_SRC src- src-phpphp
      int fileatime ( string $filename )
      #+END_SRC
    - [[http://php.net/manual/en/function.filemtime.php][filemtime]] donne la date de dernière modification d'un fichier
-     #+BEGIN_SRC php
+     #+BEGIN_SRC src- src-phpphp
      int filemtime ( string $filename )
      #+END_SRC
    - [[http://php.net/manual/en/function.realpath.php][realpath]] retourne le chemin absolu d'un chemin
-     #+BEGIN_SRC php
+     #+BEGIN_SRC src- src-phpphp
      string realpath ( string $path )
      #+END_SRC
    - [[http://php.net/manual/en/function.basename.php][basename]] retourne le nom du fichier d'un chemin
-     #+BEGIN_SRC php
+     #+BEGIN_SRC src- src-phpphp
      string basename ( string $path [, string $suffix ] )
      #+END_SRC
 
@@ -1215,7 +1219,7 @@ if ($handle) {
 
 ** Exemple
 
-#+BEGIN_SRC php
+#+BEGIN_SRC src- src-phpphp
 <?php
   // mysqli
   $mysqli = new mysqli('example.com', 'user', 'password', 'database');
@@ -1235,11 +1239,11 @@ if ($handle) {
 
 ** PDO : créer une connexion
 
-#+INCLUDE: "./examples/pdo_exception.php" src php
+#+INCLUDE: "./examples/pdo_exception.php" src src
 
    [[./examples/pdo_exception.php][exemple]]
 
-#+INCLUDE: "./examples/pdo_try.php" src php
+#+INCLUDE: "./examples/pdo_try.php" src src
    
    [[./examples/pdo_try.php][exemple]]
 
@@ -1248,22 +1252,22 @@ if ($handle) {
    - Fermeture automatique à la fin du script
    - Mettre à null la variable qui gère la connexion
 
-#+INCLUDE: "./examples/pdo_close.php" src php
+#+INCLUDE: "./examples/pdo_close.php" src src
 
 ** PDO : exec et query
 
    - [[http://php.net/manual/en/pdo.exec.php][exec]] execute une requête SQL et retourne le nombre de lignes affectées
-     #+BEGIN_SRC php
+     #+BEGIN_SRC src- src-phpphp
      public int PDO::exec ( string $statement )
      #+END_SRC
    - [[http://php.net/manual/en/pdo.query.php][query]] execute une requête SQL et retourne un objet [[http://php.net/manual/fr/class.pdostatement.php][PDOStatement]]
-     #+BEGIN_SRC php
+     #+BEGIN_SRC src- src-phpphp
      public PDOStatement PDO::query ( string $statement )
      #+END_SRC
 
 ** PDO : gestion des erreurs
 
-#+INCLUDE: "./examples/pdo_error.php" src php
+#+INCLUDE: "./examples/pdo_error.php" src src
 
    [[./examples/pdo_error.php][exemple]]
 
@@ -1272,46 +1276,47 @@ if ($handle) {
    - Pose le plus de problème pour la généricité du code car très
      spécifique à la base utilisée
 
-#+INCLUDE: "./examples/pdo_create.php" src php
+#+INCLUDE: "./examples/pdo_create.php" src src
 
 ** PDO : insertion
 
-#+INCLUDE: "./examples/pdo_insert.php" src php
+#+INCLUDE: "./examples/pdo_insert.php" src src
    
    [[./examples/pdo_insert.php][exemple]]
 
 ** PDO : sélection
 
-#+INCLUDE: "./examples/pdo_select.php" src php
+#+INCLUDE: "./examples/pdo_select.php" src src
    
    [[./examples/pdo_select.php][exemple]]
 
 ** PDO : parcours des données
 
-#+INCLUDE: "./examples/pdo_select_fetch.php" src php
+#+INCLUDE: "./examples/pdo_select_fetch.php" src src
 
    [[./examples/pdo_select_fetch.php][exemple]]
 
 ** PDO : mise à jour
 
-#+INCLUDE: "./examples/pdo_update.php" src php
+#+INCLUDE: "./examples/pdo_update.php" src src
    
    [[./examples/pdo_update.php][exemple]]
 
 ** PDO : suppression
 
-#+INCLUDE: "./examples/pdo_delete.php" src php
+#+INCLUDE: "./examples/pdo_delete.php" src src
    
    [[./examples/pdo_delete.php][exemple]]
 
 ** PDO : préparation
 
-#+INCLUDE: "./examples/pdo_prepare.php" src php
+#+INCLUDE: "./examples/pdo_prepare.php" src src
    
    [[./examples/pdo_prepare.php][exemple]]
 
 ** PDO : fermeture du curseur
 
-#+INCLUDE: "./examples/pdo_close_cursor.php" src php
+#+INCLUDE: "./examples/pdo_close_cursor.php" src src
    
    [[./examples/pdo_close_cursor.php][exemple]]
+   
