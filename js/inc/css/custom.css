@@ -1,0 +1,168 @@
+#title{
+    transform: translateY(50%);
+}
+
+.reveal img{
+    vertical-align: middle;
+}
+
+.reveal section img {
+    border: none;
+    margin: 0;
+    box-shadow: none;
+    background:none;
+}
+
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+    margin-bottom: 42px;
+}
+
+#reveal-styles {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#phpjs-compiler {
+    height: 100%;
+    text-align: center;
+    display: none;
+}
+
+#phpjs-code {
+    border: 0 none;
+    display: inline-block;
+    height: 84%;
+    padding: 0;
+    width: 50%;
+    font-size: 2em;
+}
+
+#phpjs-results {
+    display: inline-block;
+    height: 84%;
+    vertical-align: top;
+    width: 50%;
+    background-color: white;
+}
+
+#phpjs-result { display:none;}
+
+#phpjs-html-result {
+    border: 1px solid;
+    box-sizing: border-box;
+    height: 100%;
+    text-align: left;
+    font-size: 2em;
+    overflow: auto;
+}
+#phpjs-html-result > iframe {
+  height: calc(100% - 6px);
+  width: 100%;
+  border: none;
+}
+
+pre{
+    position: relative;
+}
+pre > button {
+    height: 42px;
+    margin-top: -21px;
+    position: absolute;
+    right: -65px;
+    top: 50%;
+    width: 50px;
+}
+
+colgroup {
+    border: none;
+}
+
+.reveal pre{
+    width: auto;
+}
+
+.reveal pre.src-center{
+    text-align: center;
+}
+
+section table tr:nth-child(odd){
+    background: rgba(0, 255, 0, 0.06);
+}
+section table tr:nth-child(even){
+    background: rgba(0, 0, 255, 0.06);
+}
+
+/* http://emacs-fu.blogspot.fr/2010/05/using-zenburn-for-org-mode-generated.html */
+
+pre.fragment, pre.src {
+  background: #3f3f3f;
+  color: #dcdccc; 
+}
+
+.org-preprocessor, .org-css-selector {
+   color: #8cd0d3;
+}
+
+.org-variable-name {
+   color: #f0dfaf;
+}
+
+.org-string, .org-css-property {
+   color: #cc9393;
+}
+
+.org-type {
+   color: #dfdfbf;
+   font-weight: bold;
+}
+
+.org-function-name {
+   color: #8cd0d3;
+   font-weight: bold;
+}
+
+.org-keyword {
+   color: #f0dfaf;
+   font-weight: bold;
+}
+
+.org-comment {
+   color: #7f9f7f;
+}
+
+.org-doc {
+   color: #afd8af;
+}
+
+.org-comment-delimiter {
+   color: #708070;
+}
+
+.org-constant {
+   color: #dca3ac;
+   font-weight:bold;
+}
+
+.org-builtin {
+   color: #7f9f7f;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.reveal pre.src-text-center {
+    text-align: center;
+    font-size: 1.2em;
+}
+
+section table > thead > tr:nth-child(2n),
+section table > thead > tr:nth-child(2n+1) {
+  background: none;
+}
+
+.reveal table {
+  margin: 0 auto;
+}

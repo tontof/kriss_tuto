@@ -1,0 +1,1 @@
+document.getElementById('button-file').onclick=function(){alert('pop-up-file');}
