@@ -124,7 +124,7 @@
     - JS n'est pas implémenté de la même façon dans tous les navigateurs
     - En cas d'erreur le site peut devenir inaccessible
     - L'utilisateur peut empêcher l'exécution de JS
-
+    - Le contenu généré par JS est souvent invisible pour les moteurs de recherche
 
     #+ATTR_REVEAL: :frag (roll-in)
     #+ATTR_HTML: :style text-align:center; color:red; width: 80%; margin: 6vmin auto;
@@ -475,7 +475,7 @@
 
    Les propriétés et méthodes de l'objet [[https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Math][=Math=]] sont statiques. 
     #+ATTR_REVEAL: :frag (roll-in)
-    - =abs(x)=, =acos(x)=, =asin(x)=, =atan(x)=, =cos(x)=, =exp(x)=, =ln(x)=, =log(x)=, =sin(x)=, =sqrt(x)=, =tan(x)= : applique la fonction appropriée à x
+    - =abs(x)=, =acos(x)=, =asin(x)=, =atan(x)=, =cos(x)=, =exp(x)=, =log(x)=, =sin(x)=, =sqrt(x)=, =tan(x)= : applique la fonction appropriée à x
     - =round(x)= : renvoie l'arrondi d'un nombre
     - =ceil(x)= : renvoie le plus petit entier supérieur ou égal à x
     - =floor(x)= : renvoie le plus grand entier inférieur ou égal à x
