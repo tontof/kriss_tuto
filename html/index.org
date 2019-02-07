@@ -302,15 +302,16 @@
         <!DOCTYPE html>
       #+END_SRC
     - HTML 4.01 Strict
-      #+BEGIN_SRC text
-        <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+      #+BEGIN_SRC text-center
+        <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+        "http://www.w3.org/TR/html4/strict.dtd">
       #+END_SRC
     - HTML 4.01 Transitional
     - XHTML 1.0 Strict
     - XHTML 1.0 Transitional
-      #+BEGIN_SRC text
-                    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-                              "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+      #+BEGIN_SRC text-center
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
       #+END_SRC
 
 *** La balise <html>
@@ -376,25 +377,25 @@
 
      #+NAME: phpjs-titre
      #+BEGIN_SRC html
-       <h1>Titre de niveau H1</h1>
-       <h2>Titre de niveau H2</h2>
-       <h3>Titre de niveau H3</h3>
-       <h4>Titre de niveau H4</h4>
-       <h5>Titre de niveau H5</h5>
-       <h6>Titre de niveau H6</h6>
+       &lt;h1>Titre de niveau H1&lt;/h1>
+       &lt;h2>Titre de niveau H2&lt;/h2>
+       &lt;h3>Titre de niveau H3&lt;/h3>
+       &lt;h4>Titre de niveau H4&lt;/h4>
+       &lt;h5>Titre de niveau H5&lt;/h5>
+       &lt;h6>Titre de niveau H6&lt;/h6>
      #+END_SRC
 
 ** Les balises pour le texte
 
    #+NAME: phpjs-text
    #+BEGIN_SRC html
-     <p>Paragraphe</p>
-     <p>
-       <em>Emphase par défaut en italique</em>
-       <strong>Accentuation par défaut en gras</strong>
-       <br>Saut de ligne
-       <hr>ligne horizontale pour séparer du texte
-     </p>
+     &lt;p>Paragraphe&lt;/p>
+     &lt;p>
+       &lt;em>Emphase par défaut en italique&lt;/em>
+       &lt;strong>Accentuation par défaut en gras&lt;/strong>
+       &lt;br>Saut de ligne
+       &lt;hr>ligne horizontale pour séparer du texte
+     &lt;/p>
    #+END_SRC
 
    - D'autres balises peuvent être utilisées
@@ -419,18 +420,18 @@
 
      #+NAME: phpjs-img
      #+BEGIN_SRC html
-     <img src="inc/img/html5.png" alt="logo html5" height="120" width="120">
-     <img src="inc/img/html.png" alt="logo html">
+     &lt;img src="inc/img/html5.png" alt="logo html5" height="120" width="120">
+     &lt;img src="inc/img/html.png" alt="logo html">
      #+END_SRC
 
 ** Les balises pour les figures
 
      #+NAME: phpjs-figure
      #+BEGIN_SRC html
-     <figure>
-       <img src="inc/img/html5.png" alt="logo html5">
-       <figcaption>Titre de l'image</figcaption>
-     </figure> 
+     &lt;figure>
+       &lt;img src="inc/img/html5.png" alt="logo html5">
+       &lt;figcaption>Titre de l'image&lt;/figcaption>
+     &lt;/figure> 
      #+END_SRC
 
 ** Format des images (JPEG)
@@ -468,11 +469,11 @@
    - l'attribut =target= permet d'ouvrir le lien dans un autre onglet
      #+NAME: phpjs-link
      #+BEGIN_SRC html
-     <p>
-       <a href="#html-link" target="_blank">Un élément dans la même page</a><br>
-       <a href="./index.html?print-pdf" target="_blank">Une page du même site</a><br>
-       <a href="https://duckduckgo.com" target="_blank">Une page d'un autre site</a><br>
-     </p>
+     &lt;p>
+       &lt;a href="#html-link" target="_blank">Un élément dans la même page&lt;/a>&lt;br>
+       &lt;a href="./index.html?print-pdf" target="_blank">Une page du même site&lt;/a>&lt;br>
+       &lt;a href="https://duckduckgo.com" target="_blank">Une page d'un autre site&lt;/a>&lt;br>
+     &lt;/p>
      #+END_SRC
 
 ** Les balises pour les listes
@@ -480,50 +481,50 @@
    - Les listes ordonnées/non-ordonnées
      #+NAME: phpjs-list
      #+BEGIN_SRC html
-       <ol><!-- ordererd list -->
-         <li>élément 1</li>
-         <li>élément 2</li>
-       </ol>
-       <ul><!-- unordererd list -->
-         <li>élément 1</li>
-         <li>élément 2</li>
-       </ul>
+       &lt;ol>&lt;!-- ordererd list -->
+         &lt;li>élément 1&lt;/li>
+         &lt;li>élément 2&lt;/li>
+       &lt;/ol>
+       &lt;ul>&lt;!-- unordererd list -->
+         &lt;li>élément 1&lt;/li>
+         &lt;li>élément 2&lt;/li>
+       &lt;/ul>
      #+END_SRC
 
    - Les listes de définitions
      #+NAME: phpjs-dl
      #+BEGIN_SRC html
-       <dl><!-- definition list -->
-         <dt>terme 1</dt>
-         <dd>définition 1</dd>
-         <dt>terme 2</dt>
-         <dd>définition 2</dd>
-       </dl>
+       &lt;dl>&lt;!-- definition list -->
+         &lt;dt>terme 1&lt;/dt>
+         &lt;dd>définition 1&lt;/dd>
+         &lt;dt>terme 2&lt;/dt>
+         &lt;dd>définition 2&lt;/dd>
+       &lt;/dl>
      #+END_SRC
 
 ** Les listes imbriquées
 
      #+NAME: phpjs-list-list
      #+BEGIN_SRC html
-       <ul>
-         <li>élément 1</li>
-         <li>élément 2
-           <ul>
-             <li>élément 2.1
-               <ul>
-                 <li>élément 2.1.1</li>
-               </ul>
-             </li>
-             <li>élément 2.2</li>
-           </ul>
-         </li>
-         <li>élément 3
-           <ol>
-             <li>élément 3.1</li>
-             <li>élément 3.2</li>
-           </ol>
-         </li>
-       </ul>
+       &lt;ul>
+         &lt;li>élément 1&lt;/li>
+         &lt;li>élément 2
+           &lt;ul>
+             &lt;li>élément 2.1
+               &lt;ul>
+                 &lt;li>élément 2.1.1&lt;/li>
+               &lt;/ul>
+             &lt;/li>
+             &lt;li>élément 2.2&lt;/li>
+           &lt;/ul>
+         &lt;/li>
+         &lt;li>élément 3
+           &lt;ol>
+             &lt;li>élément 3.1&lt;/li>
+             &lt;li>élément 3.2&lt;/li>
+           &lt;/ol>
+         &lt;/li>
+       &lt;/ul>
      #+END_SRC
 
 ** Les balises pour les tableaux
@@ -542,18 +543,18 @@
 
    #+NAME: phpjs-table
    #+BEGIN_SRC html
-<table>
-  <caption>Les chiffres</caption>
-  <tr>
-    <th>A</th><th>B</th><th>C</th><th>D</th>
-  </tr>
-  <tr>
-    <td>1</td><td>2</td><td>3</td><td>4</td>
-  </tr>
-  <tr>
-    <td>5</td><td>6</td><td>7</td><td>8</td>
-  </tr>
-</table>
+&lt;table>
+  &lt;caption>Les chiffres&lt;/caption>
+  &lt;tr>
+    &lt;th>A&lt;/th>&lt;th>B&lt;/th>&lt;th>C&lt;/th>&lt;th>D&lt;/th>
+  &lt;/tr>
+  &lt;tr>
+    &lt;td>1&lt;/td>&lt;td>2&lt;/td>&lt;td>3&lt;/td>&lt;td>4&lt;/td>
+  &lt;/tr>
+  &lt;tr>
+    &lt;td>5&lt;/td>&lt;td>6&lt;/td>&lt;td>7&lt;/td>&lt;td>8&lt;/td>
+  &lt;/tr>
+&lt;/table>
    #+END_SRC
 
 ** Les attributs pour les tableaux
@@ -568,20 +569,20 @@
 
    #+NAME: phpjs-table
    #+BEGIN_SRC html
-<table>
-  <caption>Les chiffres</caption>
-  <tr>
-    <th>A</th><th>B</th><th>C</th><th>D</th>
-  </tr>
-  <tr>
-    <td rowspan="2">1</td><td colspan="3">2</td>
-  </tr>
-  <tr>
-    <td>3</td><td>4</td><td>5</td>
-  </tr>
-</table>
-<!--
-<style>table, td, th { border: 1px solid black; }</style>
+&lt;table>
+  &lt;caption>Les chiffres&lt;/caption>
+  &lt;tr>
+    &lt;th>A&lt;/th>&lt;th>B&lt;/th>&lt;th>C&lt;/th>&lt;th>D&lt;/th>
+  &lt;/tr>
+  &lt;tr>
+    &lt;td rowspan="2">1&lt;/td>&lt;td colspan="3">2&lt;/td>
+  &lt;/tr>
+  &lt;tr>
+    &lt;td>3&lt;/td>&lt;td>4&lt;/td>&lt;td>5&lt;/td>
+  &lt;/tr>
+&lt;/table>
+&lt;!--
+&lt;style>table, td, th { border: 1px solid black; }&lt;/style>
 -->
    #+END_SRC
 
@@ -600,13 +601,13 @@
    #+NAME: phpjs-div-span
    #+BEGIN_SRC html
      texte
-     <div id="id" class="class">
+     &lt;div id="id" class="class">
        texte
-       <span class="class" title="title">
+       &lt;span class="class" title="title">
          texte
-       </span>
+       &lt;/span>
        texte
-     </div>
+     &lt;/div>
      texte
    #+END_SRC
 
@@ -660,13 +661,13 @@
 
    #+NAME: phpjs-style
    #+BEGIN_SRC html
-     <head>
-       <style>p {color: red;}</style>
-     </head>
-     <body>
-       <p>paragraphe</p>
-       <p style="color: blue;">paragraphe</p>
-     </body>
+     &lt;head>
+       &lt;style>p {color: red;}&lt;/style>
+     &lt;/head>
+     &lt;body>
+       &lt;p>paragraphe&lt;/p>
+       &lt;p style="color: blue;">paragraphe&lt;/p>
+     &lt;/body>
    #+END_SRC
 
 *** Mise en place du CSS (Méthode conseillée)
@@ -675,28 +676,29 @@
      - balise =<link>= dans =<head>=
 
    #+BEGIN_SRC html
-     <head>
-       <link rel="stylesheet" type="text/css" href="style.css">
-     </head>
+     &lt;head>
+       &lt;link rel="stylesheet" type="text/css" href="style.css">
+       &lt;link rel="stylesheet" href="style.css">
+     &lt;/head>
    #+END_SRC
 
 *** Exemple
 
    #+NAME: phpjs-style
    #+BEGIN_SRC html
-     <head>
-       <style>
+     &lt;head>
+       &lt;style>
          /* * { color: red; } */
          p { background-color: green; }
          #unique { text-align: center; }
          .multiple { color: white; }
-       </style>
-     </head>
-     <body>
-       <h1>titre</h1>
-       <p class="multiple">paragraphe</p>
-       <p id="unique" class="multiple">paragraphe</p>
-     </body>
+       &lt;/style>
+     &lt;/head>
+     &lt;body>
+       &lt;h1>titre&lt;/h1>
+       &lt;p class="multiple">paragraphe&lt;/p>
+       &lt;p id="unique" class="multiple">paragraphe&lt;/p>
+     &lt;/body>
    #+END_SRC
 
 ** La couleur
@@ -741,18 +743,18 @@
 
    #+NAME: phpjs-color-simple
    #+BEGIN_SRC html
-     <head>
-       <style>
+     &lt;head>
+       &lt;style>
          .vert-green { color: green; }
          .vert-lime { color: #0f0; }
          .vert-clair { color: #aaffaa; }
-       </style>
-     </head>
-     <body>
-       <p class="vert-green">vert</p>
-       <p class="vert-lime">vert</p>
-       <p class="vert-clair">vert</p>
-     </body>
+       &lt;/style>
+     &lt;/head>
+     &lt;body>
+       &lt;p class="vert-green">vert&lt;/p>
+       &lt;p class="vert-lime">vert&lt;/p>
+       &lt;p class="vert-clair">vert&lt;/p>
+     &lt;/body>
    #+END_SRC
 
 *** Les fonctions rgb, hsl
@@ -771,22 +773,22 @@
 
    #+NAME: phpjs-color-complete
    #+BEGIN_SRC html
-     <head>
-       <style>
+     &lt;head>
+       &lt;style>
          .vert-rgb { color: rgb(0, 255, 0); }
          .vert-hsl { color: hsl(120, 100%, 50%); }
          .vert-rgb-clair { color: rgba(0, 255, 0, 0.24); }
          .vert-hsl-clair { color: hsla(120, 100%, 50%, 0.24); }
          .vert-opacity { color: #0f0; opacity: 0.24; }
-       </style>
-     </head>
-     <body>
-       <p class="vert-rgb">rgb</p>
-       <p class="vert-hsl">hsl</p>
-       <p class="vert-rgb-clair">rgba</p>
-       <p class="vert-hsl-clair">hsla</p>
-       <p class="vert-opacity">opacity</p>
-     </body>
+       &lt;/style>
+     &lt;/head>
+     &lt;body>
+       &lt;p class="vert-rgb">rgb&lt;/p>
+       &lt;p class="vert-hsl">hsl&lt;/p>
+       &lt;p class="vert-rgb-clair">rgba&lt;/p>
+       &lt;p class="vert-hsl-clair">hsla&lt;/p>
+       &lt;p class="vert-opacity">opacity&lt;/p>
+     &lt;/body>
    #+END_SRC
 
 ** Les propriétés CSS
@@ -795,8 +797,8 @@
 
    #+NAME: phpjs-color-background
    #+BEGIN_SRC html
-     <head>
-       <style>
+     &lt;head>
+       &lt;style>
          .background-detail {
            background-color: lime;
            background-image: url("inc/img/css3.png");
@@ -807,12 +809,12 @@
          .background-shorthand {
            background: lime url("inc/img/css3.png") repeat scroll center center;
          }
-       </style>
-     </head>
-     <body>
-       <p class="background-detail">les<br> propriétés<br> background<br> en<br> détails</p>
-       <p class="background-shorthand">Une<br> seule<br> propriété<br> background<br> pour tout</p>
-     </body>
+       &lt;/style>
+     &lt;/head>
+     &lt;body>
+       &lt;p class="background-detail">les&lt;br> propriétés&lt;br> background&lt;br> en&lt;br> détails&lt;/p>
+       &lt;p class="background-shorthand">Une&lt;br> seule&lt;br> propriété&lt;br> background&lt;br> pour tout&lt;/p>
+     &lt;/body>
    #+END_SRC
 
 *** L'affichage en boîte
@@ -825,8 +827,8 @@
 
    #+NAME: phpjs-margin
    #+BEGIN_SRC html
-     <head>
-       <style>
+     &lt;head>
+       &lt;style>
          .margin-detail {
            margin-top: 6px; /* auto, % */
            margin-right: 24px;
@@ -839,20 +841,20 @@
            /* 2 values : margin: top/bottom right/left; */
            /* 1 value : margin: top/right/bottom/left; */
          }
-       </style>
-     </head>
-     <body>
-       <p class="margin-detail">les<br> propriétés<br> margin<br> en<br> détails</p>
-       <p class="margin-shorthand">Une<br> seule<br> propriété<br> margin<br> pour tout</p>
-     </body>
+       &lt;/style>
+     &lt;/head>
+     &lt;body>
+       &lt;p class="margin-detail">les&lt;br> propriétés&lt;br> margin&lt;br> en&lt;br> détails&lt;/p>
+       &lt;p class="margin-shorthand">Une&lt;br> seule&lt;br> propriété&lt;br> margin&lt;br> pour tout&lt;/p>
+     &lt;/body>
    #+END_SRC
 
 *** La propriété =padding=
 
    #+NAME: phpjs-padding
    #+BEGIN_SRC html
-     <head>
-       <style>
+     &lt;head>
+       &lt;style>
          .padding-detail {
            padding-top: 6px; /* auto, % */
            padding-right: 24px;
@@ -865,20 +867,20 @@
            /* 2 values : padding: top/bottom right/left; */
            /* 1 value : padding: top/right/bottom/left; */
          }
-       </style>
-     </head>
-     <body>
-       <p class="padding-detail">les<br> propriétés<br> padding<br> en<br> détails</p>
-       <p class="padding-shorthand">Une<br> seule<br> propriété<br> padding<br> pour tout</p>
-     </body>
+       &lt;/style>
+     &lt;/head>
+     &lt;body>
+       &lt;p class="padding-detail">les&lt;br> propriétés&lt;br> padding&lt;br> en&lt;br> détails&lt;/p>
+       &lt;p class="padding-shorthand">Une&lt;br> seule&lt;br> propriété&lt;br> padding&lt;br> pour tout&lt;/p>
+     &lt;/body>
    #+END_SRC
 
 *** La propriété =border-style=
 
    #+NAME: phpjs-border-style
    #+BEGIN_SRC html
-     <head>
-       <style>
+     &lt;head>
+       &lt;style>
          .border-style-detail {
            border-top-style: solid;
            border-right-style: dotted;
@@ -889,20 +891,20 @@
            border-style: solid dotted double dashed;
            /* 3, 2 et 1 valeurs cf margin */
          }
-       </style>
-     </head>
-     <body>
-       <p class="border-style-detail">les<br> propriétés<br> border-style<br> en<br> détails</p>
-       <p class="border-style-shorthand">Une<br> seule<br> propriété<br> border-style<br> pour tout</p>
-     </body>
+       &lt;/style>
+     &lt;/head>
+     &lt;body>
+       &lt;p class="border-style-detail">les&lt;br> propriétés&lt;br> border-style&lt;br> en&lt;br> détails&lt;/p>
+       &lt;p class="border-style-shorthand">Une&lt;br> seule&lt;br> propriété&lt;br> border-style&lt;br> pour tout&lt;/p>
+     &lt;/body>
    #+END_SRC
 
 *** La propriété =border-width=
 
    #+NAME: phpjs-border-width
    #+BEGIN_SRC html
-     <head>
-       <style>
+     &lt;head>
+       &lt;style>
          .border-width-detail {
            border-style: solid;
            border-top-width: 1px;
@@ -915,20 +917,20 @@
            border-width: 1px 2px 3px 4px;
            /* 3, 2 et 1 valeurs cf margin */
          }
-       </style>
-     </head>
-     <body>
-       <p class="border-width-detail">les<br> propriétés<br> border-width<br> en<br> détails</p>
-       <p class="border-width-shorthand">Une<br> seule<br> propriété<br> border-width<br> pour tout</p>
-     </body>
+       &lt;/style>
+     &lt;/head>
+     &lt;body>
+       &lt;p class="border-width-detail">les&lt;br> propriétés&lt;br> border-width&lt;br> en&lt;br> détails&lt;/p>
+       &lt;p class="border-width-shorthand">Une&lt;br> seule&lt;br> propriété&lt;br> border-width&lt;br> pour tout&lt;/p>
+     &lt;/body>
    #+END_SRC
 
 *** La propriété =border-color=
 
    #+NAME: phpjs-border-color
    #+BEGIN_SRC html
-     <head>
-       <style>
+     &lt;head>
+       &lt;style>
          .border-color-detail {
            border-style: solid; border-width: 3px;
            border-top-color: black;
@@ -941,20 +943,20 @@
            border-color: black red blue green;
            /* 3, 2 et 1 valeurs cf margin */
          }
-       </style>
-     </head>
-     <body>
-       <p class="border-color-detail">les<br> propriétés<br> border-color<br> en<br> détails</p>
-       <p class="border-color-shorthand">Une<br> seule<br> propriété<br> border-color<br> pour tout</p>
-     </body>
+       &lt;/style>
+     &lt;/head>
+     &lt;body>
+       &lt;p class="border-color-detail">les&lt;br> propriétés&lt;br> border-color&lt;br> en&lt;br> détails&lt;/p>
+       &lt;p class="border-color-shorthand">Une&lt;br> seule&lt;br> propriété&lt;br> border-color&lt;br> pour tout&lt;/p>
+     &lt;/body>
    #+END_SRC
 
 *** La propriété =border=
 
    #+NAME: phpjs-border
    #+BEGIN_SRC html
-     <head>
-       <style>
+     &lt;head>
+       &lt;style>
          .border-detail {
            border-width: 1px;
            border-style: solid;
@@ -963,34 +965,34 @@
          .border-shorthand {
            border: 1px solid black;
          }
-       </style>
-     </head>
-     <body>
-       <p class="border-detail">les<br> propriétés<br> border<br> en<br> détails</p>
-       <p class="border-shorthand">Une<br> seule<br> propriété<br> border<br> pour tout</p>
-     </body>
+       &lt;/style>
+     &lt;/head>
+     &lt;body>
+       &lt;p class="border-detail">les&lt;br> propriétés&lt;br> border&lt;br> en&lt;br> détails&lt;/p>
+       &lt;p class="border-shorthand">Une&lt;br> seule&lt;br> propriété&lt;br> border&lt;br> pour tout&lt;/p>
+     &lt;/body>
    #+END_SRC
 
 *** Les dimensions en CSS
 
    #+NAME: phpjs-dimension
    #+BEGIN_SRC html
-     <head>
-       <style>
+     &lt;head>
+       &lt;style>
          .dimension {
            width: auto; /* px, % */
            height: auto; /* px, % */
-           min-width: none; /* px, % */
+           min-width: auto; /* px, % */
            max-width: none; /* px, % */
-           min-height: none; /* px, % */
+           min-height: auto; /* px, % */
            max-height: none; /* px, % */
            overflow: visible; /* hidden, scroll, auto */
          }
-       </style>
-     </head>
-     <body>
-       <p class="dimension">les<br> propriétés<br> des<br> dimensions</p>
-     </body>
+       &lt;/style>
+     &lt;/head>
+     &lt;body>
+       &lt;p class="dimension">les&lt;br> propriétés&lt;br> des&lt;br> dimensions&lt;/p>
+     &lt;/body>
    #+END_SRC
 
 *** La propriété =display=
@@ -1012,8 +1014,8 @@
 
    #+NAME: phpjs-position
    #+BEGIN_SRC html
-     <head>
-       <style>
+     &lt;head>
+       &lt;style>
          .position {
            position: static; /* relative, fixed, absolute */
            top: auto; /* px, % */
@@ -1021,19 +1023,19 @@
            bottom: auto;
            right: auto;
          }
-       </style>
-     </head>
-     <body>
-       <p class="position">les<br> propriétés<br> des<br> positions</p>
-     </body>
+       &lt;/style>
+     &lt;/head>
+     &lt;body>
+       &lt;p class="position">les&lt;br> propriétés&lt;br> des&lt;br> positions&lt;/p>
+     &lt;/body>
    #+END_SRC
     
 *** La propriété =float=
 
    #+NAME: phpjs-float
    #+BEGIN_SRC html
-     <head>
-       <style>
+     &lt;head>
+       &lt;style>
          .left {
            float: left;
          }
@@ -1041,20 +1043,20 @@
            float: right;
            /* clear: both; /* left, right */
          }
-       </style>
-     </head>
-     <body>
-       <p class="left">float left</p>
-       <p class="right">float right</p>
-     </body>
+       &lt;/style>
+     &lt;/head>
+     &lt;body>
+       &lt;p class="left">float left&lt;/p>
+       &lt;p class="right">float right&lt;/p>
+     &lt;/body>
    #+END_SRC
 
 *** Les propriétés du texte
 
    #+NAME: phpjs-text
    #+BEGIN_SRC html
-     <head>
-       <style>
+     &lt;head>
+       &lt;style>
          .text {
            text-align: center; /* left, right, justify */
            text-decoration: underline; /* overline, line-through */
@@ -1064,19 +1066,19 @@
            word-spacing: 10px;
            line-height: 140%;
          }
-       </style>
-     </head>
-     <body>
-       <p class="text">les<br> propriétés du<br> texte</p>
-     </body>
+       &lt;/style>
+     &lt;/head>
+     &lt;body>
+       &lt;p class="text">les&lt;br> propriétés du&lt;br> texte&lt;/p>
+     &lt;/body>
    #+END_SRC
 
 *** Les propriétés de polices
 
    #+NAME: phpjs-font
    #+BEGIN_SRC html
-     <head>
-       <style>
+     &lt;head>
+       &lt;style>
          .font-detail {
            font-style: normal; /* italic, oblique */
            font-variant: normal; /* small-caps */
@@ -1089,20 +1091,20 @@
            font: normal normal normal medium "Times New Roman", Georgia, serif;
            /* font: medium "Times New Roman", Georgia, serif; */
          }
-       </style>
-     </head>
-     <body>
-       <p class="font-detail">les<br> propriétés<br> d'une<br> police<br> en détails</p>
-       <p class="font-shorthand">Une<br> seule<br> propriété<br> font<br> pour tout</p>
-     </body>
+       &lt;/style>
+     &lt;/head>
+     &lt;body>
+       &lt;p class="font-detail">les&lt;br> propriétés&lt;br> d'une&lt;br> police&lt;br> en détails&lt;/p>
+       &lt;p class="font-shorthand">Une&lt;br> seule&lt;br> propriété&lt;br> font&lt;br> pour tout&lt;/p>
+     &lt;/body>
    #+END_SRC
 
 *** Les propriétés de tableaux
 
    #+NAME: phpjs-table
    #+BEGIN_SRC html
-     <head>
-       <style>
+     &lt;head>
+       &lt;style>
          table, td { border: 1px solid black; }
          .table {
            border-collapse: separate; /* collapse */
@@ -1110,22 +1112,22 @@
            /* 2 values : horizontal, vertical spacing */
            /* 1 value : horizontal/vertical spacing */
          }
-       </style>
-     </head>
-     <body>
-       <table class="table">
-         <tr><td>cellule</td><td>cellule</td></tr>
-         <tr><td>cellule</td><td>cellule</td></tr>
-       </table>
-     </body>
+       &lt;/style>
+     &lt;/head>
+     &lt;body>
+       &lt;table class="table">
+         &lt;tr>&lt;td>cellule&lt;/td>&lt;td>cellule&lt;/td>&lt;/tr>
+         &lt;tr>&lt;td>cellule&lt;/td>&lt;td>cellule&lt;/td>&lt;/tr>
+       &lt;/table>
+     &lt;/body>
    #+END_SRC
 
 *** Les propriétés des listes
 
    #+NAME: phpjs-list-style
    #+BEGIN_SRC html
-     <head>
-       <style>
+     &lt;head>
+       &lt;style>
          .list-style-detail {
            list-style-type: circle; /* square, upper-roman, lower-alpha */
            list-style-position: inside; /* outside */
@@ -1134,12 +1136,12 @@
          .list-style-shorthand {
            list-style: circle inside url('inc/img/css3.png');
          }
-       </style>
-     </head>
-     <body>
-       <ul class="list-style-detail"><li>élément 1</li><li>élément 2</li><li>élément 3</li></ul>
-       <ul class="list-style-shorthand"><li>élément 1</li><li>élément 2</li><li>élément 3</li></ul>
-     </body>
+       &lt;/style>
+     &lt;/head>
+     &lt;body>
+       &lt;ul class="list-style-detail">&lt;li>élément 1&lt;/li>&lt;li>élément 2&lt;/li>&lt;li>élément 3&lt;/li>&lt;/ul>
+       &lt;ul class="list-style-shorthand">&lt;li>élément 1&lt;/li>&lt;li>élément 2&lt;/li>&lt;li>élément 3&lt;/li>&lt;/ul>
+     &lt;/body>
    #+END_SRC
 
 
@@ -1222,17 +1224,17 @@
 
    #+NAME: phpjs-list-style
    #+BEGIN_SRC html
-     <form>
-       <label>default : <input name="default" value="value" placeholder="placeholder"></label><br>
-       <label>text : <input name="text" type="text"></label><br>
-       <label>password : <input name="password" type="password"></label><br>
-       <label>submit : <input name="submit" type="submit" value="submit"></label><br>
-       <label>button : <input name="button" type="button" value="button"></label><br>
-       <label>checkbox : <input name="checkbox[]" type="checkbox" value="checkbox1"></label><br>
-       <label>checkbox : <input name="checkbox[]" type="checkbox" value="checkbox2"></label><br>
-       <label>radio : <input name="radio" type="radio" value="radio1"></label><br>
-       <label>radio : <input name="radio" type="radio" value="radio2"></label><br>
-     </form>
+     &lt;form>
+       &lt;label>default : &lt;input name="default" value="value" placeholder="placeholder">&lt;/label>&lt;br>
+       &lt;label>text : &lt;input name="text" type="text">&lt;/label>&lt;br>
+       &lt;label>password : &lt;input name="password" type="password">&lt;/label>&lt;br>
+       &lt;label>submit : &lt;input name="submit" type="submit" value="submit">&lt;/label>&lt;br>
+       &lt;label>button : &lt;input name="button" type="button" value="button">&lt;/label>&lt;br>
+       &lt;label>checkbox : &lt;input name="checkbox[]" type="checkbox" value="checkbox1">&lt;/label>&lt;br>
+       &lt;label>checkbox : &lt;input name="checkbox[]" type="checkbox" value="checkbox2">&lt;/label>&lt;br>
+       &lt;label>radio : &lt;input name="radio" type="radio" value="radio1">&lt;/label>&lt;br>
+       &lt;label>radio : &lt;input name="radio" type="radio" value="radio2">&lt;/label>&lt;br>
+     &lt;/form>
    #+END_SRC
    
 ** Les attributes de la balise =<input>=
@@ -1262,42 +1264,42 @@
 
    #+NAME: phpjs-list-style
    #+BEGIN_SRC html
-     <form>
-       <select name="select" multiple="multiple">
-         <optgroup label="Group 1">
-           <option value="value1">Valeur 1</option>
-           <option value="value2">Valeur 2</option>
-         </optgroup>
-         <optgroup label="Group 2">
-           <option value="value3">Valeur 3</option>
-           <option value="value4">Valeur 4</option>
-         </optgroup>
-       </select> 
-     </form>
+     &lt;form>
+       &lt;select name="select" multiple="multiple">
+         &lt;optgroup label="Group 1">
+           &lt;option value="value1">Valeur 1&lt;/option>
+           &lt;option value="value2">Valeur 2&lt;/option>
+         &lt;/optgroup>
+         &lt;optgroup label="Group 2">
+           &lt;option value="value3">Valeur 3&lt;/option>
+           &lt;option value="value4">Valeur 4&lt;/option>
+         &lt;/optgroup>
+       &lt;/select> 
+     &lt;/form>
    #+END_SRC
 
 ** Les balises =<textarea></textarea>= et =<button></button>=
 
    #+NAME: phpjs-list-style
    #+BEGIN_SRC html
-     <form>
-       <textarea name="textarea" rows="2" cols="20">value</textarea>
-       <button type="button">button</button>
-       <button type="reset">reset</button>
-       <button type="submit">submit</button>
-     </form>
+     &lt;form>
+       &lt;textarea name="textarea" rows="2" cols="20">value&lt;/textarea>
+       &lt;button type="button">button&lt;/button>
+       &lt;button type="reset">reset&lt;/button>
+       &lt;button type="submit">submit&lt;/button>
+     &lt;/form>
    #+END_SRC
 
 ** La balise =<fieldset></fieldset>=
 
    #+NAME: phpjs-list-style
    #+BEGIN_SRC html
-     <form>
-       <fieldset>
-         <legend>Legend :</legend>
-         <label>Label : <input type="text"><br>
-       </fieldset>
-     </form>
+     &lt;form>
+       &lt;fieldset>
+         &lt;legend>Legend :&lt;/legend>
+         &lt;label>Label : &lt;input type="text">&lt;br>
+       &lt;/fieldset>
+     &lt;/form>
    #+END_SRC
 
 # Priorité des règles CSS

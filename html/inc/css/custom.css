@@ -156,3 +156,14 @@ pre.fragment, pre.src {
 h1>span, h2>span, h3>span, h4>span {
   display: none;
 }
+
+div.HTML {
+  display: block;
+  position: relative;
+  margin: 15px auto;
+  text-align: left;
+  font-family: monospace;
+  line-height: 1.2em;
+  word-wrap: break-word;
+  box-shadow: 0px 0px 6px rgba(0,0,0,0.3);
+}
