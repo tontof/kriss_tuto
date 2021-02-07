@@ -1,0 +1,15 @@
+.reveal aside.notes {
+  display: none;
+  font-size: medium;
+  padding: 24px;
+  border: 1px solid black;
+  margin-top: 24px;
+}
+
+.pdf-page > section {
+  padding-top: 12px;
+}
+
+.src > button {
+  display: none;
+}

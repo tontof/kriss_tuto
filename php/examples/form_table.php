@@ -7,7 +7,7 @@ function display($data, $secure = true) {
         if ($secure) {
             $str = htmlspecialchars($str);
         }
-        echo str_replace('  ', ' ', nl2br($str, false));
+        echo str_replace("  ", " ", nl2br($str, false));
     }
 }
 ?>

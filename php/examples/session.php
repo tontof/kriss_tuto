@@ -1,4 +1,4 @@
-<?php include('session_login.php'); ?>
+<?php include("session_login.php"); ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -7,13 +7,13 @@
   </head>
   <body>
 <?php
-if (isset($_SESSION['acces'])) {
-    echo "<h4>Authentifié comme ". $_SESSION['nom']. "</h4>";
+if (isset($_SESSION["acces"])) {
+    echo "<h4>Authentifié comme ". $_SESSION["nom"]. "</h4>";
 } else {
-    include('session_form.php');
+    include("session_form.php");
 }
-include('session_menu.php');
-include('session_info.php');
+include("session_menu.php");
+include("session_info.php");
 ?>
   </body>
 </html>

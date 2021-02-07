@@ -6,60 +6,86 @@
 <style type="text/css">
 .underline { text-decoration: underline; }
 </style>
-<link rel="stylesheet" href="../lib/reveal.js/css/reveal.css"/>
+<link rel="stylesheet" href="../common/lib/reveal.js/dist/reveal.css"/>
 
-<link rel="stylesheet" href="../lib/reveal.js/css/theme/serif.css" id="theme"/>
+<link rel="stylesheet" href="../common/lib/reveal.js/dist/theme/serif.css" id="theme"/>
 
-<link rel="stylesheet" href="./inc/css/custom.css"/>
-<link rel="stylesheet" href="../lib/reveal.js/lib/css/zenburn.css"/>
+<link rel="stylesheet" href="../common/inc/css/custom.css"/>
+<link rel="stylesheet" href="../common/lib/reveal.js/plugin/highlight/zenburn.css"/>
 <!-- If the query includes 'print-pdf', include the PDF print sheet -->
 <script>
     if( window.location.search.match( /print-pdf/gi ) ) {
         var link = document.createElement( 'link' );
         link.rel = 'stylesheet';
         link.type = 'text/css';
-        link.href = '../lib/reveal.js/css/print/pdf.css';
+        link.href = '../common/lib/reveal.js/css/print/pdf.css';
         document.getElementsByTagName( 'head' )[0].appendChild( link );
     }
 </script>
-<script type="text/javascript" src="../lib/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<meta name="description" content="PHP Introduction.">
+<script type="text/javascript" src="../common/lib/MathJax/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
-<div id="phpjs-compiler"><textarea id="phpjs-code"></textarea><div id="phpjs-results"><div id="phpjs-result"></div><div id="phpjs-html-result"></div></div><button id="phpjs-clear">Clear</button><button id="phpjs-close">Close</button><button id="phpjs-run">Run</button></div>
+<!-- If the query includes 'print-pdf', include the PDF print sheet --><script>if( window.location.search.match( /print-pdf/gi ) ) { var link = document.createElement( 'link' ); link.rel = 'stylesheet'; link.type = 'text/css'; link.href = '../common/inc/css/custom-pdf.css'; document.getElementsByTagName( 'head' )[0].appendChild( link ); }</script><div id="reveal-notes"></div><div id="phpjs-compiler"><code id="phpjs-code" contenteditable=""></code><div id="phpjs-results"><div id="phpjs-result"></div><div id="phpjs-html-result"></div></div><button id="phpjs-clear">Clear</button><button id="phpjs-close">Close</button><button id="phpjs-run">Run</button></div>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide"><div><h1>PHP</h1><h2></h2><h3><a href="mailto:"></a></h3></div>
+<section id="sec-title-slide"><h1 class="title">PHP</h1>
 </section>
-<section id="table-of-contents">
-<div id="table-of-contents">
+<section id="table-of-contents"><div id="table-of-contents">
 <h2>Table des matières</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#/slide-sec-bases-php">1. Les bases en PHP</a></li>
-<li><a href="#/slide-sec-php-form">2. Les formulaires</a></li>
-<li><a href="#/slide-sec-cookies-sessions">3. Cookies et sessions</a></li>
-<li><a href="#/slide-sec-php-fichiers">4. PHP et les fichiers</a></li>
-<li><a href="#/slide-sec-php-sql">5. Bases de données SQL</a></li>
+<li><a href="#/slide-orgf2df722">1. Les bases en PHP</a></li>
+<li><a href="#/slide-org47a158a">2. Les formulaires</a></li>
+<li><a href="#/slide-org4966c1a">3. Cookies et sessions</a></li>
+<li><a href="#/slide-org46922ba">4. PHP et les fichiers</a></li>
+<li><a href="#/slide-orgfe22b3d">5. Bases de données SQL</a></li>
 </ul>
 </div>
 </div>
 </section>
 
-<section id="slide-sec-bases-php">
-<h2 id="bases-php"><a id="orge91ee9c"></a><span class="section-number-2">1</span> Les bases en PHP</h2>
+<section id="slide-orgf2df722">
+<h2 id="orgf2df722"><span class="section-number-2">1</span> Les bases en PHP</h2>
+<aside class="notes">
+<ul>
+<li>HTML, CSS et JS sont des langages interprétés par un navigateur
+côté client</li>
+<li>PHP s'utilise côté serveur et permet de générer du contenu HTML
+<ul>
+<li>en pratique PHP peut générer n'importe quel type de contenu mais
+nous nous limiterons à du HTML pour ce cours</li>
+
+</ul></li>
+<li>Afin de stocker des informations de manière durable, nous verrons
+comment manipuler des fichiers et des bases de données SQL avec PHP</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-1">
-<h3 id="org3e099c3"><span class="section-number-3">1.1</span> Pourquoi PHP ?</h3>
+<section id="slide-org78847bb">
+<h3 id="org78847bb"><span class="section-number-3">1.1</span> Pourquoi PHP ?</h3>
 
 <div class="figure">
 <p><a href="http://www.commitstrip.com/fr/2015/01/12/the-right-tool-for-the-right-job/"><img src="./inc/img/Strip-PHP-doute650-Web.jpg" alt="Strip-PHP-doute650-Web.jpg" /></a>
 </p>
 </div>
 
+<aside class="notes">
+<ul>
+<li>la langage PHP est souvent critiqué mais il reste quand même
+majoritairement le langage le plus utilisé pour réaliser un site
+sur le web un peu moins de 80%</li>
+<li><a href="https://w3techs.com/technologies/history_overview/programming_language">https://w3techs.com/technologies/history_overview/programming_language</a></li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-2">
-<h3 id="orgc01424a"><span class="section-number-3">1.2</span> Introduction à PHP</h3>
+<section id="slide-orgdc7b70a">
+<h3 id="orgdc7b70a"><span class="section-number-3">1.2</span> Introduction à PHP</h3>
 <ul>
 <li><b><a href="http://php.net">PHP</a></b> (PHP: Hypertext Preprocessor)</li>
 <li>Langage de programmation
@@ -75,10 +101,18 @@
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>PHP est initialement proche du langage C</li>
+<li>Il permet de rendre un site dynamique</li>
+
+</ul>
+
+</aside>
 
 </section>
-<section id="slide-sec-1-2-1">
-<h4 id="org61b2e31"><span class="section-number-4">1.2.1</span> Quelques versions de php</h4>
+<section id="slide-orgea8c3ff">
+<h4 id="orgea8c3ff"><span class="section-number-4">1.2.1</span> Quelques versions de php</h4>
 <ul>
 <li><code>1.0 : 1995      :</code> <i>PHP: Personal Home Page</i></li>
 <li><code>2.0 : 1997      :</code> Base du langage PHP actuel</li>
@@ -93,9 +127,18 @@
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>PHP évolue et s'utilise de plus en plus avec le paradigme de la programmation orientée objet.</li>
+<li>Comme pour javascript, nous ne nous attarderons pas sur cet aspect et nous nous limiterons aux bases de PHP.</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-hello-world">
-<h4 id="hello-world"><a id="org590b4ef"></a><span class="section-number-4">1.2.2</span> Hello world</h4>
+<section id="slide-hello-world">
+<h4 id="hello-world"><a id="org18b6bd6"></a><span class="section-number-4">1.2.2</span> Hello world</h4>
 <ul>
 <li>Créer un fichier avec l'extension .php</li>
 <li>Insérer du code HTML et/ou PHP</li>
@@ -112,7 +155,7 @@
 
 <div class="org-src-container">
 
-<pre id="phpjs-hello"><code class="src-php" >&lt;em&gt;&lt;?php
+<pre id="phpjs-hello"><code class="php" >&lt;em&gt;&lt;?php
 //* Comment hack
 echo 'Hello world';
 // */
@@ -120,9 +163,39 @@ echo 'Hello world';
 </code></pre>
 </div>
 
+<aside class="notes">
+<ul>
+<li>Dans cet exemple simple, on souhaite afficher la chaîne de
+caractères « Hello world »</li>
+<li>En cliquant sur le bouton « Run » une fenêtre découpée en 3 vous affichera
+<ul>
+<li>à gauche le code PHP</li>
+<li>en haut à droite le résultat du code PHP (la génération du code
+HTML généré)</li>
+<li>en bas à droite l'affichage du code HTML par le navigateur</li>
+
+</ul></li>
+<li>Cliquer de nouveau sur le bouton « Run » pour voir le résultat</li>
+
+</ul>
+
+
+<ul>
+<li>Le comment hack est une illustration pour vous montrer comment
+commenter/décommenter rapidement un bloc de code</li>
+<li>En supprimant le premier <code>/</code> le code complet est commenté
+transformant le code <code>//*</code> par un <code>/*</code> passant d'un commentaire
+sur une ligne à un commentaire sur un bloc qui se termine grâce au
+code <code>// */</code> qui combine le commentaire linéaire et le commentaire
+fin de bloc.</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-3">
-<h3 id="org0888574"><span class="section-number-3">1.3</span> Les types en PHP</h3>
+<section id="slide-org26f6826">
+<h3 id="org26f6826"><span class="section-number-3">1.3</span> Les types en PHP</h3>
 <ul>
 <li>types simples :
 <ul>
@@ -147,9 +220,20 @@ echo 'Hello world';
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>PHP n'est pas un langage fortement typé contrairement au langage
+C. Il se rapproche sur point avec javascriptq</li>
+<li>Nous allons préciser chaque type sauf les types 'object' et
+'resource' que nous aborderons plus tard.</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-3-1">
-<h4 id="orgb44f7cb"><span class="section-number-4">1.3.1</span> Les booléens (boolean)</h4>
+<section id="slide-org955564e">
+<h4 id="org955564e"><span class="section-number-4">1.3.1</span> Les booléens (boolean)</h4>
 <ul>
 <li>Type le plus simple pour exprimer une valeur de vérité.</li>
 <li>Deux constantes insensibles à la casse :
@@ -162,22 +246,35 @@ echo 'Hello world';
 </ul>
 <div class="org-src-container">
 
-<pre id="phpjs-true"><code class="src-php" >&lt;?php echo TRUE; ?&gt; 
+<pre id="phpjs-true"><code class="php" >&lt;?php echo TRUE; ?&gt; 
 &lt;?php echo true; ?&gt; 
 &lt;?php var_dump(TRUE); ?&gt; 
 </code></pre>
 </div>
 <div class="org-src-container">
 
-<pre id="phpjs-false"><code class="src-php" >&lt;?php echo FALSE; ?&gt; 
+<pre id="phpjs-false"><code class="php" >&lt;?php echo FALSE; ?&gt; 
 &lt;?php echo false; ?&gt; 
 &lt;?php var_dump(FALSE); ?&gt; 
 </code></pre>
 </div>
 
+<aside class="notes">
+<ul>
+<li>Le type booléen représente la notion vrai/faux</li>
+<li>La fonction <code>var_dump</code> permet d'afficher des informations
+précises sur le paramètre donné.</li>
+<li>On peut remarquer que l'affichage de <code>false</code> n'affiche pas <code>0</code>
+contrairement à ce qu'on aurait pu penser après avoir vu que
+<code>true</code> affichait <code>1</code></li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-3-2">
-<h4 id="orgeb48d27"><span class="section-number-4">1.3.2</span> Les booléens (cast)</h4>
+<section id="slide-orgb99fc42">
+<h4 id="orgb99fc42"><span class="section-number-4">1.3.2</span> Les booléens (cast)</h4>
 <ul>
 <li>On utilise <code>(bool)</code> ou <code>(boolean)</code></li>
 <li>Quand on convertit une valeur en booléen, sont considérés <code>false</code>  :
@@ -195,12 +292,20 @@ echo 'Hello world';
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>De façon générale, il faut faire attention avec la conversion des types.</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-3-3">
-<h4 id="org294d88c"><span class="section-number-4">1.3.3</span> Les booléens (exemple)</h4>
+<section id="slide-orge90453d">
+<h4 id="orge90453d"><span class="section-number-4">1.3.3</span> Les booléens (exemple)</h4>
 <div class="org-src-container">
 
-<pre id="phpjs-boolean"><code class="src-" >&lt;?php
+<pre id="phpjs-boolean"><code class="php" >&lt;?php
   var_dump((bool) ""); 
   var_dump((bool) 1); 
   var_dump((bool) -2); 
@@ -213,9 +318,18 @@ echo 'Hello world';
 </code></pre>
 </div>
 
+<aside class="notes">
+<ul>
+<li>Essayer d'anticiper les résultats pour voir si vous avez bien
+compris la conversion en booléen.</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-3-4">
-<h4 id="org97c858f"><span class="section-number-4">1.3.4</span> Les entiers (integer)</h4>
+<section id="slide-org7826d1a">
+<h4 id="org7826d1a"><span class="section-number-4">1.3.4</span> Les entiers (integer)</h4>
 <ul>
 <li>Un entier est un nombre de \({\mathbb{Z} = \{ \dots, -2, -1, 0, 1, 2, \dots\}}\)</li>
 <li>Il peut se définir en :
@@ -230,9 +344,18 @@ echo 'Hello world';
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>Il existe différentes notations pour les entiers mais en pratique
+la base décimale est celle qui est pratiquement toujours utilisée.</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-3-5">
-<h4 id="orgec0a396"><span class="section-number-4">1.3.5</span> Les entiers (définis formellement)</h4>
+<section id="slide-org6e9d25e">
+<h4 id="org6e9d25e"><span class="section-number-4">1.3.5</span> Les entiers (définis formellement)</h4>
 <div class="org-src-container">
 
 <pre><code class="text" >decimal     : [1-9][0-9]*      
@@ -251,9 +374,21 @@ integer     : [+-]?decimal
 </code></pre>
 </div>
 
+<aside class="notes">
+<ul>
+<li>Cette notation formelle est juste présente pour illustrer la
+définition des entiers en PHP.</li>
+<li>Par exemple pour la notation décimale, un entier en PHP correspond
+à un '0' ou un nombre qui commence par 1, 2, &#x2026;, 9 suit ou pas
+d'un autre chiffre compris entre 0 et 9</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-3-6">
-<h4 id="org4162d0b"><span class="section-number-4">1.3.6</span> Les entiers (cast)</h4>
+<section id="slide-org68bcb2f">
+<h4 id="org68bcb2f"><span class="section-number-4">1.3.6</span> Les entiers (cast)</h4>
 <ul>
 <li>On utilise <code>(int)</code> ou <code>(integer)</code></li>
 <li><code>false</code> correspond à <code>0</code> et <code>true</code> à <code>1</code></li>
@@ -263,9 +398,17 @@ integer     : [+-]?decimal
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>De façon générale, il faut faire attention avec la conversion des types.</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-3-7">
-<h4 id="org0d8f16c"><span class="section-number-4">1.3.7</span> Les réels (float/double)</h4>
+<section id="slide-org56f4aff">
+<h4 id="org56f4aff"><span class="section-number-4">1.3.7</span> Les réels (float/double)</h4>
 <ul>
 <li>Un réel (nombre à virgule flottante) appartient à \({\mathbb{R}}\)</li>
 <li>La taille d'un réel dépend de la plateforme, mais en général
@@ -278,9 +421,21 @@ integer     : [+-]?decimal
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>De façon générale, il faut faire attention avec la conversion des types.</li>
+<li>la perte de précision vient du fait de la représentation des
+réels avec un ordinateur qui ne sait manipuler que des '0' et des
+'1 et qui ne peut donc avoir que des représentations approchées
+de ces réels. Un exemple concret sera donné par la suite</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-3-8">
-<h4 id="org9964f57"><span class="section-number-4">1.3.8</span> Les réels (définis formellement)</h4>
+<section id="slide-org7f9e3a5">
+<h4 id="org7f9e3a5"><span class="section-number-4">1.3.8</span> Les réels (définis formellement)</h4>
 <div class="org-src-container">
 
 <pre><code class="text" >LNUM          [0-9]+                                   
@@ -289,9 +444,17 @@ EXPONENT_DNUM [+-]?(({LNUM} | {DNUM}) [eE][+-]? {LNUM})
 </code></pre>
 </div>
 
+<aside class="notes">
+<ul>
+<li>Définition formelle des réels en PHP.</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-3-9">
-<h4 id="org164075a"><span class="section-number-4">1.3.9</span> Les réels (cast)</h4>
+<section id="slide-orgb46a978">
+<h4 id="orgb46a978"><span class="section-number-4">1.3.9</span> Les réels (cast)</h4>
 <ul>
 <li>On utilise <code>(float)</code> ou <code>(double)</code></li>
 <li>Seule la partie initiale d'une chaîne de caractères est prise en compte</li>
@@ -299,12 +462,20 @@ EXPONENT_DNUM [+-]?(({LNUM} | {DNUM}) [eE][+-]? {LNUM})
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>De façon générale, il faut faire attention avec la conversion des types.</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-3-10">
-<h4 id="orgca0de03"><span class="section-number-4">1.3.10</span> Les entiers et les réels (exemple)</h4>
+<section id="slide-org77418e8">
+<h4 id="org77418e8"><span class="section-number-4">1.3.10</span> Les entiers et les réels (exemple)</h4>
 <div class="org-src-container">
 
-<pre id="phpjs-int-float"><code class="src-" >&lt;?php
+<pre id="phpjs-int-float"><code class="php" >&lt;?php
 //*
   var_dump(42); 
   var_dump(-42); 
@@ -325,9 +496,23 @@ EXPONENT_DNUM [+-]?(({LNUM} | {DNUM}) [eE][+-]? {LNUM})
 </code></pre>
 </div>
 
+<aside class="notes">
+<ul>
+<li>Essayer de trouver le résultat avant d'exécuter le code.</li>
+<li>Commenter ensuite le code en supprimant le premier '/' petit
+rappel du comment hack</li>
+<li>Décommenter le code en bas en ajoutant un '/' au bon endroit et
+essayer de trouver le résultat avant l'exécution. Si vous n'avez
+pas la bonne réponse c'est que vous venez de découvrir le Floating
+point problem sinon c'est que vous l'avez compris.</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-3-11">
-<h4 id="orge986a2f"><span class="section-number-4">1.3.11</span> Les chaînes de caractères (string)</h4>
+<section id="slide-org72c8448">
+<h4 id="org72c8448"><span class="section-number-4">1.3.11</span> Les chaînes de caractères (string)</h4>
 <ul>
 <li>Une chaîne de caractères correspond à un tableau d'octets.</li>
 <li>Elle se définit à l'aide des <code> ' </code> ou <code> " </code></li>
@@ -348,9 +533,18 @@ EXPONENT_DNUM [+-]?(({LNUM} | {DNUM}) [eE][+-]? {LNUM})
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>De façon générale essayer d'utiliser les guillemets simples qui
+sont plus efficaces pour représenter les chaînes de caractères.</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-3-12">
-<h4 id="org236e3c3"><span class="section-number-4">1.3.12</span> Les chaînes de caractères (cast)</h4>
+<section id="slide-orgcb34504">
+<h4 id="orgcb34504"><span class="section-number-4">1.3.12</span> Les chaînes de caractères (cast)</h4>
 <ul>
 <li>On utilise <code>(string)</code></li>
 <li>Convertion automatique avec certaines fonctions comme <code>echo</code>, <code>print</code></li>
@@ -358,18 +552,27 @@ EXPONENT_DNUM [+-]?(({LNUM} | {DNUM}) [eE][+-]? {LNUM})
 
 </ul>
 
-</section>
-<section id="slide-sec-1-3-13">
-<h4 id="org28cc8b3"><span class="section-number-4">1.3.13</span> Les chaînes de caractères (affichage)</h4>
+<aside class="notes">
 <ul>
-<li><code>echo</code> et <code>print</code> ne sont pas de vraies fonctions (l'utilisation des parenthèses est facultative, mais recommandée)</li>
+<li>De façon générale, il faut faire attention avec la conversion des types.</li>
+
+</ul>
+
+</aside>
+
+</section>
+<section id="slide-orgdbbe042">
+<h4 id="orgdbbe042"><span class="section-number-4">1.3.13</span> Les chaînes de caractères (affichage)</h4>
+<ul>
+<li><code>echo</code> et <code>print</code> ne sont pas de vraies fonctions (l'utilisation
+des parenthèses est facultative, mais recommandée)</li>
 <li><p>
 la fonction <a href="http://php.net/manual/en/function.printf.php"><code>printf</code></a> affiche une chaîne de caractère formatée et
 retourne la longueur de la chaîne affichée
 </p>
 <div class="org-src-container">
 
-<pre><code class="src-" >int printf (string $format [, mixed $args [, mixed $... ]] )
+<pre><code class="c" >int printf (string $format [, mixed $args [, mixed $... ]] )
 </code></pre>
 </div></li>
 <li><p>
@@ -377,15 +580,23 @@ la fonction <a href="http://php.net/manual/en/function.sprintf.php"><code>sprint
 </p>
 <div class="org-src-container">
 
-<pre><code class="src-" >string sprintf (string $format [, mixed $args [, mixed $... ]] )
+<pre><code class="c" >string sprintf (string $format [, mixed $args [, mixed $... ]] )
 </code></pre>
 </div></li>
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>Vous devriez reconnaître ces fonctions inspirées du langage C</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-3-14">
-<h4 id="org526eca0"><span class="section-number-4">1.3.14</span> Les chaînes de caractères (format)</h4>
+<section id="slide-orge7b7bb8">
+<h4 id="orge7b7bb8"><span class="section-number-4">1.3.14</span> Les chaînes de caractères (format)</h4>
 <ul>
 <li>Le format dépend du type du paramètre que l'on veut afficher
 <ul>
@@ -410,11 +621,36 @@ la fonction <a href="http://php.net/manual/en/function.sprintf.php"><code>sprint
 
 </ul>
 
-</section>
-<section id="slide-sec-1-3-15">
-<h4 id="org3b07b6b"><span class="section-number-4">1.3.15</span> Les chaînes de caractères (fonctions de base)</h4>
+<aside class="notes">
 <ul>
-<li><code>strlen </code> : retourne la longueur de la chaîne <code>$str</code></li>
+<li>Le formatage des chaînes de caractères avec un ordre des
+paramètres différent est principalement utilisé pour la
+traduction.</li>
+<li>En français, on aurait pour afficher 'voiture bleue' :
+<ul>
+<li><code>$chaine = '%s %s';</code></li>
+<li><code>$object = 'voiture';</code></li>
+<li><code>$color = 'bleue';</code></li>
+
+</ul></li>
+<li>En anglais, on aurait pour afficher 'blue car' :
+<ul>
+<li><code>$chaine = '%2$s %1$s';</code></li>
+<li><code>$object = 'car';</code></li>
+<li><code>$color = 'blue';</code></li>
+
+</ul></li>
+<li>Avec la fonction <code>printf($chaine, $object, $color)</code></li>
+
+</ul>
+
+</aside>
+
+</section>
+<section id="slide-org22df82e">
+<h4 id="org22df82e"><span class="section-number-4">1.3.15</span> Les chaînes de caractères (fonctions de base)</h4>
+<ul>
+<li><code>strlen </code> : retourne la longueur de la chaîne</li>
 <li><code>strcmp </code> : compare deux chaînes</li>
 <li><code>trim   </code> : supprime les espaces ou un autre caractère<br />
 <code>       </code>   en début (<code>ltrim</code>) et fin de chaîne (<code>rtrim</code>)</li>
@@ -427,12 +663,20 @@ la fonction <a href="http://php.net/manual/en/function.sprintf.php"><code>sprint
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>Je vous invite à tester toutes ces fonctions</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-3-16">
-<h4 id="org4ef231a"><span class="section-number-4">1.3.16</span> Résumé (types simples)</h4>
+<section id="slide-org5d4955a">
+<h4 id="org5d4955a"><span class="section-number-4">1.3.16</span> Résumé (types simples)</h4>
 <div class="org-src-container">
 
-<pre id="phpjs-string"><code class="src-" >&lt;?php
+<pre id="phpjs-string"><code class="php" >&lt;?php
   var_dump("0");
   var_dump("0" + 2);
   var_dump("0" + 1.3);
@@ -441,9 +685,17 @@ la fonction <a href="http://php.net/manual/en/function.sprintf.php"><code>sprint
 </code></pre>
 </div>
 
+<aside class="notes">
+<ul>
+<li>Essayer d'anticiper le résultat avant de l'exécuter</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-3-17">
-<h4 id="org995bf9c"><span class="section-number-4">1.3.17</span> Les tableaux (array)</h4>
+<section id="slide-org4d09bf1">
+<h4 id="org4d09bf1"><span class="section-number-4">1.3.17</span> Les tableaux (array)</h4>
 <ul>
 <li>Il faut utiliser le mot clé <code>array()</code> (<code>[]</code> autorisé depuis PHP 5.4)</li>
 <li>Chaque paramètre correspond à une paire <code>clé =&gt; valeur</code></li>
@@ -457,9 +709,20 @@ la fonction <a href="http://php.net/manual/en/function.sprintf.php"><code>sprint
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>En pratique on utilise maintenant les crochets '[]'</li>
+<li>Les tableaux sont créés dynamiquement</li>
+<li>Quand la clé correspond à une chaîne de caractères on parle de
+tableaux associatifs</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-3-18">
-<h4 id="org7af84fd"><span class="section-number-4">1.3.18</span> Les tableaux (fonctions de base)</h4>
+<section id="slide-org4a22d63">
+<h4 id="org4a22d63"><span class="section-number-4">1.3.18</span> Les tableaux (fonctions de base)</h4>
 <ul>
 <li><code>count       </code> : retourne le nombre d'éléments contenus dans un tableau</li>
 <li><code>sort        </code> : trie par rapport aux valeurs un tableau (<code>rsort</code> reverse)</li>
@@ -471,12 +734,20 @@ la fonction <a href="http://php.net/manual/en/function.sprintf.php"><code>sprint
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>Je vous invite à tester toutes ces fonctions</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-3-19">
-<h4 id="org8f9b8fc"><span class="section-number-4">1.3.19</span> Les tableaux (exemple)</h4>
+<section id="slide-org78f7e3e">
+<h4 id="org78f7e3e"><span class="section-number-4">1.3.19</span> Les tableaux (exemple)</h4>
 <div class="org-src-container">
 
-<pre id="phpjs-array"><code class="src-" >&lt;?php
+<pre id="phpjs-array"><code class="php" >&lt;?php
   var_dump(array("a","b","c"));
   var_dump(array("a" =&gt; "b", 3 =&gt; "c"));
   var_dump(array("a", 3 =&gt; "b", "c"));
@@ -484,14 +755,28 @@ la fonction <a href="http://php.net/manual/en/function.sprintf.php"><code>sprint
 </code></pre>
 </div>
 
+<aside class="notes">
+<ul>
+<li>On peut remarquer que par défaut les clés correspondent à des
+index commençant par 0</li>
+<li>Le deuxième tableau montre qu'il est possible d'utiliser des clés
+numériques et textuelles dans le même tableau</li>
+<li>Le dernier tableau montre que les index créés se basent sur le
+plus grand index existant. On aurait pu penser que le 'c' soit
+associé à l'index 1 ou 2.</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-4">
-<h3 id="org9e5e37f"><span class="section-number-3">1.4</span> Les variables et constantes</h3>
+<section id="slide-org961d112">
+<h3 id="org961d112"><span class="section-number-3">1.4</span> Les variables et constantes</h3>
 <div class="outline-text-3" id="text-1-4">
 </div>
 </section>
-<section id="slide-sec-1-4-1">
-<h4 id="orgf8bccbb"><span class="section-number-4">1.4.1</span> Les variables</h4>
+<section id="slide-org63000c3">
+<h4 id="org63000c3"><span class="section-number-4">1.4.1</span> Les variables</h4>
 <ul>
 <li>Une variable est désignée par le signe <code>$</code></li>
 <li>Le nom est sensible à la casse et commence par une lettre ou un
@@ -502,9 +787,18 @@ tiret du bas <code>_</code> suivi de lettres, de chiffres ou <code>_</code></li>
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>la variable <code>$this</code> est utilisée pour la manipulation des objets
+en PHP.</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-4-2">
-<h4 id="orgfc714df"><span class="section-number-4">1.4.2</span> Gérer le type d'une variable</h4>
+<section id="slide-org71310ae">
+<h4 id="org71310ae"><span class="section-number-4">1.4.2</span> Gérer le type d'une variable</h4>
 <ul>
 <li>La fonction <code>gettype()</code> permet d'obtenir une chaîne de caractères
 correspondant au type de l'argument : <code>boolean</code>, <code>integer</code>,
@@ -519,9 +813,19 @@ argument est d'un type particulier.</li>
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>comme le typage est dynamique en PHP, il peut parfois être utile
+de vérifier le type associé à une variable pour utiliser cette
+variable sans erreur dans le code.</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-4-3">
-<h4 id="org6131802"><span class="section-number-4">1.4.3</span> Tester l'état d'une variable</h4>
+<section id="slide-org2936fd3">
+<h4 id="org2936fd3"><span class="section-number-4">1.4.3</span> Tester l'état d'une variable</h4>
 <ul>
 <li><code>empty()</code></li>
 <li><code>is_null()</code></li>
@@ -546,9 +850,23 @@ null  == 'php' =&gt; false
 </code></pre>
 </div>
 
+<aside class="notes">
+<ul>
+<li>les tests <code>empty()</code> et le cast <code>(bool)</code> ainsi que <code>is_null()</code> et
+<code>isset()</code> sont strictement différents, quand l'un est <code>true</code>
+l'autre est <code>false</code></li>
+<li>Il faut faire cependant attention avec l'égalité simple, on peut
+voir que la transitivité n'est pas respectée, on aurait pu
+s'attendre à ce que <code>null</code> soit égal à <code>'php'</code>. Ceci illustre les
+problèmes liés à la conversion des types</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-4-4">
-<h4 id="org461d6ba"><span class="section-number-4">1.4.4</span> Les constantes</h4>
+<section id="slide-org22d5e18">
+<h4 id="org22d5e18"><span class="section-number-4">1.4.4</span> Les constantes</h4>
 <ul>
 <li>Par définition, la valeur d'une constante ne peut pas être modifiée</li>
 <li>On utilise par convention, un nom écrit en lettres capitales</li>
@@ -558,7 +876,7 @@ null  == 'php' =&gt; false
 
 <div class="org-src-container">
 
-<pre id="phpjs-define"><code class="src-" >&lt;?php
+<pre id="phpjs-define"><code class="php" >&lt;?php
   define('HELLO', 3); 
   $a = 'hello'; 
   $$a = 'world'; 
@@ -569,9 +887,24 @@ null  == 'php' =&gt; false
 </code></pre>
 </div>
 
+<aside class="notes">
+<ul>
+<li>Essayer de trouver le résultat avant d'exécuter le code.</li>
+<li>On peut voir la différence entre l'utilisation des guillemets
+simples et doubles</li>
+<li>Il n'est pas possible d'utiliser les noms dynamiques des variables
+dans une chaîne de caractères d'où l'affichage <code>$hello</code> et non pas
+<code>world</code></li>
+<li>Les constantes ne sont pas interprêtées et la chaînes <code>HELLO</code> est
+donc conservées</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-5">
-<h3 id="org5c4ce4c"><span class="section-number-3">1.5</span> Les opérateurs</h3>
+<section id="slide-org876d89e">
+<h3 id="org876d89e"><span class="section-number-3">1.5</span> Les opérateurs</h3>
 <ul>
 <li>Les opérateurs arithmétiques</li>
 <li>Les opérateurs d'affectation</li>
@@ -583,9 +916,17 @@ null  == 'php' =&gt; false
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>Tous les opérateurs vont être présentés</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-5-1">
-<h4 id="org2b79251"><span class="section-number-4">1.5.1</span> Les opérateurs arithmétiques</h4>
+<section id="slide-org20e62bd">
+<h4 id="org20e62bd"><span class="section-number-4">1.5.1</span> Les opérateurs arithmétiques</h4>
 <ul>
 <li><code>-$a     </code> : la négation</li>
 <li><code>$a + $b </code> : l'addition</li>
@@ -597,9 +938,18 @@ null  == 'php' =&gt; false
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>Ce sont les mêmes opérateurs que le langage C avec l'ajout de
+l'exponentielle</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-5-2">
-<h4 id="org530b3b8"><span class="section-number-4">1.5.2</span> Les opérateurs d'affectation</h4>
+<section id="slide-org1d4f7a6">
+<h4 id="org1d4f7a6"><span class="section-number-4">1.5.2</span> Les opérateurs d'affectation</h4>
 <ul>
 <li>Le signe <code> = </code></li>
 <li>Il est possible de combiner le signe <code> = </code> avec d'autres opérateurs</li>
@@ -610,7 +960,7 @@ null  == 'php' =&gt; false
 
 <div class="org-src-container">
 
-<pre id="phpjs-assign"><code class="src-" >&lt;?php
+<pre id="phpjs-assign"><code class="php" >&lt;?php
   $a = 3;
   $b = &amp;$a;
   $a += 4;
@@ -620,9 +970,18 @@ null  == 'php' =&gt; false
 </code></pre>
 </div>
 
+<aside class="notes">
+<ul>
+<li>La notion de pointeur n'est pas défini comme en C et l'opérateur
+<code> &amp; </code> permet de créer un alias</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-5-3">
-<h4 id="org7350be0"><span class="section-number-4">1.5.3</span> Les opérateurs de comparaison</h4>
+<section id="slide-org575923b">
+<h4 id="org575923b"><span class="section-number-4">1.5.3</span> Les opérateurs de comparaison</h4>
 <ul>
 <li><code>$a == $b </code> : égalité des valeurs</li>
 <li><code>$a === $b</code> : identité (égalité des valeurs et des types)</li>
@@ -636,9 +995,20 @@ null  == 'php' =&gt; false
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>Comme PHP n'est pas fortement typé, il faut considérer
+principalement l'identité et la non identité pour comparer des
+variables, ceci afin d'éviter les erreurs liées à la conversion de
+types</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-5-4">
-<h4 id="org8d5c5a0"><span class="section-number-4">1.5.4</span> Les opérateurs d'incrémentation et décrémentation</h4>
+<section id="slide-orgdc8a477">
+<h4 id="orgdc8a477"><span class="section-number-4">1.5.4</span> Les opérateurs d'incrémentation et décrémentation</h4>
 <ul>
 <li><code>++$a</code> : incrémente <code>$a</code>  de 1, puis retourne <code>$a</code></li>
 <li><code>$a++</code> : retourne <code>$a</code> puis incrémente <code>$a</code>  de 1</li>
@@ -649,7 +1019,7 @@ null  == 'php' =&gt; false
 
 <div class="org-src-container">
 
-<pre id="phpjs-incr-decr"><code class="src-" >&lt;?php
+<pre id="phpjs-incr-decr"><code class="php" >&lt;?php
   $a = 3;
   var_dump($a++); 
   //var_dump($a);
@@ -659,9 +1029,18 @@ null  == 'php' =&gt; false
 </code></pre>
 </div>
 
+<aside class="notes">
+<ul>
+<li>Essayer de trouver le résultat avant d'exécuter le code. Il s'agit
+du même comportement que le langage C</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-5-5">
-<h4 id="orgaaf9740"><span class="section-number-4">1.5.5</span> L'opérateur ternaire</h4>
+<section id="slide-org480326d">
+<h4 id="org480326d"><span class="section-number-4">1.5.5</span> L'opérateur ternaire</h4>
 <ul>
 <li><code>?:</code> est un opérateur conditionnel ternaire</li>
 <li><code>(expr1) ? (expr2) : (expr3)</code> est évalué à :
@@ -676,16 +1055,24 @@ null  == 'php' =&gt; false
 
 <div class="org-src-container">
 
-<pre id="phpjs-ternary"><code class="src-" >&lt;?php
+<pre id="phpjs-ternary"><code class="php" >&lt;?php
   var_dump('1' == 1 ? 'oui' : 'non'); 
   var_dump('1' === 1 ? 'oui' : 'non'); 
 ?&gt;
 </code></pre>
 </div>
 
+<aside class="notes">
+<ul>
+<li>L'opérateur ternaire n'est utile pour simplier la lecture du code source.</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-5-6">
-<h4 id="org7e28dbe"><span class="section-number-4">1.5.6</span> Les opérateurs logiques</h4>
+<section id="slide-org44712f6">
+<h4 id="org44712f6"><span class="section-number-4">1.5.6</span> Les opérateurs logiques</h4>
 <ul>
 <li><code>$a &amp;&amp; $b </code> : <code>true</code> si <code>$a</code> et <code>$b</code> valent <code>true</code></li>
 <li><code>$a and $b</code> : <code>true</code> si <code>$a</code> et <code>$b</code> valent <code>true</code></li>
@@ -696,9 +1083,17 @@ null  == 'php' =&gt; false
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>Il s'agit ici des opérateurs logiques classiques</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-5-7">
-<h4 id="org3efdabf"><span class="section-number-4">1.5.7</span> Les autres opérateurs</h4>
+<section id="slide-org1760260">
+<h4 id="org1760260"><span class="section-number-4">1.5.7</span> Les autres opérateurs</h4>
 <ul>
 <li><code>.</code> correspond à l'opération de concaténation pour les chaînes de caractères</li>
 <li><code>[index]</code> permet d'accéder à un élément particulier d'un tableau</li>
@@ -708,7 +1103,7 @@ null  == 'php' =&gt; false
 
 <div class="org-src-container">
 
-<pre id="phpjs-array-op"><code class="src-" >&lt;?php
+<pre id="phpjs-array-op"><code class="php" >&lt;?php
   $a = "hello ";
   $b = array($a);
   $b[] = "world";
@@ -718,9 +1113,17 @@ null  == 'php' =&gt; false
 </code></pre>
 </div>
 
+<aside class="notes">
+<ul>
+<li>Essayer de trouver le résultat avant d'exécuter le code.</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-6">
-<h3 id="orgf741a54"><span class="section-number-3">1.6</span> Les structures de contrôle</h3>
+<section id="slide-org7cc7f4a">
+<h3 id="org7cc7f4a"><span class="section-number-3">1.6</span> Les structures de contrôle</h3>
 <ul>
 <li>Les structures conditionnelles</li>
 <li>Les structures répétitives</li>
@@ -728,12 +1131,20 @@ null  == 'php' =&gt; false
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>Tous les structures de contrôle vont être présentées</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-6-1">
-<h4 id="org4b13442"><span class="section-number-4">1.6.1</span> Les structures conditionnelles (if, else, elseif)</h4>
+<section id="slide-orgd9d9a67">
+<h4 id="orgd9d9a67"><span class="section-number-4">1.6.1</span> Les structures conditionnelles (if, else, elseif)</h4>
 <div class="org-src-container">
 
-<pre><code class="src-" >if (condition) {
+<pre><code class="c" >if (condition) {
   instructions; // si condition évaluée à true
 }
 </code></pre>
@@ -741,7 +1152,7 @@ null  == 'php' =&gt; false
 
 <div class="org-src-container">
 
-<pre><code class="src-" >if (condition) {
+<pre><code class="c" >if (condition) {
   instructions; // si condition évaluée à true
 } else {
   instructions; // si condition évaluée à false
@@ -751,7 +1162,7 @@ null  == 'php' =&gt; false
 
 <div class="org-src-container">
 
-<pre><code class="src-" >if (condition1) {
+<pre><code class="c" >if (condition1) {
   instructions; // si condition1 évaluée à true
 } elseif (condition2) {
   instructions; // si condition1 évaluée à false et condition2 évaluée à true
@@ -761,12 +1172,20 @@ null  == 'php' =&gt; false
 </code></pre>
 </div>
 
+<aside class="notes">
+<ul>
+<li><code>elseif</code> n'existe pas en C où il faut utiliser <code>else if</code></li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-6-2">
-<h4 id="org49260b4"><span class="section-number-4">1.6.2</span> Les structures conditionnelles (switch)</h4>
+<section id="slide-orgb34d5b8">
+<h4 id="orgb34d5b8"><span class="section-number-4">1.6.2</span> Les structures conditionnelles (switch)</h4>
 <div class="org-src-container">
 
-<pre><code class="src-" >switch ($i) {
+<pre><code class="c" >switch ($i) {
  case 0:
    echo "i equals 0";
    break;
@@ -786,7 +1205,7 @@ null  == 'php' =&gt; false
 
 <div class="org-src-container">
 
-<pre><code class="src-" >// == pas ===
+<pre><code class="c" >// == pas ===
 if ($i == 0) {
   echo "i equals 0";
 } elseif ($i == 'a') {
@@ -797,12 +1216,21 @@ if ($i == 0) {
 </code></pre>
 </div>
 
+<aside class="notes">
+<ul>
+<li>Il faut faire attention à la conversion de types quand on utilise
+un switch car la comparaison n'est pas effectuée sur le type</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-6-3">
-<h4 id="org4fd4df1"><span class="section-number-4">1.6.3</span> Les structures répétitives (tant que)</h4>
+<section id="slide-org0ea4ea4">
+<h4 id="org0ea4ea4"><span class="section-number-4">1.6.3</span> Les structures répétitives (tant que)</h4>
 <div class="org-src-container">
 
-<pre><code class="src-" >while (condition) {
+<pre><code class="c" >while (condition) {
   instructions; // tant que condition est évaluée à true
 }
 </code></pre>
@@ -810,18 +1238,27 @@ if ($i == 0) {
 
 <div class="org-src-container">
 
-<pre><code class="src-" >do {
+<pre><code class="c" >do {
   instructions; // tant que condition est évaluée à true
 } while (condition);
 </code></pre>
 </div>
 
+<aside class="notes">
+<ul>
+<li><code>do...while</code> est à utiliser pour exécuter l'instruction au moins
+une fois</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-6-4">
-<h4 id="org1b608f1"><span class="section-number-4">1.6.4</span> Les structures répétitives (pour)</h4>
+<section id="slide-orgf6cb6da">
+<h4 id="orgf6cb6da"><span class="section-number-4">1.6.4</span> Les structures répétitives (pour)</h4>
 <div class="org-src-container">
 
-<pre><code class="src-" >for (expr1; expr2; expr3) { // expr1 est exécutée une seule fois au début de la boucle
+<pre><code class="c" >for (expr1; expr2; expr3) { // expr1 est exécutée une seule fois au début de la boucle
   instructions;             // exécuté tant que expr2 est évaluée à true
                             // expr3 est exécutée à la fin de chaque itération
 }
@@ -835,7 +1272,7 @@ if ($i == 0) {
 
 <div class="org-src-container">
 
-<pre><code class="src-" >expr1;
+<pre><code class="c" >expr1;
 while (expr2) {
   instructions;
   expr3;
@@ -843,9 +1280,18 @@ while (expr2) {
 </code></pre>
 </div>
 
+<aside class="notes">
+<ul>
+<li>Les structures répétitives sont équivalentes, c'est à vous de
+choisir celle que vous préférez</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-6-5">
-<h4 id="org36a262c"><span class="section-number-4">1.6.5</span> Les structures répétitives (tableau)</h4>
+<section id="slide-orgc928a9c">
+<h4 id="orgc928a9c"><span class="section-number-4">1.6.5</span> Les structures répétitives (tableau)</h4>
 <ul>
 <li><code>foreach</code> permet de parcourir les éléments d'un tableau</li>
 
@@ -853,7 +1299,7 @@ while (expr2) {
 
 <div class="org-src-container">
 
-<pre><code class="src-" >foreach (array as $value) {
+<pre><code class="c" >foreach ($array as $value) {
   instructions;
 }
 </code></pre>
@@ -861,18 +1307,26 @@ while (expr2) {
 
 <div class="org-src-container">
 
-<pre><code class="src-" >foreach (array as $key =&gt; $value) {
+<pre><code class="c" >foreach ($array as $key =&gt; $value) {
   instructions;
 }
 </code></pre>
 </div>
+
+<aside class="notes">
+<ul>
+<li>Pour parcourir un tableau, il est conseillé d'utiliser <code>foreach</code></li>
+
+</ul>
+
+</aside>
 
 </section>
-<section id="slide-sec-1-6-6">
-<h4 id="org060a2d0"><span class="section-number-4">1.6.6</span> Exemple général sur les structures</h4>
+<section id="slide-org643890d">
+<h4 id="org643890d"><span class="section-number-4">1.6.6</span> Exemple général sur les structures</h4>
 <div class="org-src-container">
 
-<pre id="phpjs-while-foreach-example"><code class="src-" >&lt;?php
+<pre id="phpjs-while-foreach-example"><code class="php" >&lt;?php
   $i = 0;
   $values = array();
   while (count($values) &lt; 10) {
@@ -889,9 +1343,17 @@ while (expr2) {
 </code></pre>
 </div>
 
+<aside class="notes">
+<ul>
+<li>Essayer de trouver le résultat avant d'exécuter le code.</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-7">
-<h3 id="orgbb1c748"><span class="section-number-3">1.7</span> Les fonctions</h3>
+<section id="slide-org74f3e4c">
+<h3 id="org74f3e4c"><span class="section-number-3">1.7</span> Les fonctions</h3>
 <ul>
 <li>sont des blocs d'instructions que l'on peut répéter dans un programme</li>
 <li>ne sont pas exécutées directement après leurs définitions</li>
@@ -901,7 +1363,7 @@ while (expr2) {
 
 <div class="org-src-container">
 
-<pre id="phpjs-function"><code class="src-" >&lt;?php
+<pre id="phpjs-function"><code class="php" >&lt;?php
   function helloWorld() {
     echo "Hello world!";
   }
@@ -911,9 +1373,17 @@ while (expr2) {
 </code></pre>
 </div>
 
+<aside class="notes">
+<ul>
+<li>les fonctions sont similaires aux fonctions du langage C</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-7-1">
-<h4 id="org6cb1cf1"><span class="section-number-4">1.7.1</span> Les arguments</h4>
+<section id="slide-orgd6c1254">
+<h4 id="orgd6c1254"><span class="section-number-4">1.7.1</span> Les arguments</h4>
 <ul>
 <li>Un argument est une variable, défini après le nom de la fonction entre paranthèses</li>
 <li>Les arguments sont séparés par une virgule</li>
@@ -922,7 +1392,7 @@ while (expr2) {
 
 <div class="org-src-container">
 
-<pre id="phpjs-function-args"><code class="src-" >&lt;?php
+<pre id="phpjs-function-args"><code class="php" >&lt;?php
   function helloWorld($hello, $world) {
     echo "$hello $world!&lt;br&gt;\n";
   }
@@ -933,9 +1403,17 @@ while (expr2) {
 </code></pre>
 </div>
 
+<aside class="notes">
+<ul>
+<li>les fonctions avec des arguments sont similaires aux fonctions du langage C</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-7-2">
-<h4 id="orgf9e0ef4"><span class="section-number-4">1.7.2</span> Les valeurs par défaut</h4>
+<section id="slide-org22a6930">
+<h4 id="org22a6930"><span class="section-number-4">1.7.2</span> Les valeurs par défaut</h4>
 <ul>
 <li>Il est possible de définir une valeur par défaut à un argument</li>
 <li>Les arguments qui ont une valeur par défaut sont définis en dernier</li>
@@ -944,7 +1422,7 @@ while (expr2) {
 
 <div class="org-src-container">
 
-<pre id="phpjs-function-default-args"><code class="src-" >&lt;?php
+<pre id="phpjs-function-default-args"><code class="php" >&lt;?php
   function helloWorld($hello, $world = 'world') {
     echo "$hello $world!\n";
   }
@@ -955,9 +1433,19 @@ while (expr2) {
 </code></pre>
 </div>
 
+<aside class="notes">
+<ul>
+<li>Contrairement aux fonctions en C il est possible de définir une
+valeur par défaut si aucun paramètre n'est donné à la fonction
+alors la variable prendra cette valeur</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-7-3">
-<h4 id="org828dd9e"><span class="section-number-4">1.7.3</span> Les retours</h4>
+<section id="slide-orga7dff69">
+<h4 id="orga7dff69"><span class="section-number-4">1.7.3</span> Les retours</h4>
 <ul>
 <li>Tous les types de variables peuvent être retournés par une fonction</li>
 <li>Si <code>return</code> est absent, <code>null</code> est retourné</li>
@@ -966,7 +1454,7 @@ while (expr2) {
 
 <div class="org-src-container">
 
-<pre id="phpjs-function-return"><code class="src-" >&lt;?php
+<pre id="phpjs-function-return"><code class="php" >&lt;?php
   function helloWorld() {
     return "Hello world!";
   }
@@ -976,9 +1464,18 @@ while (expr2) {
 </code></pre>
 </div>
 
+<aside class="notes">
+<ul>
+<li>les retours des fonctions sont similaires aux retours des
+fonctions du langage C</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-7-4">
-<h4 id="orge3d11d0"><span class="section-number-4">1.7.4</span> Retourner plusieurs valeurs</h4>
+<section id="slide-org374bbb3">
+<h4 id="org374bbb3"><span class="section-number-4">1.7.4</span> Retourner plusieurs valeurs</h4>
 <ul>
 <li>Il faut utiliser un tableau</li>
 
@@ -986,7 +1483,7 @@ while (expr2) {
 
 <div class="org-src-container">
 
-<pre id="phpjs-function-return-array"><code class="src-" >&lt;?php
+<pre id="phpjs-function-return-array"><code class="php" >&lt;?php
   function helloWorld() {
     $result = array();
 
@@ -1001,12 +1498,21 @@ while (expr2) {
 </code></pre>
 </div>
 
+<aside class="notes">
+<ul>
+<li>Comme il est possible de retourner un tableau en PHP, cela permet
+de renvoyer plusieurs valeurs</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-7-5">
-<h4 id="org59f493c"><span class="section-number-4">1.7.5</span> Arguments par référence</h4>
+<section id="slide-org75bcdeb">
+<h4 id="org75bcdeb"><span class="section-number-4">1.7.5</span> Arguments par référence</h4>
 <div class="org-src-container">
 
-<pre id="phpjs-function-args-reference"><code class="src-" >&lt;?php
+<pre id="phpjs-function-args-reference"><code class="php" >&lt;?php
   $hello = "Hello";
   $world = "World";
   function helloWorld($bonjour, &amp;$tous) {
@@ -1020,12 +1526,22 @@ while (expr2) {
 </code></pre>
 </div>
 
+<aside class="notes">
+<ul>
+<li>Les références correspondent plus ou moins aux pointeurs en C à la
+différence qu'il n'y a pas d'équivalent pour l'opérateur '*'. On
+ne peut pas manipuler les adresses seulement le contenu des variables.q</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-7-6">
-<h4 id="orga0f2db4"><span class="section-number-4">1.7.6</span> Une fonction récursive</h4>
+<section id="slide-orgdad6fa6">
+<h4 id="orgdad6fa6"><span class="section-number-4">1.7.6</span> Une fonction récursive</h4>
 <div class="org-src-container">
 
-<pre id="phpjs-function-rec"><code class="src-" >&lt;?php
+<pre id="phpjs-function-rec"><code class="php" >&lt;?php
   // affiche n fois la lettre 'o'
   function o($n) {
     $res = '';
@@ -1045,9 +1561,17 @@ while (expr2) {
 </code></pre>
 </div>
 
+<aside class="notes">
+<ul>
+<li>La récursivité des fonctions fonctionne comme en langage C</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-8">
-<h3 id="org76feb1b"><span class="section-number-3">1.8</span> Les variables prédéfinies</h3>
+<section id="slide-org111ab34">
+<h3 id="org111ab34"><span class="section-number-3">1.8</span> Les variables prédéfinies</h3>
 <ul>
 <li><code>$_GET    </code> : variables de la méthode GET (dans l'url)</li>
 <li><code>$_POST   </code> : variables de la méthode POST (dans l'entête HTTP)</li>
@@ -1062,9 +1586,18 @@ while (expr2) {
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>Nous reverrons l'utilisation de ces variables en fonction des
+besoins</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-1-9">
-<h3 id="org31f2743"><span class="section-number-3">1.9</span> <code>$_SERVER</code></h3>
+<section id="slide-org5fb5404">
+<h3 id="org5fb5404"><span class="section-number-3">1.9</span> <code>$_SERVER</code></h3>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -1126,19 +1659,42 @@ while (expr2) {
 </tbody>
 </table>
 
+<aside class="notes">
+<ul>
+<li>Il faut faire attention à l'usage de cette variable car les
+résultats ne sont pas nécessairement consistant et sont liés à la
+configuration du serveur</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-php-form">
-<h2 id="php-form"><a id="org473449a"></a><span class="section-number-2">2</span> Les formulaires</h2>
+<section id="slide-org47a158a">
+<h2 id="org47a158a"><span class="section-number-2">2</span> Les formulaires</h2>
+<aside class="notes">
+<ul>
+<li>L'interaction avec les formulaires va montrer l'intérêt de PHP. Avec
+PHP nous allons pouvoir récupérer des informations envoyées par le
+client sur le serveur et interagir en conséquence.</li>
+<li>Pour rappel l'attribut <code>action</code> de la balise form permet d'indiquer
+la page qui va récupérer les informations du formulaire et
+l'attribut <code>method</code> indiquera la façon d'envoyer les informations
+(<code>GET</code> ou <code>POST</code>)</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-2-1">
-<h3 id="org9f4cf82"><span class="section-number-3">2.1</span> GET</h3>
+<section id="slide-orgfed3435">
+<h3 id="orgfed3435"><span class="section-number-3">2.1</span> GET</h3>
 <div class="org-src-container">
 
-<pre><code class="html" >GET form
-<form action="<?php echo($_SERVER["PHP_SELF"]); ?>" method="get">
-  <label>input :<input type="text" name="input"/></label><br>
-  <button type="submit">Valider</button>
-</form>
+<pre><code class="xml" >GET form
+&lt;form action="&lt;?php echo($_SERVER["PHP_SELF"]); ?&gt;" method="get"&gt;
+  &lt;label&gt;input :&lt;input type="text" name="input"/&gt;&lt;/label&gt;&lt;br&gt;
+  &lt;button type="submit"&gt;Valider&lt;/button&gt;
+&lt;/form&gt;
 </code></pre>
 </div>
 
@@ -1146,65 +1702,171 @@ while (expr2) {
 <a href="./examples/form.php?filename=form_get">exemple</a>
 </p>
 
-</section>
-<section id="slide-sec-2-2" data-state="alert">
-<h3 id="org22700f5"><span class="section-number-3">2.2</span> Sécurité</h3>
+<aside class="notes">
 <ul>
-<li>Attention à l'utilisation de <code>$_SERVER["PHP_SELF"]</code></li>
-<li>Attention aux données de l'utilisateur</li>
+<li>dans cet exemple, <code>action</code> considère la page courante. Pour cela la
+variable <code>$_SERVER</code> qui est un tableau peut être utilisée et l'index
+<code>PHP_SELF</code> contient le nom de page courante (ce qui évite de coder
+en dur le nom de la page et évite des erreurs si on décide de
+renommer le fichier)</li>
+<li>Attention ceci n'est pas forcément la meilleure solution, nous y
+reviendrons.</li>
+<li>Le formulaire contient une information textuelle avec le nom <code>input</code></li>
+<li>Après avoir validé le formulaire, regardez dans l'URL de votre
+navigateur, il devrait y avoir l'information suivante
+<code>?input=la_valeur_que_vous_avez_entree</code></li>
+<li>La méthode <code>GET</code> permet de récupérer des paramètres dans les URL. Il
+ne faut donc pas l'utiliser pour des informations sensibles (mot de
+passe par exemple)</li>
+<li>La redirection sur la page de résultat affiche le contenu de
+certaines variables PHP <code>GET</code>, <code>POST</code>, <code>REQUEST</code>, <code>FILES</code>, <code>COOKIE</code>
+pour rappel <code>REQUEST</code> regroupe les valeurs passées dans <code>GET</code> et
+<code>POST</code></li>
+<li>Ce qu'il faut retenir c'est que <code>GET</code> permet de passer des valeurs
+de formulaire dans l'URL. Le format est <code>?nom1=valeur1&amp;nom2=valeur2</code></li>
 
 </ul>
 
+</aside>
 </section>
-<section id="slide-sec-2-2-1">
-<h4 id="org041c363"><span class="section-number-4">2.2.1</span> <code>$_SERVER["PHP_SELF"]</code></h4>
+<section id="slide-orgd9b36e8" data-background="#C8321E">
+<h3 id="orgd9b36e8"><span class="section-number-3">2.2</span> Sécurité</h3>
+<ul>
+<li>Attention à l'utilisation de <code>$_SERVER["PHP_SELF"]</code></li>
+<li>Attention aux données reçues sur le serveur</li>
+
+</ul>
+
+<aside class="notes">
+<ul>
+<li>l'utilisation seule de <code>$_SERVER["PHP_SELF"]</code> n'est pas sécurisée
+comme vous allez le voir dans l'exemple d'après.</li>
+<li>il faut également faire attention aux données qui sont envoyées par
+le <code>client</code> sur le <code>serveur</code>, elles pourraient chercher à
+compromettre l'usage normal. Il faut donc toujours les vérifier
+avant de les utiliser.</li>
+
+</ul>
+
+</aside>
+</section>
+<section id="slide-org15255d7">
+<h4 id="org15255d7"><span class="section-number-4">2.2.1</span> <code>$_SERVER["PHP_SELF"]</code></h4>
 <p>
 <code>$_SERVER["PHP_SELF"]</code> permet de faire référence au script en cours
 </p>
 
-<ol class="org-ol">
-<li><a id="org0bb6bec"></a>Problème<br />
+<ul>
+<li><p>
+Problème
+</p>
 <div class="org-src-container">
 
-<pre><code class="html" ><form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+<pre><code class="xml" >&lt;form action="&lt;?php echo $_SERVER['PHP_SELF']; ?&gt;" method="post"&gt;
 </code></pre>
 </div>
 <ul>
-<li><code>/%22%3E%3Cscript%3Ealert('hacked')%3C/script%3E</code></li>
-<li><a href="./examples/form.php/%22%3E%3Cscript%3Ealert('hacked')%3C/script%3E?filename=form_get">exemple</a></li>
+<li>lien normal : <a href="./examples/form.php/%22%3E%3Cscript%3Ealert('hacked')%3C/script%3E?filename=form_get">form.php</a></li>
+<li>lien modifé : <a href="./examples/form.php/%22%3E%3Cscript%3Ealert('hacked')%3C/script%3E?filename=form_get">form.php/%22%3E%3Cscript%3Ealert('hacked')%3C/script%3E</a></li>
 
-</ul>
-</li>
+</ul></li>
 
-<li><a id="orgf9d5b27"></a>Solution<br />
+<li><p>
+Solution
+</p>
+<div class="org-src-container">
+
+<pre><code class="xml" >&lt;form action="&lt;?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?&gt;" method="post"&gt;
+</code></pre>
+</div>
 <ul>
-<li><code>filter_var($_SERVER['PHP_SELF'], FILTER_SANITIZE_STRING);</code></li>
-<li><code>htmlspecialchars($_SERVER["PHP_SELF"]);</code></li>
-<li><a href="./examples/form.php/%22%3E%3Cscript%3Ealert('hacked')%3C/script%3E?filename=form_post">exemple</a></li>
-<li>il est également possible d'utiliser <code>action="" </code></li>
+<li><code>htmlspecialchars($_SERVER["PHP_SELF"]);</code> ou  <code>filter_var($_SERVER['PHP_SELF'], FILTER_SANITIZE_STRING);</code></li>
+<li>lien protégé : <a href="./examples/form.php/%22%3E%3Cscript%3Ealert('hacked')%3C/script%3E?filename=form_post">form.php/%22%3E%3Cscript%3Ealert('hacked')%3C/script%3E</a></li>
+<li>Plus simplement pour rediriger sur la même page il est possible d'utiliser <code>action="" </code></li>
+
+</ul></li>
+
+<li>Remarques
+<ul>
+<li>Ce n'est pas grave si vous ne comprenez pas tout, retenez
+seulement qu'il ne faut pas utiliser <code>$_SERVER['PHP_SELF']</code></li>
+
+</ul></li>
 
 </ul>
-</li>
-</ol>
+<aside class="notes">
+<ul>
+<li>Problème
+<ul>
+<li>comme <code>$_SERVER['PHP_SELF']</code> permet de représenter la page
+courante, on peut ajouter des informations dans l'URL pour
+modifier la valeur de la page courante</li>
+<li><code>%22</code> représente <code>"</code></li>
+<li><code>%3E</code> représente <code>&gt;</code></li>
+<li><code>%3C</code> représente <code>&lt;</code></li>
+<li><code>/%22%3E%3Cscript%3Ealert('hacked')%3C/script%3E</code> représente donc
+<code>/"&gt;&lt;script&gt;alert('hacked')&lt;/script&gt;</code></li>
+<li><p>
+le code HTML généré par PHP avec <code>$_SERVER['PHP_SELF']</code> sera donc
+</p>
+<div class="org-src-container">
 
+<pre><code class="xml" >&lt;form action="/php/examples/form.php/"&gt;&lt;script&gt;alert('hacked')&lt;/script&gt;" method="post"&gt;
+</code></pre>
+</div>
+<p>
+ce qui permet par exemple d'introduire du code javascript et
+correspond donc à une faille de sécurité
+</p></li>
+
+</ul></li>
+<li>Solution
+<ul>
+<li>htmlspecialchars remplace certains caractères particuliers par l'entité HTML correspondante</li>
+<li><code>"</code> par <code>&amp;quot;</code></li>
+<li><code>&gt;</code> par <code>&amp;gt;</code></li>
+<li><code>&lt;</code> par <code>&amp;lt;</code></li>
+<li><p>
+le code HTML généré par PHP avec <code>htmlspecialchars($_SERVER['PHP_SELF'])</code> sera donc
+</p>
+<div class="org-src-container">
+
+<pre><code class="xml" >&lt;form action="/php/examples/form.php/&amp;quot;&amp;gt;&amp;lt;script&amp;gt;alert('hacked')&amp;lt;/script&amp;gt;" method="post"&gt;
+</code></pre>
+</div></li>
+
+</ul></li>
+<li>Remarques
+<ul>
+<li>Ce n'est pas grave si vous ne comprenez pas tout, retenez
+seulement qu'il ne faut pas afficher les données utilisateurs sans les vérifier</li>
+
+</ul></li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-2-2-2">
-<h4 id="org94ccdf4"><span class="section-number-4">2.2.2</span> Filtrer les données des utilisateurs</h4>
+<section id="slide-org9ef6d8d">
+<h4 id="org9ef6d8d"><span class="section-number-4">2.2.2</span> Filtrer les données des utilisateurs</h4>
 <p>
 Never Trust User Input
 </p>
 
-<ol class="org-ol">
-<li><a id="orga84ecc2"></a>Problème<br />
+<ul>
+<li>Problème
+
 <ul>
 <li>Un commentaire peut inclure du code malveillant</li>
 <li>cross site scripting (XSS)</li>
-<li><a href="./examples/form.php?input=&lt;script&gt;alert('hacked');&lt;/script&gt;">exemple</a></li>
+<li><a href="./examples/form.php?input=&lt;script&gt;alert('hacked');&lt;/script&gt;">form.php?input=&lt;script&gt;alert('hacked');&lt;/script&gt;</a></li>
 
-</ul>
-</li>
+</ul></li>
 
-<li><a id="org748995f"></a>Solution<br />
+<li><p>
+Solution
+</p>
+
 <ul>
 <li><code>htmlspecialchars()</code></li>
 <li>Pas toujours suffisant si l'affichage est déjà dans une balise html</li>
@@ -1212,28 +1874,54 @@ Never Trust User Input
 </ul>
 <div class="org-src-container">
 
-<pre><code class="html" >$data = "javascript:alert('hacked');";
-<img src="'.htmlspecialchars($data).'">
+<pre><code class="xml" >$data = "javascript:alert('hacked');";
+&lt;img src="'.htmlspecialchars($data).'"&gt;
 </code></pre>
 </div>
+
 <div class="org-src-container">
 
-<pre><code class="html" ><img src="javascript:alert('hacked');">
+<pre><code class="xml" >&lt;img src="javascript:alert('hacked');"&gt;
 </code></pre>
-</div>
-</li>
-</ol>
+</div></li>
 
+</ul>
+
+<aside class="notes">
+<ul>
+<li>Problème
+<ul>
+<li>Ici on considère qu'on met comme valeur dans un formulaire du code javascript</li>
+<li>Si vous affichez directement la valeur reçue, le code javascript
+sera exécuté par le navigateur. C'est ce qui se passe dans le
+tableau du <code>GET</code> (d'où l'alerte javascript) alors que
+<code>htmlspecialchars</code> est utilisé dans le <code>REQUEST</code></li>
+
+</ul></li>
+<li>Solution
+<ul>
+<li><code>htmlspecialchars</code> fonctionne dans pratiquement tous les cas, mais
+il faut faire attention si c'est utilisé dans un attribut html
+cela ne fonctionne pas toujours</li>
+<li>Ce n'est pas très important si vous ne comprenez pas cette partie,
+c'est surtout pour votre culture personnelle pour le moment on ne
+vous demande pas de faire des sites entièrement sécurisés</li>
+
+</ul></li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-2-3">
-<h3 id="org939736b"><span class="section-number-3">2.3</span> POST</h3>
+<section id="slide-orga141c7d">
+<h3 id="orga141c7d"><span class="section-number-3">2.3</span> POST</h3>
 <div class="org-src-container">
 
-<pre><code class="html" >POST form
-<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-  <label>input :<input type="text" name="input"/></label><br>
-  <button type="submit">Valider</button>
-</form>
+<pre><code class="xml" >POST form
+&lt;form action="&lt;?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?&gt;" method="post"&gt;
+  &lt;label&gt;input :&lt;input type="text" name="input"/&gt;&lt;/label&gt;&lt;br&gt;
+  &lt;button type="submit"&gt;Valider&lt;/button&gt;
+&lt;/form&gt;
 </code></pre>
 </div>
 
@@ -1241,31 +1929,45 @@ Never Trust User Input
 <a href="./examples/form.php?filename=form_post">exemple</a>
 </p>
 
+<aside class="notes">
+<ul>
+<li>Contrairement à l'utilisation de <code>GET</code> vous ne voyez pas la valeur
+que vous avez entré dans le formulaire.</li>
+<li>En fait cette valeur se trouve cachée dans l'entête HTTP. Vous vous
+souvenez que la communication entre le client et le serveur se fait
+par un protocole (ici HTTP ou HTTPS) et dans ce protocole, il y a
+une entête qui contient des informations comme le type de navigateur
+utilisé (si vous vous souvenez je vous l'avais montré en cours) et
+les valeurs transmises en POST.</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-2-4">
-<h3 id="org1c2b67f"><span class="section-number-3">2.4</span> Valeurs multiples</h3>
+<section id="slide-org6d1d686">
+<h3 id="org6d1d686"><span class="section-number-3">2.4</span> Valeurs multiples</h3>
 <div class="org-src-container">
 
-<pre><code class="html" >Multiple POST form
-<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-  <p>
-    Langues pratiquées :<br />
-    <select name="lang[]" multiple size="4">
-      <option value="français"> français</option>
-      <option value="anglais"> anglais</option>
-      <option value="allemand"> allemand</option>
-      <option value="espagnol"> espagnol</option>
-  </select>
-  </p>
-  <p>
-    Compétences informatiques :<br />
-    <label>HTML<input type="checkbox" name="input[]" value="HTML" /></label>
-    <label>PHP<input type="checkbox" name="input[]" value="PHP" /></label>
-    <label>MySQL<input type="checkbox" name="input[]" value="MySQL" /></label>
-  </p>
-  <input type="reset" value="EFFACER"/>
-  <input type="submit" value="ENVOI"/>
-</form>
+<pre><code class="xml" >Multiple POST form
+&lt;form action="&lt;?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?&gt;" method="post"&gt;
+  &lt;p&gt;
+    Langues pratiquées :&lt;br /&gt;
+    &lt;select name="lang[]" multiple size="4"&gt;
+      &lt;option value="français"&gt; français&lt;/option&gt;
+      &lt;option value="anglais"&gt; anglais&lt;/option&gt;
+      &lt;option value="allemand"&gt; allemand&lt;/option&gt;
+      &lt;option value="espagnol"&gt; espagnol&lt;/option&gt;
+  &lt;/select&gt;
+  &lt;/p&gt;
+  &lt;p&gt;
+    Compétences informatiques :&lt;br /&gt;
+    &lt;label&gt;HTML&lt;input type="checkbox" name="input[]" value="HTML" /&gt;&lt;/label&gt;
+    &lt;label&gt;PHP&lt;input type="checkbox" name="input[]" value="PHP" /&gt;&lt;/label&gt;
+    &lt;label&gt;MySQL&lt;input type="checkbox" name="input[]" value="MySQL" /&gt;&lt;/label&gt;
+  &lt;/p&gt;
+  &lt;input type="reset" value="EFFACER"/&gt;
+  &lt;input type="submit" value="ENVOI"/&gt;
+&lt;/form&gt;
 </code></pre>
 </div>
 
@@ -1275,18 +1977,30 @@ Never Trust User Input
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>Amusez vous en testant différentes valeurs envoyées en sélectionnant
+plusieurs valeurs ou pas etc. En POST vous ne verrez pas grand
+chose, mais je vous invite à regarder l'URL pour voir le résultat
+avec GET</li>
+<li>ce qui est intéressant de noter c'est que pour envoyer plusieurs
+valeurs il faut que le nom dans le formulaire HTML finisse pas <code>[]</code></li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-2-5">
-<h3 id="org043bbd6"><span class="section-number-3">2.5</span> Buttons multiples</h3>
+<section id="slide-org408a4b0">
+<h3 id="org408a4b0"><span class="section-number-3">2.5</span> Buttons multiples</h3>
 <div class="org-src-container">
 
-<pre><code class="html" >Multiple button
-<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="get">
-    <input type="submit" name="input" value="addition">
-    <input type="submit" name="input" value="soustraction">
-    <input type="submit" name="input" value="multiplication">
-    <input type="submit" name="input" value="division">
-</form>
+<pre><code class="xml" >Multiple button
+&lt;form action="&lt;?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?&gt;" method="get"&gt;
+    &lt;input type="submit" name="input" value="addition"&gt;
+    &lt;input type="submit" name="input" value="soustraction"&gt;
+    &lt;input type="submit" name="input" value="multiplication"&gt;
+    &lt;input type="submit" name="input" value="division"&gt;
+&lt;/form&gt;
 </code></pre>
 </div>
 
@@ -1295,9 +2009,16 @@ Never Trust User Input
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>Pour savoir quel bouton a été cliqué il est possible de lui donner une valeur.</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-2-6">
-<h3 id="orgd19de2e"><span class="section-number-3">2.6</span> <code>$_FILES</code></h3>
+<section id="slide-org09bace1">
+<h3 id="org09bace1"><span class="section-number-3">2.6</span> <code>$_FILES</code></h3>
 <ul>
 <li>Envoi de fichiers (méthode <code>POST</code>)</li>
 <li>Balise form avec l'attribut <code>enctype="multipart/form-data" </code></li>
@@ -1311,9 +2032,26 @@ Never Trust User Input
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>Il n'est pas possible d'utiliser <code>GET</code> pour envoyer des fichiers</li>
+<li>Il faut ajouter l'attribut <code>enctype</code></li>
+<li>Il est possible de filtrer les fichiers proposés avec l'attribut
+<code>accept</code></li>
+<li>Le fichier <code>php.ini</code> est un fichier de configuration qui se situe
+sur le serveur et sauf si c'est sur votre machine personnelle, vous
+ne pouvez pas modifier cette valeur.</li>
+<li>l'input en html n'est pas très utile car il ne permet pas d'envoyer
+des fichiers plus gros que la valeur définie dans <code>php.ini</code></li>
+<li>Ne vous attardez pas trop sur cette notion de taille de fichiers, ce
+n'est pas très important</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-2-7">
-<h3 id="orga32fe4f"><span class="section-number-3">2.7</span> Informations liées aux fichiers</h3>
+<section id="slide-org7ee9a15">
+<h3 id="org7ee9a15"><span class="section-number-3">2.7</span> Informations liées aux fichiers</h3>
 <ul>
 <li><code>name    </code> : nom du fichier client</li>
 <li><code>type    </code> : MIME du fichier client</li>
@@ -1323,9 +2061,17 @@ Never Trust User Input
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>Quand le fichier est envoyé au serveur, plusieurs valeurs sont
+associées</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-2-8">
-<h3 id="orgceabb12"><span class="section-number-3">2.8</span> Codes d'erreur</h3>
+<section id="slide-orgc9d6795">
+<h3 id="orgc9d6795"><span class="section-number-3">2.8</span> Codes d'erreur</h3>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -1369,18 +2115,26 @@ Never Trust User Input
 </tbody>
 </table>
 
+<aside class="notes">
+<ul>
+<li>La valeur <code>error</code> associée au fichier permet de détecter d'éventuels
+problèmes liés à l'envoi du fichier</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-2-9">
-<h3 id="org9afd00b"><span class="section-number-3">2.9</span> POST et FILES</h3>
+<section id="slide-org2518ba5">
+<h3 id="org2518ba5"><span class="section-number-3">2.9</span> POST et FILES</h3>
 <div class="org-src-container">
 
-<pre><code class="html" >POST form with file
-<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"
-      method="post" enctype="multipart/form-data">
-  <label>input :<input type="text" name="input"/></label><br>
-  <label>file :<input type="file" name="file"/></label><br>
-  <button type="submit">Valider</button>
-</form>
+<pre><code class="xml" >POST form with file
+&lt;form action="&lt;?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?&gt;"
+      method="post" enctype="multipart/form-data"&gt;
+  &lt;label&gt;input :&lt;input type="text" name="input"/&gt;&lt;/label&gt;&lt;br&gt;
+  &lt;label&gt;file :&lt;input type="file" name="file"/&gt;&lt;/label&gt;&lt;br&gt;
+  &lt;button type="submit"&gt;Valider&lt;/button&gt;
+&lt;/form&gt;
 </code></pre>
 </div>
 
@@ -1390,14 +2144,14 @@ Never Trust User Input
 
 <div class="org-src-container">
 
-<pre><code class="html" >POST form with files
-<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"
-      method="post" enctype="multipart/form-data">
-  <label>input :<input type="text" name="input"/></label><br>
-  <label>file[] :<input type="file" name="files[]"/></label><br>
-  <label>file[] :<input type="file" name="files[]"/></label><br>
-  <button type="submit">Valider</button>
-</form>
+<pre><code class="xml" >POST form with files
+&lt;form action="&lt;?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?&gt;"
+      method="post" enctype="multipart/form-data"&gt;
+  &lt;label&gt;input :&lt;input type="text" name="input"/&gt;&lt;/label&gt;&lt;br&gt;
+  &lt;label&gt;file[] :&lt;input type="file" name="files[]"/&gt;&lt;/label&gt;&lt;br&gt;
+  &lt;label&gt;file[] :&lt;input type="file" name="files[]"/&gt;&lt;/label&gt;&lt;br&gt;
+  &lt;button type="submit"&gt;Valider&lt;/button&gt;
+&lt;/form&gt;
 </code></pre>
 </div>
 
@@ -1405,9 +2159,23 @@ Never Trust User Input
 <a href="./examples/form.php?filename=form_post_files">exemple</a>
 </p>
 
+<aside class="notes">
+<ul>
+<li>Vous pouvez essayer d'envoyer un ou plusieurs fichiers et voir le
+résultat. Je conseille de n'envoyer que des petits fichiers textuels
+pour ne pas surcharger inutilement le serveur pour rien.</li>
+<li>Par défaut vous voyez que le fichier est stocké sur le serveur
+temporairement dans le dossier <code>tmp</code> avec un nom généré
+automatiquement par PHP</li>
+<li>Pour utiliser ce fichier concrètement et le garder plus longtemps il
+faudra donc le déplacer dans un dossier.</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-2-10">
-<h3 id="orgfced31f"><span class="section-number-3">2.10</span> Déplacement des fichiers</h3>
+<section id="slide-org2de1293">
+<h3 id="org2de1293"><span class="section-number-3">2.10</span> Déplacement des fichiers</h3>
 <ul>
 <li>Il faut utiliser la fonction <code>move_uploaded_file</code></li>
 <li><code>move_uploaded_file($_FILES["file"]["tmp_name"], "monimage.jpg");</code>
@@ -1418,9 +2186,23 @@ Never Trust User Input
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>Quand vous déplacez un fichier, il faut lui donner un nom qui vous
+garantisse que cela ne posera pas de problème et il ne faut donc
+surtout pas utiliser l'attribut <code>name</code> qui contient le nom donné par
+le client car cela pourrait poser des problèmes (fichier existant,
+tentative de corruption en donnant des noms avec des chemins absolu
+comme <code>/home/login/nom_de_fichier</code>)</li>
+<li>Nous ne nous intéresserons pas à ces problèmes de sécurité. Préférez
+l'utilisation d'un nom que vous définirez vous même.</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-2-11">
-<h3 id="org7442ca6"><span class="section-number-3">2.11</span> Validation</h3>
+<section id="slide-org2f9a516">
+<h3 id="org2f9a516"><span class="section-number-3">2.11</span> Validation</h3>
 <ul>
 <li>Never Trust User Input</li>
 <li>La validation html5 n'est pas suffisante</li>
@@ -1429,35 +2211,81 @@ Never Trust User Input
 </p>
 <div class="org-src-container">
 
-<pre><code class="src-" >filter_var($email, FILTER_VALIDATE_EMAIL)
+<pre><code class="c" >filter_var($email, FILTER_VALIDATE_EMAIL)
 </code></pre>
 </div></li>
 
 </ul>
 
-</section>
-<section id="slide-sec-cookies-sessions">
-<h2 id="cookies-sessions"><a id="orgcf486d9"></a><span class="section-number-2">3</span> Cookies et sessions</h2>
-</section>
-<section id="slide-sec-3-1">
-<h3 id="orgb13606c"><span class="section-number-3">3.1</span> Les cookies</h3>
+<aside class="notes">
 <ul>
-<li>Les cookies permettent de stocker des informations côté client<br />
-(Never Trust User Input)</li>
-<li>L'écriture de cookie se fait avant tout envoi de contenu HTML au client</li>
+<li>Rappelez-vous qu'il faut toujours vérifiez les valeurs envoyées par
+le client pour éviter de corrompre votre site.</li>
+<li>Si vous cliquez sur les liens vous verrez que les 2 fonctions sont
+proches mais que <code>filter_input</code> est plus adaptée pour vérifier les
+données provenant d'un formulaire.</li>
 
 </ul>
 
+</aside>
 </section>
-<section id="slide-sec-3-2">
-<h3 id="org186277b"><span class="section-number-3">3.2</span> <a href="http://php.net/manual/en/function.setcookie.php">setcookie()</a></h3>
+<section id="slide-org4966c1a">
+<h2 id="org4966c1a"><span class="section-number-2">3</span> Cookies et sessions</h2>
+<aside class="notes">
+<ul>
+<li>Comme vous le savez sûrement les cookies sont des petits fichiers
+textuels qui ont stockés chez le client. Ces fichiers peuvent servir
+à enregistrer des préférences comme nous l'avons vu en javascript
+mais ils servent surtout à garder une trace de l'accès à une page
+permettant à l'aide d'un code spécifique de savoir si le serveur
+communique avec le même client.</li>
+<li>C'est ce qui est utilisé quand vous vous connectez à un site et que
+ce dernier ne vous redemande pas à chaque changement de page votre
+identifiant et votre mot de passe. Le serveur donne un identifiant
+unique au client qui lui permettra de savoir si c'est bien toujours
+le même.</li>
+<li>Pour rappel, les cookies sont envoyés dans les entêtes HTTP pendant
+la communication entre le client et le serveur</li>
+
+</ul>
+
+</aside>
+</section>
+<section id="slide-orgf0adf13">
+<h3 id="orgf0adf13"><span class="section-number-3">3.1</span> Les cookies</h3>
+<ul>
+<li>Les cookies permettent de stocker des informations côté client<br />
+(Never Trust User Input)</li>
+<li>L'écriture de cookie se fait avant tout envoi de contenu HTML au
+client car ces données sont envoyée dans l'entête HTTP</li>
+
+</ul>
+
+<aside class="notes">
+<ul>
+<li>Comme les données viennent du client, le serveur ne doit pas les
+considérer comme sûre. Si vous connaissez la valeur d'un cookie,
+vous pourriez modifier votre cookie pour usurper l'identité d'une
+personne connectée à un site.</li>
+<li>Cela s'appelle un vol de session (il y a quelques méthodes pour
+limiter les risques en stockant par exemple l'adresse IP du client
+côté serveur ou des informations sur son navigateur). Il suffit de
+vérifier que les informations reçues avec un cookie correspondent
+toujours.</li>
+
+</ul>
+
+</aside>
+</section>
+<section id="slide-org9be7897">
+<h3 id="org9be7897"><span class="section-number-3">3.2</span> setcookie</h3>
 <div class="org-src-container">
 
-<pre><code class="src-" >setcookie($name, $value, $expire, $path, $domain, $secure, $httponly)
+<pre><code class="c" >setcookie($name, $value, $expire, $path, $domain, $secure, $httponly);
 </code></pre>
 </div>
 <p>
- 
+<a href="http://php.net/manual/en/function.setcookie.php">setcookie()</a>
 </p>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -1514,12 +2342,21 @@ Never Trust User Input
 </tbody>
 </table>
 
+<aside class="notes">
+<ul>
+<li>Les cookies peuvent avoir une durée de vie : 0 pour dire que le
+cookie expire à la fin de la session quand le navigateur ferme la
+page</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-3-3">
-<h3 id="orga2e56e8"><span class="section-number-3">3.3</span> Affectation des cookies en PHP</h3>
+<section id="slide-orgaf1861e">
+<h3 id="orgaf1861e"><span class="section-number-3">3.3</span> Affectation des cookies en PHP</h3>
 <div class="org-src-container">
 
-<pre><code class="src-" >setcookie('hello','world');
+<pre><code class="c" >setcookie('hello','world');
 setcookie('couleur', 'red', time()+86400, '/mon-compte/', www.monsite.com, TRUE);
 
 setcookie('tableau[index1]','val1');
@@ -1528,9 +2365,16 @@ setcookie('tableau[index3]','val3');
 </code></pre>
 </div>
 
+<aside class="notes">
+<ul>
+<li>Les cookies peuvent être utilisés pour stocker des valeurs simples ou des tableaux</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-3-4">
-<h3 id="org961f459"><span class="section-number-3">3.4</span> Lecture des cookies</h3>
+<section id="slide-orgf1c2884">
+<h3 id="orgf1c2884"><span class="section-number-3">3.4</span> Lecture des cookies</h3>
 <ul>
 <li><code>$_COOKIE</code> est utilisé pour récupérer les valeurs</li>
 <li>Attention, il n'est pas possible de lire une valeur associée
@@ -1541,30 +2385,68 @@ entre le client et le serveur.</li>
 
 <div class="org-src-container">
 
-<pre><code class="src-" >$hello = $_COOKIE['hello'];
+<pre><code class="c" >setcookie('hello','world');
 
-foreach($_COOKIE['tableau'] as $key =&gt; $value) {
-  echo 'Cookie : '. $key.' : '. $value;
-}
+setcookie('tableau[index1]','val1');
+setcookie('tableau[index2]','val2');
+setcookie('tableau[index3]','val3');
 </code></pre>
 </div>
 
 <p>
-<a href="./examples/cookie.php">exemple</a>
+(Lisez bien les notes avant de cliquer sur ce lien d'exemple)
 </p>
 
+<p>
+<a href="./examples/cookie.php">exemple</a> 
+</p>
+
+<aside class="notes">
+<ul>
+<li>Première fois
+<ul>
+<li>quand vous cliquez sur le lien, la requête HTTP est envoyée au serveur et il n'y a pas de cookie de défini</li>
+<li>les appels de <code>setcookie</code> demande à PHP d'envoyer des cookies dans l'entête HTTP de la réponse</li>
+<li>PHP affiche les valeurs de <code>$_COOKIE</code> mais il n'y a rien car pas de cookie dans l'entête HTTP de la requête</li>
+<li>par contre côté client les cookies ont été définis (le résultat de la page affiche le contenu de <code>$_COOKIE</code>)</li>
+<li>pour voir les cookies côté client vous pouvez cliquer sur le lien
+« edit » qui affichera en javascript les cookies</li>
+
+</ul></li>
+<li>Deuxième fois
+<ul>
+<li>Si vous réactualisez la page, la requêtte HTTP contient les cookies définis avant par PHP</li>
+<li>Dans le tableau, il y a donc les valeurs précédemment fixées.</li>
+
+</ul></li>
+<li>Vous pouvez éditer/créer des valeurs et voir comment ça se passe
+quand vous actualisez la page. Quand vous modifiez côté client, les
+valeurs PHP s'affichent directement, par contre comme PHP redéfinit
+toujours <code>hello</code> et <code>tableau</code> il faut réactualiser une seconde fois
+pour voir la mise à jour dans le rendu généré par PHP</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-3-5">
-<h3 id="orgcad6a30"><span class="section-number-3">3.5</span> Les sessions</h3>
+<section id="slide-orgc3559b1">
+<h3 id="orgc3559b1"><span class="section-number-3">3.5</span> Les sessions</h3>
 <ul>
 <li>Les sessions permettent de stocker des informations côté serveur</li>
 <li>Les sessions ne sont pas partagées entre les visiteurs</li>
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>Vous l'aurez compris, les sessions seront gérées à l'aide des cookies</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-3-6">
-<h3 id="orgfc6a973"><span class="section-number-3">3.6</span> Différentes étapes</h3>
+<section id="slide-org6e9b408">
+<h3 id="org6e9b408"><span class="section-number-3">3.6</span> Différentes étapes</h3>
 <ul>
 <li>Ouverture d'une session avec <code>session_start()</code></li>
 <li>Transmission d'un identifiant de session</li>
@@ -1573,11 +2455,20 @@ foreach($_COOKIE['tableau'] as $key =&gt; $value) {
 
 </ul>
 
-</section>
-<section id="slide-sec-3-7">
-<h3 id="org78c64a0"><span class="section-number-3">3.7</span> Transmission de l'identifiant de session</h3>
+<aside class="notes">
 <ul>
-<li>Dans l'URL à l'aide de la variable <code>SID</code> (Pas recommandé <i>htmlspecialchars</i>)</li>
+<li><code>session_start()</code> doit être appelé en tout début de code pour que la
+mise en place des éventuels cookies se fasse avant tout affichage de
+code HTML</li>
+
+</ul>
+
+</aside>
+</section>
+<section id="slide-org42ec73f">
+<h3 id="org42ec73f"><span class="section-number-3">3.7</span> Transmission de l'identifiant de session</h3>
+<ul>
+<li>Dans l'URL à l'aide de la variable <code>SID</code> (Pas recommandé)</li>
 <li>Avec les cookies (il faut que le client accepte les cookies)
 <ul>
 <li><code>ini_set('session.use_cookies', 1);</code></li>
@@ -1587,21 +2478,33 @@ foreach($_COOKIE['tableau'] as $key =&gt; $value) {
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>Les sessions peuvent également être utilisées avec une valeur dans
+l'URL comme les valeurs <code>$_GET</code>. Ceci n'est bien sûr pas recommandé
+car le partage d'une URL suffirait presque pour effectuer un vol de session.</li>
+<li>Par défaut, maintenant PHP n'autorise plus que l'utilisation de
+cookies et c'est uniquement comme cela que nous allons gérer les
+sessions</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-3-8">
-<h3 id="orgbf4976a"><span class="section-number-3">3.8</span> Utilisation des sessions - 1</h3>
+<section id="slide-org54bb30b">
+<h3 id="org54bb30b"><span class="section-number-3">3.8</span> Utilisation des sessions - 1 - <code>session_login.php</code></h3>
 <div class="org-src-container">
 
-<pre><code class="src" >&lt;?php
+<pre><code class="c" >&lt;?php
 session_start();
-if(isset($_POST['login']) &amp;&amp; isset($_POST['pass'])) {
-    if($_POST['login']=="login" &amp;&amp; $_POST['pass']=="pass") {
+if(isset($_POST["login"]) &amp;&amp; isset($_POST["pass"])) {
+    if($_POST["login"]=="login" &amp;&amp; $_POST["pass"]=="pass") {
         session_regenerate_id(true);
-        $_SESSION['acces'] = true;
-        $_SESSION['nom'] = $_POST['login'];
+        $_SESSION["acces"] = true;
+        $_SESSION["nom"] = $_POST["login"];
     }
 } else {
-    if (isset($_GET['logout'])) {
+    if (isset($_GET["logout"])) {
         session_unset();
         session_destroy();
         header("Location:session.php");
@@ -1611,12 +2514,35 @@ if(isset($_POST['login']) &amp;&amp; isset($_POST['pass'])) {
 </code></pre>
 </div>
 
+<aside class="notes">
+<ul>
+<li>dans cette page on dit que nous allons utiliser les sessions</li>
+<li>on teste si des valeurs <code>login</code> et <code>pass</code> n'ont pas été envoyées à
+l'aide d'un formulaire en POST</li>
+<li>si c'est le cas on vérifie que les identifiants sont corrects, les
+valeurs attendues étant également <code>login</code> et <code>pass</code> (ceci n'est pas
+très sécurisé, j'espère que vous l'aurez remarqué)</li>
+<li>si c'est bon alors on demande à redéfinir l'identifiant de la
+session pour être sûre qu'une nouvelle valeur est utilisée</li>
+<li>On stocker côté serveur avec <code>$_SESSION</code> la valeur de <code>acces</code> pour
+dire que la personne est connectée et on stocker son <code>nom</code> ici il
+n'y a pas grand intérêt seule la personne <code>login</code> pourra se
+connecter</li>
+<li>sinon on regarde si dans l'URL il y a la clé <code>logout</code> auquel cas on
+supprime la session et toutes ses valeurs associées puis on redirige
+la personne sur la page <code>session.php</code> (header permet également
+d'envoyer des informations dans l'entête HTTP et <code>Location</code> permet
+de demander au navigateur d'effectuer une redirection)</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-3-9">
-<h3 id="org04cf630"><span class="section-number-3">3.9</span> Utilisation des sessions - 2</h3>
+<section id="slide-org5604ac7">
+<h3 id="org5604ac7"><span class="section-number-3">3.9</span> Utilisation des sessions - 2 - <code>session_form.php</code></h3>
 <div class="org-src-container">
 
-<pre><code class="src" >&lt;form method="post" action=""&gt;
+<pre><code class="xml" >&lt;form method="post" action=""&gt;
   &lt;fieldset&gt;
     &lt;legend&gt;Accès réservé aux personnes autorisées: Identifiez vous !
     &lt;/legend&gt;
@@ -1628,35 +2554,66 @@ if(isset($_POST['login']) &amp;&amp; isset($_POST['pass'])) {
 </code></pre>
 </div>
 
+<aside class="notes">
+<ul>
+<li>Ici on définit simplement un formulaire de connexion en <code>post</code> sur la</li>
+
+</ul>
+<p>
+page courante <code>action</code> vide
+</p>
+<ul>
+<li>On a bien défini les valeurs pour <code>login</code> et <code>pass</code></li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-3-10">
-<h3 id="orgad79a75"><span class="section-number-3">3.10</span> Utilisation des sessions - 3</h3>
+<section id="slide-orge1550dc">
+<h3 id="orge1550dc"><span class="section-number-3">3.10</span> Utilisation des sessions - 3 - <code>session_menu.php</code></h3>
 <div class="org-src-container">
 
-<pre><code class="src" >&lt;p&gt; Visiter les pages du site &lt;br /&gt;
+<pre><code class="xml" >&lt;p&gt; Visiter les pages du site &lt;br /&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href="session.php"&gt;Page d'accueil&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;
     &lt;a href="session_public.php"&gt;Page publique&lt;/a&gt;
-    &lt;?php if(isset($_SESSION['public'])) echo " vue ". $_SESSION['public']. " fois"; ?&gt;
+    &lt;?php if(isset($_SESSION["public"])) echo " vue ". $_SESSION["public"]. " fois"; ?&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;a href="session_protected.php"&gt;Page protégée &lt;/a&gt;
-    &lt;?php if(isset($_SESSION['protected'])) echo " vue ". $_SESSION['protected']." fois"; ?&gt;
+    &lt;?php if(isset($_SESSION["protected"])) echo " vue ". $_SESSION["protected"]." fois"; ?&gt;
   &lt;/li&gt;
-  &lt;?php if (isset($_SESSION['acces'])) { ?&gt;
+  &lt;?php if (isset($_SESSION["acces"])) { ?&gt;
   &lt;li&gt;&lt;a href="session.php?logout"&gt;Logout&lt;/a&gt;&lt;/li&gt;
   &lt;?php } ?&gt;
 &lt;/ul&gt;
 </code></pre>
 </div>
 
+<aside class="notes">
+<ul>
+<li>Cette page affiche un menu avec différents liens
+<ul>
+<li>page d'accueil</li>
+<li>page publique qui sera accessible par tout le monde</li>
+<li>page protégée qui nécessite la connexion avec le formulaire</li>
+
+</ul></li>
+<li>On voit qu'on affiche les valeurs stockées dans <code>$_SESSION</code> pour
+<code>public</code> et <code>protected</code></li>
+<li>On n'affiche le lien de déconnexion que si la valeur <code>acces</code> est
+définie</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-3-11">
-<h3 id="org05f34ed"><span class="section-number-3">3.11</span> Utilisation des sessions - 4</h3>
+<section id="slide-org6e244e4">
+<h3 id="org6e244e4"><span class="section-number-3">3.11</span> Utilisation des sessions - 4 - <code>session_info.php</code></h3>
 <div class="org-src-container">
 
-<pre><code class="src" >&lt;p&gt;
+<pre><code class="c" >&lt;p&gt;
 &lt;?php
   echo "Nom de la session : ", session_name(),"&lt;br&gt;\n";
   echo "Id de la session : ", session_id(),"&lt;br&gt;\n";
@@ -1665,14 +2622,21 @@ if(isset($_POST['login']) &amp;&amp; isset($_POST['pass'])) {
 </code></pre>
 </div>
 
+<aside class="notes">
+<ul>
+<li>on affiche juste des informations sur la session en cours</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-3-12">
-<h3 id="orgb348cdc"><span class="section-number-3">3.12</span> Utilisation des sessions - 5</h3>
+<section id="slide-org820fdff">
+<h3 id="org820fdff"><span class="section-number-3">3.12</span> Utilisation des sessions - 5 - <code>session_public.php</code></h3>
 <div class="org-src-container">
 
-<pre><code class="src" >&lt;?php
+<pre><code class="xml" >&lt;?php
 session_start();
-$_SESSION['public'] ++;
+$_SESSION["public"] ++;
 ?&gt;
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -1683,24 +2647,32 @@ $_SESSION['public'] ++;
   &lt;body&gt;
     &lt;p&gt;
       &lt;a href="session.php"&gt;Page d'accueil&lt;/a&gt;&lt;br&gt;
-      &lt;?php echo "Page publique vue ". $_SESSION['public']. " fois"; ?&gt;
+      &lt;?php echo "Page publique vue ". $_SESSION["public"]. " fois"; ?&gt;
     &lt;/p&gt;
   &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
 </div>
 
+<aside class="notes">
+<ul>
+<li>Sur la page publique on démarre la session et on incrémente la variable de session <code>public</code></li>
+<li>On affiche un lien de retour et le nombre de fois que la page publique a été vue</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-3-13">
-<h3 id="org40c4e16"><span class="section-number-3">3.13</span> Utilisation des sessions - 6</h3>
+<section id="slide-org46cf170">
+<h3 id="org46cf170"><span class="section-number-3">3.13</span> Utilisation des sessions - 6 - <code>session_protected.php</code></h3>
 <div class="org-src-container">
 
-<pre><code class="src" >&lt;?php
+<pre><code class="xml" >&lt;?php
 session_start();
-if(!isset($_SESSION['acces'])) {
+if(!isset($_SESSION["acces"])) {
     header("Location:session.php");
 } else {
-    $_SESSION['protected'] ++;
+    $_SESSION["protected"] ++;
 }
 ?&gt;
 &lt;!DOCTYPE html&gt;
@@ -1712,8 +2684,8 @@ if(!isset($_SESSION['acces'])) {
   &lt;body&gt;
     &lt;p&gt;
       &lt;a href="session.php"&gt;Page d'accueil&lt;/a&gt;&lt;br&gt;
-      &lt;?php echo "Page protégée vue ". $_SESSION['protected']. " fois"; ?&gt;&lt;br&gt;
-      &lt;?php echo "&lt;h4&gt;Bonjour ". $_SESSION['nom']."&lt;/h4&gt;"; ?&gt;
+      &lt;?php echo "Page protégée vue ". $_SESSION["protected"]. " fois"; ?&gt;&lt;br&gt;
+      &lt;?php echo "&lt;h4&gt;Bonjour ". $_SESSION["nom"]."&lt;/h4&gt;"; ?&gt;
       &lt;a href="session.php?logout"&gt;Logout&lt;/a&gt;
     &lt;/p&gt;
   &lt;/body&gt;
@@ -1725,12 +2697,40 @@ if(!isset($_SESSION['acces'])) {
 <a href="./examples/session.php">exemple</a>
 </p>
 
+<aside class="notes">
+<ul>
+<li>Sur la page protégée on vérifie <code>acces</code> pour savoir si on est
+connecté et on redirige sur la page d'accueil si ce n'est pas le cas</li>
+<li>sinon on incrémente la variable de session <code>protected</code> et on affiche
+quelques informations réservées aux personnes connectées</li>
+<li>parcourez ce petit site qui illustre l'utilisation des sessions</li>
+<li>essayez de le parcourir, connectez-vous, vérifier que les valeurs de
+session sont conservées si par exemple la page publique avait été
+visitée.</li>
+<li>quand vous vous connectez, le numéro d'id de session change mais les
+valeurs associées à la session sont conservées</li>
+<li>mais l'id ne change pas si on se déconnecte</li>
+
+</ul>
+
+</aside>
+
 </section>
-<section id="slide-sec-php-fichiers">
-<h2 id="php-fichiers"><a id="orge90783d"></a><span class="section-number-2">4</span> PHP et les fichiers</h2>
+<section id="slide-org46922ba">
+<h2 id="org46922ba"><span class="section-number-2">4</span> PHP et les fichiers</h2>
+<aside class="notes">
+<ul>
+<li>Avec PHP, comme en langage C, il est possible d'utiliser des
+fonctions définies dans un fichier extérieur mais également de gérer
+et manipuler des fichiers pour stocker ou lire des informations
+(pour remplacer l'utilisation d'une base de données type MySQL)</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-4-1">
-<h3 id="org627006a"><span class="section-number-3">4.1</span> L'inclusion de fichiers</h3>
+<section id="slide-orgf846740">
+<h3 id="orgf846740"><span class="section-number-3">4.1</span> L'inclusion de fichiers</h3>
 <ul>
 <li>Il est possible d'utiliser du code PHP ou HTML provenant d'autres fichiers :
 <ul>
@@ -1744,9 +2744,17 @@ if(!isset($_SESSION['acces'])) {
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>Vous reconnaîtrez l'usage de <code>include</code> en langage C. Des détails
+sont données sur la diapositive suivante</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-4-2">
-<h3 id="org528623c"><span class="section-number-3">4.2</span> L'inclusion de fichiers</h3>
+<section id="slide-org46b8d19">
+<h3 id="org46b8d19"><span class="section-number-3">4.2</span> L'inclusion de fichiers</h3>
 <ul>
 <li>La différence entre <code>include</code> et <code>require</code> concerne la gestion des erreurs
 <ul>
@@ -1761,9 +2769,20 @@ if(!isset($_SESSION['acces'])) {
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>Vous l'aurez remarqué mais il n'est pas possible de voir le code
+source PHP du coté du client. Côté client, nous ne voyons que
+l'interprétation du code PHP du serveur.</li>
+<li>Il faut toujours privilégier le code modulaire pour éviter la
+duplication de code, c'est le principe DRY (Don't Reapeat Yourself)</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-4-3">
-<h3 id="org71a5888"><span class="section-number-3">4.3</span> Manipulation simple des fichiers</h3>
+<section id="slide-org7e2c038">
+<h3 id="org7e2c038"><span class="section-number-3">4.3</span> Manipulation simple des fichiers</h3>
 <ul>
 <li><code>file_exists()</code> permet de vérifier l'existence d'un fichier</li>
 <li><code>file_get_contents()</code> permet de lire le contenu d'un fichier</li>
@@ -1773,9 +2792,9 @@ if(!isset($_SESSION['acces'])) {
 
 <div class="org-src-container">
 
-<pre><code class="src-" >&lt;?php
-  $file = 'file.txt';
-  $content = '';
+<pre><code class="c" >&lt;?php
+  $file = "file.txt";
+  $content = "";
 
   if (file_exists($file)) {
     $content = file_get_contents($file);
@@ -1788,16 +2807,27 @@ if(!isset($_SESSION['acces'])) {
 </code></pre>
 </div>
 
+<aside class="notes">
+<ul>
+<li>Si vous copiez/collez ce code dans un fichier <code>file.php</code>, vous
+pouvez tester directement dans un terminal en faisant <code>php file.php</code></li>
+<li>le fichier <code>file.txt</code> sera créé ou modifié. Si cela ne fonctionne
+pas pensez à vérifier les droits associés au dossier (droit en
+écriture)</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-4-4">
-<h3 id="org7bba464"><span class="section-number-3">4.4</span> Manipulation simple des fichiers</h3>
+<section id="slide-org84e10f3">
+<h3 id="org84e10f3"><span class="section-number-3">4.4</span> Manipulation simple des fichiers</h3>
 <ul>
 <li><p>
 <a href="http://php.net/manual/en/function.readfile.php">readfile</a> lit et affiche le contenu d'un fichier 
 </p>
 <div class="org-src-container">
 
-<pre><code class="src-" >int readfile ( string $filename )
+<pre><code class="c" >int readfile ( string $filename )
 </code></pre>
 </div></li>
 <li><p>
@@ -1805,22 +2835,33 @@ if(!isset($_SESSION['acces'])) {
 </p>
 <div class="org-src-container">
 
-<pre><code class="src-" >array file ( string $filename )
+<pre><code class="c" >array file ( string $filename )
 </code></pre>
 </div></li>
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li><code>readfile</code> est principalement utilisé pour afficher des fichiers
+binaires (image, pdf, etc.) à l'aide de PHP, nous ne l'utiliserons
+pas dans ce cours</li>
+<li><code>file</code> peut être utile pour lire le contenu d'un fichier ligne par
+ligne</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-4-5">
-<h3 id="org6ef84da"><span class="section-number-3">4.5</span> Manipulation avancée des fichiers</h3>
+<section id="slide-org6be99b0">
+<h3 id="org6be99b0"><span class="section-number-3">4.5</span> Manipulation avancée des fichiers</h3>
 <ul>
 <li><p>
 <a href="http://php.net/manual/en/function.fopen.php">fopen</a> ouvre un fichier
 </p>
 <div class="org-src-container">
 
-<pre><code class="src-" >resource fopen ( string $filename , string $mode)
+<pre><code class="c" >resource fopen ( string $filename , string $mode)
 </code></pre>
 </div></li>
 <li><code>$mode</code> :
@@ -1836,16 +2877,25 @@ if(!isset($_SESSION['acces'])) {
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>Vous retrouvez le même usage qu'en langage C. La <code>resource</code>
+récupérée permet ensuite de parcourir ce fichier avec les fonctions
+présentées sur la diapositive suivante</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-4-6">
-<h3 id="org28e92c4"><span class="section-number-3">4.6</span> Déplacement</h3>
+<section id="slide-org81ebace">
+<h3 id="org81ebace"><span class="section-number-3">4.6</span> Déplacement</h3>
 <ul>
 <li><p>
 <a href="http://php.net/manual/en/function.fseek.php">fseek</a> déplace le pointeur à une position donnée
 </p>
 <div class="org-src-container">
 
-<pre><code class="src-" >int fseek ( resource $handle , int $offset )
+<pre><code class="c" >int fseek ( resource $handle , int $offset )
 </code></pre>
 </div></li>
 <li><p>
@@ -1853,7 +2903,7 @@ if(!isset($_SESSION['acces'])) {
 </p>
 <div class="org-src-container">
 
-<pre><code class="src-" >bool rewind ( resource $handle )
+<pre><code class="c" >bool rewind ( resource $handle )
 </code></pre>
 </div></li>
 <li><p>
@@ -1861,7 +2911,7 @@ if(!isset($_SESSION['acces'])) {
 </p>
 <div class="org-src-container">
 
-<pre><code class="src-" >int ftell ( resource $handle )
+<pre><code class="c" >int ftell ( resource $handle )
 </code></pre>
 </div></li>
 <li><p>
@@ -1869,22 +2919,33 @@ if(!isset($_SESSION['acces'])) {
 </p>
 <div class="org-src-container">
 
-<pre><code class="src-" >bool feof ( resource $handle )
+<pre><code class="c" >bool feof ( resource $handle )
 </code></pre>
 </div></li>
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>Vous retrouvez également les fonctions basées sur le langage C. En
+pratique à part <code>feof</code> qui peut être utile nous n'utiliserons pas
+les autres fonctions. Elles sont utiles pour des manipulations
+avancées de fichiers</li>
+<li><code>feof</code> correspond à <b>file end of file</b></li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-4-7">
-<h3 id="orgdaf4c40"><span class="section-number-3">4.7</span> Lecture</h3>
+<section id="slide-org4abd5c2">
+<h3 id="org4abd5c2"><span class="section-number-3">4.7</span> Lecture</h3>
 <ul>
 <li><p>
 <a href="http://php.net/manual/en/function.fread.php">fread</a> lecture du fichier en mode binaire
 </p>
 <div class="org-src-container">
 
-<pre><code class="src-" >string fread ( resource $handle , int $length )
+<pre><code class="c" >string fread ( resource $handle , int $length )
 </code></pre>
 </div></li>
 <li><p>
@@ -1892,7 +2953,7 @@ if(!isset($_SESSION['acces'])) {
 </p>
 <div class="org-src-container">
 
-<pre><code class="src-" >string fgets ( resource $handle [, int $length ] )
+<pre><code class="c" >string fgets ( resource $handle [, int $length ] )
 </code></pre>
 </div></li>
 <li><p>
@@ -1900,22 +2961,31 @@ if(!isset($_SESSION['acces'])) {
 </p>
 <div class="org-src-container">
 
-<pre><code class="src-" >string fgetc ( resource $handle )
+<pre><code class="c" >string fgetc ( resource $handle )
 </code></pre>
 </div></li>
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>Pour rappel en langage C, <code>fgets</code> retourne un <code>char*</code> et <code>fgetc</code> un
+<code>int</code>, en PHP ces 2 fonctions retournent un <code>string</code>, il n'y a pas
+de type spécifique en PHP pour représenter un caractère.</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-4-8">
-<h3 id="org6d5208c"><span class="section-number-3">4.8</span> Écriture/Fermeture d'un fichier</h3>
+<section id="slide-org83d3fb4">
+<h3 id="org83d3fb4"><span class="section-number-3">4.8</span> Écriture/Fermeture d'un fichier</h3>
 <ul>
 <li><p>
 <a href="http://php.net/manual/en/function.fwrite.php">fwrite</a>/fputs écriture du fichier en mode binaire
 </p>
 <div class="org-src-container">
 
-<pre><code class="src-" >int fwrite ( resource $handle , string $string [, int $length ] )
+<pre><code class="c" >int fwrite ( resource $handle , string $string [, int $length ] )
 </code></pre>
 </div></li>
 <li><p>
@@ -1923,22 +2993,73 @@ if(!isset($_SESSION['acces'])) {
 </p>
 <div class="org-src-container">
 
-<pre><code class="src-" >bool fclose ( resource $handle )
+<pre><code class="c" >bool fclose ( resource $handle )
 </code></pre>
 </div></li>
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>Un résumé sur l'utilisation de ces fonctions sera présenté sur la
+diapositive suivante</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-4-9">
-<h3 id="orgad6b71e"><span class="section-number-3">4.9</span> Vérrouillage d'un fichier</h3>
+<section id="slide-orge96f4f7">
+<h3 id="orge96f4f7"><span class="section-number-3">4.9</span> Exemple</h3>
+<div class="org-src-container">
+
+<pre><code class="c" >&lt;?php
+// Équivalent de file_get_contents
+$file = "file.txt";
+$handle = fopen($filename, "r");
+if ($handle) {
+  $content = fread($handle, filesize($file));
+  fclose($handle);
+}
+?&gt;
+</code></pre>
+</div>
+
+<aside class="notes">
+<ul>
+<li>Comparaison entre l'utilisation de <code>fopen</code>, <code>fread</code>, <code>fclose</code> et
+<code>file_get_contents</code></li>
+<li><code>filesize</code> permet de récupérer la taille du fichier</li>
+
+</ul>
+
+</aside>
+</section>
+<section id="slide-org054aa74">
+<h3 id="org054aa74"><span class="section-number-3">4.10</span> Résumé</h3>
+
+<div class="figure">
+<p><a href="http://www.luc-damas.fr/humeurs/pedagogie-houblonnee-les-fichiers/"><img src="./inc/img/pedagogie-houblonnee-fichiers.jpg" alt="pedagogie-houblonnee-fichiers.jpg" /></a>
+</p>
+</div>
+
+<aside class="notes">
+<ul>
+<li>Comparaison entre l'utilisation de <code>fopen</code>, <code>feof</code>, <code>fread</code>,
+<code>fclose</code> et <code>file_get_contents</code></li>
+
+</ul>
+
+</aside>
+</section>
+<section id="slide-org1ed7a8c">
+<h3 id="org1ed7a8c"><span class="section-number-3">4.11</span> Vérrouillage d'un fichier</h3>
 <ul>
 <li><p>
 <a href="http://php.net/manual/en/function.flock.php">flock</a> vérrouille un fichier
 </p>
 <div class="org-src-container">
 
-<pre><code class="src-" >bool flock ( resource $handle , int $operation )
+<pre><code class="c" >bool flock ( resource $handle , int $operation )
 </code></pre>
 </div></li>
 <li><code>$operation</code> :
@@ -1951,42 +3072,26 @@ if(!isset($_SESSION['acces'])) {
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>flock aussi s'inspire du langage C mais nous n'aurons pas à l'utiliser.</li>
+<li>le problème étant que ceci ne fonctionne que pour un processus PHP
+donné et que l'accès en parallèle sur un site génère plusieurs
+processus et empêche donc l'utilisation correcte de <code>flock</code></li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-4-10">
-<h3 id="org1a7cc56"><span class="section-number-3">4.10</span> Résumé</h3>
-
-<div class="figure">
-<p><a href="http://www.luc-damas.fr/humeurs/pedagogie-houblonnee-les-fichiers/"><img src="./inc/img/pedagogie-houblonnee-fichiers.jpg" alt="pedagogie-houblonnee-fichiers.jpg" /></a>
-</p>
-</div>
-
-</section>
-<section id="slide-sec-4-11">
-<h3 id="org9a18bb6"><span class="section-number-3">4.11</span> Exemple</h3>
-<div class="org-src-container">
-
-<pre><code class="src-" >&lt;?php
-// Équivalent de file_get_contents
-$file = "file.txt";
-$handle = fopen($filename, "r");
-if ($handle) {
-  $content = fread($handle, filesize($file));
-  fclose($handle);
-}
-?&gt;
-</code></pre>
-</div>
-
-</section>
-<section id="slide-sec-4-12">
-<h3 id="org737a165"><span class="section-number-3">4.12</span> csv</h3>
+<section id="slide-org220ae60">
+<h3 id="org220ae60"><span class="section-number-3">4.12</span> csv</h3>
 <ul>
 <li><p>
 <a href="http://php.net/manual/en/function.fgetcsv.php">fgetcsv</a> retourne sous forme de tableau un fichier CSV
 </p>
 <div class="org-src-container">
 
-<pre><code class="src-" >array fgetcsv ( resource $handle 
+<pre><code class="c" >array fgetcsv ( resource $handle 
                 [, int $length = 0
                 [, string $delimiter = ","
                 [, string $enclosure = '"'
@@ -1998,7 +3103,7 @@ if ($handle) {
 </p>
 <div class="org-src-container">
 
-<pre><code class="src-" >int fputcsv ( resource $handle ,
+<pre><code class="c" >int fputcsv ( resource $handle ,
               array $fields
               [, string $delimiter = ","
               [, string $enclosure = '"' ]] )
@@ -2007,16 +3112,24 @@ if ($handle) {
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>L'utilisation de fichier csv permet de stocker des informations dans
+des fichiers sans utiliser de base de données du type MySQL</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-4-13">
-<h3 id="org5ab1a73"><span class="section-number-3">4.13</span> Action sur les fichiers</h3>
+<section id="slide-org3f52a27">
+<h3 id="org3f52a27"><span class="section-number-3">4.13</span> Action sur les fichiers</h3>
 <ul>
 <li><p>
 <a href="http://php.net/manual/en/function.copy.php">copy</a> copie un fichier
 </p>
 <div class="org-src-container">
 
-<pre><code class="src-" >bool copy ( string $source , string $dest )
+<pre><code class="c" >bool copy ( string $source , string $dest )
 </code></pre>
 </div></li>
 <li><p>
@@ -2024,7 +3137,7 @@ if ($handle) {
 </p>
 <div class="org-src-container">
 
-<pre><code class="src-" >bool rename ( string $oldname , string $newname )
+<pre><code class="c" >bool rename ( string $oldname , string $newname )
 </code></pre>
 </div></li>
 <li><p>
@@ -2032,22 +3145,31 @@ if ($handle) {
 </p>
 <div class="org-src-container">
 
-<pre><code class="src-" >bool unlink ( string $filename )
+<pre><code class="c" >bool unlink ( string $filename )
 </code></pre>
 </div></li>
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>Les opérations de base pour copier/renommer/supprimer un fichier. Il
+faut faire attention en utilisant ces fonctions les opérations sont
+irréversibles.</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-4-14">
-<h3 id="org34921d4"><span class="section-number-3">4.14</span> Information sur les fichiers</h3>
+<section id="slide-org8433ce3">
+<h3 id="org8433ce3"><span class="section-number-3">4.14</span> Information sur les fichiers</h3>
 <ul>
 <li><p>
 <a href="http://php.net/manual/en/function.filesize.php">filesize</a> récupère la taille du fichier
 </p>
 <div class="org-src-container">
 
-<pre><code class="src-" >int filesize ( string $filename )
+<pre><code class="c" >int filesize ( string $filename )
 </code></pre>
 </div></li>
 <li><p>
@@ -2055,7 +3177,7 @@ if ($handle) {
 </p>
 <div class="org-src-container">
 
-<pre><code class="src-" >int fileatime ( string $filename )
+<pre><code class="c" >int fileatime ( string $filename )
 </code></pre>
 </div></li>
 <li><p>
@@ -2063,7 +3185,7 @@ if ($handle) {
 </p>
 <div class="org-src-container">
 
-<pre><code class="src-" >int filemtime ( string $filename )
+<pre><code class="c" >int filemtime ( string $filename )
 </code></pre>
 </div></li>
 <li><p>
@@ -2071,7 +3193,7 @@ if ($handle) {
 </p>
 <div class="org-src-container">
 
-<pre><code class="src-" >string realpath ( string $path )
+<pre><code class="c" >string realpath ( string $path )
 </code></pre>
 </div></li>
 <li><p>
@@ -2079,18 +3201,34 @@ if ($handle) {
 </p>
 <div class="org-src-container">
 
-<pre><code class="src-" >string basename ( string $path [, string $suffix ] )
+<pre><code class="c" >string basename ( string $path [, string $suffix ] )
 </code></pre>
 </div></li>
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>Quelques fonctions de base pour récupérer des informations sur les
+fichiers</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-php-sql">
-<h2 id="php-sql"><a id="orga2d466f"></a><span class="section-number-2">5</span> Bases de données SQL</h2>
+<section id="slide-orgfe22b3d">
+<h2 id="orgfe22b3d"><span class="section-number-2">5</span> Bases de données SQL</h2>
+<aside class="notes">
+<ul>
+<li>Pour stocker des informations efficacement, on utilise la plupart du
+temps des bases de données relationnelles comme MySQL, SQLite, etc.</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-5-1">
-<h3 id="org6c883b4"><span class="section-number-3">5.1</span> Approches</h3>
+<section id="slide-org9cea1fd">
+<h3 id="org9cea1fd"><span class="section-number-3">5.1</span> Approches</h3>
 <ul>
 <li>Approche spécifique
 <ul>
@@ -2107,9 +3245,19 @@ if ($handle) {
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>Il existe 2 approches pour utiliser des bases de données.</li>
+<li>MySQL/PostgreSQL nécessitent un serveur spécifique</li>
+<li>SQLite utilise un fichier pour stocker la base (ceci facilite
+grandement son utilisation)</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-5-2">
-<h3 id="orgee12f4c"><span class="section-number-3">5.2</span> Approche spécifique</h3>
+<section id="slide-org573f10a">
+<h3 id="org573f10a"><span class="section-number-3">5.2</span> Approche spécifique</h3>
 <ul>
 <li>Avantages :
 <ul>
@@ -2125,9 +3273,18 @@ if ($handle) {
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>Cette approche n'est à considérer que si vous avez des contraintes
+fortes ou pour des usages très spécifiques. Nous ne l'utiliserons
+pas.</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-5-3">
-<h3 id="orgf9b3805"><span class="section-number-3">5.3</span> Approche générale</h3>
+<section id="slide-orga799264">
+<h3 id="orga799264"><span class="section-number-3">5.3</span> Approche générale</h3>
 <ul>
 <li>Avantages :
 <ul>
@@ -2143,12 +3300,21 @@ if ($handle) {
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>Cette approche est maintenant la plus utilisée</li>
+<li>Elle simplifie grandement la maintenabilité du code</li>
+<li>Nous l'utiliserons dans ce cours avec SQLite</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-5-4">
-<h3 id="org0f1784a"><span class="section-number-3">5.4</span> Exemple</h3>
+<section id="slide-org8f7fc98">
+<h3 id="org8f7fc98"><span class="section-number-3">5.4</span> Exemple</h3>
 <div class="org-src-container">
 
-<pre><code class="src-" >&lt;?php
+<pre><code class="c" >&lt;?php
   // mysqli
   $mysqli = new mysqli('example.com', 'user', 'password', 'database');
   $result = $mysqli-&gt;query("SELECT 'Bonjour, cher utilisateur de MySQL !' AS _message FROM DUAL");
@@ -2168,15 +3334,26 @@ if ($handle) {
 <a href="http://php.net/manual/fr/mysqlinfo.api.choosing.php">http://php.net/manual/fr/mysqlinfo.api.choosing.php</a>
 </p>
 
+<aside class="notes">
+<ul>
+<li>Cet exemple montre l'utilisation d'une connexion à un serveur MySQL</li>
+<li>Si nous changeons de base de données (par exemple avec SQLite), il
+faudra changer tout le code associé à <code>mysqli</code> alors qu'il suffira
+de changer seulement la ligne de création de l'objet PDO. Le reste
+du code ne changera pas.</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-5-5">
-<h3 id="orga37b0bd"><span class="section-number-3">5.5</span> PDO : créer une connexion</h3>
+<section id="slide-orgf479799">
+<h3 id="orgf479799"><span class="section-number-3">5.5</span> PDO : créer une connexion</h3>
 <div class="org-src-container">
 
-<pre><code class="src" >&lt;?php
-  ini_set('display_errors', '1');
+<pre><code class="c" >&lt;?php
+  ini_set("display_errors", "1");
   error_reporting(E_ALL);
-  $pdo = new PDO('mysql:host=localhost;dbname=database', 'user', 'password');
+  $pdo = new PDO("mysql:host=localhost;dbname=database", "user", "password");
 ?&gt;
 </code></pre>
 </div>
@@ -2187,11 +3364,11 @@ if ($handle) {
 
 <div class="org-src-container">
 
-<pre><code class="src" >&lt;?php
-  ini_set('display_errors', '1');
+<pre><code class="c" >&lt;?php
+  ini_set("display_errors", "1");
   error_reporting(E_ALL);
   try {
-    $pdo = new PDO('mysql:host=localhost;dbname=database', 'user', 'password');
+    $pdo = new PDO("mysql:host=localhost;dbname=database", "user", "password");
   } catch(PDOException $e) {
     echo $e-&gt;getMessage();
   }
@@ -2203,9 +3380,22 @@ if ($handle) {
 <a href="./examples/pdo_try.php">exemple</a>
 </p>
 
+<aside class="notes">
+<ul>
+<li>Il faut faire attention dans la gestion des erreurs car si
+vous n'entourez pas le code de création de l'objet PDO avec un <code>try</code>
+<code>catch</code>, des informations sensibles peuvent apparaître comme dans le
+premier exemple où l'on voit le mot de passe.</li>
+<li>le <code>try</code>, <code>catch</code> permet de vérifier que le code compris dans les
+accolades associées au <code>try</code> ne génère pas d'exception. Si cela se
+produit, le code est arrêté et fait appel au code associé au <code>catch</code></li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-5-6">
-<h3 id="org8637c04"><span class="section-number-3">5.6</span> PDO : fermer une connexion</h3>
+<section id="slide-orgf709c46">
+<h3 id="orgf709c46"><span class="section-number-3">5.6</span> PDO : fermer une connexion</h3>
 <ul>
 <li>Fermeture automatique à la fin du script</li>
 <li>Mettre à null la variable qui gère la connexion</li>
@@ -2214,10 +3404,10 @@ if ($handle) {
 
 <div class="org-src-container">
 
-<pre><code class="src" >&lt;?php
+<pre><code class="c" >&lt;?php
   try {
     // ouverture de la base de données
-    $pdo = new PDO('sqlite::memory:');
+    $pdo = new PDO("sqlite::memory:");
 
     echo "Connecté à la base de données";
 
@@ -2230,16 +3420,28 @@ if ($handle) {
 </code></pre>
 </div>
 
+<aside class="notes">
+<ul>
+<li>SQLite utilise des fichiers pour stocker la base de données mais
+possède également un mode <code>memory</code> qui permet de ne stocker la base
+que temporairement en mémoire. Ceci nous sera très utile pour
+présenter le cours car tout le monde travaillera avec sa propre base
+de données. Cela évite d'avoir des conflits si nous travaillions
+avec une base commune.</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-5-7">
-<h3 id="orgfbfc90e"><span class="section-number-3">5.7</span> PDO : exec et query</h3>
+<section id="slide-org9d31ceb">
+<h3 id="org9d31ceb"><span class="section-number-3">5.7</span> PDO : exec et query</h3>
 <ul>
 <li><p>
 <a href="http://php.net/manual/en/pdo.exec.php">exec</a> execute une requête SQL et retourne le nombre de lignes affectées
 </p>
 <div class="org-src-container">
 
-<pre><code class="src-" >public int PDO::exec ( string $statement )
+<pre><code class="c" >public int PDO::exec ( string $statement )
 </code></pre>
 </div></li>
 <li><p>
@@ -2247,37 +3449,49 @@ if ($handle) {
 </p>
 <div class="org-src-container">
 
-<pre><code class="src-" >public PDOStatement PDO::query ( string $statement )
+<pre><code class="c" >public PDOStatement PDO::query ( string $statement )
 </code></pre>
 </div></li>
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>Il existe 2 méthodes principales pour exécuter une requête, <code>exec</code>
+ou <code>query</code>.</li>
+<li><code>exec</code> s'utilise principalement pour des requêtes qui n'attendent
+pas de résultats particuliers comme <code>CREATE</code>, <code>INSERT</code>, etc.</li>
+<li><code>query</code> s'utilise principalement pour récupérer des résultats après
+une requête <code>SELECT</code></li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-5-8">
-<h3 id="org0ec0c1a"><span class="section-number-3">5.8</span> PDO : gestion des erreurs</h3>
+<section id="slide-org74fd779">
+<h3 id="org74fd779"><span class="section-number-3">5.8</span> PDO : gestion des erreurs</h3>
 <div class="org-src-container">
 
-<pre><code class="src" >&lt;?php
-  ini_set('display_errors', '1');
+<pre><code class="c" >&lt;?php
+  ini_set("display_errors", "1");
   error_reporting(E_ALL);
-  $error = isset($_GET['error'])?$_GET['error']:'default';
+  $error = isset($_GET["error"])?$_GET["error"]:"default";
   try {
-    $pdo = new PDO('sqlite::memory:');
+    $pdo = new PDO("sqlite::memory:");
     switch($error) {
-    case 'exception':
+    case "exception":
       $pdo-&gt;setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       break;
-    case 'warning':
+    case "warning":
       $pdo-&gt;setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
       break;
-    case 'silent':
+    case "silent":
       $pdo-&gt;setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT);
       break;
     }
 
     var_dump($pdo-&gt;exec("Hello world"));
-    echo '&lt;br&gt;Code erreur : '.$pdo-&gt;errorCode().'&lt;br&gt;';
+    echo "&lt;br&gt;Code erreur : ".$pdo-&gt;errorCode()."&lt;br&gt;";
 
     $pdo = null;
   } catch(PDOException $e) {
@@ -2291,9 +3505,16 @@ if ($handle) {
 <a href="./examples/pdo_error.php">exemple</a>
 </p>
 
+<aside class="notes">
+<p>
+Pour voir le comportement, ajouter un paramètre (<code>GET</code>) <code>error</code> dans
+l'URL en changeant les valeurs <code>exception</code>, <code>warning</code> et <code>silent</code>
+</p>
+
+</aside>
 </section>
-<section id="slide-sec-5-9">
-<h3 id="org05ed0e4"><span class="section-number-3">5.9</span> PDO : création</h3>
+<section id="slide-org5a2c16f">
+<h3 id="org5a2c16f"><span class="section-number-3">5.9</span> PDO : création : <code>pdo_create.php</code></h3>
 <ul>
 <li>Pose le plus de problème pour la généricité du code car très
 spécifique à la base utilisée</li>
@@ -2302,11 +3523,11 @@ spécifique à la base utilisée</li>
 
 <div class="org-src-container">
 
-<pre><code class="src" >&lt;?php
+<pre><code class="c" >&lt;?php
   error_reporting(E_ALL);
-  ini_set('display_errors', '1');
+  ini_set("display_errors", "1");
   try {
-    $pdo = new PDO('sqlite::memory:');
+    $pdo = new PDO("sqlite::memory:");
     $pdo-&gt;setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $table = "CREATE TABLE animals (
@@ -2322,13 +3543,30 @@ spécifique à la base utilisée</li>
 </code></pre>
 </div>
 
+<aside class="notes">
+<ul>
+<li>Les requêtes de création de table sont les moins génériques car tous</li>
+
+</ul>
+<p>
+les systèmes de gestion de bases de données n'utilisent pas forcément
+les mêmes types (différences entre <code>INT</code> SQL et <code>INTEGER</code> SQLite,
+etc.) et les mêmes notations (<code>AUTO_INCREMENT</code> SQL et <code>AUTOINCREMENT</code>
+SQLite)
+</p>
+<ul>
+<li>Ici on créé simplement une table <code>animals</code></li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-5-10">
-<h3 id="org9dc93e0"><span class="section-number-3">5.10</span> PDO : insertion</h3>
+<section id="slide-orgfe28058">
+<h3 id="orgfe28058"><span class="section-number-3">5.10</span> PDO : insertion : <code>pdo_insert.php</code></h3>
 <div class="org-src-container">
 
-<pre><code class="src" >&lt;?php
-  include 'pdo_create.php';
+<pre><code class="c" >&lt;?php
+  include "pdo_create.php";
 
   $pdo-&gt;exec("INSERT INTO animals (animal_type, animal_name) VALUES ('chien', 'médor')");
   $pdo-&gt;exec("INSERT INTO animals (animal_type, animal_name) VALUES ('vache', 'marguerite')");
@@ -2337,7 +3575,7 @@ spécifique à la base utilisée</li>
   $pdo-&gt;exec("INSERT INTO animals (animal_type, animal_name) VALUES ('chat', 'minou')");
   $pdo-&gt;exec("INSERT INTO animals (animal_type, animal_name) VALUES ('poisson', 'némo')");
   $pdo-&gt;exec("INSERT INTO animals (animal_type, animal_name) VALUES ('lapin', 'jeannot')");
-  echo 'id du dernier animal inséré : '.$pdo-&gt;lastInsertId()."&lt;br&gt;\n";
+  echo "id du dernier animal inséré : ".$pdo-&gt;lastInsertId()."&lt;br&gt;\n";
 ?&gt;
 </code></pre>
 </div>
@@ -2346,17 +3584,29 @@ spécifique à la base utilisée</li>
 <a href="./examples/pdo_insert.php">exemple</a>
 </p>
 
+<aside class="notes">
+<ul>
+<li>Après avoir créé la table <code>animals</code> avec l'inclusion du code
+<code>pdo_create.php</code>, on insère différentes valeurs et on affiche le
+numéro du dernier élément ajouté</li>
+<li>Même en réactualisant la page, le numéro reste le même car
+l'utilisation de <code>memory</code> en SQLite recréé la table <code>animals</code> à
+chaque fois</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-5-11">
-<h3 id="org38f881e"><span class="section-number-3">5.11</span> PDO : sélection</h3>
+<section id="slide-orgad85f1c">
+<h3 id="orgad85f1c"><span class="section-number-3">5.11</span> PDO : sélection</h3>
 <div class="org-src-container">
 
-<pre><code class="src" >&lt;?php
-  include 'pdo_insert.php';
+<pre><code class="c" >&lt;?php
+  include "pdo_insert.php";
 
   $sql = "SELECT * FROM animals";
   foreach ($pdo-&gt;query($sql) as $row) {
-    print $row['animal_type'] .' - '. $row['animal_name'] . '&lt;br /&gt;';
+    print $row["animal_type"] ." - ". $row["animal_name"] . "&lt;br /&gt;";
   }
 ?&gt;
 </code></pre>
@@ -2366,27 +3616,37 @@ spécifique à la base utilisée</li>
 <a href="./examples/pdo_select.php">exemple</a>
 </p>
 
+<aside class="notes">
+<ul>
+<li>On souhaite récupérer les valeurs dans la table et les afficher. Le
+résultat de la méthode <code>query</code> peut être parcouru comme s'il
+s'agissait d'un tableau associatif ayant comme clé pour chaque
+résultat le nom d'un attribut de la table</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-5-12">
-<h3 id="org9c13123"><span class="section-number-3">5.12</span> PDO : parcours des données</h3>
+<section id="slide-orga3bbd83">
+<h3 id="orga3bbd83"><span class="section-number-3">5.12</span> PDO : parcours des données</h3>
 <div class="org-src-container">
 
-<pre><code class="src" >&lt;?php
-  include 'pdo_insert.php';
+<pre><code class="c" >&lt;?php
+  include "pdo_insert.php";
 
   $sql = "SELECT * FROM animals";
   $stmt = $pdo-&gt;query($sql);
 
-  echo '&lt;br&gt;&lt;b&gt;PDO::FETCH_ASSOC&lt;/b&gt;&lt;br&gt;'."\n";
+  echo "&lt;br&gt;&lt;b&gt;PDO::FETCH_ASSOC&lt;/b&gt;&lt;br&gt;\n";
   var_dump($stmt-&gt;fetch(PDO::FETCH_ASSOC));
 
-  echo '&lt;br&gt;&lt;b&gt;PDO::FETCH_NUM&lt;/b&gt;&lt;br&gt;'."\n";
+  echo "&lt;br&gt;&lt;b&gt;PDO::FETCH_NUM&lt;/b&gt;&lt;br&gt;\n";
   var_dump($stmt-&gt;fetch(PDO::FETCH_NUM));
 
-  echo '&lt;br&gt;&lt;b&gt;PDO::FETCH_BOTH&lt;/b&gt;&lt;br&gt;'."\n";
+  echo "&lt;br&gt;&lt;b&gt;PDO::FETCH_BOTH&lt;/b&gt;&lt;br&gt;\n";
   var_dump($stmt-&gt;fetch(PDO::FETCH_BOTH));
 
-  echo '&lt;br&gt;&lt;b&gt;fetchAll&lt;/b&gt;&lt;br&gt;'."\n";
+  echo "&lt;br&gt;&lt;b&gt;fetchAll&lt;/b&gt;&lt;br&gt;\n";
   var_dump($stmt-&gt;fetchAll(PDO::FETCH_ASSOC));
 ?&gt;
 </code></pre>
@@ -2396,17 +3656,45 @@ spécifique à la base utilisée</li>
 <a href="./examples/pdo_select_fetch.php">exemple</a>
 </p>
 
+<aside class="notes">
+<ul>
+<li>On peut récupérer les résultats d'une requête de différente façon.
+<ul>
+<li>La méthode <code>fetch</code> permet de récupérer le premier résultat en cours
+<ul>
+<li>Le paramètre permet de récupérer le résultat sous forme de
+tableau indexé par des numéros <code>PDO::FETCH_NUM</code>, les noms des
+attributs <code>PDO::FETCH_ASSOC</code> ou les 2 <code>PDO::FETCH_BOTH</code> (en
+pratique le nom des attributs est le plus utile et le plus sûr)</li>
+
+</ul></li>
+<li>La méthode <code>fetchAll</code> permet de récupérer tous les résultats qui
+restent (si cette méthode est appelée toute seule au début, elle
+permet de récupérer tous les résultats de la requête)
+<ul>
+<li>Les mêmes paramètres que <code>fetch</code> sont disponibles</li>
+<li>dans l'exemple, cela ne retourne que les résultats restants, les
+3 premiers appels de <code>fetch</code> ayant récupérés les 3 premiers
+résultats</li>
+
+</ul></li>
+
+</ul></li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-5-13">
-<h3 id="org9bb9479"><span class="section-number-3">5.13</span> PDO : mise à jour</h3>
+<section id="slide-org4da918d">
+<h3 id="org4da918d"><span class="section-number-3">5.13</span> PDO : mise à jour</h3>
 <div class="org-src-container">
 
-<pre><code class="src" >&lt;?php
-  include 'pdo_insert.php';
+<pre><code class="c" >&lt;?php
+  include "pdo_insert.php";
 
   $count = $pdo-&gt;exec("UPDATE animals SET animal_name='mickey' WHERE animal_name='jerry'");
 
-  echo $count.' animaux mis à jour';
+  echo $count." animaux mis à jour&lt;br&gt;";
   var_dump($pdo-&gt;query("SELECT * FROM animals")-&gt;fetchAll(PDO::FETCH_ASSOC));
 ?&gt;
 </code></pre>
@@ -2416,18 +3704,27 @@ spécifique à la base utilisée</li>
 <a href="./examples/pdo_update.php">exemple</a>
 </p>
 
+<aside class="notes">
+<ul>
+<li>la méthode <code>exec</code> retourne le nombre de lignes affectées par la
+requête, ici ça nous donne donc le nombre d'animaux qui ont été mis
+à jour</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-5-14">
-<h3 id="org92b4e86"><span class="section-number-3">5.14</span> PDO : suppression</h3>
+<section id="slide-org2680512">
+<h3 id="org2680512"><span class="section-number-3">5.14</span> PDO : suppression</h3>
 <div class="org-src-container">
 
-<pre><code class="src" >&lt;?php
-  include 'pdo_insert.php';
+<pre><code class="c" >&lt;?php
+  include "pdo_insert.php";
 
   $count = $pdo-&gt;exec("DELETE FROM animals
                        WHERE animal_name = 'médor' OR animal_name = 'titi'");
 
-  echo $count.' animaux supprimés';
+  echo $count." animaux supprimés&lt;br&gt;";
   var_dump($pdo-&gt;query("SELECT * FROM animals")-&gt;fetchAll(PDO::FETCH_ASSOC));
 ?&gt;
 </code></pre>
@@ -2437,30 +3734,37 @@ spécifique à la base utilisée</li>
 <a href="./examples/pdo_delete.php">exemple</a>
 </p>
 
+<aside class="notes">
+<ul>
+<li>Ici ça nous donne donc le nombre d'animaux qui ont été supprimés</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-5-15">
-<h3 id="org69b28d1"><span class="section-number-3">5.15</span> PDO : préparation</h3>
+<section id="slide-org13b9a5a">
+<h3 id="org13b9a5a"><span class="section-number-3">5.15</span> PDO : préparation</h3>
 <div class="org-src-container">
 
-<pre><code class="src" >&lt;?php
-  include 'pdo_insert.php';
+<pre><code class="c" >&lt;?php
+  include "pdo_insert.php";
 
   // préparation d'une déclaration SQL
   $stmt = $pdo-&gt;prepare("SELECT * FROM animals
                          WHERE animal_name = :animal_name");
 
   // déclaration d'une variable
-  $animal_name = 'minou';
+  $animal_name = "minou";
 
   // lien entre la déclaration SQL et la variable
-  $stmt-&gt;bindParam(':animal_name', $animal_name);
+  $stmt-&gt;bindParam(":animal_name", $animal_name);
 
   // exécution de la requête et affichage des résultats
   $stmt-&gt;execute();
   var_dump($stmt-&gt;fetchAll());
 
   // modification des paramètres
-  $animal_name = 'titi';
+  $animal_name = "titi";
   $stmt-&gt;execute();
   var_dump($stmt-&gt;fetchAll());
 ?&gt;
@@ -2471,19 +3775,38 @@ spécifique à la base utilisée</li>
 <a href="./examples/pdo_prepare.php">exemple</a>
 </p>
 
+<aside class="notes">
+<ul>
+<li>Afin d'éviter des failles de sécurité (injection SQL) il ne faut pas
+utiliser de variables directement dans la chaîne de caractères
+représentant la requête</li>
+<li><code>$pdo-&gt;query('SELECT * FROM animals WHERE animal_name = '.$name);</code></li>
+<li>Imaginer que <code>$name</code> provienne d'une donnée reçue et que cette
+dernière contienne <code>"toto"; DELETE FROM animals;</code></li>
+<li>Pour paramétrer une requête il faut donc la préparer et donner un
+nom au paramètre par exemple <code>:animal_name</code></li>
+<li>L'utilisation de <code>bindParam</code> permet d'associer la valeur au
+paramètre et c'est cette méthode qui vérifiera qu'il n'y a pas de
+risque de sécurité avec le paramètre</li>
+<li>Cette préparation de requête permet ensuite de se resservir de la
+même requête en changeant le paramètre, ici le nom de l'animal</li>
+
+</ul>
+
+</aside>
 </section>
-<section id="slide-sec-5-16">
-<h3 id="orgdc4d138"><span class="section-number-3">5.16</span> PDO : fermeture du curseur</h3>
+<section id="slide-org94aabd3">
+<h3 id="org94aabd3"><span class="section-number-3">5.16</span> PDO : fermeture du curseur</h3>
 <div class="org-src-container">
 
-<pre><code class="src" >&lt;?php
-  include 'pdo_insert.php';
+<pre><code class="c" >&lt;?php
+  include "pdo_insert.php";
 
   // Création d'un objet PDOStatement
-  $stmt = $pdo-&gt;prepare('SELECT animal_id FROM animals');
+  $stmt = $pdo-&gt;prepare("SELECT animal_id FROM animals");
 
   // Création d'un second objet PDOStatement
-  $otherStmt = $pdo-&gt;prepare('SELECT animal_name FROM animals');
+  $otherStmt = $pdo-&gt;prepare("SELECT animal_name FROM animals");
 
   // Exécute la première requête
   $stmt-&gt;execute();
@@ -2506,36 +3829,35 @@ spécifique à la base utilisée</li>
 <p>
 <a href="./examples/pdo_close_cursor.php">exemple</a>
 </p>
+
+<aside class="notes">
+<ul>
+<li>Pour éviter certains problèmes dans le cas d'utilisation de
+plusieurs requêtes en parallèle, il faut utiliser la méthode
+<code>closeCursor</code> qui permet de s'assurer que notre requête sera
+exécutée correctement même si d'autres requêtes avait été exécutées
+avant.</li>
+
+</ul>
+
+</aside>
 </section>
 </section>
 </div>
 </div>
-<div id="reveal-styles"><ul><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/default.css'); return false;" href="#">Black</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/blood.css'); return false;" href="#">Blood</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/sky.css'); return false;" href="#">Sky</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/beige.css'); return false;" href="#">Beige</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/simple.css'); return false;" href="#">Simple</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/serif.css'); return false;" href="#">Serif</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/night.css'); return false;" href="#">Night</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/moon.css'); return false;" href="#">Moon</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/solarized.css'); return false;" href="#">Solarized</a></li></ul></div>
-<script src="../lib/reveal.js/lib/js/head.min.js"></script>
-<script src="../lib/reveal.js/js/reveal.js"></script>
+<div id="reveal-styles"><ul><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal.js/dist/theme/default.css'); return false;" href="#">Black</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal.js/dist/theme/blood.css'); return false;" href="#">Blood</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal.js/dist/theme/sky.css'); return false;" href="#">Sky</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal.js/dist/theme/beige.css'); return false;" href="#">Beige</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal.js/dist/theme/simple.css'); return false;" href="#">Simple</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal.js/dist/theme/serif.css'); return false;" href="#">Serif</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal.js/dist/theme/night.css'); return false;" href="#">Night</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal.js/dist/theme/moon.css'); return false;" href="#">Moon</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal.js/dist/theme/solarized.css'); return false;" href="#">Solarized</a></li></ul></div>
+<script src="../common/lib/reveal.js/dist/reveal.js"></script>
+<script src="../common/lib/reveal.js/plugin/highlight/highlight.js"></script>
+<script src="../common/lib/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="../common/lib/reveal.js/plugin/notes/notes.js"></script>
+
 
 <script>
 // Full list of configuration options available here:
 // https://github.com/hakimel/reveal.js#configuration
 Reveal.initialize({
-
-controls: true,
-progress: true,
-history: true,
-center: false,
-slideNumber: 'c',
-rollingLinks: true,
-keyboard: true,
-overview: true,
-width: 1200,
-height: 800,
-margin: 0.10,
-minScale: 0.50,
-maxScale: 2.50,
-
-theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
-transitionSpeed: 'default',
+plugins: [RevealHighlight,RevealMarkdown,RevealNotes],
+width:1800, height:1200, progress:true, history:true, control:true, rolling_links:true, keyboard:true, overview:true, hash: false, slideNumber:true,
 multiplex: {
     secret: '', // null if client
     id: '', // id, obtained from socket.io server
@@ -2544,11 +3866,7 @@ multiplex: {
 
 // Optional libraries used to extend on reveal.js
 dependencies: [
-{ src : '../lib/jquery/jquery.min.js' }, { src : '../lib/php.js/dist/php.min.js' }, { src : './inc/js/console.js' },
- { src: '../lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
- { src: '../lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
- { src: '../lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
- { src: '../lib/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+{ src : '../common/lib/jquery/jquery.min.js' }, { src : '../common/lib/php.js/dist/php.min.js' }, { src : '../common/inc/js/console.js' }]
 });
 </script>
 </body>

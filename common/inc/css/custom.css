@@ -1,0 +1,91 @@
+#reveal-styles {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#phpjs-compiler {
+  height: 100%;
+  text-align: center;
+  display: none;
+}
+
+#phpjs-code {
+  border: 0 none;
+  display: inline-block;
+  height: 84%;
+  padding: 0;
+  width: 50%;
+  font-size: 2em;
+  text-align: left;
+}
+
+#phpjs-results {
+  display: inline-block;
+  height: 84%;
+  vertical-align: top;
+  width: 50%;
+  background-color: white;
+}
+
+#phpjs-result {
+  border: 1px solid;
+  box-sizing: border-box;
+  height: 0;
+  text-align: left;
+  font-size: 2em;
+  font-family: monospace;
+  overflow: auto;
+}
+#phpjs-result.half {
+  height: 50%;
+}
+#phpjs-html-result {
+  border: 1px solid;
+  box-sizing: border-box;
+  height: 100%;
+  text-align: left;
+  font-size: 2em;
+  overflow: auto;
+}
+#phpjs-html-result.half {
+  height: 50%;
+}
+#phpjs-html-result > iframe {
+  height: calc(100% - 6px);
+  width: 100%;
+  border: none;
+}
+
+pre > button {
+  height: 42px;
+  margin-top: -21px;
+  position: absolute;
+  right: -100px;
+  top: 50%;
+  width: 84px;
+}
+
+/* Resize code preview */
+.reveal pre {
+  width: auto;
+}
+
+.reveal pre code {
+  max-height: initial;
+}
+
+/* Highlight table row */
+section table tbody tr:nth-child(odd){
+  background: rgba(0, 255, 0, 0.06);
+}
+
+section table tbody tr:nth-child(even){
+  background: rgba(0, 0, 255, 0.06);
+}
+
+/* Hide section number */
+h1>span, h2>span, h3>span, h4>span {
+  display: none;
+}

@@ -1,41 +1,29 @@
 #+Title: PHP
-#+DATE: 
-#+Author: 
-#+Email: 
 
-#+LANGUAGE: fr
-#+OPTIONS: reveal_center:nil reveal_progress:t reveal_history:t reveal_control:t
-#+OPTIONS: reveal_mathjax:t reveal_rolling_links:t reveal_keyboard:t reveal_overview:t num:nil
-#+OPTIONS: reveal_width:1200 reveal_height:800
-#+OPTIONS: toc:1
-#+OPTIONS: timestamp:nil
-#+OPTIONS: num:t
-#+OPTIONS: reveal_title_slide:"<div><h1>%t</h1><h2>%a</h2><h3>%e</h3></div>"
-#+OPTIONS: auto-id:t 
-#+MACRO: BO @@latex:\char91@@ @@html:&#91;@@
-#+REVEAL_MARGIN: 0.1
-#+REVEAL_MIN_SCALE: 0.5
-#+REVEAL_MAX_SCALE: 2.5
-#+REVEAL_TRANS: fade
-#+REVEAL_THEME: serif
-#+REVEAL_HLEVEL: 0
-#+REVEAL_HEAD_PREAMBLE: <meta name="description" content="PHP Introduction.">
-#+REVEAL_POSTAMBLE: <div id="reveal-styles"><ul><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/default.css'); return false;" href="#">Black</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/blood.css'); return false;" href="#">Blood</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/sky.css'); return false;" href="#">Sky</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/beige.css'); return false;" href="#">Beige</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/simple.css'); return false;" href="#">Simple</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/serif.css'); return false;" href="#">Serif</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/night.css'); return false;" href="#">Night</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/moon.css'); return false;" href="#">Moon</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/solarized.css'); return false;" href="#">Solarized</a></li></ul></div>
-#+REVEAL_PLUGINS: (highlight markdown notes)
-#+REVEAL_ROOT: ../lib/reveal.js/
-#+REVEAL_MATHJAX_URL: ../lib/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML
-#+REVEAL_EXTRA_CSS: ./inc/css/custom.css
-#+REVEAL_EXTRA_JS: { src : '../lib/jquery/jquery.min.js' }, { src : '../lib/php.js/dist/php.min.js' }, { src : './inc/js/console.js' }
-#+REVEAL_PREAMBLE: <div id="phpjs-compiler"><textarea id="phpjs-code"></textarea><div id="phpjs-results"><div id="phpjs-result"></div><div id="phpjs-html-result"></div></div><button id="phpjs-clear">Clear</button><button id="phpjs-close">Close</button><button id="phpjs-run">Run</button></div>
+#+INCLUDE: "../common/inc/index.org"
 
 * Les bases en PHP
-    :PROPERTIES:
-    :CUSTOM_ID: bases-php
-    :END:
+
+#+BEGIN_NOTES
+  - HTML, CSS et JS sont des langages interprétés par un navigateur
+    côté client
+  - PHP s'utilise côté serveur et permet de générer du contenu HTML
+    - en pratique PHP peut générer n'importe quel type de contenu mais
+      nous nous limiterons à du HTML pour ce cours
+  - Afin de stocker des informations de manière durable, nous verrons
+    comment manipuler des fichiers et des bases de données SQL avec PHP
+#+END_NOTES
 
 ** Pourquoi PHP ?
 
    [[http://www.commitstrip.com/fr/2015/01/12/the-right-tool-for-the-right-job/][file:./inc/img/Strip-PHP-doute650-Web.jpg]]
+
+#+BEGIN_NOTES
+   - la langage PHP est souvent critiqué mais il reste quand même
+     majoritairement le langage le plus utilisé pour réaliser un site
+     sur le web un peu moins de 80%
+   - https://w3techs.com/technologies/history_overview/programming_language
+#+END_NOTES
 
 ** Introduction à PHP
    
@@ -48,6 +36,10 @@
   - Logo : [[./inc/img/php.png]] 
   - Mascotte (Elephpant) : [[./inc/img/elephpant.png]]
 
+#+BEGIN_NOTES
+   - PHP est initialement proche du langage C
+   - Il permet de rendre un site dynamique
+#+END_NOTES
 
 *** Quelques versions de php
 
@@ -62,6 +54,11 @@
   - =6.0 : ......... := Unicode
   - =7.0 : 2015-2018 := Zend engine 3
     
+#+BEGIN_NOTES
+  - PHP évolue et s'utilise de plus en plus avec le paradigme de la programmation orientée objet.
+  - Comme pour javascript, nous ne nous attarderons pas sur cet aspect et nous nous limiterons aux bases de PHP.
+#+END_NOTES
+
 *** Hello world
     :PROPERTIES:
     :CUSTOM_ID: hello-world
@@ -76,13 +73,33 @@
      - =/*= pour un commentaire sur plusieurs lignes =*/=
 
    #+NAME: phpjs-hello
-   #+BEGIN_SRC src-php
+   #+BEGIN_SRC php
    <em><?php
    //* Comment hack
    echo 'Hello world';
    // */
    ?></em>
    #+END_SRC
+
+#+BEGIN_NOTES
+  - Dans cet exemple simple, on souhaite afficher la chaîne de
+    caractères « Hello world »
+  - En cliquant sur le bouton « Run » une fenêtre découpée en 3 vous affichera
+    - à gauche le code PHP
+    - en haut à droite le résultat du code PHP (la génération du code
+      HTML généré)
+    - en bas à droite l'affichage du code HTML par le navigateur
+  - Cliquer de nouveau sur le bouton « Run » pour voir le résultat
+
+
+  - Le comment hack est une illustration pour vous montrer comment
+    commenter/décommenter rapidement un bloc de code
+  - En supprimant le premier =/= le code complet est commenté
+    transformant le code =//*= par un =/*= passant d'un commentaire
+    sur une ligne à un commentaire sur un bloc qui se termine grâce au
+    code =// */= qui combine le commentaire linéaire et le commentaire
+    fin de bloc.      
+#+END_NOTES
 
 ** Les types en PHP
 
@@ -98,6 +115,13 @@
     - /resource/
     - NULL
 
+#+BEGIN_NOTES
+  - PHP n'est pas un langage fortement typé contrairement au langage
+    C. Il se rapproche sur point avec javascriptq
+  - Nous allons préciser chaque type sauf les types 'object' et
+    'resource' que nous aborderons plus tard.
+#+END_NOTES
+
 *** Les booléens (boolean)
 
    - Type le plus simple pour exprimer une valeur de vérité.
@@ -105,17 +129,26 @@
      - TRUE (vrai)
      - FALSE (faux)
    #+NAME: phpjs-true
-   #+BEGIN_SRC src-php
+   #+BEGIN_SRC php
 <?php echo TRUE; ?> 
 <?php echo true; ?> 
 <?php var_dump(TRUE); ?> 
    #+END_SRC
    #+NAME: phpjs-false
-   #+BEGIN_SRC src-php
+   #+BEGIN_SRC php
 <?php echo FALSE; ?> 
 <?php echo false; ?> 
 <?php var_dump(FALSE); ?> 
    #+END_SRC
+
+#+BEGIN_NOTES
+  - Le type booléen représente la notion vrai/faux
+  - La fonction =var_dump= permet d'afficher des informations
+    précises sur le paramètre donné.
+  - On peut remarquer que l'affichage de =false= n'affiche pas =0=
+    contrairement à ce qu'on aurait pu penser après avoir vu que
+    =true= affichait =1=
+#+END_NOTES
 
 *** Les booléens (cast)
 
@@ -130,10 +163,14 @@
      - le type =NULL= (ainsi que les variables non définies)
    - Toutes les autres valeurs sont considérées comme =true=
 
+#+BEGIN_NOTES
+   - De façon générale, il faut faire attention avec la conversion des types.
+#+END_NOTES
+
 *** Les booléens (exemple)
 
    #+NAME: phpjs-boolean
-   #+BEGIN_SRC src- src-phpphp
+   #+BEGIN_SRC php
 <?php
   var_dump((bool) ""); 
   var_dump((bool) 1); 
@@ -146,6 +183,11 @@
 ?>
    #+END_SRC
 
+#+BEGIN_NOTES
+  - Essayer d'anticiper les résultats pour voir si vous avez bien
+    compris la conversion en booléen.
+#+END_NOTES
+
 *** Les entiers (integer)
 
    - Un entier est un nombre de ${\mathbb{Z} = \{ \dots, -2, -1, 0, 1, 2, \dots\}}$
@@ -155,6 +197,11 @@
      - octal (base 8) : @@html:<span style="color:chocolate">052</span>@@
      - binaire (base 2) :  @@html:<span style="color:chocolate">0b101010</span>@@ (PHP 5.4)
    - Il peut être précédé du signe =-= ou =+=
+
+#+BEGIN_NOTES
+  - Il existe différentes notations pour les entiers mais en pratique
+    la base décimale est celle qui est pratiquement toujours utilisée.
+#+END_NOTES
 
 *** Les entiers (définis formellement)
 
@@ -174,6 +221,14 @@
                  | [+-]?binary      
    #+END_SRC
 
+#+BEGIN_NOTES
+  - Cette notation formelle est juste présente pour illustrer la
+    définition des entiers en PHP.
+  - Par exemple pour la notation décimale, un entier en PHP correspond
+    à un '0' ou un nombre qui commence par 1, 2, ..., 9 suit ou pas
+    d'un autre chiffre compris entre 0 et 9
+#+END_NOTES
+
 *** Les entiers (cast)
 
    - On utilise =(int)= ou =(integer)=
@@ -181,6 +236,10 @@
    - Un réel sera arrondi vers =0=
    - Seule la partie initiale d'une chaîne de caractères est prise en compte
    - Faire attention de manière générale à la conversion des autres types
+
+#+BEGIN_NOTES
+   - De façon générale, il faut faire attention avec la conversion des types.
+#+END_NOTES
 
 *** Les réels (float/double)
 
@@ -190,6 +249,14 @@
      - précision de 14 chiffres
    - Attention à la perte de précision : http://www.floating-point-gui.de/
    
+#+BEGIN_NOTES
+   - De façon générale, il faut faire attention avec la conversion des types.
+   - la perte de précision vient du fait de la représentation des
+     réels avec un ordinateur qui ne sait manipuler que des '0' et des
+     '1 et qui ne peut donc avoir que des représentations approchées
+     de ces réels. Un exemple concret sera donné par la suite
+#+END_NOTES
+
 *** Les réels (définis formellement)
 
    #+BEGIN_SRC text
@@ -198,16 +265,24 @@
      EXPONENT_DNUM [+-]?(({LNUM} | {DNUM}) [eE][+-]? {LNUM})
    #+END_SRC
 
+#+BEGIN_NOTES
+   - Définition formelle des réels en PHP.
+#+END_NOTES
+
 *** Les réels (cast)
 
    - On utilise =(float)= ou =(double)=
    - Seule la partie initiale d'une chaîne de caractères est prise en compte
    - Pour les autres types, l'élément est d'abord converti en =int= puis en =float=
 
+#+BEGIN_NOTES
+   - De façon générale, il faut faire attention avec la conversion des types.
+#+END_NOTES
+
 *** Les entiers et les réels (exemple)
 
    #+NAME: phpjs-int-float
-   #+BEGIN_SRC src- src-phpphp
+   #+BEGIN_SRC php
 <?php
 //*
   var_dump(42); 
@@ -228,6 +303,16 @@
 ?>
    #+END_SRC
 
+#+BEGIN_NOTES
+  - Essayer de trouver le résultat avant d'exécuter le code.
+  - Commenter ensuite le code en supprimant le premier '/' petit
+    rappel du comment hack
+  - Décommenter le code en bas en ajoutant un '/' au bon endroit et
+    essayer de trouver le résultat avant l'exécution. Si vous n'avez
+    pas la bonne réponse c'est que vous venez de découvrir le Floating
+    point problem sinon c'est que vous l'avez compris.
+#+END_NOTES
+
 *** Les chaînes de caractères (string)
 
   - Une chaîne de caractères correspond à un tableau d'octets.
@@ -240,6 +325,11 @@
     - pour afficher = " = il faut le préfixer par =\=
     - les caractères préfixés par =\= sont interprêtés
     - les variables sont également interprêtées
+
+#+BEGIN_NOTES
+  - De façon générale essayer d'utiliser les guillemets simples qui
+    sont plus efficaces pour représenter les chaînes de caractères.
+#+END_NOTES
   
 *** Les chaînes de caractères (cast)
 
@@ -247,18 +337,27 @@
     - Convertion automatique avec certaines fonctions comme =echo=, =print=
     - =true= est converti en = "1" = et =false= en = "" =
 
+#+BEGIN_NOTES
+   - De façon générale, il faut faire attention avec la conversion des types.
+#+END_NOTES
+
 *** Les chaînes de caractères (affichage)
 
-    - =echo= et =print= ne sont pas de vraies fonctions (l'utilisation des parenthèses est facultative, mais recommandée)
+    - =echo= et =print= ne sont pas de vraies fonctions (l'utilisation
+      des parenthèses est facultative, mais recommandée)
     - la fonction [[http://php.net/manual/en/function.printf.php][=printf=]] affiche une chaîne de caractère formatée et
       retourne la longueur de la chaîne affichée
-      #+BEGIN_SRC src- src-phpphp
+      #+BEGIN_SRC c
       int printf (string $format [, mixed $args [, mixed $... ]] )
       #+END_SRC
     - la fonction [[http://php.net/manual/en/function.sprintf.php][=sprintf=]] retourne une chaîne formatée
-      #+BEGIN_SRC src- src-phpphp
+      #+BEGIN_SRC c
       string sprintf (string $format [, mixed $args [, mixed $... ]] )
       #+END_SRC
+
+#+BEGIN_NOTES
+  - Vous devriez reconnaître ces fonctions inspirées du langage C
+#+END_NOTES
 
 *** Les chaînes de caractères (format)
 
@@ -274,9 +373,24 @@
       - ~ "%1$'04d" ~ affiche le 1^{er} paramètre sous forme d'entier de
         4 caractères minimum préfixé par des ~0~
 
+#+BEGIN_NOTES
+  - Le formatage des chaînes de caractères avec un ordre des
+    paramètres différent est principalement utilisé pour la
+    traduction.
+  - En français, on aurait pour afficher 'voiture bleue' :
+    - =$chaine = '%s %s';=
+    - =$object = 'voiture';=
+    - =$color = 'bleue';=
+  - En anglais, on aurait pour afficher 'blue car' :
+    - =$chaine = '%2$s %1$s';=
+    - =$object = 'car';=
+    - =$color = 'blue';=
+  - Avec la fonction =printf($chaine, $object, $color)=
+#+END_NOTES
+
 *** Les chaînes de caractères (fonctions de base)
 
-   - =strlen = : retourne la longueur de la chaîne =$str=
+   - =strlen = : retourne la longueur de la chaîne
    - =strcmp = : compare deux chaînes
    - =trim   = : supprime les espaces ou un autre caractère\\
      =       =   en début (=ltrim=) et fin de chaîne (=rtrim=)
@@ -287,10 +401,14 @@
    - =ucwords= : première lettre de chaque mot en majuscule
    - D'autres fonctions =str_replace=, =strtolower=, =strtoupper=, =implode=, =explode= sur : http://php.net/manual/en/ref.strings.php
 
+#+BEGIN_NOTES
+   - Je vous invite à tester toutes ces fonctions
+#+END_NOTES
+
 *** Résumé (types simples)
 
     #+NAME: phpjs-string
-    #+BEGIN_SRC src- src-phpphp
+    #+BEGIN_SRC php
 <?php
   var_dump("0");
   var_dump("0" + 2);
@@ -298,6 +416,10 @@
   var_dump("0" + true);
 ?>
     #+END_SRC
+
+#+BEGIN_NOTES
+   - Essayer d'anticiper le résultat avant de l'exécuter
+#+END_NOTES
 
 *** Les tableaux (array)
 
@@ -308,6 +430,13 @@
      - Les autres types sont convertis en entiers
    - Les clés sont optionnelles.
    
+#+BEGIN_NOTES
+   - En pratique on utilise maintenant les crochets '[]'
+   - Les tableaux sont créés dynamiquement
+   - Quand la clé correspond à une chaîne de caractères on parle de
+     tableaux associatifs
+#+END_NOTES
+
 *** Les tableaux (fonctions de base)
 
    - =count       = : retourne le nombre d'éléments contenus dans un tableau
@@ -318,10 +447,14 @@
    - =array_values= : retourne les valeurs d'un tableau sous forme d'un tableau
    - D'autres fonctions =array_pop=, =array_shift=, =array_map= sur : http://php.net/manual/en/function.array.php
 
+#+BEGIN_NOTES
+   - Je vous invite à tester toutes ces fonctions
+#+END_NOTES
+
 *** Les tableaux (exemple)
 
    #+NAME: phpjs-array
-   #+BEGIN_SRC src- src-phpphp
+   #+BEGIN_SRC php
 <?php
   var_dump(array("a","b","c"));
   var_dump(array("a" => "b", 3 => "c"));
@@ -329,7 +462,18 @@
 ?>
    #+END_SRC
 
+#+BEGIN_NOTES
+  - On peut remarquer que par défaut les clés correspondent à des
+    index commençant par 0
+  - Le deuxième tableau montre qu'il est possible d'utiliser des clés
+    numériques et textuelles dans le même tableau
+  - Le dernier tableau montre que les index créés se basent sur le
+    plus grand index existant. On aurait pu penser que le 'c' soit
+    associé à l'index 1 ou 2.
+#+END_NOTES
+
 ** Les variables et constantes
+
 *** Les variables
 
    - Une variable est désignée par le signe =$=
@@ -338,6 +482,11 @@
    - =$this= est une variable spéciale qui ne peut pas être modifiée
    - Il n'est pas obligatoire de déclarer et d'initialiser les variables (recommandé)
    - Le nom d'une variable peut être dynamique
+
+#+BEGIN_NOTES
+  - la variable =$this= est utilisée pour la manipulation des objets
+    en PHP.
+#+END_NOTES
 
 *** Gérer le type d'une variable
 
@@ -351,6 +500,12 @@
      string and booleen), =is_string()= permettent de vérifier si un
      argument est d'un type particulier.
    - Le typage est dynamique en PHP
+
+#+BEGIN_NOTES
+  - comme le typage est dynamique en PHP, il peut parfois être utile
+    de vérifier le type associé à une variable pour utiliser cette
+    variable sans erreur dans le code.
+#+END_NOTES
 
 *** Tester l'état d'une variable
 
@@ -371,6 +526,16 @@
   null  == 'php' => false
 #+END_SRC
 
+#+BEGIN_NOTES
+ - les tests =empty()= et le cast =(bool)= ainsi que =is_null()= et
+   =isset()= sont strictement différents, quand l'un est =true=
+   l'autre est =false=
+ - Il faut faire cependant attention avec l'égalité simple, on peut
+   voir que la transitivité n'est pas respectée, on aurait pu
+   s'attendre à ce que =null= soit égal à ='php'=. Ceci illustre les
+   problèmes liés à la conversion des types
+#+END_NOTES
+
 *** Les constantes 
 
    - Par définition, la valeur d'une constante ne peut pas être modifiée
@@ -378,7 +543,7 @@
    - La fonction =define= est utilisée
 
    #+NAME: phpjs-define
-   #+BEGIN_SRC src- src-phpphp
+   #+BEGIN_SRC php
 <?php
   define('HELLO', 3); 
   $a = 'hello'; 
@@ -388,6 +553,17 @@
   //var_dump("$a $hello $$a HELLO"); 
 ?>
    #+END_SRC
+
+#+BEGIN_NOTES
+  - Essayer de trouver le résultat avant d'exécuter le code.
+  - On peut voir la différence entre l'utilisation des guillemets
+    simples et doubles
+  - Il n'est pas possible d'utiliser les noms dynamiques des variables
+    dans une chaîne de caractères d'où l'affichage =$hello= et non pas
+    =world=
+  - Les constantes ne sont pas interprêtées et la chaînes =HELLO= est
+    donc conservées
+#+END_NOTES
 
 ** Les opérateurs
 
@@ -399,6 +575,10 @@
   - Les opérateurs logiques
   - Les autres opérateurs
 
+#+BEGIN_NOTES
+  - Tous les opérateurs vont être présentés
+#+END_NOTES
+
 *** Les opérateurs arithmétiques
 
    - =-$a     = : la négation
@@ -409,6 +589,11 @@
    - =$a % $b = : le modulo
    - =$a ** $b= : l'exponentielle (PHP 5.6)
 
+#+BEGIN_NOTES
+  - Ce sont les mêmes opérateurs que le langage C avec l'ajout de
+    l'exponentielle
+#+END_NOTES
+
 *** Les opérateurs d'affectation
 
    - Le signe = = = 
@@ -417,7 +602,7 @@
    - L'opérateur = * = du C n'a pas de signification en PHP
 
    #+NAME: phpjs-assign
-   #+BEGIN_SRC src- src-phpphp
+   #+BEGIN_SRC php
 <?php
   $a = 3;
   $b = &$a;
@@ -426,6 +611,11 @@
   var_dump($b);
 ?>
    #+END_SRC
+
+#+BEGIN_NOTES
+  - La notion de pointeur n'est pas défini comme en C et l'opérateur
+    = & = permet de créer un alias
+#+END_NOTES
 
 *** Les opérateurs de comparaison
 
@@ -439,6 +629,13 @@
    - =$a <= $b = : infériorité ou égalité
    - =$a >= $b = : supériorité ou égalité
 
+#+BEGIN_NOTES
+  - Comme PHP n'est pas fortement typé, il faut considérer
+    principalement l'identité et la non identité pour comparer des
+    variables, ceci afin d'éviter les erreurs liées à la conversion de
+    types
+#+END_NOTES
+
 *** Les opérateurs d'incrémentation et décrémentation
 
    - =++$a= : incrémente =$a=  de 1, puis retourne =$a=
@@ -447,7 +644,7 @@
    - =$a--= : retourne =$a= puis décrémente =$a=  de 1
 
    #+NAME: phpjs-incr-decr
-   #+BEGIN_SRC src- src-phpphp
+   #+BEGIN_SRC php
 <?php
   $a = 3;
   var_dump($a++); 
@@ -456,6 +653,11 @@
   //var_dump($a); 
 ?>
    #+END_SRC
+
+#+BEGIN_NOTES
+  - Essayer de trouver le résultat avant d'exécuter le code. Il s'agit
+    du même comportement que le langage C
+#+END_NOTES
 
 *** L'opérateur ternaire
 
@@ -466,12 +668,16 @@
    - =expr2= n'est plus obligatoire depuis PHP 5.3
 
    #+NAME: phpjs-ternary
-   #+BEGIN_SRC src- src-phpphp
+   #+BEGIN_SRC php
 <?php
   var_dump('1' == 1 ? 'oui' : 'non'); 
   var_dump('1' === 1 ? 'oui' : 'non'); 
 ?>
    #+END_SRC
+
+#+BEGIN_NOTES
+  - L'opérateur ternaire n'est utile pour simplier la lecture du code source.
+#+END_NOTES
 
 *** Les opérateurs logiques
 
@@ -482,6 +688,10 @@
    - =$a xor $b= : =true= si =$a= vaut =true= ou =$b= vaut =true= mais pas les 2
    - =!$a      = : =true= si =$a= ne vaut pas =true=
    
+#+BEGIN_NOTES
+  - Il s'agit ici des opérateurs logiques classiques
+#+END_NOTES
+
 *** Les autres opérateurs
 
    - =.= correspond à l'opération de concaténation pour les chaînes de caractères
@@ -489,7 +699,7 @@
    - =[]= permet assigner une valeur à la fin d'un tableau
 
    #+NAME: phpjs-array-op
-   #+BEGIN_SRC src- src-phpphp
+   #+BEGIN_SRC php
 <?php
   $a = "hello ";
   $b = array($a);
@@ -499,21 +709,29 @@
 ?>
    #+END_SRC
 
+#+BEGIN_NOTES
+  - Essayer de trouver le résultat avant d'exécuter le code.
+#+END_NOTES
+
 ** Les structures de contrôle
 
   - Les structures conditionnelles
   - Les structures répétitives
   - L'inclusion de fichiers
 
+#+BEGIN_NOTES
+  - Tous les structures de contrôle vont être présentées
+#+END_NOTES
+
 *** Les structures conditionnelles (if, else, elseif)
 
-   #+BEGIN_SRC src- src-phpphp
+   #+BEGIN_SRC c
    if (condition) {
      instructions; // si condition évaluée à true
    }
    #+END_SRC
 
-   #+BEGIN_SRC src- src-phpphp
+   #+BEGIN_SRC c
    if (condition) {
      instructions; // si condition évaluée à true
    } else {
@@ -521,7 +739,7 @@
    }
    #+END_SRC
 
-   #+BEGIN_SRC src- src-phpphp
+   #+BEGIN_SRC c
    if (condition1) {
      instructions; // si condition1 évaluée à true
    } elseif (condition2) {
@@ -531,9 +749,13 @@
    }
    #+END_SRC
 
+#+BEGIN_NOTES
+  - =elseif= n'existe pas en C où il faut utiliser =else if=
+#+END_NOTES
+
 *** Les structures conditionnelles (switch)
 
-   #+BEGIN_SRC src- src-phpphp
+   #+BEGIN_SRC c
    switch ($i) {
     case 0:
       echo "i equals 0";
@@ -548,7 +770,7 @@
 
    - équivalent à :
 
-   #+BEGIN_SRC src- src-phpphp
+   #+BEGIN_SRC c
    // == pas ===
    if ($i == 0) {
      echo "i equals 0";
@@ -559,23 +781,33 @@
    }
    #+END_SRC
 
+#+BEGIN_NOTES
+  - Il faut faire attention à la conversion de types quand on utilise
+    un switch car la comparaison n'est pas effectuée sur le type
+#+END_NOTES
+
 *** Les structures répétitives (tant que)
 
-   #+BEGIN_SRC src- src-phpphp
+   #+BEGIN_SRC c
    while (condition) {
      instructions; // tant que condition est évaluée à true
    }
    #+END_SRC
 
-   #+BEGIN_SRC src- src-phpphp
+   #+BEGIN_SRC c
    do {
      instructions; // tant que condition est évaluée à true
    } while (condition);
    #+END_SRC
 
+#+BEGIN_NOTES
+  - =do...while= est à utiliser pour exécuter l'instruction au moins
+    une fois
+#+END_NOTES
+
 *** Les structures répétitives (pour)
 
-   #+BEGIN_SRC src- src-phpphp
+   #+BEGIN_SRC c
    for (expr1; expr2; expr3) { // expr1 est exécutée une seule fois au début de la boucle
      instructions;             // exécuté tant que expr2 est évaluée à true
                                // expr3 est exécutée à la fin de chaque itération
@@ -584,7 +816,7 @@
 
    - équivalent à :
 
-   #+BEGIN_SRC src- src-phpphp
+   #+BEGIN_SRC c
    expr1;
    while (expr2) {
      instructions;
@@ -592,26 +824,35 @@
    }
    #+END_SRC
 
+#+BEGIN_NOTES
+  - Les structures répétitives sont équivalentes, c'est à vous de
+    choisir celle que vous préférez
+#+END_NOTES
+
 *** Les structures répétitives (tableau)
 
    - =foreach= permet de parcourir les éléments d'un tableau
 
-   #+BEGIN_SRC src- src-phpphp
-   foreach (array as $value) {
+   #+BEGIN_SRC c
+   foreach ($array as $value) {
      instructions;
    }
    #+END_SRC
 
-   #+BEGIN_SRC src- src-phpphp
-   foreach (array as $key => $value) {
+   #+BEGIN_SRC c
+   foreach ($array as $key => $value) {
      instructions;
    }
    #+END_SRC
+
+#+BEGIN_NOTES
+  - Pour parcourir un tableau, il est conseillé d'utiliser =foreach=
+#+END_NOTES
 
 *** Exemple général sur les structures
 
    #+NAME: phpjs-while-foreach-example
-   #+BEGIN_SRC src- src-phpphp
+   #+BEGIN_SRC php
 <?php
   $i = 0;
   $values = array();
@@ -628,6 +869,10 @@
 ?>
    #+END_SRC
 
+#+BEGIN_NOTES
+  - Essayer de trouver le résultat avant d'exécuter le code.
+#+END_NOTES
+
 ** Les fonctions
 
    - sont des blocs d'instructions que l'on peut répéter dans un programme
@@ -635,7 +880,7 @@
    - sont exécutées par un appel
 
    #+NAME: phpjs-function
-   #+BEGIN_SRC src- src-phpphp
+   #+BEGIN_SRC php
 <?php
   function helloWorld() {
     echo "Hello world!";
@@ -645,13 +890,17 @@
 ?>
    #+END_SRC
 
+#+BEGIN_NOTES
+  - les fonctions sont similaires aux fonctions du langage C
+#+END_NOTES
+
 *** Les arguments
 
     - Un argument est une variable, défini après le nom de la fonction entre paranthèses
     - Les arguments sont séparés par une virgule
 
    #+NAME: phpjs-function-args
-   #+BEGIN_SRC src- src-phpphp
+   #+BEGIN_SRC php
 <?php
   function helloWorld($hello, $world) {
     echo "$hello $world!<br>\n";
@@ -662,13 +911,17 @@
 ?>
    #+END_SRC
 
+#+BEGIN_NOTES
+  - les fonctions avec des arguments sont similaires aux fonctions du langage C
+#+END_NOTES
+
 *** Les valeurs par défaut
 
     - Il est possible de définir une valeur par défaut à un argument
     - Les arguments qui ont une valeur par défaut sont définis en dernier
 
    #+NAME: phpjs-function-default-args
-   #+BEGIN_SRC src- src-phpphp
+   #+BEGIN_SRC php
 <?php
   function helloWorld($hello, $world = 'world') {
     echo "$hello $world!\n";
@@ -679,13 +932,19 @@
 ?>
    #+END_SRC
 
+#+BEGIN_NOTES
+  - Contrairement aux fonctions en C il est possible de définir une
+    valeur par défaut si aucun paramètre n'est donné à la fonction
+    alors la variable prendra cette valeur
+#+END_NOTES
+
 *** Les retours
 
     - Tous les types de variables peuvent être retournés par une fonction
     - Si =return= est absent, =null= est retourné
 
    #+NAME: phpjs-function-return
-   #+BEGIN_SRC src- src-phpphp
+   #+BEGIN_SRC php
 <?php
   function helloWorld() {
     return "Hello world!";
@@ -695,12 +954,17 @@
 ?>
    #+END_SRC
 
+#+BEGIN_NOTES
+  - les retours des fonctions sont similaires aux retours des
+    fonctions du langage C
+#+END_NOTES
+
 *** Retourner plusieurs valeurs
 
     - Il faut utiliser un tableau
 
    #+NAME: phpjs-function-return-array
-   #+BEGIN_SRC src- src-phpphp
+   #+BEGIN_SRC php
 <?php
   function helloWorld() {
     $result = array();
@@ -715,10 +979,15 @@
 ?>
    #+END_SRC
 
+#+BEGIN_NOTES
+  - Comme il est possible de retourner un tableau en PHP, cela permet
+    de renvoyer plusieurs valeurs
+#+END_NOTES
+
 *** Arguments par référence
 
    #+NAME: phpjs-function-args-reference
-   #+BEGIN_SRC src- src-phpphp
+   #+BEGIN_SRC php
 <?php
   $hello = "Hello";
   $world = "World";
@@ -732,10 +1001,16 @@
 ?>
    #+END_SRC
 
+#+BEGIN_NOTES
+  - Les références correspondent plus ou moins aux pointeurs en C à la
+    différence qu'il n'y a pas d'équivalent pour l'opérateur '*'. On
+    ne peut pas manipuler les adresses seulement le contenu des variables.q
+#+END_NOTES
+
 *** Une fonction récursive
 
    #+NAME: phpjs-function-rec
-   #+BEGIN_SRC src- src-phpphp
+   #+BEGIN_SRC php
 <?php
   // affiche n fois la lettre 'o'
   function o($n) {
@@ -755,6 +1030,10 @@
 ?>
    #+END_SRC
 
+#+BEGIN_NOTES
+  - La récursivité des fonctions fonctionne comme en langage C
+#+END_NOTES
+
 ** Les variables prédéfinies
 
    - =$_GET    = : variables de la méthode GET (dans l'url)
@@ -767,6 +1046,11 @@
    - =$GLOBALS = : variables disponibles dans le contexte global (/à éviter/)
    - =$argc    = : nombre d'arguments passés au script (=CLI=)
    - =$argv    = : tableau avec les arguments passés au script (=CLI=)
+
+#+BEGIN_NOTES
+  - Nous reverrons l'utilisation de ces variables en fonction des
+    besoins
+#+END_NOTES
 
 ** =$_SERVER=
 
@@ -781,84 +1065,193 @@
    | =$_SERVER['QUERY_STRING']=         | Liste des paramètres passés au script |
    | =$_SERVER['SERVER_ADDR']=          | Adresse IP du serveur                 |
 
+#+BEGIN_NOTES
+  - Il faut faire attention à l'usage de cette variable car les
+    résultats ne sont pas nécessairement consistant et sont liés à la
+    configuration du serveur
+#+END_NOTES
+
 * Les formulaires
-    :PROPERTIES:
-    :CUSTOM_ID: php-form
-    :END:
-
+#+BEGIN_NOTES
+- L'interaction avec les formulaires va montrer l'intérêt de PHP. Avec
+  PHP nous allons pouvoir récupérer des informations envoyées par le
+  client sur le serveur et interagir en conséquence.
+- Pour rappel l'attribut =action= de la balise form permet d'indiquer
+  la page qui va récupérer les informations du formulaire et
+  l'attribut =method= indiquera la façon d'envoyer les informations
+  (=GET= ou =POST=)
+#+END_NOTES
 ** GET
-
-#+INCLUDE: "./examples/form_get.php" src html
+#+INCLUDE: "./examples/form_get.php" src xml
 
    [[./examples/form.php?filename=form_get][exemple]]
 
+#+BEGIN_NOTES
+- dans cet exemple, =action= considère la page courante. Pour cela la
+  variable =$_SERVER= qui est un tableau peut être utilisée et l'index
+  =PHP_SELF= contient le nom de page courante (ce qui évite de coder
+  en dur le nom de la page et évite des erreurs si on décide de
+  renommer le fichier)
+- Attention ceci n'est pas forcément la meilleure solution, nous y
+  reviendrons.
+- Le formulaire contient une information textuelle avec le nom =input=
+- Après avoir validé le formulaire, regardez dans l'URL de votre
+  navigateur, il devrait y avoir l'information suivante
+  =?input=la_valeur_que_vous_avez_entree=
+- La méthode =GET= permet de récupérer des paramètres dans les URL. Il
+  ne faut donc pas l'utiliser pour des informations sensibles (mot de
+  passe par exemple)
+- La redirection sur la page de résultat affiche le contenu de
+  certaines variables PHP =GET=, =POST=, =REQUEST=, =FILES=, =COOKIE=
+  pour rappel =REQUEST= regroupe les valeurs passées dans =GET= et
+  =POST=
+- Ce qu'il faut retenir c'est que =GET= permet de passer des valeurs
+  de formulaire dans l'URL. Le format est =?nom1=valeur1&nom2=valeur2=
+#+END_NOTES
 ** Sécurité
    :PROPERTIES:
-   :reveal_data_state: alert
+   :reveal_background: #C8321E
    :END:
 
    - Attention à l'utilisation de =$_SERVER["PHP_SELF"]=
-   - Attention aux données de l'utilisateur
+   - Attention aux données reçues sur le serveur
 
+#+BEGIN_NOTES
+- l'utilisation seule de =$_SERVER["PHP_SELF"]= n'est pas sécurisée
+  comme vous allez le voir dans l'exemple d'après.
+- il faut également faire attention aux données qui sont envoyées par
+  le =client= sur le =serveur=, elles pourraient chercher à
+  compromettre l'usage normal. Il faut donc toujours les vérifier
+  avant de les utiliser.
+#+END_NOTES
 *** =$_SERVER["PHP_SELF"]=
 
     =$_SERVER["PHP_SELF"]= permet de faire référence au script en cours
 
-**** Problème
+- Problème
+     #+BEGIN_SRC xml
+     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+     #+END_SRC
+     - lien normal : [[./examples/form.php/%22%3E%3Cscript%3Ealert('hacked')%3C/script%3E?filename=form_get][form.php]]
+     - lien modifé : [[./examples/form.php/%22%3E%3Cscript%3Ealert('hacked')%3C/script%3E?filename=form_get][form.php/%22%3E%3Cscript%3Ealert('hacked')%3C/script%3E]]
 
-     #+BEGIN_SRC html
-<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
+- Solution
+     #+BEGIN_SRC xml
+     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+     #+END_SRC
+    - =htmlspecialchars($_SERVER["PHP_SELF"]);= ou  =filter_var($_SERVER['PHP_SELF'], FILTER_SANITIZE_STRING);=
+    - lien protégé : [[./examples/form.php/%22%3E%3Cscript%3Ealert('hacked')%3C/script%3E?filename=form_post][form.php/%22%3E%3Cscript%3Ealert('hacked')%3C/script%3E]]
+    - Plus simplement pour rediriger sur la même page il est possible d'utiliser ~action="" ~
+
+- Remarques
+  - Ce n'est pas grave si vous ne comprenez pas tout, retenez
+    seulement qu'il ne faut pas utiliser =$_SERVER['PHP_SELF']=
+#+BEGIN_NOTES
+- Problème
+  - comme =$_SERVER['PHP_SELF']= permet de représenter la page
+    courante, on peut ajouter des informations dans l'URL pour
+    modifier la valeur de la page courante
+  - =%22= représente ="=
+  - =%3E= représente =>=
+  - =%3C= représente =<=
+  - =/%22%3E%3Cscript%3Ealert('hacked')%3C/script%3E= représente donc
+    =/"><script>alert('hacked')</script>=
+  - le code HTML généré par PHP avec =$_SERVER['PHP_SELF']= sera donc
+     #+BEGIN_SRC xml
+      <form action="/php/examples/form.php/"><script>alert('hacked')</script>" method="post">
+     #+END_SRC
+    ce qui permet par exemple d'introduire du code javascript et
+    correspond donc à une faille de sécurité
+- Solution
+  - htmlspecialchars remplace certains caractères particuliers par l'entité HTML correspondante
+  - ="= par =&quot;=
+  - =>= par =&gt;=
+  - =<= par =&lt;=
+  - le code HTML généré par PHP avec =htmlspecialchars($_SERVER['PHP_SELF'])= sera donc
+     #+BEGIN_SRC xml
+     <form action="/php/examples/form.php/&quot;&gt;&lt;script&gt;alert('hacked')&lt;/script&gt;" method="post">
      #+END_SRC  
-     - =/%22%3E%3Cscript%3Ealert('hacked')%3C/script%3E=
-     - [[./examples/form.php/%22%3E%3Cscript%3Ealert('hacked')%3C/script%3E?filename=form_get][exemple]]
-
-**** Solution
-    - =filter_var($_SERVER['PHP_SELF'], FILTER_SANITIZE_STRING);=
-    - =htmlspecialchars($_SERVER["PHP_SELF"]);=
-    - [[./examples/form.php/%22%3E%3Cscript%3Ealert('hacked')%3C/script%3E?filename=form_post][exemple]]
-    - il est également possible d'utiliser ~action="" ~
-
+- Remarques
+  - Ce n'est pas grave si vous ne comprenez pas tout, retenez
+    seulement qu'il ne faut pas afficher les données utilisateurs sans les vérifier
+#+END_NOTES
 *** Filtrer les données des utilisateurs
 
     Never Trust User Input
 
-**** Problème
+- Problème
 
      - Un commentaire peut inclure du code malveillant
      - cross site scripting (XSS)
-     - [[./examples/form.php?input=<script>alert('hacked');</script>][exemple]]
+     - [[./examples/form.php?input=<script>alert('hacked');</script>][form.php?input=<script>alert('hacked');</script>]]
 
-**** Solution
+- Solution
 
      - =htmlspecialchars()=
      - Pas toujours suffisant si l'affichage est déjà dans une balise html
-     #+BEGIN_SRC html
+     #+BEGIN_SRC xml
 $data = "javascript:alert('hacked');";
 <img src="'.htmlspecialchars($data).'">
      #+END_SRC
-     #+BEGIN_SRC html
+
+     #+BEGIN_SRC xml
 <img src="javascript:alert('hacked');">
      #+END_SRC
 
+#+BEGIN_NOTES
+- Problème
+  - Ici on considère qu'on met comme valeur dans un formulaire du code javascript
+  - Si vous affichez directement la valeur reçue, le code javascript
+    sera exécuté par le navigateur. C'est ce qui se passe dans le
+    tableau du =GET= (d'où l'alerte javascript) alors que
+    =htmlspecialchars= est utilisé dans le =REQUEST=
+- Solution
+  - =htmlspecialchars= fonctionne dans pratiquement tous les cas, mais
+    il faut faire attention si c'est utilisé dans un attribut html
+    cela ne fonctionne pas toujours
+  - Ce n'est pas très important si vous ne comprenez pas cette partie,
+    c'est surtout pour votre culture personnelle pour le moment on ne
+    vous demande pas de faire des sites entièrement sécurisés
+#+END_NOTES
 ** POST
-
-#+INCLUDE: "./examples/form_post.php" src html
+#+INCLUDE: "./examples/form_post.php" src xml
 
    [[./examples/form.php?filename=form_post][exemple]]
 
+#+BEGIN_NOTES
+- Contrairement à l'utilisation de =GET= vous ne voyez pas la valeur
+  que vous avez entré dans le formulaire.
+- En fait cette valeur se trouve cachée dans l'entête HTTP. Vous vous
+  souvenez que la communication entre le client et le serveur se fait
+  par un protocole (ici HTTP ou HTTPS) et dans ce protocole, il y a
+  une entête qui contient des informations comme le type de navigateur
+  utilisé (si vous vous souvenez je vous l'avais montré en cours) et
+  les valeurs transmises en POST.
+#+END_NOTES
 ** Valeurs multiples
 
-#+INCLUDE: "./examples/form_multiple_post.php" src html
+#+INCLUDE: "./examples/form_multiple_post.php" src xml
 
    - [[./examples/form.php?filename=form_multiple_post][exemple POST]]
    - [[./examples/form.php?filename=form_multiple_get][exemple GET]]
 
+#+BEGIN_NOTES
+- Amusez vous en testant différentes valeurs envoyées en sélectionnant
+  plusieurs valeurs ou pas etc. En POST vous ne verrez pas grand
+  chose, mais je vous invite à regarder l'URL pour voir le résultat
+  avec GET
+- ce qui est intéressant de noter c'est que pour envoyer plusieurs
+  valeurs il faut que le nom dans le formulaire HTML finisse pas =[]=
+#+END_NOTES
 ** Buttons multiples
 
-#+INCLUDE: "./examples/form_multiple_button.php" src html
+#+INCLUDE: "./examples/form_multiple_button.php" src xml
 
    - [[./examples/form.php?filename=form_multiple_button][exemple]]
 
+#+BEGIN_NOTES
+- Pour savoir quel bouton a été cliqué il est possible de lui donner une valeur.
+#+END_NOTES
 ** =$_FILES=
 
    - Envoi de fichiers (méthode =POST=)
@@ -868,6 +1261,19 @@ $data = "javascript:alert('hacked');";
      - ~upload_max_filesize~ du fichier ~php.ini~
      - ~<input type="hidden" name="MAX_FILE_SIZE" value="120000">~ en octets
 
+#+BEGIN_NOTES
+- Il n'est pas possible d'utiliser =GET= pour envoyer des fichiers
+- Il faut ajouter l'attribut =enctype=
+- Il est possible de filtrer les fichiers proposés avec l'attribut
+  =accept= 
+- Le fichier =php.ini= est un fichier de configuration qui se situe
+  sur le serveur et sauf si c'est sur votre machine personnelle, vous
+  ne pouvez pas modifier cette valeur.
+- l'input en html n'est pas très utile car il ne permet pas d'envoyer
+  des fichiers plus gros que la valeur définie dans =php.ini=
+- Ne vous attardez pas trop sur cette notion de taille de fichiers, ce
+  n'est pas très important
+#+END_NOTES
 ** Informations liées aux fichiers
 
    - =name    = : nom du fichier client
@@ -876,6 +1282,10 @@ $data = "javascript:alert('hacked');";
    - =error   = : code d'erreur associé au fichier
    - =size    = : taille du fichier transféré
 
+#+BEGIN_NOTES
+- Quand le fichier est envoyé au serveur, plusieurs valeurs sont
+  associées
+#+END_NOTES
 ** Codes d'erreur
 
    | = 0 = | =UPLOAD_ERR_OK=        | transfert réalisé avec succès                   |
@@ -884,48 +1294,102 @@ $data = "javascript:alert('hacked');";
    | = 3 = | =UPLOAD_ERR_PARTIAL=   | fichier partiellement transféré                 |
    | = 4 = | =UPLOAD_ERR_NOFILE=    | aucun fichier transféré                         |
 
+#+BEGIN_NOTES
+- La valeur =error= associée au fichier permet de détecter d'éventuels
+  problèmes liés à l'envoi du fichier
+#+END_NOTES
 ** POST et FILES
    
-#+INCLUDE: "./examples/form_post_file.php" src html
+#+INCLUDE: "./examples/form_post_file.php" src xml
 
    [[./examples/form.php?filename=form_post_file][exemple]]
 
-#+INCLUDE: "./examples/form_post_files.php" src html
+#+INCLUDE: "./examples/form_post_files.php" src xml
 
    [[./examples/form.php?filename=form_post_files][exemple]]
 
+#+BEGIN_NOTES
+- Vous pouvez essayer d'envoyer un ou plusieurs fichiers et voir le
+  résultat. Je conseille de n'envoyer que des petits fichiers textuels
+  pour ne pas surcharger inutilement le serveur pour rien.
+- Par défaut vous voyez que le fichier est stocké sur le serveur
+  temporairement dans le dossier =tmp= avec un nom généré
+  automatiquement par PHP
+- Pour utiliser ce fichier concrètement et le garder plus longtemps il
+  faudra donc le déplacer dans un dossier.
+#+END_NOTES
 ** Déplacement des fichiers
 
    - Il faut utiliser la fonction =move_uploaded_file=
    - =move_uploaded_file($_FILES["file"]["tmp_name"], "monimage.jpg");=
      - retourne TRUE si le déplacement a réussi ou FALSE sinon
 
+#+BEGIN_NOTES
+- Quand vous déplacez un fichier, il faut lui donner un nom qui vous
+  garantisse que cela ne posera pas de problème et il ne faut donc
+  surtout pas utiliser l'attribut =name= qui contient le nom donné par
+  le client car cela pourrait poser des problèmes (fichier existant,
+  tentative de corruption en donnant des noms avec des chemins absolu
+  comme =/home/login/nom_de_fichier=)
+- Nous ne nous intéresserons pas à ces problèmes de sécurité. Préférez
+  l'utilisation d'un nom que vous définirez vous même.
+#+END_NOTES
 ** Validation
 
    - Never Trust User Input
    - La validation html5 n'est pas suffisante
    - [[https://php.net/manual/en/function.filter-input.php][=filter_input=]], [[https://php.net/manual/en/function.filter-var.php][=filter_var=]]
-     #+BEGIN_SRC src- src-phpphp
+     #+BEGIN_SRC c
 filter_var($email, FILTER_VALIDATE_EMAIL)
      #+END_SRC
 
+#+BEGIN_NOTES
+- Rappelez-vous qu'il faut toujours vérifiez les valeurs envoyées par
+  le client pour éviter de corrompre votre site.
+- Si vous cliquez sur les liens vous verrez que les 2 fonctions sont
+  proches mais que =filter_input= est plus adaptée pour vérifier les
+  données provenant d'un formulaire.
+#+END_NOTES
 * Cookies et sessions
-    :PROPERTIES:
-    :CUSTOM_ID: cookies-sessions
-    :END:
 
+#+BEGIN_NOTES
+- Comme vous le savez sûrement les cookies sont des petits fichiers
+  textuels qui ont stockés chez le client. Ces fichiers peuvent servir
+  à enregistrer des préférences comme nous l'avons vu en javascript
+  mais ils servent surtout à garder une trace de l'accès à une page
+  permettant à l'aide d'un code spécifique de savoir si le serveur
+  communique avec le même client.
+- C'est ce qui est utilisé quand vous vous connectez à un site et que
+  ce dernier ne vous redemande pas à chaque changement de page votre
+  identifiant et votre mot de passe. Le serveur donne un identifiant
+  unique au client qui lui permettra de savoir si c'est bien toujours
+  le même.
+- Pour rappel, les cookies sont envoyés dans les entêtes HTTP pendant
+  la communication entre le client et le serveur
+#+END_NOTES
 ** Les cookies
 
    - Les cookies permettent de stocker des informations côté client\\
      (Never Trust User Input)
-   - L'écriture de cookie se fait avant tout envoi de contenu HTML au client
+   - L'écriture de cookie se fait avant tout envoi de contenu HTML au
+     client car ces données sont envoyée dans l'entête HTTP
 
-** [[http://php.net/manual/en/function.setcookie.php][setcookie()]]
-
-#+BEGIN_SRC src- src-phpphp
-   setcookie($name, $value, $expire, $path, $domain, $secure, $httponly)
+#+BEGIN_NOTES
+- Comme les données viennent du client, le serveur ne doit pas les
+  considérer comme sûre. Si vous connaissez la valeur d'un cookie,
+  vous pourriez modifier votre cookie pour usurper l'identité d'une
+  personne connectée à un site.
+- Cela s'appelle un vol de session (il y a quelques méthodes pour
+  limiter les risques en stockant par exemple l'adresse IP du client
+  côté serveur ou des informations sur son navigateur). Il suffit de
+  vérifier que les informations reçues avec un cookie correspondent
+  toujours.
+#+END_NOTES
+** setcookie
+#+BEGIN_SRC c
+   setcookie($name, $value, $expire, $path, $domain, $secure, $httponly);
 #+END_SRC
- 
+[[http://php.net/manual/en/function.setcookie.php][setcookie()]]
    | =$name=     | (/obligatoire/)        | nom du cookie                            |
    | =$value=    | (/facultatif/)         | valeur du cookie (chaîne de caractères)  |
    | =$expire=   | (/facultatif : 0/)     | date de fin de validité du cookie        |
@@ -934,9 +1398,14 @@ filter_var($email, FILTER_VALIDATE_EMAIL)
    | =$secure=   | (/facultatif : false/) | HTTPS pour transmettre les cookies       |
    | =$httponly= | (/facultatif : false/) | utilisation uniquement du protocole HTTP |
 
+#+BEGIN_NOTES
+- Les cookies peuvent avoir une durée de vie : 0 pour dire que le
+  cookie expire à la fin de la session quand le navigateur ferme la
+  page
+#+END_NOTES
 ** Affectation des cookies en PHP
 
-#+BEGIN_SRC src- src-phpphp
+#+BEGIN_SRC c
   setcookie('hello','world');
   setcookie('couleur', 'red', time()+86400, '/mon-compte/', www.monsite.com, TRUE);
 
@@ -945,6 +1414,9 @@ filter_var($email, FILTER_VALIDATE_EMAIL)
   setcookie('tableau[index3]','val3');
 #+END_SRC
 
+#+BEGIN_NOTES
+- Les cookies peuvent être utilisés pour stocker des valeurs simples ou des tableaux
+#+END_NOTES
 ** Lecture des cookies
 
    - =$_COOKIE= est utilisé pour récupérer les valeurs
@@ -952,21 +1424,43 @@ filter_var($email, FILTER_VALIDATE_EMAIL)
      après un appel de setcookie, il faut qu'une requête ait lieu
      entre le client et le serveur.
 
-#+BEGIN_SRC src- src-phpphp
-  $hello = $_COOKIE['hello'];
+#+BEGIN_SRC c
+  setcookie('hello','world');
 
-  foreach($_COOKIE['tableau'] as $key => $value) {
-    echo 'Cookie : '. $key.' : '. $value;
-  }
+  setcookie('tableau[index1]','val1');
+  setcookie('tableau[index2]','val2');
+  setcookie('tableau[index3]','val3');
 #+END_SRC
 
-     [[./examples/cookie.php][exemple]]
+(Lisez bien les notes avant de cliquer sur ce lien d'exemple)
 
+     [[./examples/cookie.php][exemple]] 
+
+#+BEGIN_NOTES
+- Première fois
+  - quand vous cliquez sur le lien, la requête HTTP est envoyée au serveur et il n'y a pas de cookie de défini
+  - les appels de =setcookie= demande à PHP d'envoyer des cookies dans l'entête HTTP de la réponse
+  - PHP affiche les valeurs de =$_COOKIE= mais il n'y a rien car pas de cookie dans l'entête HTTP de la requête
+  - par contre côté client les cookies ont été définis (le résultat de la page affiche le contenu de =$_COOKIE=)
+  - pour voir les cookies côté client vous pouvez cliquer sur le lien
+    « edit » qui affichera en javascript les cookies
+- Deuxième fois
+  - Si vous réactualisez la page, la requêtte HTTP contient les cookies définis avant par PHP
+  - Dans le tableau, il y a donc les valeurs précédemment fixées.
+- Vous pouvez éditer/créer des valeurs et voir comment ça se passe
+  quand vous actualisez la page. Quand vous modifiez côté client, les
+  valeurs PHP s'affichent directement, par contre comme PHP redéfinit
+  toujours =hello= et =tableau= il faut réactualiser une seconde fois
+  pour voir la mise à jour dans le rendu généré par PHP
+#+END_NOTES
 ** Les sessions
 
    - Les sessions permettent de stocker des informations côté serveur
    - Les sessions ne sont pas partagées entre les visiteurs
 
+#+BEGIN_NOTES
+- Vous l'aurez compris, les sessions seront gérées à l'aide des cookies
+#+END_NOTES
 ** Différentes étapes
 
    - Ouverture d'une session avec =session_start()=
@@ -974,44 +1468,115 @@ filter_var($email, FILTER_VALIDATE_EMAIL)
    - Utilisation de la variable =$_SESSION=
    - Fermeture de la session
 
+#+BEGIN_NOTES
+- =session_start()= doit être appelé en tout début de code pour que la
+  mise en place des éventuels cookies se fasse avant tout affichage de
+  code HTML
+#+END_NOTES
 ** Transmission de l'identifiant de session
 
-   - Dans l'URL à l'aide de la variable =SID= (Pas recommandé /htmlspecialchars/)
+   - Dans l'URL à l'aide de la variable =SID= (Pas recommandé)
    - Avec les cookies (il faut que le client accepte les cookies)
      - =ini_set('session.use_cookies', 1);=
      - =ini_set('session.use_only_cookies', 1);= par défaut depuis PHP 5.3
 
-** Utilisation des sessions - 1
+#+BEGIN_NOTES
+- Les sessions peuvent également être utilisées avec une valeur dans
+  l'URL comme les valeurs =$_GET=. Ceci n'est bien sûr pas recommandé
+  car le partage d'une URL suffirait presque pour effectuer un vol de session.
+- Par défaut, maintenant PHP n'autorise plus que l'utilisation de
+  cookies et c'est uniquement comme cela que nous allons gérer les
+  sessions
+#+END_NOTES
+** Utilisation des sessions - 1 - =session_login.php=
 
-#+INCLUDE: "./examples/session_login.php" src src
+#+INCLUDE: "./examples/session_login.php" src c
 
-** Utilisation des sessions - 2
+#+BEGIN_NOTES
+- dans cette page on dit que nous allons utiliser les sessions
+- on teste si des valeurs =login= et =pass= n'ont pas été envoyées à
+  l'aide d'un formulaire en POST
+- si c'est le cas on vérifie que les identifiants sont corrects, les
+  valeurs attendues étant également =login= et =pass= (ceci n'est pas
+  très sécurisé, j'espère que vous l'aurez remarqué)
+- si c'est bon alors on demande à redéfinir l'identifiant de la
+  session pour être sûre qu'une nouvelle valeur est utilisée
+- On stocker côté serveur avec =$_SESSION= la valeur de =acces= pour
+  dire que la personne est connectée et on stocker son =nom= ici il
+  n'y a pas grand intérêt seule la personne =login= pourra se
+  connecter
+- sinon on regarde si dans l'URL il y a la clé =logout= auquel cas on
+  supprime la session et toutes ses valeurs associées puis on redirige
+  la personne sur la page =session.php= (header permet également
+  d'envoyer des informations dans l'entête HTTP et =Location= permet
+  de demander au navigateur d'effectuer une redirection)
+#+END_NOTES
+** Utilisation des sessions - 2 - =session_form.php=
 
-#+INCLUDE: "./examples/session_form.php" src src
+#+INCLUDE: "./examples/session_form.php" src xml
 
-** Utilisation des sessions - 3
+#+BEGIN_NOTES
+- Ici on définit simplement un formulaire de connexion en =post= sur la
+page courante =action= vide
+- On a bien défini les valeurs pour =login= et =pass=
+#+END_NOTES
+** Utilisation des sessions - 3 - =session_menu.php=
 
-#+INCLUDE: "./examples/session_menu.php" src src
+#+INCLUDE: "./examples/session_menu.php" src xml
 
-** Utilisation des sessions - 4
+#+BEGIN_NOTES
+- Cette page affiche un menu avec différents liens
+  - page d'accueil
+  - page publique qui sera accessible par tout le monde
+  - page protégée qui nécessite la connexion avec le formulaire
+- On voit qu'on affiche les valeurs stockées dans =$_SESSION= pour
+  =public= et =protected=
+- On n'affiche le lien de déconnexion que si la valeur =acces= est
+  définie
+#+END_NOTES
+** Utilisation des sessions - 4 - =session_info.php=
 
-#+INCLUDE: "./examples/session_info.php" src src
+#+INCLUDE: "./examples/session_info.php" src c
 
-** Utilisation des sessions - 5
+#+BEGIN_NOTES
+- on affiche juste des informations sur la session en cours
+#+END_NOTES
+** Utilisation des sessions - 5 - =session_public.php=
 
-#+INCLUDE: "./examples/session_public.php" src src
+#+INCLUDE: "./examples/session_public.php" src xml
 
-** Utilisation des sessions - 6
+#+BEGIN_NOTES
+- Sur la page publique on démarre la session et on incrémente la variable de session =public=
+- On affiche un lien de retour et le nombre de fois que la page publique a été vue
+#+END_NOTES
+** Utilisation des sessions - 6 - =session_protected.php=
 
-#+INCLUDE: "./examples/session_protected.php" src src
+#+INCLUDE: "./examples/session_protected.php" src xml
 
    [[./examples/session.php][exemple]]
 
-* PHP et les fichiers
-    :PROPERTIES:
-    :CUSTOM_ID: php-fichiers
-    :END:
+#+BEGIN_NOTES
+- Sur la page protégée on vérifie =acces= pour savoir si on est
+  connecté et on redirige sur la page d'accueil si ce n'est pas le cas
+- sinon on incrémente la variable de session =protected= et on affiche
+  quelques informations réservées aux personnes connectées
+- parcourez ce petit site qui illustre l'utilisation des sessions
+- essayez de le parcourir, connectez-vous, vérifier que les valeurs de
+  session sont conservées si par exemple la page publique avait été
+  visitée.
+- quand vous vous connectez, le numéro d'id de session change mais les
+  valeurs associées à la session sont conservées
+- mais l'id ne change pas si on se déconnecte
+#+END_NOTES
 
+* PHP et les fichiers
+
+#+BEGIN_NOTES
+- Avec PHP, comme en langage C, il est possible d'utiliser des
+  fonctions définies dans un fichier extérieur mais également de gérer
+  et manipuler des fichiers pour stocker ou lire des informations
+  (pour remplacer l'utilisation d'une base de données type MySQL)
+#+END_NOTES
 ** L'inclusion de fichiers
 
    - Il est possible d'utiliser du code PHP ou HTML provenant d'autres fichiers :
@@ -1021,6 +1586,10 @@ filter_var($email, FILTER_VALIDATE_EMAIL)
      - =require_once('fichier.ext');=
    - L'interpréteur PHP remplace ces lignes par le contenu du fichier
 
+#+BEGIN_NOTES
+- Vous reconnaîtrez l'usage de =include= en langage C. Des détails
+  sont données sur la diapositive suivante
+#+END_NOTES
 ** L'inclusion de fichiers
 
    - La différence entre =include= et =require= concerne la gestion des erreurs
@@ -1031,16 +1600,23 @@ filter_var($email, FILTER_VALIDATE_EMAIL)
    - Permet d'extraire les fonctions d'usage
    - Améliore la modularité du code
 
+#+BEGIN_NOTES
+- Vous l'aurez remarqué mais il n'est pas possible de voir le code
+  source PHP du coté du client. Côté client, nous ne voyons que
+  l'interprétation du code PHP du serveur.
+- Il faut toujours privilégier le code modulaire pour éviter la
+  duplication de code, c'est le principe DRY (Don't Reapeat Yourself)
+#+END_NOTES
 ** Manipulation simple des fichiers
 
    - =file_exists()= permet de vérifier l'existence d'un fichier
    - =file_get_contents()= permet de lire le contenu d'un fichier
    - =file_put_contents()= permet d'écrire dans un fichier
 
-#+BEGIN_SRC src- src-phpphp
+#+BEGIN_SRC c
 <?php
-  $file = 'file.txt';
-  $content = '';
+  $file = "file.txt";
+  $content = "";
 
   if (file_exists($file)) {
     $content = file_get_contents($file);
@@ -1052,21 +1628,35 @@ filter_var($email, FILTER_VALIDATE_EMAIL)
 ?>
 #+END_SRC
      
+#+BEGIN_NOTES
+- Si vous copiez/collez ce code dans un fichier =file.php=, vous
+  pouvez tester directement dans un terminal en faisant =php file.php=
+- le fichier =file.txt= sera créé ou modifié. Si cela ne fonctionne
+  pas pensez à vérifier les droits associés au dossier (droit en
+  écriture)
+#+END_NOTES
 ** Manipulation simple des fichiers
 
    - [[http://php.net/manual/en/function.readfile.php][readfile]] lit et affiche le contenu d'un fichier 
-     #+BEGIN_SRC src- src-phpphp
+     #+BEGIN_SRC c
      int readfile ( string $filename )
      #+END_SRC
    - [[http://php.net/manual/en/function.file.php][file]] lit et retourne sous forme de tableau un fichier
-     #+BEGIN_SRC src- src-phpphp
+     #+BEGIN_SRC c
      array file ( string $filename )
      #+END_SRC
      
+#+BEGIN_NOTES
+- =readfile= est principalement utilisé pour afficher des fichiers
+  binaires (image, pdf, etc.) à l'aide de PHP, nous ne l'utiliserons
+  pas dans ce cours
+- =file= peut être utile pour lire le contenu d'un fichier ligne par
+  ligne
+#+END_NOTES
 ** Manipulation avancée des fichiers
 
    -  [[http://php.net/manual/en/function.fopen.php][fopen]] ouvre un fichier
-     #+BEGIN_SRC src- src-phpphp
+     #+BEGIN_SRC c
      resource fopen ( string $filename , string $mode)
      #+END_SRC
    - =$mode= :
@@ -1077,69 +1667,75 @@ filter_var($email, FILTER_VALIDATE_EMAIL)
      - ~ 'a'  ~ : écriture seule comme =w= (écriture en fin de fichier)
      - ~ 'a+' ~ : écriture et lecture comme =w+= (écriture en fin de fichier)
 
+#+BEGIN_NOTES
+- Vous retrouvez le même usage qu'en langage C. La =resource=
+  récupérée permet ensuite de parcourir ce fichier avec les fonctions
+  présentées sur la diapositive suivante
+#+END_NOTES
 ** Déplacement
 
    - [[http://php.net/manual/en/function.fseek.php][fseek]] déplace le pointeur à une position donnée
-     #+BEGIN_SRC src- src-phpphp
+     #+BEGIN_SRC c
      int fseek ( resource $handle , int $offset )
      #+END_SRC
    - [[http://php.net/manual/en/function.rewind.php][rewind]]  remet le pointeur au début
-     #+BEGIN_SRC src- src-phpphp
+     #+BEGIN_SRC c
      bool rewind ( resource $handle )
      #+END_SRC
    - [[http://php.net/manual/en/function.ftell.php][ftell]] retourne la position du pointeur
-     #+BEGIN_SRC src- src-phpphp
+     #+BEGIN_SRC c
      int ftell ( resource $handle )
      #+END_SRC
    - [[http://php.net/manual/en/function.feof.php][feof]] test la fin du fichier
-     #+BEGIN_SRC src- src-phpphp
+     #+BEGIN_SRC c
      bool feof ( resource $handle )
      #+END_SRC
 
+#+BEGIN_NOTES
+- Vous retrouvez également les fonctions basées sur le langage C. En
+  pratique à part =feof= qui peut être utile nous n'utiliserons pas
+  les autres fonctions. Elles sont utiles pour des manipulations
+  avancées de fichiers
+- =feof= correspond à *file end of file*
+#+END_NOTES
 ** Lecture
 
    - [[http://php.net/manual/en/function.fread.php][fread]] lecture du fichier en mode binaire
-     #+BEGIN_SRC src- src-phpphp
+     #+BEGIN_SRC c
      string fread ( resource $handle , int $length )
      #+END_SRC
    - [[http://php.net/manual/en/function.fgets.php][fgets]] lecture de la ligne courante
-     #+BEGIN_SRC src- src-phpphp
+     #+BEGIN_SRC c
      string fgets ( resource $handle [, int $length ] )
      #+END_SRC
    - [[http://php.net/manual/en/function.fgetc.php][fgetc]] lecture du caractère courant
-     #+BEGIN_SRC src- src-phpphp
+     #+BEGIN_SRC c
      string fgetc ( resource $handle )
      #+END_SRC
 
+#+BEGIN_NOTES
+- Pour rappel en langage C, =fgets= retourne un =char*= et =fgetc= un
+  =int=, en PHP ces 2 fonctions retournent un =string=, il n'y a pas
+  de type spécifique en PHP pour représenter un caractère.
+#+END_NOTES
 ** Écriture/Fermeture d'un fichier
 
    - [[http://php.net/manual/en/function.fwrite.php][fwrite]]/fputs écriture du fichier en mode binaire
-     #+BEGIN_SRC src- src-phpphp
+     #+BEGIN_SRC c
      int fwrite ( resource $handle , string $string [, int $length ] )
      #+END_SRC
    - [[http://php.net/manual/en/function.fclose.php][fclose]] fermeture du fichier
-     #+BEGIN_SRC src- src-phpphp
+     #+BEGIN_SRC c
      bool fclose ( resource $handle )
      #+END_SRC
 
-** Vérrouillage d'un fichier
-
-   -  [[http://php.net/manual/en/function.flock.php][flock]] vérrouille un fichier
-     #+BEGIN_SRC src- src-phpphp
-     bool flock ( resource $handle , int $operation )
-     #+END_SRC
-   - =$operation= :
-     - =LOCK_SH= bloque l'écriture du fichier mais laisse le libre accès en lecture à tous les utilisateurs
-     - =LOCK_EX= bloque l'écriture et la lecture du fichier
-     - =LOCK_UN= libère le verrou installé précédemment (ne pas oublier cette fonction à la fin des opérations de lecture et écriture)
-
-** Résumé
-
-[[http://www.luc-damas.fr/humeurs/pedagogie-houblonnee-les-fichiers/][file:./inc/img/pedagogie-houblonnee-fichiers.jpg]]
-
+#+BEGIN_NOTES
+- Un résumé sur l'utilisation de ces fonctions sera présenté sur la
+  diapositive suivante
+#+END_NOTES
 ** Exemple
 
-   #+BEGIN_SRC src- src-phpphp
+   #+BEGIN_SRC c
 <?php
 // Équivalent de file_get_contents
 $file = "file.txt";
@@ -1151,10 +1747,40 @@ if ($handle) {
 ?>
    #+END_SRC
 
+#+BEGIN_NOTES
+- Comparaison entre l'utilisation de =fopen=, =fread=, =fclose= et
+  =file_get_contents=
+- =filesize= permet de récupérer la taille du fichier
+#+END_NOTES
+** Résumé
+
+[[http://www.luc-damas.fr/humeurs/pedagogie-houblonnee-les-fichiers/][file:./inc/img/pedagogie-houblonnee-fichiers.jpg]]
+
+#+BEGIN_NOTES
+- Comparaison entre l'utilisation de =fopen=, =feof=, =fread=,
+  =fclose= et =file_get_contents=
+#+END_NOTES
+** Vérrouillage d'un fichier
+
+   -  [[http://php.net/manual/en/function.flock.php][flock]] vérrouille un fichier
+     #+BEGIN_SRC c
+     bool flock ( resource $handle , int $operation )
+     #+END_SRC
+   - =$operation= :
+     - =LOCK_SH= bloque l'écriture du fichier mais laisse le libre accès en lecture à tous les utilisateurs
+     - =LOCK_EX= bloque l'écriture et la lecture du fichier
+     - =LOCK_UN= libère le verrou installé précédemment (ne pas oublier cette fonction à la fin des opérations de lecture et écriture)
+
+#+BEGIN_NOTES
+- flock aussi s'inspire du langage C mais nous n'aurons pas à l'utiliser.
+- le problème étant que ceci ne fonctionne que pour un processus PHP
+  donné et que l'accès en parallèle sur un site génère plusieurs
+  processus et empêche donc l'utilisation correcte de =flock=
+#+END_NOTES
 ** csv
 
    - [[http://php.net/manual/en/function.fgetcsv.php][fgetcsv]] retourne sous forme de tableau un fichier CSV
-     #+BEGIN_SRC src- src-phpphp
+     #+BEGIN_SRC c
      array fgetcsv ( resource $handle 
                      [, int $length = 0
                      [, string $delimiter = ","
@@ -1162,56 +1788,70 @@ if ($handle) {
                      [, string $escape = "\\" ]]]] )
      #+END_SRC
    - [[http://php.net/manual/en/function.fputcsv.php][fputcsv]] écrit une ligne CSV dans un fichier
-     #+BEGIN_SRC src- src-phpphp
+     #+BEGIN_SRC c
      int fputcsv ( resource $handle ,
                    array $fields
                    [, string $delimiter = ","
                    [, string $enclosure = '"' ]] )
      #+END_SRC
 
+#+BEGIN_NOTES
+- L'utilisation de fichier csv permet de stocker des informations dans
+  des fichiers sans utiliser de base de données du type MySQL
+#+END_NOTES
 ** Action sur les fichiers
 
    -  [[http://php.net/manual/en/function.copy.php][copy]] copie un fichier
-     #+BEGIN_SRC src- src-phpphp
+     #+BEGIN_SRC c
      bool copy ( string $source , string $dest )
      #+END_SRC
    -  [[http://php.net/manual/en/function.rename.php][rename]] renomme unfichier
-     #+BEGIN_SRC src- src-phpphp
+     #+BEGIN_SRC c
      bool rename ( string $oldname , string $newname )
      #+END_SRC
    -  [[http://php.net/manual/en/function.unlink.php][unlink]] supprime un fichier
-     #+BEGIN_SRC src- src-phpphp
+     #+BEGIN_SRC c
      bool unlink ( string $filename )
      #+END_SRC
 
+#+BEGIN_NOTES
+- Les opérations de base pour copier/renommer/supprimer un fichier. Il
+  faut faire attention en utilisant ces fonctions les opérations sont
+  irréversibles.
+#+END_NOTES
 ** Information sur les fichiers
 
    - [[http://php.net/manual/en/function.filesize.php][filesize]] récupère la taille du fichier
-     #+BEGIN_SRC src- src-phpphp
+     #+BEGIN_SRC c
      int filesize ( string $filename )
      #+END_SRC
    - [[http://php.net/manual/en/function.fileatime.php][fileatime]] donne la date du dernier accès à un fichier
-     #+BEGIN_SRC src- src-phpphp
+     #+BEGIN_SRC c
      int fileatime ( string $filename )
      #+END_SRC
    - [[http://php.net/manual/en/function.filemtime.php][filemtime]] donne la date de dernière modification d'un fichier
-     #+BEGIN_SRC src- src-phpphp
+     #+BEGIN_SRC c
      int filemtime ( string $filename )
      #+END_SRC
    - [[http://php.net/manual/en/function.realpath.php][realpath]] retourne le chemin absolu d'un chemin
-     #+BEGIN_SRC src- src-phpphp
+     #+BEGIN_SRC c
      string realpath ( string $path )
      #+END_SRC
    - [[http://php.net/manual/en/function.basename.php][basename]] retourne le nom du fichier d'un chemin
-     #+BEGIN_SRC src- src-phpphp
+     #+BEGIN_SRC c
      string basename ( string $path [, string $suffix ] )
      #+END_SRC
 
+#+BEGIN_NOTES
+- Quelques fonctions de base pour récupérer des informations sur les
+  fichiers
+#+END_NOTES
 * Bases de données SQL
-    :PROPERTIES:
-    :CUSTOM_ID: php-sql
-    :END:
 
+#+BEGIN_NOTES
+- Pour stocker des informations efficacement, on utilise la plupart du
+  temps des bases de données relationnelles comme MySQL, SQLite, etc.
+#+END_NOTES
 ** Approches
 
   - Approche spécifique
@@ -1221,6 +1861,12 @@ if ($handle) {
   - Approche générale
     - PHP Data Objects : [[http://php.net/manual/en/book.pdo.php][PDO]]
 
+#+BEGIN_NOTES
+- Il existe 2 approches pour utiliser des bases de données.
+- MySQL/PostgreSQL nécessitent un serveur spécifique
+- SQLite utilise un fichier pour stocker la base (ceci facilite
+  grandement son utilisation)
+#+END_NOTES
 ** Approche spécifique
 
    - Avantages :
@@ -1229,6 +1875,11 @@ if ($handle) {
    - Inconvénient :
      - Contraint la base de données avec un code spécifique
 
+#+BEGIN_NOTES
+- Cette approche n'est à considérer que si vous avez des contraintes
+  fortes ou pour des usages très spécifiques. Nous ne l'utiliserons
+  pas.
+#+END_NOTES
 ** Approche générale
 
    - Avantages :
@@ -1237,9 +1888,14 @@ if ($handle) {
      - Généricité à nuancer (=AUTOINCREMENT=, =AUTO_INCREMENT=)
      - Limité aux fonctionnalités de base
 
+#+BEGIN_NOTES
+- Cette approche est maintenant la plus utilisée 
+- Elle simplifie grandement la maintenabilité du code
+- Nous l'utiliserons dans ce cours avec SQLite
+#+END_NOTES
 ** Exemple
 
-#+BEGIN_SRC src- src-phpphp
+#+BEGIN_SRC c
 <?php
   // mysqli
   $mysqli = new mysqli('example.com', 'user', 'password', 'database');
@@ -1257,86 +1913,189 @@ if ($handle) {
 
    http://php.net/manual/fr/mysqlinfo.api.choosing.php
 
+#+BEGIN_NOTES
+- Cet exemple montre l'utilisation d'une connexion à un serveur MySQL
+- Si nous changeons de base de données (par exemple avec SQLite), il
+  faudra changer tout le code associé à =mysqli= alors qu'il suffira
+  de changer seulement la ligne de création de l'objet PDO. Le reste
+  du code ne changera pas.
+#+END_NOTES
 ** PDO : créer une connexion
 
-#+INCLUDE: "./examples/pdo_exception.php" src src
+#+INCLUDE: "./examples/pdo_exception.php" src c
 
    [[./examples/pdo_exception.php][exemple]]
 
-#+INCLUDE: "./examples/pdo_try.php" src src
+#+INCLUDE: "./examples/pdo_try.php" src c
    
    [[./examples/pdo_try.php][exemple]]
 
+#+BEGIN_NOTES
+- Il faut faire attention dans la gestion des erreurs car si
+  vous n'entourez pas le code de création de l'objet PDO avec un =try=
+  =catch=, des informations sensibles peuvent apparaître comme dans le
+  premier exemple où l'on voit le mot de passe.
+- le =try=, =catch= permet de vérifier que le code compris dans les
+  accolades associées au =try= ne génère pas d'exception. Si cela se
+  produit, le code est arrêté et fait appel au code associé au =catch=
+#+END_NOTES
 ** PDO : fermer une connexion
 
    - Fermeture automatique à la fin du script
    - Mettre à null la variable qui gère la connexion
 
-#+INCLUDE: "./examples/pdo_close.php" src src
+#+INCLUDE: "./examples/pdo_close.php" src c
 
+#+BEGIN_NOTES
+- SQLite utilise des fichiers pour stocker la base de données mais
+  possède également un mode =memory= qui permet de ne stocker la base
+  que temporairement en mémoire. Ceci nous sera très utile pour
+  présenter le cours car tout le monde travaillera avec sa propre base
+  de données. Cela évite d'avoir des conflits si nous travaillions
+  avec une base commune.
+#+END_NOTES
 ** PDO : exec et query
 
    - [[http://php.net/manual/en/pdo.exec.php][exec]] execute une requête SQL et retourne le nombre de lignes affectées
-     #+BEGIN_SRC src- src-phpphp
+     #+BEGIN_SRC c
      public int PDO::exec ( string $statement )
      #+END_SRC
    - [[http://php.net/manual/en/pdo.query.php][query]] execute une requête SQL et retourne un objet [[http://php.net/manual/fr/class.pdostatement.php][PDOStatement]]
-     #+BEGIN_SRC src- src-phpphp
+     #+BEGIN_SRC c
      public PDOStatement PDO::query ( string $statement )
      #+END_SRC
 
+#+BEGIN_NOTES
+- Il existe 2 méthodes principales pour exécuter une requête, =exec=
+  ou =query=.
+- =exec= s'utilise principalement pour des requêtes qui n'attendent
+  pas de résultats particuliers comme =CREATE=, =INSERT=, etc.
+- =query= s'utilise principalement pour récupérer des résultats après
+  une requête =SELECT=
+#+END_NOTES
 ** PDO : gestion des erreurs
 
-#+INCLUDE: "./examples/pdo_error.php" src src
+#+INCLUDE: "./examples/pdo_error.php" src c
 
    [[./examples/pdo_error.php][exemple]]
 
-** PDO : création
+#+BEGIN_NOTES
+Pour voir le comportement, ajouter un paramètre (=GET=) =error= dans
+l'URL en changeant les valeurs =exception=, =warning= et =silent=
+#+END_NOTES
+** PDO : création : =pdo_create.php=
 
    - Pose le plus de problème pour la généricité du code car très
      spécifique à la base utilisée
 
-#+INCLUDE: "./examples/pdo_create.php" src src
+#+INCLUDE: "./examples/pdo_create.php" src c
 
-** PDO : insertion
+#+BEGIN_NOTES
+- Les requêtes de création de table sont les moins génériques car tous
+les systèmes de gestion de bases de données n'utilisent pas forcément
+les mêmes types (différences entre =INT= SQL et =INTEGER= SQLite,
+etc.) et les mêmes notations (=AUTO_INCREMENT= SQL et =AUTOINCREMENT=
+SQLite)
+- Ici on créé simplement une table =animals=
+#+END_NOTES
+** PDO : insertion : =pdo_insert.php=
 
-#+INCLUDE: "./examples/pdo_insert.php" src src
+#+INCLUDE: "./examples/pdo_insert.php" src c
    
    [[./examples/pdo_insert.php][exemple]]
 
+#+BEGIN_NOTES
+- Après avoir créé la table =animals= avec l'inclusion du code
+  =pdo_create.php=, on insère différentes valeurs et on affiche le
+  numéro du dernier élément ajouté
+- Même en réactualisant la page, le numéro reste le même car
+  l'utilisation de =memory= en SQLite recréé la table =animals= à
+  chaque fois
+#+END_NOTES
 ** PDO : sélection
 
-#+INCLUDE: "./examples/pdo_select.php" src src
+#+INCLUDE: "./examples/pdo_select.php" src c
    
    [[./examples/pdo_select.php][exemple]]
 
+#+BEGIN_NOTES
+- On souhaite récupérer les valeurs dans la table et les afficher. Le
+  résultat de la méthode =query= peut être parcouru comme s'il
+  s'agissait d'un tableau associatif ayant comme clé pour chaque
+  résultat le nom d'un attribut de la table
+#+END_NOTES
 ** PDO : parcours des données
 
-#+INCLUDE: "./examples/pdo_select_fetch.php" src src
+#+INCLUDE: "./examples/pdo_select_fetch.php" src c
 
    [[./examples/pdo_select_fetch.php][exemple]]
 
+#+BEGIN_NOTES
+- On peut récupérer les résultats d'une requête de différente façon.
+  - La méthode =fetch= permet de récupérer le premier résultat en cours
+    - Le paramètre permet de récupérer le résultat sous forme de
+      tableau indexé par des numéros =PDO::FETCH_NUM=, les noms des
+      attributs =PDO::FETCH_ASSOC= ou les 2 =PDO::FETCH_BOTH= (en
+      pratique le nom des attributs est le plus utile et le plus sûr)
+  - La méthode =fetchAll= permet de récupérer tous les résultats qui
+    restent (si cette méthode est appelée toute seule au début, elle
+    permet de récupérer tous les résultats de la requête)
+    - Les mêmes paramètres que =fetch= sont disponibles
+    - dans l'exemple, cela ne retourne que les résultats restants, les
+      3 premiers appels de =fetch= ayant récupérés les 3 premiers
+      résultats
+#+END_NOTES
 ** PDO : mise à jour
 
-#+INCLUDE: "./examples/pdo_update.php" src src
+#+INCLUDE: "./examples/pdo_update.php" src c
    
    [[./examples/pdo_update.php][exemple]]
 
+#+BEGIN_NOTES
+- la méthode =exec= retourne le nombre de lignes affectées par la
+  requête, ici ça nous donne donc le nombre d'animaux qui ont été mis
+  à jour
+#+END_NOTES
 ** PDO : suppression
 
-#+INCLUDE: "./examples/pdo_delete.php" src src
+#+INCLUDE: "./examples/pdo_delete.php" src c
    
    [[./examples/pdo_delete.php][exemple]]
 
+#+BEGIN_NOTES
+- Ici ça nous donne donc le nombre d'animaux qui ont été supprimés
+#+END_NOTES
 ** PDO : préparation
 
-#+INCLUDE: "./examples/pdo_prepare.php" src src
+#+INCLUDE: "./examples/pdo_prepare.php" src c
    
    [[./examples/pdo_prepare.php][exemple]]
 
+#+BEGIN_NOTES
+- Afin d'éviter des failles de sécurité (injection SQL) il ne faut pas
+  utiliser de variables directement dans la chaîne de caractères
+  représentant la requête
+- =$pdo->query('SELECT * FROM animals WHERE animal_name = '.$name);=
+- Imaginer que =$name= provienne d'une donnée reçue et que cette
+  dernière contienne ="toto"; DELETE FROM animals;=
+- Pour paramétrer une requête il faut donc la préparer et donner un
+  nom au paramètre par exemple =:animal_name=
+- L'utilisation de =bindParam= permet d'associer la valeur au
+  paramètre et c'est cette méthode qui vérifiera qu'il n'y a pas de
+  risque de sécurité avec le paramètre
+- Cette préparation de requête permet ensuite de se resservir de la
+  même requête en changeant le paramètre, ici le nom de l'animal
+#+END_NOTES
 ** PDO : fermeture du curseur
 
-#+INCLUDE: "./examples/pdo_close_cursor.php" src src
+   #+INCLUDE: "./examples/pdo_close_cursor.php" src c
    
    [[./examples/pdo_close_cursor.php][exemple]]
-   
+
+#+BEGIN_NOTES
+- Pour éviter certains problèmes dans le cas d'utilisation de
+  plusieurs requêtes en parallèle, il faut utiliser la méthode
+  =closeCursor= qui permet de s'assurer que notre requête sera
+  exécutée correctement même si d'autres requêtes avait été exécutées
+  avant.
+#+END_NOTES

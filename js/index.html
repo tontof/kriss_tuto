@@ -6,46 +6,44 @@
 <style type="text/css">
 .underline { text-decoration: underline; }
 </style>
-<link rel="stylesheet" href="../lib/reveal.js/css/reveal.css"/>
+<link rel="stylesheet" href="../common/lib/reveal.js/dist/reveal.css"/>
 
-<link rel="stylesheet" href="../lib/reveal.js/css/theme/serif.css" id="theme"/>
+<link rel="stylesheet" href="../common/lib/reveal.js/dist/theme/serif.css" id="theme"/>
 
-<link rel="stylesheet" href="./inc/css/custom.css"/>
-<link rel="stylesheet" href="../lib/reveal.js/lib/css/zenburn.css"/>
+<link rel="stylesheet" href="../common/inc/css/custom.css"/>
+<link rel="stylesheet" href="../common/lib/reveal.js/plugin/highlight/zenburn.css"/>
 <!-- If the query includes 'print-pdf', include the PDF print sheet -->
 <script>
     if( window.location.search.match( /print-pdf/gi ) ) {
         var link = document.createElement( 'link' );
         link.rel = 'stylesheet';
         link.type = 'text/css';
-        link.href = '../lib/reveal.js/css/print/pdf.css';
+        link.href = '../common/lib/reveal.js/css/print/pdf.css';
         document.getElementsByTagName( 'head' )[0].appendChild( link );
     }
 </script>
-<meta name="description" content="JS Introduction.">
 </head>
 <body>
-<div id="phpjs-compiler"><textarea id="phpjs-code"></textarea><div id="phpjs-results"><div id="phpjs-result"></div><div id="phpjs-html-result"></div></div><button id="phpjs-clear">Clear</button><button id="phpjs-close">Close</button><button id="phpjs-run">Run</button></div>
+<!-- If the query includes 'print-pdf', include the PDF print sheet --><script>if( window.location.search.match( /print-pdf/gi ) ) { var link = document.createElement( 'link' ); link.rel = 'stylesheet'; link.type = 'text/css'; link.href = '../common/inc/css/custom-pdf.css'; document.getElementsByTagName( 'head' )[0].appendChild( link ); }</script><div id="reveal-notes"></div><div id="phpjs-compiler"><code id="phpjs-code" contenteditable=""></code><div id="phpjs-results"><div id="phpjs-result"></div><div id="phpjs-html-result"></div></div><button id="phpjs-clear">Clear</button><button id="phpjs-close">Close</button><button id="phpjs-run">Run</button></div>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide"><div><h1>JS</h1><h2></h2><h3><a href="mailto:"></a></h3></div>
+<section id="sec-title-slide"><h1 class="title">JS</h1>
 </section>
-<section id="table-of-contents">
-<div id="table-of-contents">
+<section id="table-of-contents"><div id="table-of-contents">
 <h2>Table des matières</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#/slide-sec-js-base">1. Les bases en JS</a></li>
-<li><a href="#/slide-sec-evenements-js">2. Les événements en Javascript</a></li>
-<li><a href="#/slide-sec-DOM">3. Modèle Objet de Document (DOM)</a></li>
-<li><a href="#/slide-sec-cookies">4. Les cookies</a></li>
+<li><a href="#/slide-js-base">1. Les bases en JS</a></li>
+<li><a href="#/slide-evenements-js">2. Les événements en Javascript</a></li>
+<li><a href="#/slide-DOM">3. Modèle Objet de Document (DOM)</a></li>
+<li><a href="#/slide-cookies">4. Les cookies</a></li>
 </ul>
 </div>
 </div>
 </section>
 
-<section id="slide-sec-js-base">
-<h2 id="js-base"><a id="org66cf632"></a><span class="section-number-2">1</span> Les bases en JS</h2>
+<section id="slide-js-base">
+<h2 id="js-base"><a id="org86aa310"></a><span class="section-number-2">1</span> Les bases en JS</h2>
 
 <div class="figure">
 <p><img src="./inc/img/js5.png" alt="js5.png" />
@@ -53,8 +51,8 @@
 </div>
 
 </section>
-<section id="slide-sec-introduction">
-<h3 id="introduction"><a id="org9ed07c4"></a><span class="section-number-3">1.1</span> Introduction à JS</h3>
+<section id="slide-introduction">
+<h3 id="introduction"><a id="org04b9369"></a><span class="section-number-3">1.1</span> Introduction à JS</h3>
 <ul>
 <li><b>JS</b> : JavaScript</li>
 <li>Langage impératif, fonctionnel, orienté objet&#x2026; à prototype</li>
@@ -67,8 +65,8 @@
 </ul>
 
 </section>
-<section id="slide-sec-historique">
-<h4 id="historique"><a id="org581a357"></a><span class="section-number-4">1.1.1</span> Historique</h4>
+<section id="slide-historique">
+<h4 id="historique"><a id="orgfd2c158"></a><span class="section-number-4">1.1.1</span> Historique</h4>
 <ul>
 <li>1996 : JS 1.0 intégré à NetScape Navigator</li>
 <li>1998 : JS 1.3 basé sur les éditions 1 et 2 du Standard ECMA-262</li>
@@ -81,8 +79,8 @@
 </ul>
 
 </section>
-<section id="slide-sec-fonctionnalites">
-<h4 id="fonctionnalites"><a id="org62093d9"></a><span class="section-number-4">1.1.2</span> Fonctionnalités</h4>
+<section id="slide-fonctionnalites">
+<h4 id="fonctionnalites"><a id="org9b299bc"></a><span class="section-number-4">1.1.2</span> Fonctionnalités</h4>
 <ul>
 <li>modifier/interagir avec le contenu de la page</li>
 <li>réaliser/réagir à des actions (clic de souris, touche clavier)</li>
@@ -94,16 +92,16 @@
 
 <div class="org-src-container">
 
-<pre id="js-pop-up"><code class="src-js" >&lt;button onclick="alert('pop-up');"&gt;pop-up&lt;/button&gt;
+<pre id="js-pop-up"><code class="html" >&lt;button onclick="alert('pop-up');"&gt;pop-up&lt;/button&gt;
 </code></pre>
 </div>
 
 </section>
-<section id="slide-sec-html-js">
-<h3 id="html-js"><a id="org11f1f87"></a><span class="section-number-3">1.2</span> Comment utiliser du JS dans une page HTML</h3>
+<section id="slide-html-js">
+<h3 id="html-js"><a id="org45b6df5"></a><span class="section-number-3">1.2</span> Comment utiliser du JS dans une page HTML</h3>
 </section>
-<section id="slide-sec-js-inline">
-<h4 id="js-inline"><a id="org6b35a3f"></a><span class="section-number-4">1.2.1</span> Javascript dans le code HTML (Méthodes à éviter)</h4>
+<section id="slide-js-inline">
+<h4 id="js-inline"><a id="org2464ecd"></a><span class="section-number-4">1.2.1</span> Javascript dans le code HTML (Méthodes à éviter)</h4>
 <ul>
 <li>Directement dans les attributs d'une balise HTML
 <ul>
@@ -120,7 +118,7 @@
 
 <div class="org-src-container">
 
-<pre id="js-inline"><code class="src-js" >&lt;button onclick="alert('pop-up-inline');"&gt;inline&lt;/button&gt;
+<pre id="js-inline"><code class="html" >&lt;button onclick="alert('pop-up-inline');"&gt;inline&lt;/button&gt;
 &lt;button id="button-body"&gt;body&lt;/button&gt;
 &lt;script&gt;
   document.getElementById('button-body').onclick=function(){alert('pop-up-body');}
@@ -129,8 +127,8 @@
 </div>
 
 </section>
-<section id="slide-sec-js-file">
-<h4 id="js-file"><a id="orgc20ef14"></a><span class="section-number-4">1.2.2</span> Javascript externe (Méthode recommandée)</h4>
+<section id="slide-js-file">
+<h4 id="js-file"><a id="orga47d607"></a><span class="section-number-4">1.2.2</span> Javascript externe (Méthode recommandée)</h4>
 <ul>
 <li>En utilisant un fichier texte externe <code>.js</code>
 <ul>
@@ -142,7 +140,7 @@
 
 <div class="org-src-container">
 
-<pre id="js-file"><code class="src-js" >&lt;head&gt;
+<pre id="js-file"><code class="html" >&lt;head&gt;
   &lt;script src="inc/js/js-file.js"&gt;&lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
@@ -150,10 +148,18 @@
 &lt;/body&gt;
 </code></pre>
 </div>
+<p>
+Contenu du fichier <code>js-file.js</code> :
+</p>
+<div class="org-src-container">
+
+<pre><code class="js" >document.getElementById('button-file').onclick=function(){alert('pop-up-file');}
+</code></pre>
+</div>
 
 </section>
-<section id="slide-sec-bonnes-pratiques">
-<h4 id="bonnes-pratiques"><a id="orgd1436ca"></a><span class="section-number-4">1.2.3</span> Les bonnes pratiques d'utilisation de JS</h4>
+<section id="slide-bonnes-pratiques">
+<h4 id="bonnes-pratiques"><a id="org46c7a58"></a><span class="section-number-4">1.2.3</span> Les bonnes pratiques d'utilisation de JS</h4>
 <ul>
 <li>JS n'est pas implémenté de la même façon dans tous les navigateurs</li>
 <li>En cas d'erreur le site peut devenir inaccessible</li>
@@ -169,8 +175,8 @@ nouvelles fonctionnalités.
 </p>
 
 </section>
-<section id="slide-sec-regles-base">
-<h3 id="regles-base"><a id="orgbc31835"></a><span class="section-number-3">1.3</span> Règles de base</h3>
+<section id="slide-regles-base">
+<h3 id="regles-base"><a id="orga1462ba"></a><span class="section-number-3">1.3</span> Règles de base</h3>
 <ul>
 <li>le langage JS est sensible à la casse</li>
 <li>chaque instruction se termine par un point virgule <code>;</code></li>
@@ -184,8 +190,8 @@ nouvelles fonctionnalités.
 </ul>
 
 </section>
-<section id="slide-sec-types-base">
-<h3 id="types-base"><a id="org49638dc"></a><span class="section-number-3">1.4</span> Les types de base</h3>
+<section id="slide-types-base">
+<h3 id="types-base"><a id="org25cfc7a"></a><span class="section-number-3">1.4</span> Les types de base</h3>
 <p>
 Type de données :
 </p>
@@ -199,8 +205,8 @@ Type de données :
 </ul>
 
 </section>
-<section id="slide-sec-type-boolean">
-<h4 id="type-boolean"><a id="orgd185afd"></a><span class="section-number-4">1.4.1</span> boolean</h4>
+<section id="slide-type-boolean">
+<h4 id="type-boolean"><a id="org5aa8357"></a><span class="section-number-4">1.4.1</span> boolean</h4>
 <p>
 Pour les valeurs booléennes :
 </p>
@@ -216,7 +222,7 @@ cast possible avec la fonction Boolean()
 
 <div class="org-src-container">
 
-<pre id="js-boolean"><code class="src-js" >&lt;script&gt;
+<pre id="js-boolean"><code class="html" >&lt;script&gt;
 console.log(true)
 console.log(false)
 console.log(Boolean())
@@ -227,8 +233,8 @@ console.log(typeof true)
 </div>
 
 </section>
-<section id="slide-sec-type-number">
-<h4 id="type-number"><a id="org738533e"></a><span class="section-number-4">1.4.2</span> number</h4>
+<section id="slide-type-number">
+<h4 id="type-number"><a id="org60a0a06"></a><span class="section-number-4">1.4.2</span> number</h4>
 <p>
 Pour les valeurs numériques : entiers, réels
 </p>
@@ -239,7 +245,7 @@ cast possible avec la fonction Number()
 
 <div class="org-src-container">
 
-<pre id="js-number"><code class="src-js" >&lt;script&gt;
+<pre id="js-number"><code class="html" >&lt;script&gt;
 console.log(12e3)
 console.log(4.5)
 console.log(Number())
@@ -251,8 +257,8 @@ console.log(Number("test"))
 </div>
 
 </section>
-<section id="slide-sec-fonctions-nombres">
-<h4 id="fonctions-nombres"><a id="org7235def"></a><span class="section-number-4">1.4.3</span> Fonctions pour les nombres</h4>
+<section id="slide-fonctions-nombres">
+<h4 id="fonctions-nombres"><a id="orgd7a6d04"></a><span class="section-number-4">1.4.3</span> Fonctions pour les nombres</h4>
 <ul>
 <li><code>isNaN(val)</code> : pour tester si <code>val</code> est <code>NaN</code> (Not a Number)</li>
 <li><code>parseInt(string)</code> : pour convertir une chaîne en entier</li>
@@ -262,7 +268,7 @@ console.log(Number("test"))
 
 <div class="org-src-container">
 
-<pre id="js-number-function"><code class="src-js" >&lt;script&gt;
+<pre id="js-number-function"><code class="html" >&lt;script&gt;
 console.log(parseInt("3.4a"))
 console.log(parseFloat("3.4a"))
 console.log(parseInt("a3.4"))
@@ -272,8 +278,8 @@ console.log(isNaN(parseFloat("a3.4")))
 </div>
 
 </section>
-<section id="slide-sec-type-string">
-<h4 id="type-string"><a id="org9adef0f"></a><span class="section-number-4">1.4.4</span> string</h4>
+<section id="slide-type-string">
+<h4 id="type-string"><a id="orgabebaba"></a><span class="section-number-4">1.4.4</span> string</h4>
 <p>
 Pour les chaînes de caractères délimitées par <code>'</code> ou <code>"</code>
 </p>
@@ -284,7 +290,7 @@ cast possible avec la fonction String()
 
 <div class="org-src-container">
 
-<pre id="js-string"><code class="src-js" >&lt;script&gt;
+<pre id="js-string"><code class="html" >&lt;script&gt;
 console.log("C'est super")
 console.log('C\'est super')
 console.log(String(2))
@@ -294,8 +300,8 @@ console.log('concat'+"énation")
 </div>
 
 </section>
-<section id="slide-sec-proprietes-string">
-<h4 id="proprietes-string"><a id="org0818dd9"></a><span class="section-number-4">1.4.5</span> Propriété des chaînes de caractères</h4>
+<section id="slide-proprietes-string">
+<h4 id="proprietes-string"><a id="orgec90696"></a><span class="section-number-4">1.4.5</span> Propriété des chaînes de caractères</h4>
 <ul>
 <li><code>length</code>: Longueur d'une chaîne de caractères</li>
 
@@ -303,15 +309,15 @@ console.log('concat'+"énation")
 
 <div class="org-src-container">
 
-<pre id="js-string-length"><code class="src-js" >&lt;script&gt;
+<pre id="js-string-length"><code class="html" >&lt;script&gt;
 console.log("C'est super".length)
 &lt;/script&gt;
 </code></pre>
 </div>
 
 </section>
-<section id="slide-sec-methodes-string">
-<h4 id="methodes-string"><a id="org7dc0c4f"></a><span class="section-number-4">1.4.6</span> Méthodes des chaînes de caractères</h4>
+<section id="slide-methodes-string">
+<h4 id="methodes-string"><a id="org74e95bb"></a><span class="section-number-4">1.4.6</span> Méthodes des chaînes de caractères</h4>
 <ul>
 <li class="fragment roll-in"><code>charAt(int n)</code> : renvoie du <code>n</code> ème caractère</li>
 <li class="fragment roll-in"><code>substring(int i, [int j])</code> : renvoie de la chaîne compris entre le <code>i</code> ème et le <code>j</code> ème caractère
@@ -336,11 +342,11 @@ Si <code>souschaine</code> n'est pas trouvée, <code>indexOf</code> et <code>las
 </p>
 
 </section>
-<section id="slide-sec-methodes-string-exemple">
-<h4 id="methodes-string-exemple"><a id="orge3e2691"></a><span class="section-number-4">1.4.7</span> Méthodes des chaînes de caractères</h4>
+<section id="slide-methodes-string-exemple">
+<h4 id="methodes-string-exemple"><a id="orgd6836e3"></a><span class="section-number-4">1.4.7</span> Méthodes des chaînes de caractères</h4>
 <div class="org-src-container">
 
-<pre id="js-string-method-example"><code class="src-js" >&lt;script&gt;
+<pre id="js-string-method-example"><code class="html" >&lt;script&gt;
 console.log("C'est super".charAt(0))
 console.log("C'est super".substring(2,5))
 console.log("C'est super".substring(6))
@@ -354,8 +360,8 @@ console.log("C'est super".lastIndexOf("e"))
 </div>
 
 </section>
-<section id="slide-sec-variables">
-<h3 id="variables"><a id="org611b319"></a><span class="section-number-3">1.5</span> Les variables</h3>
+<section id="slide-variables">
+<h3 id="variables"><a id="org2f5e2c7"></a><span class="section-number-3">1.5</span> Les variables</h3>
 <ul>
 <li><code>var variable=valeur;</code></li>
 <li>pas de typage obligatoire, détection automatique</li>
@@ -370,7 +376,7 @@ console.log("C'est super".lastIndexOf("e"))
 
 <div class="org-src-container">
 
-<pre id="js-variable"><code class="src-js" >&lt;script&gt;
+<pre id="js-variable"><code class="html" >&lt;script&gt;
 var variable = 2;
 variable += 4;
 console.log(variable);
@@ -382,8 +388,8 @@ console.log(variable);
 </div>
 
 </section>
-<section id="slide-sec-types-objets">
-<h3 id="types-objets"><a id="orgd4decbe"></a><span class="section-number-3">1.6</span> Les type d'objets</h3>
+<section id="slide-types-objets">
+<h3 id="types-objets"><a id="orgc631fb6"></a><span class="section-number-3">1.6</span> Les type d'objets</h3>
 <p>
 Type d'objet :
 </p>
@@ -395,8 +401,8 @@ Type d'objet :
 </ul>
 
 </section>
-<section id="slide-sec-objet-object">
-<h4 id="objet-object"><a id="org4b07cf9"></a><span class="section-number-4">1.6.1</span> L'objet Object</h4>
+<section id="slide-objet-object">
+<h4 id="objet-object"><a id="org7569fba"></a><span class="section-number-4">1.6.1</span> L'objet Object</h4>
 <p>
 <code>Object</code> correpond à l'objet générique en javascript.
 </p>
@@ -429,8 +435,8 @@ Type d'objet :
 </table>
 
 </section>
-<section id="slide-sec-objet-date">
-<h4 id="objet-date"><a id="org44b34b4"></a><span class="section-number-4">1.6.2</span> L'objet Date</h4>
+<section id="slide-objet-date">
+<h4 id="objet-date"><a id="org35e7381"></a><span class="section-number-4">1.6.2</span> L'objet Date</h4>
 <p>
 La gestion des dates se fait avec l'objet <code>Date</code>
 </p>
@@ -443,7 +449,7 @@ La gestion des dates se fait avec l'objet <code>Date</code>
 
 <div class="org-src-container">
 
-<pre id="js-date"><code class="src-js" >&lt;script&gt;
+<pre id="js-date"><code class="html" >&lt;script&gt;
 console.log(new Date());
 console.log(new Date('1970-01-01 13:37:00.000'));
 console.log(new Date(1970, 0, 1, 13, 37, 00, 0));
@@ -452,11 +458,11 @@ console.log(new Date(1970, 0, 1, 13, 37, 00, 0));
 </div>
 
 </section>
-<section id="slide-sec-methodes-objet-date">
-<h4 id="methodes-objet-date"><a id="org0871d4c"></a><span class="section-number-4">1.6.3</span> Méthodes de l'objet Date</h4>
+<section id="slide-methodes-objet-date">
+<h4 id="methodes-objet-date"><a id="orga205db9"></a><span class="section-number-4">1.6.3</span> Méthodes de l'objet Date</h4>
 <div class="org-src-container">
 
-<pre id="js-date"><code class="src-js" >&lt;script&gt;
+<pre id="js-date"><code class="html" >&lt;script&gt;
 var date=new Date();
 console.log(date.getFullYear());
 console.log(date.getYear());
@@ -473,8 +479,8 @@ console.log(date.getTime());
 </div>
 
 </section>
-<section id="slide-sec-objet-array">
-<h4 id="objet-array"><a id="org573c56f"></a><span class="section-number-4">1.6.4</span> L'objet Array</h4>
+<section id="slide-objet-array">
+<h4 id="objet-array"><a id="orgd61e8da"></a><span class="section-number-4">1.6.4</span> L'objet Array</h4>
 <p>
 Les tableaux sont créés à partir de l'objet <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Array"><code>Array</code></a>. Il est
 possible de donner le nombre d'éléments à la création du
@@ -487,7 +493,7 @@ tableau. Ils peuvent contenir des éléments de types différents.
 </ul>
 <div class="org-src-container">
 
-<pre id="js-date"><code class="src-js" >&lt;script&gt;
+<pre id="js-date"><code class="html" >&lt;script&gt;
 console.log(new Array(10));
 console.log(new Array());
 console.log([]);
@@ -500,14 +506,14 @@ console.log(t);
 </div>
 
 <p>
-Tableaux associatifs
-Tableaux multi-dimensionnels
+Tableaux associatifs,
+Tableaux multi-dimensionnels,
 tableaux de types différents
 </p>
 
 </section>
-<section id="slide-sec-proprietes-objet-array">
-<h4 id="proprietes-objet-array"><a id="org1bff829"></a><span class="section-number-4">1.6.5</span> Propriété de l'objet Array</h4>
+<section id="slide-proprietes-objet-array">
+<h4 id="proprietes-objet-array"><a id="orga23f075"></a><span class="section-number-4">1.6.5</span> Propriété de l'objet Array</h4>
 <ul>
 <li><code>length</code>: nombre de cases dans le tableau.</li>
 
@@ -515,7 +521,7 @@ tableaux de types différents
 
 <div class="org-src-container">
 
-<pre id="js-string-length"><code class="src-js" >&lt;script&gt;
+<pre id="js-string-length"><code class="html" >&lt;script&gt;
 var t = ["premier","dernier"];
 console.log(t[0])
 console.log(t[t.length-1])
@@ -524,8 +530,8 @@ console.log(t[t.length-1])
 </div>
 
 </section>
-<section id="slide-sec-mutateurs-array">
-<h4 id="mutateurs-array"><a id="org20bb979"></a><span class="section-number-4">1.6.6</span> Méthodes de l'objet Array</h4>
+<section id="slide-mutateurs-array">
+<h4 id="mutateurs-array"><a id="org4996720"></a><span class="section-number-4">1.6.6</span> Méthodes de l'objet Array</h4>
 <p>
 Mutateurs: modifient le tableau
 </p>
@@ -541,8 +547,8 @@ Mutateurs: modifient le tableau
 </ul>
 
 </section>
-<section id="slide-sec-accesseurs-array">
-<h4 id="accesseurs-array"><a id="org5ae8e4d"></a><span class="section-number-4">1.6.7</span> Méthodes de l'objet Array</h4>
+<section id="slide-accesseurs-array">
+<h4 id="accesseurs-array"><a id="org7896dbc"></a><span class="section-number-4">1.6.7</span> Méthodes de l'objet Array</h4>
 <p>
 Accesseurs: ne modifient pas le tableau
 </p>
@@ -555,11 +561,11 @@ Accesseurs: ne modifient pas le tableau
 </ul>
 
 </section>
-<section id="slide-sec-methodes-array-exemple">
-<h4 id="methodes-array-exemple"><a id="org58da78c"></a><span class="section-number-4">1.6.8</span> Méthodes de l'objet Array</h4>
+<section id="slide-methodes-array-exemple">
+<h4 id="methodes-array-exemple"><a id="org41d007f"></a><span class="section-number-4">1.6.8</span> Méthodes de l'objet Array</h4>
 <div class="org-src-container">
 
-<pre id="js-string-method-example"><code class="src-js" >&lt;script&gt;
+<pre id="js-string-method-example"><code class="html" >&lt;script&gt;
 var t = [2,3,4];
 t.unshift(1); t.push(5); 
 console.log(t);
@@ -577,8 +583,8 @@ console.log(t.slice(0,1));
 </div>
 
 </section>
-<section id="slide-sec-objet-math">
-<h4 id="objet-math"><a id="orge48f78a"></a><span class="section-number-4">1.6.9</span> L'objet Math</h4>
+<section id="slide-objet-math">
+<h4 id="objet-math"><a id="orgcab96ea"></a><span class="section-number-4">1.6.9</span> L'objet Math</h4>
 <p>
 Les propriétés et méthodes de l'objet <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Math"><code>Math</code></a> sont statiques. 
 </p>
@@ -595,11 +601,11 @@ Les propriétés et méthodes de l'objet <a href="https://developer.mozilla.org/
 </ul>
 
 </section>
-<section id="slide-sec-objet-math-exemple">
-<h4 id="objet-math-exemple"><a id="orgce535f6"></a><span class="section-number-4">1.6.10</span> L'objet Math</h4>
+<section id="slide-objet-math-exemple">
+<h4 id="objet-math-exemple"><a id="orgd564fc9"></a><span class="section-number-4">1.6.10</span> L'objet Math</h4>
 <div class="org-src-container">
 
-<pre id="js-math"><code class="src-js" >&lt;script&gt;
+<pre id="js-math"><code class="html" >&lt;script&gt;
 pi = Math.PI;
 console.log(pi);
 console.log(Math.round(pi));
@@ -615,8 +621,8 @@ console.log(Math.random());
 </div>
 
 </section>
-<section id="slide-sec-undefined-null">
-<h3 id="undefined-null"><a id="orgfb291db"></a><span class="section-number-3">1.7</span> undefined / null</h3>
+<section id="slide-undefined-null">
+<h3 id="undefined-null"><a id="orga03e341"></a><span class="section-number-3">1.7</span> undefined / null</h3>
 <ul>
 <li><code>null</code> est une valeur qui ne correspond à aucune valeur</li>
 <li><code>undefined</code> correspond à une variable qui est définie mais qui n'a pas été initialisée</li>
@@ -626,7 +632,7 @@ console.log(Math.random());
 
 <div class="org-src-container">
 
-<pre id="js-boolean"><code class="src-js" >&lt;script&gt;
+<pre id="js-boolean"><code class="html" >&lt;script&gt;
 console.log(typeof null)
 console.log(typeof undefined)
 &lt;/script&gt;
@@ -634,8 +640,8 @@ console.log(typeof undefined)
 </div>
 
 </section>
-<section id="slide-sec-operateurs-arithmetiques">
-<h3 id="operateurs-arithmetiques"><a id="org2ff995a"></a><span class="section-number-3">1.8</span> Les opérateurs arithmétiques</h3>
+<section id="slide-operateurs-arithmetiques">
+<h3 id="operateurs-arithmetiques"><a id="orgfa38167"></a><span class="section-number-3">1.8</span> Les opérateurs arithmétiques</h3>
 <ul>
 <li><code>+ </code> addition</li>
 <li><code>- </code> soustraction</li>
@@ -649,8 +655,8 @@ console.log(typeof undefined)
 </ul>
 
 </section>
-<section id="slide-sec-operateurs-comparaison">
-<h3 id="operateurs-comparaison"><a id="orgfa1e765"></a><span class="section-number-3">1.9</span> Les opérateurs de comparaison</h3>
+<section id="slide-operateurs-comparaison">
+<h3 id="operateurs-comparaison"><a id="org56ab630"></a><span class="section-number-3">1.9</span> Les opérateurs de comparaison</h3>
 <ul>
 <li><code>a == b </code> : égalité des valeurs</li>
 <li><code>a != b </code> : différence</li>
@@ -665,7 +671,7 @@ console.log(typeof undefined)
 
 <div class="org-src-container">
 
-<pre id="js-comparison"><code class="src-js" >&lt;script&gt;
+<pre id="js-comparison"><code class="html" >&lt;script&gt;
 console.log(null == undefined)
 console.log(null === undefined)
 &lt;/script&gt;
@@ -673,8 +679,8 @@ console.log(null === undefined)
 </div>
 
 </section>
-<section id="slide-sec-structures-controles">
-<h3 id="structures-controles"><a id="org5adc5f0"></a><span class="section-number-3">1.10</span> Structures de contrôle</h3>
+<section id="slide-structures-controles">
+<h3 id="structures-controles"><a id="orgc92766e"></a><span class="section-number-3">1.10</span> Structures de contrôle</h3>
 <ul>
 <li>structures conditionnelles</li>
 <li>structures répétitives</li>
@@ -682,11 +688,11 @@ console.log(null === undefined)
 </ul>
 
 </section>
-<section id="slide-sec-structures-conditionnelles-if-else">
-<h4 id="structures-conditionnelles-if-else"><a id="orgc3f7a47"></a><span class="section-number-4">1.10.1</span> Les structures conditionnelles (if, else, else if)</h4>
+<section id="slide-structures-conditionnelles-if-else">
+<h4 id="structures-conditionnelles-if-else"><a id="orgf6017db"></a><span class="section-number-4">1.10.1</span> Les structures conditionnelles (if, else, else if)</h4>
 <div class="org-src-container">
 
-<pre id="js-if"><code class="php" >if (condition) {
+<pre id="js-if"><code class="c" >if (condition) {
   instructions; // si condition est évaluée à true
 } 
 </code></pre>
@@ -694,7 +700,7 @@ console.log(null === undefined)
 
 <div class="org-src-container">
 
-<pre id="js-if-else"><code class="php" >if (condition) {
+<pre id="js-if-else"><code class="c" >if (condition) {
   instructions; // si condition est évaluée à true
 } else {
   instructions; // si condition est évaluée à false
@@ -704,7 +710,7 @@ console.log(null === undefined)
 
 <div class="org-src-container">
 
-<pre id="js-if-else-elseif"><code class="php" >if (condition1) {
+<pre id="js-if-else-elseif"><code class="c" >if (condition1) {
   instructions; // si condition1 est évaluée à true
 } else if (condition2) {
   instructions; // si condition1 évaluée à false et condition2 évaluée à true
@@ -715,11 +721,11 @@ console.log(null === undefined)
 </div>
 
 </section>
-<section id="slide-sec-structures-conditionnelles-if-else-exemple">
-<h4 id="structures-conditionnelles-if-else-exemple"><a id="org4ce88a9"></a><span class="section-number-4">1.10.2</span> Les structures conditionnelles (if, else, else if)</h4>
+<section id="slide-structures-conditionnelles-if-else-exemple">
+<h4 id="structures-conditionnelles-if-else-exemple"><a id="org13b81d7"></a><span class="section-number-4">1.10.2</span> Les structures conditionnelles (if, else, else if)</h4>
 <div class="org-src-container">
 
-<pre id="js-if-else"><code class="src-js" >&lt;script&gt;
+<pre id="js-if-else"><code class="html" >&lt;script&gt;
 var valeur = Math.random();
 if (valeur &lt; 0.33) {
   valeur = "petite"
@@ -734,11 +740,11 @@ console.log(valeur)
 </div>
 
 </section>
-<section id="slide-sec-structures-conditionnelles-switch">
-<h4 id="structures-conditionnelles-switch"><a id="org36556c2"></a><span class="section-number-4">1.10.3</span> Les structures conditionnelles (switch)</h4>
+<section id="slide-structures-conditionnelles-switch">
+<h4 id="structures-conditionnelles-switch"><a id="orgbdd6c77"></a><span class="section-number-4">1.10.3</span> Les structures conditionnelles (switch)</h4>
 <div class="org-src-container">
 
-<pre id="js-switch"><code class="php" >switch(expression) {
+<pre id="js-switch"><code class="c" >switch(expression) {
   case x:
     // si expression == x
     break;
@@ -752,11 +758,11 @@ console.log(valeur)
 </div>
 
 </section>
-<section id="slide-sec-structures-conditionnelles-switch-exemple">
-<h4 id="structures-conditionnelles-switch-exemple"><a id="orgb50dcaf"></a><span class="section-number-4">1.10.4</span> Les structures conditionnelles (switch)</h4>
+<section id="slide-structures-conditionnelles-switch-exemple">
+<h4 id="structures-conditionnelles-switch-exemple"><a id="org2bbb878"></a><span class="section-number-4">1.10.4</span> Les structures conditionnelles (switch)</h4>
 <div class="org-src-container">
 
-<pre id="js-switch"><code class="src-js" >&lt;script&gt;
+<pre id="js-switch"><code class="html" >&lt;script&gt;
 var date = new Date(), day;
 switch (date.getDay()) {
   case 6: // samedi
@@ -776,8 +782,8 @@ console.log(day);
 </div>
 
 </section>
-<section id="slide-sec-structures-repetitives-for">
-<h4 id="structures-repetitives-for"><a id="org7dd6908"></a><span class="section-number-4">1.10.5</span> Les structures répétitives (pour)</h4>
+<section id="slide-structures-repetitives-for">
+<h4 id="structures-repetitives-for"><a id="orgf36fad3"></a><span class="section-number-4">1.10.5</span> Les structures répétitives (pour)</h4>
 <div class="org-src-container">
 
 <pre id="js-for"><code class="php" >for (expr1; expr2; expr3) { // expr1 est exécutée une seule fois au début de la boucle
@@ -787,8 +793,8 @@ console.log(day);
 </div>
 
 </section>
-<section id="slide-sec-structures-repetitives-while">
-<h4 id="structures-repetitives-while"><a id="org0e29687"></a><span class="section-number-4">1.10.6</span> Les structures répétitives (tant que)</h4>
+<section id="slide-structures-repetitives-while">
+<h4 id="structures-repetitives-while"><a id="org8e72fa1"></a><span class="section-number-4">1.10.6</span> Les structures répétitives (tant que)</h4>
 <div class="org-src-container">
 
 <pre id="js-while"><code class="php" >while (condition) {
@@ -807,11 +813,11 @@ while (condition);
 </div>
 
 </section>
-<section id="slide-sec-structures-repetitives-exemple">
-<h4 id="structures-repetitives-exemple"><a id="org04f3ce5"></a><span class="section-number-4">1.10.7</span> Exemple général sur les structures</h4>
+<section id="slide-structures-repetitives-exemple">
+<h4 id="structures-repetitives-exemple"><a id="org32c6239"></a><span class="section-number-4">1.10.7</span> Exemple général sur les structures</h4>
 <div class="org-src-container">
 
-<pre id="js-for-while"><code class="src-js" >&lt;script&gt;
+<pre id="js-for-while"><code class="html" >&lt;script&gt;
 var i = 0, tab = [1,2,3,4];
 do {
   tab[i] = tab[i]%2;
@@ -826,8 +832,8 @@ for (i = 0; i &lt; tab.length; i++) {
 </div>
 
 </section>
-<section id="slide-sec-fonctions">
-<h3 id="fonctions"><a id="org21e5732"></a><span class="section-number-3">1.11</span> les fonctions</h3>
+<section id="slide-fonctions">
+<h3 id="fonctions"><a id="org0165614"></a><span class="section-number-3">1.11</span> les fonctions</h3>
 <ul>
 <li>sont des blocs d'instructions que l'on peut répéter dans un programme</li>
 <li>ne sont pas exécutées directement après leurs définitions</li>
@@ -837,7 +843,7 @@ for (i = 0; i &lt; tab.length; i++) {
 
 <div class="org-src-container">
 
-<pre id="js-function"><code class="src-js" >&lt;script&gt;
+<pre id="js-function"><code class="html" >&lt;script&gt;
 function helloWorld() {
   console.log("Hello world!");
 }
@@ -848,8 +854,8 @@ helloWorld();
 </div>
 
 </section>
-<section id="slide-sec-fonctions-parametres">
-<h4 id="fonctions-parametres"><a id="org1105c33"></a><span class="section-number-4">1.11.1</span> Les arguments ou paramètres</h4>
+<section id="slide-fonctions-parametres">
+<h4 id="fonctions-parametres"><a id="org3ff6476"></a><span class="section-number-4">1.11.1</span> Les arguments ou paramètres</h4>
 <ul>
 <li>Un argument est une variable, défini après le nom de la fonction entre paranthèses</li>
 <li>Les arguments sont séparés par une virgule</li>
@@ -858,7 +864,7 @@ helloWorld();
 
 <div class="org-src-container">
 
-<pre id="function-args"><code class="src-js" >&lt;script&gt;
+<pre id="function-args"><code class="html" >&lt;script&gt;
 function helloWorld(hello, world) {
   console.log(hello + ' ' + world);
 }
@@ -869,8 +875,8 @@ helloWorld('Bonjour', 'tous');
 </div>
 
 </section>
-<section id="slide-sec-fonctions-parametres-defaut">
-<h4 id="fonctions-parametres-defaut"><a id="orgd69192e"></a><span class="section-number-4">1.11.2</span> Les valeurs par défaut</h4>
+<section id="slide-fonctions-parametres-defaut">
+<h4 id="fonctions-parametres-defaut"><a id="orgc142b13"></a><span class="section-number-4">1.11.2</span> Les valeurs par défaut</h4>
 <ul>
 <li>Il est possible de définir une valeur par défaut à un argument</li>
 <li>Les arguments qui ont une valeur par défaut sont définis en dernier</li>
@@ -879,7 +885,7 @@ helloWorld('Bonjour', 'tous');
 
 <div class="org-src-container">
 
-<pre id="function-default-args"><code class="src-js" >&lt;script&gt;
+<pre id="function-default-args"><code class="html" >&lt;script&gt;
 function helloWorld(hello, world = 'world') {
   console.log(hello + ' ' + world);
 }
@@ -891,8 +897,8 @@ helloWorld('Hello');
 </div>
 
 </section>
-<section id="slide-sec-fonctions-retour">
-<h4 id="fonctions-retour"><a id="org8d806e8"></a><span class="section-number-4">1.11.3</span> Les retours</h4>
+<section id="slide-fonctions-retour">
+<h4 id="fonctions-retour"><a id="org9d24120"></a><span class="section-number-4">1.11.3</span> Les retours</h4>
 <ul>
 <li>Tous les types de variables peuvent être retournés par une fonction</li>
 <li>Si <code>return</code> est absent, <code>null</code> est retourné</li>
@@ -901,7 +907,7 @@ helloWorld('Hello');
 
 <div class="org-src-container">
 
-<pre id="function-return"><code class="src-js" >&lt;script&gt;
+<pre id="function-return"><code class="html" >&lt;script&gt;
 function helloWorld() {
   return "Hello world!";
 }
@@ -912,16 +918,16 @@ console.log(helloWorld());
 </div>
 
 </section>
-<section id="slide-sec-evenements-js">
-<h2 id="evenements-js"><a id="org0df48c6"></a><span class="section-number-2">2</span> Les événements en Javascript</h2>
+<section id="slide-evenements-js">
+<h2 id="evenements-js"><a id="org94203ec"></a><span class="section-number-2">2</span> Les événements en Javascript</h2>
 <ul>
 <li>Javascript peut interagir avec l'utilisateur grâce à des événements.</li>
 
 </ul>
 
 </section>
-<section id="slide-sec-evenements-click">
-<h3 id="evenements-click"><a id="org21302ce"></a><span class="section-number-3">2.1</span> L'événement click</h3>
+<section id="slide-evenements-click">
+<h3 id="evenements-click"><a id="orgbe63fe2"></a><span class="section-number-3">2.1</span> L'événement click</h3>
 <ul>
 <li><code>click</code> : gestion du clic souris sur un élément</li>
 <li>utilisation du préfixe <code>on</code> dans l'attribut d'une balise</li>
@@ -931,15 +937,15 @@ console.log(helloWorld());
 
 <div class="org-src-container">
 
-<pre id="js-function"><code class="src-js" >&lt;button onclick="console.log('button')" value="button1"&gt;button&lt;/button&gt;
+<pre id="js-function"><code class="html" >&lt;button onclick="console.log('button')" value="button1"&gt;button&lt;/button&gt;
 &lt;button onclick="console.log(this.value)" value="button2"&gt;button&lt;/button&gt;
 &lt;div onclick="console.log('div')"&gt;div&lt;/div&gt;
 </code></pre>
 </div>
 
 </section>
-<section id="slide-sec-evenements-clavier-souris">
-<h3 id="evenements-clavier-souris"><a id="orgcf34d59"></a><span class="section-number-3">2.2</span> Les événements généraux</h3>
+<section id="slide-evenements-clavier-souris">
+<h3 id="evenements-clavier-souris"><a id="org151d3f4"></a><span class="section-number-3">2.2</span> Les événements généraux</h3>
 <ul>
 <li><code>load</code> : la ressource (page, img, link, iframe, script) est chargée par le navigateur</li>
 <li><code>unload</code> : l'utilisateur quitte la page</li>
@@ -949,8 +955,8 @@ console.log(helloWorld());
 </ul>
 
 </section>
-<section id="slide-sec-evenements-formulaires">
-<h3 id="evenements-formulaires"><a id="org7dbe837"></a><span class="section-number-3">2.3</span> Les événements et les formulaires</h3>
+<section id="slide-evenements-formulaires">
+<h3 id="evenements-formulaires"><a id="org134af18"></a><span class="section-number-3">2.3</span> Les événements et les formulaires</h3>
 <ul>
 <li><code>focus </code> : un élément reçoit le focus</li>
 <li><code>blur  </code> : un élément perd le focus</li>
@@ -961,11 +967,37 @@ console.log(helloWorld());
 </ul>
 
 </section>
-<section id="slide-sec-DOM">
-<h2 id="DOM"><a id="orgc7b9022"></a><span class="section-number-2">3</span> Modèle Objet de Document (DOM)</h2>
+<section id="slide-evenements-code-js">
+<h3 id="evenements-code-js"><a id="org2240e85"></a><span class="section-number-3">2.4</span> Les événements dans le code JS</h3>
+<ul>
+<li><code>target</code> : élément qui a déclenché l'événement</li>
+<li><code>preventDefault()</code> : permet d'annuler l'événement</li>
+
+</ul>
+
+<div class="org-src-container">
+
+<pre id="js-function"><code class="html" >&lt;label&gt;Click:&lt;input id="click" type="checkbox" value="click"&gt;&lt;/label&gt;
+&lt;label&gt;Cancel:&lt;input id="cancel" type="checkbox" value="cancel"&gt;&lt;/label&gt;
+&lt;script&gt;
+  function gestionEvenement(evt) {
+    var elt = evt.target;
+    if (elt.value == 'cancel') {
+      evt.preventDefault();
+    }
+  }
+  document.getElementById('click').onclick = gestionEvenement;
+  document.getElementById('cancel').onclick = gestionEvenement;
+&lt;/script&gt;
+</code></pre>
+</div>
+
 </section>
-<section id="slide-sec-arbre-html">
-<h3 id="arbre-html"><a id="orgb35c38d"></a><span class="section-number-3">3.1</span> Représentation arborescente</h3>
+<section id="slide-DOM">
+<h2 id="DOM"><a id="org1874bff"></a><span class="section-number-2">3</span> Modèle Objet de Document (DOM)</h2>
+</section>
+<section id="slide-arbre-html">
+<h3 id="arbre-html"><a id="orgddadf55"></a><span class="section-number-3">3.1</span> Représentation arborescente</h3>
 <p>
 le code html peut être représenté sous forme arborescente
 </p>
@@ -977,8 +1009,8 @@ le code html peut être représenté sous forme arborescente
 </div>
 
 </section>
-<section id="slide-sec-arbre-dom">
-<h3 id="arbre-dom"><a id="org4e2ce44"></a><span class="section-number-3">3.2</span> Représentation globale</h3>
+<section id="slide-arbre-dom">
+<h3 id="arbre-dom"><a id="org3526953"></a><span class="section-number-3">3.2</span> Représentation globale</h3>
 <p>
 Javascript représente la page, l'onglet grâce à l'objet global <code>window</code>
 </p>
@@ -990,8 +1022,8 @@ Javascript représente la page, l'onglet grâce à l'objet global <code>window</
 </div>
 
 </section>
-<section id="slide-sec-proprietes-window">
-<h3 id="proprietes-window"><a id="orge8d49b6"></a><span class="section-number-3">3.3</span> objet window (propriétés)</h3>
+<section id="slide-proprietes-window">
+<h3 id="proprietes-window"><a id="org0c9a9ff"></a><span class="section-number-3">3.3</span> objet window (propriétés)</h3>
 <ul>
 <li><code>frames[]</code> : tableau de frames</li>
 <li><code>location</code> : url de la page courante</li>
@@ -1005,8 +1037,8 @@ Javascript représente la page, l'onglet grâce à l'objet global <code>window</
 </ul>
 
 </section>
-<section id="slide-sec-methodes-window">
-<h3 id="methodes-window"><a id="org25ef21f"></a><span class="section-number-3">3.4</span> objet window (méthodes)</h3>
+<section id="slide-methodes-window">
+<h3 id="methodes-window"><a id="org54f0485"></a><span class="section-number-3">3.4</span> objet window (méthodes)</h3>
 <ul>
 <li><code>alert(string)</code> : ouvre une boîte de dialogue avec le message passé en paramètre</li>
 <li><code>prompt(string)</code> : affiche une fenêtre de saisie</li>
@@ -1019,8 +1051,8 @@ Javascript représente la page, l'onglet grâce à l'objet global <code>window</
 </ul>
 
 </section>
-<section id="slide-sec-methode-open-window">
-<h3 id="methode-open-window"><a id="org75f35b0"></a><span class="section-number-3">3.5</span> objet window (méthode open)</h3>
+<section id="slide-methode-open-window">
+<h3 id="methode-open-window"><a id="org60b3ffe"></a><span class="section-number-3">3.5</span> objet window (méthode open)</h3>
 <p>
 <code>open(URL, string name, string options)</code> : ouvre une nouvelle fenêtre contenant le document identifié par l'URL
 </p>
@@ -1046,15 +1078,15 @@ Javascript représente la page, l'onglet grâce à l'objet global <code>window</
 </ul>
 
 </section>
-<section id="slide-sec-window-exemple">
-<h3 id="window-exemple"><a id="orga2200b8"></a><span class="section-number-3">3.6</span> objet window (exemple)</h3>
+<section id="slide-window-exemple">
+<h3 id="window-exemple"><a id="org06b0036"></a><span class="section-number-3">3.6</span> objet window (exemple)</h3>
 <p>
 Il n'est pas obligatoire de préfixer par <code>window</code>
 </p>
 
 <div class="org-src-container">
 
-<pre id="window-example"><code class="src-js" >&lt;script&gt;
+<pre id="window-example"><code class="html" >&lt;script&gt;
 window.alert('alert');
 console.log(window.prompt('prompt'));
 console.log(window.confirm('confirm'));
@@ -1067,11 +1099,11 @@ console.log(window.confirm('confirm'));
 </div>
 
 </section>
-<section id="slide-sec-window-exemple-open">
-<h3 id="window-exemple-open"><a id="orgffb57b0"></a><span class="section-number-3">3.7</span> objet window (exemple)</h3>
+<section id="slide-window-exemple-open">
+<h3 id="window-exemple-open"><a id="org9d8301a"></a><span class="section-number-3">3.7</span> objet window (exemple)</h3>
 <div class="org-src-container">
 
-<pre id="window-example-open"><code class="src-js" >&lt;script&gt;
+<pre id="window-example-open"><code class="html" >&lt;script&gt;
 var target = open('https://duck.com', 'target', 'resizable=yes,width=420px,height=420px');
 // target.close();
 &lt;/script&gt;
@@ -1079,8 +1111,8 @@ var target = open('https://duck.com', 'target', 'resizable=yes,width=420px,heigh
 </div>
 
 </section>
-<section id="slide-sec-proprietes-document">
-<h3 id="proprietes-document"><a id="orgcf5e6e6"></a><span class="section-number-3">3.8</span> objet document (propriétés)</h3>
+<section id="slide-proprietes-document">
+<h3 id="proprietes-document"><a id="orge9f239c"></a><span class="section-number-3">3.8</span> objet document (propriétés)</h3>
 <ul>
 <li><code>title</code> : titre du document</li>
 <li><code>location</code> : URL du document</li>
@@ -1095,8 +1127,8 @@ var target = open('https://duck.com', 'target', 'resizable=yes,width=420px,heigh
 </ul>
 
 </section>
-<section id="slide-sec-methodes-document">
-<h3 id="methodes-document"><a id="orga761b12"></a><span class="section-number-3">3.9</span> objet document (méthodes)</h3>
+<section id="slide-methodes-document">
+<h3 id="methodes-document"><a id="org35c9f0a"></a><span class="section-number-3">3.9</span> objet document (méthodes)</h3>
 <ul>
 <li><code>getElementById(string)</code> : retourne la balise à partir d'un identifiant</li>
 <li><code>querySelector(string)</code> : retourne la première balise qui correspond à une sélection CSS</li>
@@ -1107,19 +1139,19 @@ var target = open('https://duck.com', 'target', 'resizable=yes,width=420px,heigh
 </ul>
 
 </section>
-<section id="slide-sec-methodes-document-exemple">
-<h3 id="methodes-document-exemple"><a id="org549b661"></a><span class="section-number-3">3.10</span> objet document (exemple)</h3>
+<section id="slide-methodes-document-exemple">
+<h3 id="methodes-document-exemple"><a id="orgc37a2b7"></a><span class="section-number-3">3.10</span> objet document (exemple)</h3>
 <div class="org-src-container">
 
-<pre id="document-example"><code class="src-js" >&lt;input type="text" id="input"&gt;
+<pre id="document-example"><code class="html" >&lt;input type="text" id="input"&gt;
 &lt;button onclick="document.getElementById('input').value = 'value';"&gt;button&lt;/button&gt;
 &lt;button onclick="document.write('write')"&gt;write&lt;/button&gt;
 </code></pre>
 </div>
 
 </section>
-<section id="slide-sec-propriete-node">
-<h3 id="propriete-node"><a id="orgf7bd170"></a><span class="section-number-3">3.11</span> Représentation DOM</h3>
+<section id="slide-propriete-node">
+<h3 id="propriete-node"><a id="org780b36e"></a><span class="section-number-3">3.11</span> Représentation DOM</h3>
 <p>
 Le document représente la page sous forme arborescente. Chaque nœud est caractérisé par:
 </p>
@@ -1137,8 +1169,8 @@ Le document représente la page sous forme arborescente. Chaque nœud est caract
 </ul>
 
 </section>
-<section id="slide-sec-proprietes-noeud">
-<h3 id="proprietes-noeud"><a id="org9d4789c"></a><span class="section-number-3">3.12</span> Propriétés d'un nœud</h3>
+<section id="slide-proprietes-noeud">
+<h3 id="proprietes-noeud"><a id="orgf92fa0b"></a><span class="section-number-3">3.12</span> Propriétés d'un nœud</h3>
 <p>
 Pour se déplacer dans l'arbre DOM, il existe:
 </p>
@@ -1153,8 +1185,8 @@ Pour se déplacer dans l'arbre DOM, il existe:
 </ul>
 
 </section>
-<section id="slide-sec-methodes-noeud">
-<h3 id="methodes-noeud"><a id="org8c9f1d8"></a><span class="section-number-3">3.13</span> Méthodes d'un nœud</h3>
+<section id="slide-methodes-noeud">
+<h3 id="methodes-noeud"><a id="orgb6b6a00"></a><span class="section-number-3">3.13</span> Méthodes d'un nœud</h3>
 <ul>
 <li><code>appendChild(node)</code> : nœud à ajouter au nœud parent</li>
 <li><code>removeChild(node)</code> : nœud à supprimer du nœud parent</li>
@@ -1163,8 +1195,8 @@ Pour se déplacer dans l'arbre DOM, il existe:
 </ul>
 
 </section>
-<section id="slide-sec-creation-noeud">
-<h3 id="creation-noeud"><a id="org7c761eb"></a><span class="section-number-3">3.14</span> Création d'un nœud</h3>
+<section id="slide-creation-noeud">
+<h3 id="creation-noeud"><a id="orga836367"></a><span class="section-number-3">3.14</span> Création d'un nœud</h3>
 <ul>
 <li><code>document.createElement(tag)</code> : création d'un nœud</li>
 <li><code>document.createTextNode(text)</code> : création d'un nœud textuel</li>
@@ -1173,7 +1205,7 @@ Pour se déplacer dans l'arbre DOM, il existe:
 
 <div class="org-src-container">
 
-<pre id="document-create-element"><code class="src-js" >&lt;div id="div"&gt;&lt;span&gt;span1&lt;/span&gt;&lt;span&gt;span2&lt;/span&gt;&lt;/div&gt;
+<pre id="document-create-element"><code class="html" >&lt;div id="div"&gt;&lt;span&gt;span1&lt;/span&gt;&lt;span&gt;span2&lt;/span&gt;&lt;/div&gt;
 &lt;script&gt;
 var span = document.createElement('span').appendChild(document.createTextNode('span3'));
 document.getElementById('div').appendChild(span);
@@ -1182,8 +1214,8 @@ document.getElementById('div').appendChild(span);
 </div>
 
 </section>
-<section id="slide-sec-contenu-noeud">
-<h3 id="contenu-noeud"><a id="orgb0e3d40"></a><span class="section-number-3">3.15</span> Contenu d'un nœud</h3>
+<section id="slide-contenu-noeud">
+<h3 id="contenu-noeud"><a id="orga65b884"></a><span class="section-number-3">3.15</span> Contenu d'un nœud</h3>
 <ul>
 <li><code>innerHTML</code> : contenu HTML du nœud courant exclu</li>
 <li><code>outerHTML</code> : contenu HTML du nœud courant inclus</li>
@@ -1193,15 +1225,15 @@ document.getElementById('div').appendChild(span);
 
 <div class="org-src-container">
 
-<pre id="js-function"><code class="src-js" >&lt;button onclick="console.log(this.innerHTML)"&gt;button&lt;/button&gt;
+<pre id="js-function"><code class="html" >&lt;button onclick="console.log(this.innerHTML)"&gt;button&lt;/button&gt;
 &lt;button onclick="console.log(this.outerHTML)"&gt;button&lt;/button&gt;
 &lt;button onclick="console.log(this.textContent)"&gt;button&lt;/button&gt;
 </code></pre>
 </div>
 
 </section>
-<section id="slide-sec-attributs-noeud">
-<h3 id="attributs-noeud"><a id="org33fe522"></a><span class="section-number-3">3.16</span> Attributs d'un nœud</h3>
+<section id="slide-attributs-noeud">
+<h3 id="attributs-noeud"><a id="org2fca116"></a><span class="section-number-3">3.16</span> Attributs d'un nœud</h3>
 <ul>
 <li><code>className</code> : class associée au nœud</li>
 <li><code>id</code> : identifiant associé au nœud</li>
@@ -1213,7 +1245,7 @@ document.getElementById('div').appendChild(span);
 
 <div class="org-src-container">
 
-<pre id="js-function"><code class="src-js" >&lt;div id="div-id" class="div class"&gt;&lt;/div&gt;
+<pre id="js-function"><code class="html" >&lt;div id="div-id" class="div class"&gt;&lt;/div&gt;
 &lt;script&gt;
 var elt = document.getElementById("div-id")
 console.log(elt.id)
@@ -1225,8 +1257,8 @@ console.log(elt.className)
 </div>
 
 </section>
-<section id="slide-sec-proprietes-form">
-<h3 id="proprietes-form"><a id="orgd2499f0"></a><span class="section-number-3">3.17</span> objet form (propriétés)</h3>
+<section id="slide-proprietes-form">
+<h3 id="proprietes-form"><a id="orga95ab87"></a><span class="section-number-3">3.17</span> objet form (propriétés)</h3>
 <ul>
 <li><code>name</code> : nom (unique) du formulaire</li>
 <li><code>method</code> : méthode de soumission (<code>get</code>, <code>post</code>)</li>
@@ -1237,8 +1269,8 @@ console.log(elt.className)
 </ul>
 
 </section>
-<section id="slide-sec-methodes-form">
-<h3 id="methodes-form"><a id="org9f29177"></a><span class="section-number-3">3.18</span> objet form (méthodes)</h3>
+<section id="slide-methodes-form">
+<h3 id="methodes-form"><a id="org786fc44"></a><span class="section-number-3">3.18</span> objet form (méthodes)</h3>
 <ul>
 <li><code>submit()</code> : soumet le formulaire</li>
 <li><code>reset()</code> : ré-initialise le formulaire</li>
@@ -1246,8 +1278,8 @@ console.log(elt.className)
 </ul>
 
 </section>
-<section id="slide-sec-evenements-form">
-<h3 id="evenements-form"><a id="orge9b4559"></a><span class="section-number-3">3.19</span> objet form (événements)</h3>
+<section id="slide-evenements-form">
+<h3 id="evenements-form"><a id="orgd50b157"></a><span class="section-number-3">3.19</span> objet form (événements)</h3>
 <ul>
 <li><code>submit</code> : action à réaliser lorsque le formulaire est soumis</li>
 <li><code>reset</code> : action à réaliser lorsque le formulaire est ré-initialisé</li>
@@ -1256,7 +1288,7 @@ console.log(elt.className)
 
 <div class="org-src-container">
 
-<pre id="js-onsubmit"><code class="src-js" >&lt;script&gt;
+<pre id="js-onsubmit"><code class="html" >&lt;script&gt;
 function checkForm() {
   alert('form');
 }
@@ -1269,8 +1301,8 @@ function checkForm() {
 </div>
 
 </section>
-<section id="slide-sec-navigator">
-<h3 id="navigator"><a id="org0049c0e"></a><span class="section-number-3">3.20</span> objet navigator (propriétés)</h3>
+<section id="slide-navigator">
+<h3 id="navigator"><a id="orge31ac6b"></a><span class="section-number-3">3.20</span> objet navigator (propriétés)</h3>
 <ul>
 <li><code>appCodeName</code> : nom de code interne du navigateur</li>
 <li><code>appName</code> : nom réel du navigateur</li>
@@ -1281,8 +1313,8 @@ function checkForm() {
 </ul>
 
 </section>
-<section id="slide-sec-cookies">
-<h2 id="cookies"><a id="orgd5b12fc"></a><span class="section-number-2">4</span> Les cookies</h2>
+<section id="slide-cookies">
+<h2 id="cookies"><a id="org0e9cf5f"></a><span class="section-number-2">4</span> Les cookies</h2>
 <ul>
 <li>Pour stocker des informations côté client</li>
 <li>Il ne faut jamais stocker des informations sensibles avec les cookies</li>
@@ -1291,11 +1323,11 @@ function checkForm() {
 </ul>
 
 </section>
-<section id="slide-sec-ajouter-cookie">
-<h3 id="ajouter-cookie"><a id="org56a37b9"></a><span class="section-number-3">4.1</span> Ajouter un cookie</h3>
+<section id="slide-ajouter-cookie">
+<h3 id="ajouter-cookie"><a id="orgcc4d2d0"></a><span class="section-number-3">4.1</span> Ajouter un cookie</h3>
 <div class="org-src-container">
 
-<pre id="js-set-cookie"><code class="src-js" >&lt;script&gt;
+<pre id="js-set-cookie"><code class="html" >&lt;script&gt;
 function setCookie(name,value,days) {
   var expires = "";
   if (days) {
@@ -1313,11 +1345,11 @@ console.log("Cookie : "+document.cookie);
 </div>
 
 </section>
-<section id="slide-sec-voir-cookie">
-<h3 id="voir-cookie"><a id="org5e941bd"></a><span class="section-number-3">4.2</span> Voir un cookie</h3>
+<section id="slide-voir-cookie">
+<h3 id="voir-cookie"><a id="org1f2d3e4"></a><span class="section-number-3">4.2</span> Voir un cookie</h3>
 <div class="org-src-container">
 
-<pre id="js-get-cookie"><code class="src-js" >&lt;script&gt;
+<pre id="js-get-cookie"><code class="html" >&lt;script&gt;
 function getCookie(cname) {
   var name = cname + "=";
   var decodedCookie = decodeURIComponent(document.cookie);
@@ -1340,11 +1372,11 @@ console.log(getCookie("cookie"));
 </div>
 
 </section>
-<section id="slide-sec-supprimer-cookie">
-<h3 id="supprimer-cookie"><a id="org60efc61"></a><span class="section-number-3">4.3</span> Supprimer un cookie</h3>
+<section id="slide-supprimer-cookie">
+<h3 id="supprimer-cookie"><a id="org8213d7e"></a><span class="section-number-3">4.3</span> Supprimer un cookie</h3>
 <div class="org-src-container">
 
-<pre id="js-delete-cookie"><code class="src-js" >&lt;script&gt;
+<pre id="js-delete-cookie"><code class="html" >&lt;script&gt;
 function setCookie(name,value,days) {
   var expires = "";
   if (days) {
@@ -1363,32 +1395,19 @@ console.log("Cookie : "+document.cookie);
 </section>
 </div>
 </div>
-<div id="reveal-styles"><ul><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/default.css'); return false;" href="#">Black</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/blood.css'); return false;" href="#">Blood</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/sky.css'); return false;" href="#">Sky</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/beige.css'); return false;" href="#">Beige</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/simple.css'); return false;" href="#">Simple</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/serif.css'); return false;" href="#">Serif</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/night.css'); return false;" href="#">Night</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/moon.css'); return false;" href="#">Moon</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/solarized.css'); return false;" href="#">Solarized</a></li></ul></div>
-<script src="../lib/reveal.js/lib/js/head.min.js"></script>
-<script src="../lib/reveal.js/js/reveal.js"></script>
+<div id="reveal-styles"><ul><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal.js/dist/theme/default.css'); return false;" href="#">Black</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal.js/dist/theme/blood.css'); return false;" href="#">Blood</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal.js/dist/theme/sky.css'); return false;" href="#">Sky</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal.js/dist/theme/beige.css'); return false;" href="#">Beige</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal.js/dist/theme/simple.css'); return false;" href="#">Simple</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal.js/dist/theme/serif.css'); return false;" href="#">Serif</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal.js/dist/theme/night.css'); return false;" href="#">Night</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal.js/dist/theme/moon.css'); return false;" href="#">Moon</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal.js/dist/theme/solarized.css'); return false;" href="#">Solarized</a></li></ul></div>
+<script src="../common/lib/reveal.js/dist/reveal.js"></script>
+<script src="../common/lib/reveal.js/plugin/highlight/highlight.js"></script>
+<script src="../common/lib/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="../common/lib/reveal.js/plugin/notes/notes.js"></script>
+
 
 <script>
 // Full list of configuration options available here:
 // https://github.com/hakimel/reveal.js#configuration
 Reveal.initialize({
-
-controls: true,
-progress: true,
-history: true,
-center: false,
-slideNumber: 'c',
-rollingLinks: true,
-keyboard: true,
-overview: true,
-width: 1200,
-height: 800,
-margin: 0.10,
-minScale: 0.50,
-maxScale: 2.50,
-
-theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
-transitionSpeed: 'default',
+plugins: [RevealHighlight,RevealMarkdown,RevealNotes],
+width:1800, height:1200, progress:true, history:true, control:true, rolling_links:true, keyboard:true, overview:true, hash: false, slideNumber:true,
 multiplex: {
     secret: '', // null if client
     id: '', // id, obtained from socket.io server
@@ -1397,11 +1416,7 @@ multiplex: {
 
 // Optional libraries used to extend on reveal.js
 dependencies: [
-{ src : '../lib/jquery/jquery.min.js' }, { src : '../lib/php.js/dist/php.min.js' }, { src : './inc/js/console.js' },
- { src: '../lib/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
- { src: '../lib/reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
- { src: '../lib/reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
- { src: '../lib/reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+{ src : '../common/lib/jquery/jquery.min.js' }, { src : '../common/lib/php.js/dist/php.min.js' }, { src : '../common/inc/js/console.js' }]
 });
 </script>
 </body>

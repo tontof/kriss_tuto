@@ -1,30 +1,6 @@
 #+Title: JS
-#+DATE: 
-#+Author: 
-#+Email: 
 
-#+LANGUAGE: fr
-#+OPTIONS: reveal_center:nil reveal_progress:t reveal_history:t reveal_control:t
-#+OPTIONS: reveal_mathjax:t reveal_rolling_links:t reveal_keyboard:t reveal_overview:t num:nil
-#+OPTIONS: reveal_width:1200 reveal_height:800
-#+OPTIONS: toc:1
-#+OPTIONS: num:t
-#+OPTIONS: reveal_title_slide:"<div><h1>%t</h1><h2>%a</h2><h3>%e</h3></div>"
-#+MACRO: BO @@latex:\char91@@ @@html:&#91;@@
-#+REVEAL_MARGIN: 0.1
-#+REVEAL_MIN_SCALE: 0.5
-#+REVEAL_MAX_SCALE: 2.5
-#+REVEAL_TRANS: fade
-#+REVEAL_THEME: serif
-#+REVEAL_HLEVEL: 0
-#+REVEAL_HEAD_PREAMBLE: <meta name="description" content="JS Introduction.">
-#+REVEAL_POSTAMBLE: <div id="reveal-styles"><ul><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/default.css'); return false;" href="#">Black</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/blood.css'); return false;" href="#">Blood</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/sky.css'); return false;" href="#">Sky</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/beige.css'); return false;" href="#">Beige</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/simple.css'); return false;" href="#">Simple</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/serif.css'); return false;" href="#">Serif</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/night.css'); return false;" href="#">Night</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/moon.css'); return false;" href="#">Moon</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../lib/reveal.js/css/theme/solarized.css'); return false;" href="#">Solarized</a></li></ul></div>
-#+REVEAL_PLUGINS: (highlight markdown notes)
-#+REVEAL_ROOT: ../lib/reveal.js/
-#+REVEAL_MATHJAX_URL: ../lib/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML
-#+REVEAL_EXTRA_CSS: ./inc/css/custom.css
-#+REVEAL_EXTRA_JS: { src : '../lib/jquery/jquery.min.js' }, { src : '../lib/php.js/dist/php.min.js' }, { src : './inc/js/console.js' }
-#+REVEAL_PREAMBLE: <div id="phpjs-compiler"><textarea id="phpjs-code"></textarea><div id="phpjs-results"><div id="phpjs-result"></div><div id="phpjs-html-result"></div></div><button id="phpjs-clear">Clear</button><button id="phpjs-close">Close</button><button id="phpjs-run">Run</button></div>
+#+INCLUDE: "../common/inc/index.org"
 
 * Les bases en JS
   :PROPERTIES:
@@ -71,7 +47,7 @@
    - etc.
 
    #+NAME: js-pop-up
-   #+BEGIN_SRC src-js
+   #+BEGIN_SRC html
    <button onclick="alert('pop-up');">pop-up</button>
    #+END_SRC
 
@@ -90,7 +66,7 @@
      - code JS dans balise =<script>= dans =<head>= ou avant =</body>=
 
    #+NAME: js-inline
-   #+BEGIN_SRC src-js
+   #+BEGIN_SRC html
        <button onclick="alert('pop-up-inline');">inline</button>
        <button id="button-body">body</button>
        <script>
@@ -107,7 +83,7 @@
      - balise =<script>= dans =<head>= ou avant =</body>=
 
    #+NAME: js-file
-   #+BEGIN_SRC src-js
+   #+BEGIN_SRC html
    <head>
      <script src="inc/js/js-file.js"></script>
    </head>
@@ -115,6 +91,8 @@
        <button id="button-file">file</button>
    </body>
    #+END_SRC
+   Contenu du fichier =js-file.js= :
+   #+INCLUDE: "./inc/js/js-file.js" src js
 
 *** Les bonnes pratiques d'utilisation de JS
     :PROPERTIES:
@@ -167,7 +145,7 @@
     cast possible avec la fonction Boolean()
 
    #+NAME: js-boolean
-   #+BEGIN_SRC src-js
+   #+BEGIN_SRC html
    <script>
    console.log(true)
    console.log(false)
@@ -187,7 +165,7 @@
     cast possible avec la fonction Number()
 
    #+NAME: js-number
-   #+BEGIN_SRC src-js
+   #+BEGIN_SRC html
    <script>
    console.log(12e3)
    console.log(4.5)
@@ -208,7 +186,7 @@
     - =parseFloat(string)= : pour convertir une chaîne en réel
 
    #+NAME: js-number-function
-   #+BEGIN_SRC src-js
+   #+BEGIN_SRC html
    <script>
    console.log(parseInt("3.4a"))
    console.log(parseFloat("3.4a"))
@@ -227,7 +205,7 @@
     cast possible avec la fonction String()
 
    #+NAME: js-string
-   #+BEGIN_SRC src-js
+   #+BEGIN_SRC html
    <script>
    console.log("C'est super")
    console.log('C\'est super')
@@ -244,7 +222,7 @@
     - =length=: Longueur d'une chaîne de caractères
 
    #+NAME: js-string-length
-   #+BEGIN_SRC src-js
+   #+BEGIN_SRC html
    <script>
    console.log("C'est super".length)
    </script>
@@ -276,7 +254,7 @@
     :END:
 
    #+NAME: js-string-method-example
-   #+BEGIN_SRC src-js
+   #+BEGIN_SRC html
    <script>
    console.log("C'est super".charAt(0))
    console.log("C'est super".substring(2,5))
@@ -301,7 +279,7 @@
      - locale : dans une fonction/instruction
 
    #+NAME: js-variable
-   #+BEGIN_SRC src-js
+   #+BEGIN_SRC html
    <script>
    var variable = 2;
    variable += 4;
@@ -345,7 +323,7 @@
    - =new Date(année, [indexMois[, jour[, heures[, minutes[, secondes[, millisecondes]]]]]])=
 
    #+NAME: js-date
-   #+BEGIN_SRC src-js
+   #+BEGIN_SRC html
    <script>
    console.log(new Date());
    console.log(new Date('1970-01-01 13:37:00.000'));
@@ -359,7 +337,7 @@
    :END:
 
    #+NAME: js-date
-   #+BEGIN_SRC src-js
+   #+BEGIN_SRC html
    <script>
    var date=new Date();
    console.log(date.getFullYear());
@@ -386,7 +364,7 @@
    - =new Array(arrayLength)=
    - =new Array(element0, element1[, ...[, elementN]])=
    #+NAME: js-date
-   #+BEGIN_SRC src-js
+   #+BEGIN_SRC html
    <script>
    console.log(new Array(10));
    console.log(new Array());
@@ -398,8 +376,8 @@
    </script>
    #+END_SRC
 
-   Tableaux associatifs
-   Tableaux multi-dimensionnels
+   Tableaux associatifs,
+   Tableaux multi-dimensionnels,
    tableaux de types différents
 
 *** Propriété de l'objet Array
@@ -410,7 +388,7 @@
     - =length=: nombre de cases dans le tableau.
 
    #+NAME: js-string-length
-   #+BEGIN_SRC src-js
+   #+BEGIN_SRC html
    <script>
    var t = ["premier","dernier"];
    console.log(t[0])
@@ -451,7 +429,7 @@
     :END:
 
    #+NAME: js-string-method-example
-   #+BEGIN_SRC src-js
+   #+BEGIN_SRC html
    <script>
    var t = [2,3,4];
    t.unshift(1); t.push(5); 
@@ -490,7 +468,7 @@
    :END:
 
    #+NAME: js-math
-   #+BEGIN_SRC src-js
+   #+BEGIN_SRC html
    <script>
    pi = Math.PI;
    console.log(pi);
@@ -515,7 +493,7 @@
    - =null= et =undefined= correspondent à la valeur booléenne =false=
    
    #+NAME: js-boolean
-   #+BEGIN_SRC src-js
+   #+BEGIN_SRC html
    <script>
    console.log(typeof null)
    console.log(typeof undefined)
@@ -551,7 +529,7 @@
    - =a !== b= : non identité (différence des valeurs ou des types)
 
    #+NAME: js-comparison
-   #+BEGIN_SRC src-js
+   #+BEGIN_SRC html
    <script>
    console.log(null == undefined)
    console.log(null === undefined)
@@ -572,14 +550,14 @@
    :END:
 
    #+NAME: js-if
-   #+BEGIN_SRC php
+   #+BEGIN_SRC c
 if (condition) {
   instructions; // si condition est évaluée à true
 } 
    #+END_SRC
 
    #+NAME: js-if-else
-   #+BEGIN_SRC php
+   #+BEGIN_SRC c
 if (condition) {
   instructions; // si condition est évaluée à true
 } else {
@@ -588,7 +566,7 @@ if (condition) {
    #+END_SRC
 
    #+NAME: js-if-else-elseif
-   #+BEGIN_SRC php
+   #+BEGIN_SRC c
 if (condition1) {
   instructions; // si condition1 est évaluée à true
 } else if (condition2) {
@@ -604,7 +582,7 @@ if (condition1) {
    :END:
 
    #+NAME: js-if-else
-   #+BEGIN_SRC src-js
+   #+BEGIN_SRC html
    <script>
    var valeur = Math.random();
    if (valeur < 0.33) {
@@ -624,7 +602,7 @@ if (condition1) {
    :END:
 
    #+NAME: js-switch
-   #+BEGIN_SRC php
+   #+BEGIN_SRC c
    switch(expression) {
      case x:
        // si expression == x
@@ -643,7 +621,7 @@ if (condition1) {
    :END:
 
    #+NAME: js-switch
-   #+BEGIN_SRC src-js
+   #+BEGIN_SRC html
    <script>
    var date = new Date(), day;
    switch (date.getDay()) {
@@ -668,7 +646,7 @@ if (condition1) {
    :END:
 
    #+NAME: js-for
-   #+BEGIN_SRC php
+   #+BEGIN_SRC c
    for (expr1; expr2; expr3) { // expr1 est exécutée une seule fois au début de la boucle
      instructions;             // exécuté tant que expr2 est évaluée à true
    }                           // expr3 est exécutée à la fin de chaque itération
@@ -680,14 +658,14 @@ if (condition1) {
    :END:
 
    #+NAME: js-while
-   #+BEGIN_SRC php
+   #+BEGIN_SRC c
    while (condition) {
      instructions; // exécutée si condition vaut true et répétée tant que condition vaut true
    }
    #+END_SRC
 
    #+NAME: js-do-while
-   #+BEGIN_SRC php
+   #+BEGIN_SRC c
    do {
      instructions; // exécutée puis répétée tant que condition vaut true
    }
@@ -700,7 +678,7 @@ if (condition1) {
    :END:
 
    #+NAME: js-for-while
-   #+BEGIN_SRC src-js
+   #+BEGIN_SRC html
    <script>
    var i = 0, tab = [1,2,3,4];
    do {
@@ -724,7 +702,7 @@ if (condition1) {
    - sont exécutées par un appel
 
    #+NAME: js-function
-   #+BEGIN_SRC src-js
+   #+BEGIN_SRC html
    <script>
    function helloWorld() {
      console.log("Hello world!");
@@ -743,7 +721,7 @@ if (condition1) {
     - Les arguments sont séparés par une virgule
 
    #+NAME: function-args
-   #+BEGIN_SRC src-js
+   #+BEGIN_SRC html
    <script>
    function helloWorld(hello, world) {
      console.log(hello + ' ' + world);
@@ -762,7 +740,7 @@ if (condition1) {
     - Les arguments qui ont une valeur par défaut sont définis en dernier
 
    #+NAME: function-default-args
-   #+BEGIN_SRC src-js
+   #+BEGIN_SRC html
    <script>
    function helloWorld(hello, world = 'world') {
      console.log(hello + ' ' + world);
@@ -782,7 +760,7 @@ if (condition1) {
     - Si =return= est absent, =null= est retourné
 
    #+NAME: function-return
-   #+BEGIN_SRC src-js
+   #+BEGIN_SRC html
    <script>
    function helloWorld() {
      return "Hello world!";
@@ -809,7 +787,7 @@ if (condition1) {
    - =this= représente la balise associé à l'événement
 
    #+NAME: js-function
-   #+BEGIN_SRC src-js
+   #+BEGIN_SRC html
    <button onclick="console.log('button')" value="button1">button</button>
    <button onclick="console.log(this.value)" value="button2">button</button>
    <div onclick="console.log('div')">div</div>
@@ -835,6 +813,30 @@ if (condition1) {
    - =change= : la valeur d'un champ de formulaire est modifiée
    - =reset = : quand les champs du formulaire sont réinitialisés
    - =submit= : quand le formulaire est soumis
+
+** Les événements dans le code JS
+   :PROPERTIES:
+   :CUSTOM_ID: evenements-code-js
+   :END:
+
+   - =target= : élément qui a déclenché l'événement
+   - =preventDefault()= : permet d'annuler l'événement
+
+   #+NAME: js-function
+   #+BEGIN_SRC html
+   <label>Click:<input id="click" type="checkbox" value="click"></label>
+   <label>Cancel:<input id="cancel" type="checkbox" value="cancel"></label>
+   <script>
+     function gestionEvenement(evt) {
+       var elt = evt.target;
+       if (elt.value == 'cancel') {
+         evt.preventDefault();
+       }
+     }
+     document.getElementById('click').onclick = gestionEvenement;
+     document.getElementById('cancel').onclick = gestionEvenement;
+   </script>
+   #+END_SRC
 
 * Modèle Objet de Document (DOM)
    :PROPERTIES:
@@ -915,7 +917,7 @@ if (condition1) {
    Il n'est pas obligatoire de préfixer par =window=
 
    #+NAME: window-example
-   #+BEGIN_SRC src-js
+   #+BEGIN_SRC html
    <script>
    window.alert('alert');
    console.log(window.prompt('prompt'));
@@ -933,7 +935,7 @@ if (condition1) {
    :END:
 
    #+NAME: window-example-open
-   #+BEGIN_SRC src-js
+   #+BEGIN_SRC html
    <script>
    var target = open('https://duck.com', 'target', 'resizable=yes,width=420px,height=420px');
    // target.close();
@@ -972,7 +974,7 @@ if (condition1) {
    :END:
 
    #+NAME: document-example
-   #+BEGIN_SRC src-js
+   #+BEGIN_SRC html
    <input type="text" id="input">
    <button onclick="document.getElementById('input').value = 'value';">button</button>
    <button onclick="document.write('write')">write</button>
@@ -1022,7 +1024,7 @@ if (condition1) {
    - =document.createTextNode(text)= : création d'un nœud textuel
 
    #+NAME: document-create-element
-   #+BEGIN_SRC src-js
+   #+BEGIN_SRC html
    <div id="div"><span>span1</span><span>span2</span></div>
    <script>
    var span = document.createElement('span').appendChild(document.createTextNode('span3'));
@@ -1040,7 +1042,7 @@ if (condition1) {
    - =textContent= : contenu textuel du nœud courant
 
    #+NAME: js-function
-   #+BEGIN_SRC src-js
+   #+BEGIN_SRC html
    <button onclick="console.log(this.innerHTML)">button</button>
    <button onclick="console.log(this.outerHTML)">button</button>
    <button onclick="console.log(this.textContent)">button</button>
@@ -1058,7 +1060,7 @@ if (condition1) {
    - =removeAttribute(name)= : supprime un attribut
 
    #+NAME: js-function
-   #+BEGIN_SRC src-js
+   #+BEGIN_SRC html
    <div id="div-id" class="div class"></div>
    <script>
    var elt = document.getElementById("div-id")
@@ -1097,7 +1099,7 @@ if (condition1) {
    - =reset= : action à réaliser lorsque le formulaire est ré-initialisé
 
    #+NAME: js-onsubmit
-   #+BEGIN_SRC src-js
+   #+BEGIN_SRC html
    <script>
    function checkForm() {
      alert('form');
@@ -1135,7 +1137,7 @@ if (condition1) {
    :END:
 
    #+NAME: js-set-cookie
-   #+BEGIN_SRC src-js
+   #+BEGIN_SRC html
    <script>
    function setCookie(name,value,days) {
      var expires = "";
@@ -1158,7 +1160,7 @@ if (condition1) {
    :END:
 
    #+NAME: js-get-cookie
-   #+BEGIN_SRC src-js
+   #+BEGIN_SRC html
    <script>
    function getCookie(cname) {
      var name = cname + "=";
@@ -1186,7 +1188,7 @@ if (condition1) {
    :END:
 
    #+NAME: js-delete-cookie
-   #+BEGIN_SRC src-js
+   #+BEGIN_SRC html
    <script>
    function setCookie(name,value,days) {
      var expires = "";
@@ -1202,168 +1204,3 @@ if (condition1) {
    </script>
    #+END_SRC
 
-* JS avancé
-  :PROPERTIES:
-  :CUSTOM_ID: js-avance
-  :END:
-
-** les fonctions anonymes/Array.forEach
-   :PROPERTIES:
-   :CUSTOM_ID: fonctions-anonyme
-   :END:
-
-   #+NAME: js-anonymous-function
-   #+BEGIN_SRC src-js
-   <script>
-   (function(){
-     alert('anonymous');
-   })();
-
-   ['a','b','c'].forEach(function(element) {
-     console.log(element);
-   });
-   </script>
-   #+END_SRC
-
-** Jquery
-  :PROPERTIES:
-  :CUSTOM_ID: jquery
-  :END:
-
-  jQuery est utilisé sur [[https://w3techs.com/technologies/details/js-jquery/all/all][plus de 70% des sites]]
-  - https://jquery.com/
-  - https://api.jquery.com/
-  - http://www.jqapi.com
-  Il existe des bibliothèques spécifiques souvent plus adaptées
-  - http://microjs.com/
-  - https://en.wikipedia.org/wiki/List_of_JavaScript_libraries
-
-** Vanilla JS
-  :PROPERTIES:
-  :CUSTOM_ID: vanilla-js
-  :END:
-
-  - http://vanilla-js.com/
-  - http://youmightnotneedjquery.com/
-
-
-** localStorage/sessionStorage
-  :PROPERTIES:
-  :CUSTOM_ID: web-storage
-  :END:
-
-   - =window.localStorage= : stocke les données sans date d'expiration
-   - =window.sessionStorage= : stocke les données pour une session (fermeture de l'onglet)
-
-** Node.js
-  :PROPERTIES:
-  :CUSTOM_ID: nodejs
-  :END:
-
-   - utilisation de javascript côté serveur
-
-** AJAX
-  :PROPERTIES:
-  :CUSTOM_ID: ajax
-  :END:
-  
-   #+NAME: js-anonymous-function
-   #+BEGIN_SRC src-js
-   <script>
-   var r = new XMLHttpRequest();
-   r.open("GET", "index.org", true);
-   r.onreadystatechange = function () {
-     if (r.readyState != 4 || r.status != 200) return;
-     alert(r.responseText);
-   };
-   r.send(); 
-   </script>
-   #+END_SRC
-
-** JSON
-  :PROPERTIES:
-  :CUSTOM_ID: json
-  :END:
-
-  JSON (JavaScript Object Notation)
-  https://json.org/
-
-   #+NAME: js-anonymous-function
-   #+BEGIN_SRC src-js
-   <script>
-   var json = {
-     'string':'value',
-     'number':2,
-     'array': [
-       'a',
-       'b',
-       'c'
-     ]
-   }
-   console.log(json);
-   console.log(JSON.stringify(json));
-   </script>
-   #+END_SRC
-  
-
-** coffeescript, typescript, livescript
-  :PROPERTIES:
-  :CUSTOM_ID: langage-vers-js
-  :END:
-
-   - https://coffeescript.org
-   - https://www.typescriptlang.org/
-   - http://livescript.net/
-
-** canvas
-  :PROPERTIES:
-  :CUSTOM_ID: canvas
-  :END:
-
-   #+NAME: js-anonymous-function
-   #+BEGIN_SRC src-js
-   <canvas id="canvas" width="420" height="420" style="border:1px solid #000000;">>
-   <script>
-   var c = document.getElementById("canvas");
-   var ctx = c.getContext("2d");
-   // line
-   ctx.moveTo(0, 0);
-   ctx.lineTo(420, 420);
-   ctx.stroke();
-   // circle
-   ctx.beginPath();
-   ctx.arc(210, 210, 120, 0, 2 * Math.PI);
-   ctx.stroke();
-   // text
-   ctx.font = "30px Arial";
-   ctx.fillText("Hello World!", 120, 50);
-   </script>
-   #+END_SRC
-
-** polyfills
-  :PROPERTIES:
-  :CUSTOM_ID: polyfills
-  :END:
-
-   bout de code qui permet d'ajouter certaines fonctionnalités à certains navigateurs
-   - https://github.com/aFarkas/html5shiv
-   - https://modernizr.com/
-
-** nouvelles notations
-  :PROPERTIES:
-  :CUSTOM_ID: fonction-flechee
-  :END:
-
-   #+NAME: js-fonction-flechee
-   #+BEGIN_SRC src-js
-   <script>
-   var nombres = [
-     'un',
-     'deux',
-     'trois',
-     'quatre'
-   ];
-
-   console.log(nombres.map(nombre => nombre.length));
-   </script>
-   #+END_SRC

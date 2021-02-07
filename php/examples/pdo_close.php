@@ -1,7 +1,7 @@
 <?php
   try {
     // ouverture de la base de données
-    $pdo = new PDO('sqlite::memory:');
+    $pdo = new PDO("sqlite::memory:");
 
     echo "Connecté à la base de données";
 

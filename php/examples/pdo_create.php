@@ -1,8 +1,8 @@
 <?php
   error_reporting(E_ALL);
-  ini_set('display_errors', '1');
+  ini_set("display_errors", "1");
   try {
-    $pdo = new PDO('sqlite::memory:');
+    $pdo = new PDO("sqlite::memory:");
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $table = "CREATE TABLE animals (

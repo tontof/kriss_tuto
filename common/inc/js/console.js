@@ -34,7 +34,7 @@
         htmlResult = document.getElementById("phpjs-html-result"),
         path = window.location.pathname,
         clear = function(e){
-          $("#phpjs-code").val("<?php\n  \n?>");
+          $("#phpjs-code").text("");
           htmlResult.innerHTML = '';
           result.innerHTML = '';
         },
@@ -45,16 +45,33 @@
           if ( e !== undefined ){
             e.preventDefault();
           }
-
-          htmlResult.innerHTML = '<iframe></iframe>';
-          setTimeout(function(){
-            var iframe = htmlResult.querySelector('iframe').contentDocument.getElementsByTagName('html')[0]
-            iframe.innerHTML = '<script>var iframe = this, log = console.log; console.log = function(param) { log(param); iframe.document.body.innerHTML += param + "<br>"; }</script>'
-            iframe.innerHTML += content.value;
-            nodeScriptReplace(iframe.parentNode);
-          }, 0);
+          var source = content.innerText.replace(/ /g,' ').replace(/\n/g,"\r\n");
+          if (content.classList.contains('php')) {
+            opts = {
+              SERVER: {
+                SCRIPT_FILENAME: path.substring(0, path.length - 1)
+              }
+            };
+            opts.filesystem = new PHP.Adapters.XHRFileSystem();
+            var engine = new PHP( source, opts);
+            htmlResult.classList.add('half');
+            htmlResult.innerHTML = engine.vm.OUTPUT_BUFFER;
+            result.classList.add('half');
+            result.innerHTML = engine.vm.OUTPUT_BUFFER.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>");
+          } else {
+            htmlResult.innerHTML = '<iframe></iframe>';
+            setTimeout(function(){
+              var iframe = htmlResult.querySelector('iframe').contentDocument.getElementsByTagName('html')[0]
+              iframe.innerHTML = '<script>var iframe = this, log = console.log; console.log = function(param) { log(param); iframe.document.body.innerHTML += param + "<br>"; }</script>'
+              iframe.innerHTML += source;
+              nodeScriptReplace(iframe.parentNode);
+            }, 240);
+          }
         };
 
+    $("#phpjs-code").on("blur", function() {
+      RevealHighlight().highlightBlock(document.getElementById('phpjs-code'));
+    });
     $("#phpjs-close").on("click", close);
     $("#phpjs-clear").on("click", clear);
     $("#phpjs-run").on("click", run);
@@ -94,12 +111,13 @@
             click: function() {
               $("#phpjs-compiler").show();
               clear();
-              $(this).text('');
-              $("#phpjs-code").val($element.text());
-              $(this).text('Run');
+              $("#phpjs-code").text($element.find('code').text().replace(/ /g," "));
+              $("#phpjs-code").html($("#phpjs-code").html().replace(/\n/g,'<br/>\n'));
+              $("#phpjs-code").attr('class', $element.find('code').attr('class'));
+              RevealHighlight().highlightBlock(document.getElementById('phpjs-code'));
             }
           });
-      if ($element.find('.src-js').length) {
+      if ($element.find('.html, .php').length) {
         $element = $element.children('pre');
         $element.append($button);
       }

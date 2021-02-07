@@ -1,9 +1,9 @@
 <?php
-setcookie('hello','world');
+setcookie("hello","world");
 
-setcookie('tableau[index1]','val1');
-setcookie('tableau[index2]','val2');
-setcookie('tableau[index3]','val3');
+setcookie("tableau[index1]","val1");
+setcookie("tableau[index2]","val2");
+setcookie("tableau[index3]","val3");
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,7 +22,7 @@ setcookie('tableau[index3]','val3');
   </head>
   <body>
 <?php
-include 'form_table.php';
+include "form_table.php";
 ?>
   </body>
 </html>

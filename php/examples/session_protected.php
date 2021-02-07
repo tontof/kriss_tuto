@@ -1,9 +1,9 @@
 <?php
 session_start();
-if(!isset($_SESSION['acces'])) {
+if(!isset($_SESSION["acces"])) {
     header("Location:session.php");
 } else {
-    $_SESSION['protected'] ++;
+    $_SESSION["protected"] ++;
 }
 ?>
 <!DOCTYPE html>
@@ -15,8 +15,8 @@ if(!isset($_SESSION['acces'])) {
   <body>
     <p>
       <a href="session.php">Page d'accueil</a><br>
-      <?php echo "Page protégée vue ". $_SESSION['protected']. " fois"; ?><br>
-      <?php echo "<h4>Bonjour ". $_SESSION['nom']."</h4>"; ?>
+      <?php echo "Page protégée vue ". $_SESSION["protected"]. " fois"; ?><br>
+      <?php echo "<h4>Bonjour ". $_SESSION["nom"]."</h4>"; ?>
       <a href="session.php?logout">Logout</a>
     </p>
   </body>

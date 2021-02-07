@@ -1,11 +1,11 @@
 <?php
-  include 'pdo_insert.php';
+  include "pdo_insert.php";
 
   // Création d'un objet PDOStatement
-  $stmt = $pdo->prepare('SELECT animal_id FROM animals');
+  $stmt = $pdo->prepare("SELECT animal_id FROM animals");
 
   // Création d'un second objet PDOStatement
-  $otherStmt = $pdo->prepare('SELECT animal_name FROM animals');
+  $otherStmt = $pdo->prepare("SELECT animal_name FROM animals");
 
   // Exécute la première requête
   $stmt->execute();

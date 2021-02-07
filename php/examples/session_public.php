@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION['public'] ++;
+$_SESSION["public"] ++;
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,7 +11,7 @@ $_SESSION['public'] ++;
   <body>
     <p>
       <a href="session.php">Page d'accueil</a><br>
-      <?php echo "Page publique vue ". $_SESSION['public']. " fois"; ?>
+      <?php echo "Page publique vue ". $_SESSION["public"]. " fois"; ?>
     </p>
   </body>
 </html>
