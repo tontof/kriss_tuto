@@ -1,15 +1,12 @@
 [submodule "lib/org-reveal"]
-	path = common/lib/org-reveal
+	path = lib/org-reveal
 	url = https://github.com/yjwen/org-reveal/
 [submodule "lib/php.js"]
-	path = common/lib/php.js
+	path = lib/php.js
 	url = https://github.com/niklasvh/php.js
 [submodule "lib/MathJax"]
-	path = common/lib/MathJax
+	path = lib/MathJax
 	url = https://github.com/mathjax/MathJax
-[submodule "lib/jquery"]
-	path = common/lib/jquery
-	url = https://github.com/components/jquery
 [submodule "lib/reveal.js"]
-	path = common/lib/reveal.js
-	url = https://github.com/hakimel/reveal.js
+	path = lib/reveal.js
+	url = https://github.com/hakimel/reveal.js/

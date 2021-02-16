@@ -1152,7 +1152,7 @@
     - La descendance : =A B=
       - =div p= : toutes les balises =<p>= qui sont contenues dans une balise =<div>=
     - La descendance directe : =A > B=
-      - =div p= : toutes les balises =<p>= dont leur parent est une balise =<div>=
+      - =div > p= : toutes les balises =<p>= dont leur parent est une balise =<div>=
     - Les voisins : =A ~ B=
       - =div ~ p= : toutes les balises =<p>= qui suivent une balise =<div>=
     - Les voisins directs: =A + B=
@@ -1212,7 +1212,7 @@
 
 ** La balise =<input>=
 
-   #+NAME: html-list-style
+   #+NAME: html-input
    #+BEGIN_SRC html
      <form>
        <label>default: <input name="default" placeholder="placeholder"></label><br>
@@ -1238,6 +1238,24 @@
      - =disabled= : désactive et ignore les données associées 
      - =readonly= : empêche la modification de la valeur
      - =maxlength= : longueur max autorisée pour =value=
+     - =pattern= : permet de définir le format accepté
+
+** La balise =<input>= avancé
+
+   #+NAME: html-input-extra
+   #+BEGIN_SRC html
+     <form>
+       <label for="idpassword">mot de passe: </label><br>
+       <label>password:  <input type="password" id="idpassword" name="password"
+       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+       title="Doit contenir un chiffre, une minuscule, une majuscule et au moins 8 caractères"></label><br>
+       <label>text: <input name="text" type="text" value="value" required="required"></label><br>
+       <label>disabled: <input name="disabled" type="text" value="value" disabled="disabled"></label><br>
+       <label>readonly: <input name="readonly" type="text" value="value" readonly="readonly"></label><br>
+       <label>maxlength: <input name="maxlength" type="text" value="value" maxlength="8"></label><br>
+       <button type="submit">valider</button>
+     </form>
+   #+END_SRC
 
 ** La balise =<input>= version html5
 
@@ -1279,7 +1297,7 @@
 
 ** Les balises =<textarea></textarea>= et =<button></button>=
 
-   #+NAME: html-list-style
+   #+NAME: html-textarea
    #+BEGIN_SRC html
      <form>
        <textarea name="textarea" rows="2" cols="20">value</textarea>
@@ -1291,7 +1309,7 @@
 
 ** La balise =<fieldset></fieldset>=
 
-   #+NAME: html-list-style
+   #+NAME: html-fieldset
    #+BEGIN_SRC html
      <form>
        <fieldset>
@@ -1300,12 +1318,3 @@
        </fieldset>
      </form>
    #+END_SRC
-
-# Priorité des règles CSS
-# Astuce div dans div pour éviter le pb des margin/padding avec IE
-# Responsive
-# Exemple margin:auto
-# Exemples pour display
-# Format police
-# Websites: Codeacademy firebug W3schools openclassroom
-# Ancre html à ajouter

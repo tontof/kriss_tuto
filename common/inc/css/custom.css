@@ -5,54 +5,35 @@
   left: 0;
 }
 
-#phpjs-compiler {
+#editor {
   height: 100%;
   text-align: center;
   display: none;
 }
 
-#phpjs-code {
+#editor > div {
+  display: grid;
+  grid-template-columns: 33% 0.5% 33% 0.5% 33%;
+  width: 100%;
+  height: 84%;
+}
+
+#editor > div > div {
   border: 0 none;
-  display: inline-block;
-  height: 84%;
   padding: 0;
-  width: 50%;
   font-size: 2em;
   text-align: left;
+  background-color: #fff;
 }
 
-#phpjs-results {
-  display: inline-block;
-  height: 84%;
-  vertical-align: top;
-  width: 50%;
-  background-color: white;
+#editor > div > div.gutter {
+  cursor: ew-resize;
+  display: flex;
+  align-items: center;
+  background-color: #ccc;
 }
 
-#phpjs-result {
-  border: 1px solid;
-  box-sizing: border-box;
-  height: 0;
-  text-align: left;
-  font-size: 2em;
-  font-family: monospace;
-  overflow: auto;
-}
-#phpjs-result.half {
-  height: 50%;
-}
-#phpjs-html-result {
-  border: 1px solid;
-  box-sizing: border-box;
-  height: 100%;
-  text-align: left;
-  font-size: 2em;
-  overflow: auto;
-}
-#phpjs-html-result.half {
-  height: 50%;
-}
-#phpjs-html-result > iframe {
+#html-output > iframe {
   height: calc(100% - 6px);
   width: 100%;
   border: none;
@@ -89,3 +70,20 @@ section table tbody tr:nth-child(even){
 h1>span, h2>span, h3>span, h4>span {
   display: none;
 }
+
+.reveal pre.src-text-center {
+  text-align: center;
+}
+
+.CodeMirror {
+  height: 100%;
+}
+
+#editor .CodeMirror {
+  height: 84vh;
+}
+
+.reveal pre.CodeMirror-line {
+  box-shadow: none;
+}
+

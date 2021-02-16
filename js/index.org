@@ -550,14 +550,14 @@
    :END:
 
    #+NAME: js-if
-   #+BEGIN_SRC c
+   #+BEGIN_SRC js
 if (condition) {
   instructions; // si condition est évaluée à true
 } 
    #+END_SRC
 
    #+NAME: js-if-else
-   #+BEGIN_SRC c
+   #+BEGIN_SRC js
 if (condition) {
   instructions; // si condition est évaluée à true
 } else {
@@ -566,7 +566,7 @@ if (condition) {
    #+END_SRC
 
    #+NAME: js-if-else-elseif
-   #+BEGIN_SRC c
+   #+BEGIN_SRC js
 if (condition1) {
   instructions; // si condition1 est évaluée à true
 } else if (condition2) {
@@ -602,7 +602,7 @@ if (condition1) {
    :END:
 
    #+NAME: js-switch
-   #+BEGIN_SRC c
+   #+BEGIN_SRC js
    switch(expression) {
      case x:
        // si expression == x
@@ -646,7 +646,7 @@ if (condition1) {
    :END:
 
    #+NAME: js-for
-   #+BEGIN_SRC c
+   #+BEGIN_SRC js
    for (expr1; expr2; expr3) { // expr1 est exécutée une seule fois au début de la boucle
      instructions;             // exécuté tant que expr2 est évaluée à true
    }                           // expr3 est exécutée à la fin de chaque itération
@@ -658,14 +658,14 @@ if (condition1) {
    :END:
 
    #+NAME: js-while
-   #+BEGIN_SRC c
+   #+BEGIN_SRC js
    while (condition) {
      instructions; // exécutée si condition vaut true et répétée tant que condition vaut true
    }
    #+END_SRC
 
    #+NAME: js-do-while
-   #+BEGIN_SRC c
+   #+BEGIN_SRC js
    do {
      instructions; // exécutée puis répétée tant que condition vaut true
    }

@@ -1,5 +1,15 @@
 /*global iframe */
 (function(){
+  console.log(Split({
+    columnGutters: [{
+      track: 1,
+      element: document.getElementById('php-html-gutter')
+    }, {
+      track: 3,
+      element: document.getElementById('html-gutter')
+    }]
+  }));
+
   // https://stackoverflow.com/a/20584396
   function nodeScriptReplace(node) {
     if ( nodeScriptIs(node) === true ) {
@@ -28,25 +38,46 @@
   }
   
   function load() {
-    
-    var content = document.getElementById("phpjs-code"),
-        result = document.getElementById("phpjs-result"),
-        htmlResult = document.getElementById("phpjs-html-result"),
+    var editor = document.getElementById("editor"),
+        editorPhp = CodeMirror.fromTextArea(document.querySelector('#php-source > textarea'), {
+          lineNumbers: true,
+          lineWrapping: true,
+          autoRefresh: true,
+          mode: 'php',
+          theme: 'dracula'
+        }),
+        editorHtml = CodeMirror.fromTextArea(document.querySelector('#html-source > textarea'), {
+          lineNumbers: true,
+          lineWrapping: true,
+          autoRefresh: true,
+          mode: 'htmlmixed',
+          theme: 'dracula'
+        }),
+        htmlOutput = document.getElementById("html-output"),
         path = window.location.pathname,
         clear = function(e){
-          $("#phpjs-code").text("");
-          htmlResult.innerHTML = '';
-          result.innerHTML = '';
+          editorPhp.setValue('');
+          editorPhp.refresh();
+          editorHtml.setValue('');
+          editorHtml.refresh();
+          htmlOutput.innerHTML = '';
+        },
+        mode = function(e){
+          if (document.querySelector('#editor > div').style['grid-template-columns'] == '33% 0.5% 33% 0.5% 33%') {
+            document.querySelector('#editor > div').style['grid-template-columns'] = '0% 0% 49.5% 1% 49.5%';
+          } else {
+             document.querySelector('#editor > div').style['grid-template-columns'] = '33% 0.5% 33% 0.5% 33%';
+          }
         },
         close = function(e){
-          $("#phpjs-compiler").hide();
+          editor.style.display = "none";
         },
         run = function(e){
           if ( e !== undefined ){
             e.preventDefault();
           }
-          var source = content.innerText.replace(/ /g,' ').replace(/\n/g,"\r\n");
-          if (content.classList.contains('php')) {
+          var source = editorPhp.getValue();
+          if (source) {
             opts = {
               SERVER: {
                 SCRIPT_FILENAME: path.substring(0, path.length - 1)
@@ -54,72 +85,89 @@
             };
             opts.filesystem = new PHP.Adapters.XHRFileSystem();
             var engine = new PHP( source, opts);
-            htmlResult.classList.add('half');
-            htmlResult.innerHTML = engine.vm.OUTPUT_BUFFER;
-            result.classList.add('half');
-            result.innerHTML = engine.vm.OUTPUT_BUFFER.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"<br>");
-          } else {
-            htmlResult.innerHTML = '<iframe></iframe>';
-            setTimeout(function(){
-              var iframe = htmlResult.querySelector('iframe').contentDocument.getElementsByTagName('html')[0]
-              iframe.innerHTML = '<script>var iframe = this, log = console.log; console.log = function(param) { log(param); iframe.document.body.innerHTML += param + "<br>"; }</script>'
-              iframe.innerHTML += source;
-              nodeScriptReplace(iframe.parentNode);
-            }, 240);
+            editorHtml.setValue(engine.vm.OUTPUT_BUFFER);
+            editorHtml.refresh();
           }
+          source = editorHtml.getValue();
+          htmlOutput.innerHTML = '<iframe></iframe>';
+          setTimeout(function(){
+            var iframe = htmlOutput.querySelector('iframe').contentDocument.getElementsByTagName('html')[0]
+            iframe.innerHTML = '<script>var iframe = this, log = console.log; console.log = function(param) { log(param); iframe.document.body.innerHTML += param + "<br>"; }</script>'
+            iframe.innerHTML += source;
+            nodeScriptReplace(iframe.parentNode);
+          }, 240);
         };
-
-    $("#phpjs-code").on("blur", function() {
-      RevealHighlight().highlightBlock(document.getElementById('phpjs-code'));
-    });
-    $("#phpjs-close").on("click", close);
-    $("#phpjs-clear").on("click", clear);
-    $("#phpjs-run").on("click", run);
-    
+    addEvent(document.getElementById('editor-mode'), 'click', mode);
+    addEvent(document.getElementById('editor-close'), 'click', close);
+    addEvent(document.getElementById('editor-clear'), 'click', clear);
+    addEvent(document.getElementById('editor-run'), 'click', run);
     function checkKey(event) {
-      var char = String.fromCharCode(event.keyCode || event.charCode);
-      if (char == 'v' || char == 'V') {
-        var elem = document.getElementById("phpjs-compiler"),
-            display = window.getComputedStyle(elem, null).getPropertyValue("display");
-        if (display == 'none') {
-          $("#phpjs-compiler").show();
-        } else {
-          $("#phpjs-compiler").hide();
+      var c = String.fromCharCode(event.keyCode || event.charCode);
+      if (!editorPhp.hasFocus() && !editorHtml.hasFocus()) {
+        if (c == 'x' || c == 'X') {
+          var display = window.getComputedStyle(editor, null).getPropertyValue("display");
+          if (display == 'none') {
+            editor.style.display = "block";
+          } else {
+            close();
+          }
         }
-      }
-      if (char == 'c' || char == 'C') {
-        var elem = document.getElementById("reveal-styles"),
-            display = window.getComputedStyle(elem, null).getPropertyValue("display");
-        if (display == 'none') {
-          $("#reveal-styles").show();
-        } else {
-          $("#reveal-styles").hide();
+        if (c == 'w' || c == 'W') {
+          var elem = document.getElementById("reveal-styles"),
+              display = window.getComputedStyle(elem, null).getPropertyValue("display");
+          if (display == 'none') {
+            elem.style.display = "block";
+          } else {
+            elem.style.display = "none";
+           }
         }
-        
       }  
     }
+    addEvent(window, 'keydown', checkKey);
 
-    $(window).on('keydown', checkKey);
-
-    $("#phpjs-code").on("focus", function(){ $(window).off('keydown', checkKey); });
-    $("#phpjs-code").on("blur", function(){ $(window).on('keydown', checkKey); });
-
-    $('.org-src-container').each(function(index, value){
-      var $element = $(value),
-          $button = $('<button/>', {
-            text: 'Run',
-            click: function() {
-              $("#phpjs-compiler").show();
-              clear();
-              $("#phpjs-code").text($element.find('code').text().replace(/ /g," "));
-              $("#phpjs-code").html($("#phpjs-code").html().replace(/\n/g,'<br/>\n'));
-              $("#phpjs-code").attr('class', $element.find('code').attr('class'));
-              RevealHighlight().highlightBlock(document.getElementById('phpjs-code'));
-            }
-          });
-      if ($element.find('.html, .php').length) {
-        $element = $element.children('pre');
-        $element.append($button);
+    document.querySelectorAll('.org-src-container').forEach(function(elt){
+      var code = elt.querySelector('code').innerText,
+          button = document.createElement('button');
+      button.innerHTML = "Run";
+      addEvent(button, 'click', function() {
+        editor.style.display = "block";
+        clear();
+        if (elt.classList.contains('src-html')) {
+          document.querySelector('#editor > div').style['grid-template-columns'] = '0% 0% 49.5% 1% 49.5%';
+          editorHtml.setValue(code);
+          editorHtml.refresh();
+        } else {
+          document.querySelector('#editor > div').style['grid-template-columns'] = '33% 0.5% 33% 0.5% 33%';
+          editorPhp.setValue(code);
+          editorPhp.refresh();
+        }
+      });
+      if (elt.querySelectorAll('.src-html, .src-js, .src-php, .src-c, .src-xml').length) {
+        elt = elt.querySelector('pre');
+        if (elt.classList.contains('src-html') || elt.classList.contains('src-php')) {
+          elt.appendChild(button);
+        }
+        var mode = 'htmlmixed';
+        if (elt.classList.contains('src-php') || elt.classList.contains('src-xml')) {
+          mode = 'php';
+        }
+        if (elt.classList.contains('src-c')) {
+          mode = 'clike';
+        }
+        if (elt.classList.contains('src-js')) {
+          mode = 'javascript';
+        }
+        var tag = elt.querySelector('code');
+        CodeMirror(function(e) {
+          tag.parentNode.replaceChild(e, tag);
+        }, {
+          value: tag.innerText,
+          mode: mode,
+          theme: 'dracula',
+          autoRefresh: true,
+          readOnly: true,
+          cursorBlinkRate: -1
+        });
       }
     });
   }
