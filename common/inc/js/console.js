@@ -142,7 +142,7 @@
           editorPhp.refresh();
         }
       });
-      if (elt.querySelectorAll('.src-html, .src-js, .src-php, .src-c, .src-xml').length) {
+      if (elt.querySelectorAll('.src-html, .src-js, .src-php, .src-c, .src-xml, .src-css').length) {
         elt = elt.querySelector('pre');
         if (elt.classList.contains('src-html') || elt.classList.contains('src-php')) {
           elt.appendChild(button);
@@ -153,6 +153,9 @@
         }
         if (elt.classList.contains('src-c')) {
           mode = 'clike';
+        }
+        if (elt.classList.contains('src-css')) {
+          mode = 'css';
         }
         if (elt.classList.contains('src-js')) {
           mode = 'javascript';

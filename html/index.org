@@ -167,7 +167,7 @@
     - Le nom de la balise est écrit en minuscule
     - La balise fermante possède un */* avant le nom de la balise
 
-    #+BEGIN_SRC text-center
+    #+BEGIN_SRC xml
       <balise>contenu</balise>
     #+END_SRC
 
@@ -177,7 +177,7 @@
     (ex: <br/> <br> pour un saut de ligne)
     - En HTML5 le slash de fin n'est pas obligatoire
 
-    #+BEGIN_SRC text-center
+    #+BEGIN_SRC xml
       <balise/>
       <balise>
     #+END_SRC
@@ -190,7 +190,7 @@
     - Certains attributs sont obligatoires pour certaines balises
     - On utilise généralement des = " = pour définir la valeur d'un attribut
 
-    #+BEGIN_SRC text-center
+    #+BEGIN_SRC xml
       <balise attribut="valeur">
     #+END_SRC
 
@@ -199,7 +199,7 @@
     - Les commentaires ne sont pas affichés dans le navigateur
     - Ils sont visibles dans le code source =Ctrl+U=
 
-    #+BEGIN_SRC text-center
+    #+BEGIN_SRC xml
       <!-- Ceci est un commentaire -->
     #+END_SRC
 
@@ -210,7 +210,7 @@
     - Avec l'unicode, les entités sont surtout utilisés pour =<, >, ",
       ' et &= qui pourraient être confondu avec le balisage HTML
 
-    #+BEGIN_SRC text-center
+    #+BEGIN_SRC xml
       &entite;
       &#numero; 
     #+END_SRC
@@ -226,7 +226,7 @@
     - Pour les accents, il existe différents suffixes : =acute, grave,
       circ, uml= mais en pratique, on ne les utilise plus.
 
-    #+BEGIN_SRC text-center
+    #+BEGIN_SRC xml
       à : &agrave;
       é : &eacute;
       ö : &ouml;  
@@ -273,18 +273,18 @@
 *** L'entête <!DOCTYPE>
 
     - HTML 5
-      #+BEGIN_SRC text-center
+      #+BEGIN_SRC xml
         <!DOCTYPE html>
       #+END_SRC
     - HTML 4.01 Strict
-      #+BEGIN_SRC text-center
+      #+BEGIN_SRC xml
         <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
         "http://www.w3.org/TR/html4/strict.dtd">
       #+END_SRC
     - HTML 4.01 Transitional
     - XHTML 1.0 Strict
     - XHTML 1.0 Transitional
-      #+BEGIN_SRC text-center
+      #+BEGIN_SRC xml
         <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
       #+END_SRC
@@ -302,11 +302,11 @@
     - La balise d'entête contient les informations caractéristiques de
       la page :
       - encodage de la page (obligatoire)
-        #+BEGIN_SRC text-center
+        #+BEGIN_SRC xml
           <meta charset="utf-8">
         #+END_SRC
       - titre de la page (obligatoire)
-        #+BEGIN_SRC text-center
+        #+BEGIN_SRC xml
           <title>Titre de la page</title>
         #+END_SRC
 
@@ -314,7 +314,7 @@
 
     - Elle peut contenir d'autres informations
       - auteur, mots clés etc.
-        #+BEGIN_SRC text
+        #+BEGIN_SRC xml
           <meta name="description" content="Techniques Internet de base">
           <meta name="keywords" content="HTML, CSS, JavaScript, PHP, SQL">
           <meta name="author" content="Toto">
@@ -619,10 +619,10 @@
 
    #+BEGIN_SRC css
      /* commentaire */
-     selecteur { propriété: valeur; }
+     selecteur { propriete: valeur; }
      selecteur1, selecteur2 {
-       propriété1: valeur1;
-       propriété2: valeur2;
+       propriete1: valeur1;
+       propriete2: valeur2;
      }
    #+END_SRC
 
