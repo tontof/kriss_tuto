@@ -70,11 +70,14 @@ section table tbody tr:nth-child(even){
 h1>span, h2>span, h3>span, h4>span {
   display: none;
 }
-
-.reveal pre.src-text-center {
+.reveal pre.src pre:last-child {
+  display: none;
+}
+pre.src-text-center,
+.src-c-center pre,
+.src-html-center pre {
   text-align: center;
 }
-
 .CodeMirror {
   height: 100%;
 }

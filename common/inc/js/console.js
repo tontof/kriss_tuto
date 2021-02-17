@@ -142,23 +142,23 @@
           editorPhp.refresh();
         }
       });
-      if (elt.querySelectorAll('.src-html, .src-js, .src-php, .src-c, .src-xml, .src-css').length) {
+      if (elt.querySelectorAll('.src-html, .src-xml, .src-html-center, .src-js, .src-css, .src-php, .src-php-src, .src-c, .src-c-center').length) {
         elt = elt.querySelector('pre');
         if (elt.classList.contains('src-html') || elt.classList.contains('src-php')) {
           elt.appendChild(button);
         }
         var mode = 'htmlmixed';
-        if (elt.classList.contains('src-php') || elt.classList.contains('src-xml')) {
-          mode = 'php';
-        }
-        if (elt.classList.contains('src-c')) {
-          mode = 'clike';
-        }
         if (elt.classList.contains('src-css')) {
           mode = 'css';
         }
         if (elt.classList.contains('src-js')) {
           mode = 'javascript';
+        }
+        if (elt.classList.contains('src-php') || elt.classList.contains('src-php-src')) {
+          mode = 'php';
+        }
+        if (elt.classList.contains('src-c') || elt.classList.contains('src-c-center')) {
+          mode = 'clike';
         }
         var tag = elt.querySelector('code');
         CodeMirror(function(e) {

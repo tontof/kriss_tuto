@@ -347,11 +347,11 @@
       des parenthèses est facultative, mais recommandée)
     - la fonction [[http://php.net/manual/en/function.printf.php][=printf=]] affiche une chaîne de caractère formatée et
       retourne la longueur de la chaîne affichée
-      #+BEGIN_SRC c
+      #+BEGIN_SRC c-center
       int printf (string $format [, mixed $args [, mixed $... ]] )
       #+END_SRC
     - la fonction [[http://php.net/manual/en/function.sprintf.php][=sprintf=]] retourne une chaîne formatée
-      #+BEGIN_SRC c
+      #+BEGIN_SRC c-center
       string sprintf (string $format [, mixed $args [, mixed $... ]] )
       #+END_SRC
 
@@ -515,12 +515,12 @@
     - =(bool)=
     - http://php.net/manual/en/types.comparisons.php
 
-#+BEGIN_SRC center
+#+BEGIN_SRC text-center
     empty() !== (bool) 
   is_null() !== isset()
 #+END_SRC
 
-#+BEGIN_SRC center
+#+BEGIN_SRC text-center
   'php' == 0     => true 
   0     == null  => true 
   null  == 'php' => false
@@ -1082,7 +1082,7 @@
   (=GET= ou =POST=)
 #+END_NOTES
 ** GET
-#+INCLUDE: "./examples/form_get.php" src xml
+#+INCLUDE: "./examples/form_get.php" src php-src
 
    [[./examples/form.php?filename=form_get][exemple]]
 
@@ -1129,14 +1129,14 @@
     =$_SERVER["PHP_SELF"]= permet de faire référence au script en cours
 
 - Problème
-     #+BEGIN_SRC xml
+     #+BEGIN_SRC html-center
      <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
      #+END_SRC
      - lien normal : [[./examples/form.php/%22%3E%3Cscript%3Ealert('hacked')%3C/script%3E?filename=form_get][form.php]]
      - lien modifé : [[./examples/form.php/%22%3E%3Cscript%3Ealert('hacked')%3C/script%3E?filename=form_get][form.php/%22%3E%3Cscript%3Ealert('hacked')%3C/script%3E]]
 
 - Solution
-     #+BEGIN_SRC xml
+     #+BEGIN_SRC html-center
      <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
      #+END_SRC
     - =htmlspecialchars($_SERVER["PHP_SELF"]);= ou  =filter_var($_SERVER['PHP_SELF'], FILTER_SANITIZE_STRING);=
@@ -1157,7 +1157,7 @@
   - =/%22%3E%3Cscript%3Ealert('hacked')%3C/script%3E= représente donc
     =/"><script>alert('hacked')</script>=
   - le code HTML généré par PHP avec =$_SERVER['PHP_SELF']= sera donc
-     #+BEGIN_SRC xml
+     #+BEGIN_SRC html-center
       <form action="/php/examples/form.php/"><script>alert('hacked')</script>" method="post">
      #+END_SRC
     ce qui permet par exemple d'introduire du code javascript et
@@ -1168,7 +1168,7 @@
   - =>= par =&gt;=
   - =<= par =&lt;=
   - le code HTML généré par PHP avec =htmlspecialchars($_SERVER['PHP_SELF'])= sera donc
-     #+BEGIN_SRC xml
+     #+BEGIN_SRC html-center
      <form action="/php/examples/form.php/&quot;&gt;&lt;script&gt;alert('hacked')&lt;/script&gt;" method="post">
      #+END_SRC  
 - Remarques
@@ -1189,12 +1189,12 @@
 
      - =htmlspecialchars()=
      - Pas toujours suffisant si l'affichage est déjà dans une balise html
-     #+BEGIN_SRC xml
+     #+BEGIN_SRC html-center
 $data = "javascript:alert('hacked');";
 <img src="'.htmlspecialchars($data).'">
      #+END_SRC
 
-     #+BEGIN_SRC xml
+     #+BEGIN_SRC html-center
 <img src="javascript:alert('hacked');">
      #+END_SRC
 
@@ -1214,7 +1214,7 @@ $data = "javascript:alert('hacked');";
     vous demande pas de faire des sites entièrement sécurisés
 #+END_NOTES
 ** POST
-#+INCLUDE: "./examples/form_post.php" src xml
+#+INCLUDE: "./examples/form_post.php" src php-src
 
    [[./examples/form.php?filename=form_post][exemple]]
 
@@ -1230,7 +1230,7 @@ $data = "javascript:alert('hacked');";
 #+END_NOTES
 ** Valeurs multiples
 
-#+INCLUDE: "./examples/form_multiple_post.php" src xml
+#+INCLUDE: "./examples/form_multiple_post.php" src php-src
 
    - [[./examples/form.php?filename=form_multiple_post][exemple POST]]
    - [[./examples/form.php?filename=form_multiple_get][exemple GET]]
@@ -1245,7 +1245,7 @@ $data = "javascript:alert('hacked');";
 #+END_NOTES
 ** Buttons multiples
 
-#+INCLUDE: "./examples/form_multiple_button.php" src xml
+#+INCLUDE: "./examples/form_multiple_button.php" src php-src
 
    - [[./examples/form.php?filename=form_multiple_button][exemple]]
 
@@ -1300,11 +1300,11 @@ $data = "javascript:alert('hacked');";
 #+END_NOTES
 ** POST et FILES
    
-#+INCLUDE: "./examples/form_post_file.php" src xml
+#+INCLUDE: "./examples/form_post_file.php" src php-src
 
    [[./examples/form.php?filename=form_post_file][exemple]]
 
-#+INCLUDE: "./examples/form_post_files.php" src xml
+#+INCLUDE: "./examples/form_post_files.php" src php-src
 
    [[./examples/form.php?filename=form_post_files][exemple]]
 
@@ -1339,7 +1339,7 @@ $data = "javascript:alert('hacked');";
    - Never Trust User Input
    - La validation html5 n'est pas suffisante
    - [[https://php.net/manual/en/function.filter-input.php][=filter_input=]], [[https://php.net/manual/en/function.filter-var.php][=filter_var=]]
-     #+BEGIN_SRC c
+     #+BEGIN_SRC c-center
 filter_var($email, FILTER_VALIDATE_EMAIL)
      #+END_SRC
 
@@ -1386,7 +1386,7 @@ filter_var($email, FILTER_VALIDATE_EMAIL)
   toujours.
 #+END_NOTES
 ** setcookie
-#+BEGIN_SRC c
+#+BEGIN_SRC c-center
    setcookie($name, $value, $expire, $path, $domain, $secure, $httponly);
 #+END_SRC
 [[http://php.net/manual/en/function.setcookie.php][setcookie()]]
@@ -1490,7 +1490,7 @@ filter_var($email, FILTER_VALIDATE_EMAIL)
 #+END_NOTES
 ** Utilisation des sessions - 1 - =session_login.php=
 
-#+INCLUDE: "./examples/session_login.php" src c
+#+INCLUDE: "./examples/session_login.php" src php-src
 
 #+BEGIN_NOTES
 - dans cette page on dit que nous allons utiliser les sessions
@@ -1513,7 +1513,7 @@ filter_var($email, FILTER_VALIDATE_EMAIL)
 #+END_NOTES
 ** Utilisation des sessions - 2 - =session_form.php=
 
-#+INCLUDE: "./examples/session_form.php" src xml
+#+INCLUDE: "./examples/session_form.php" src php-src
 
 #+BEGIN_NOTES
 - Ici on définit simplement un formulaire de connexion en =post= sur la
@@ -1522,7 +1522,7 @@ page courante =action= vide
 #+END_NOTES
 ** Utilisation des sessions - 3 - =session_menu.php=
 
-#+INCLUDE: "./examples/session_menu.php" src xml
+#+INCLUDE: "./examples/session_menu.php" src php-src
 
 #+BEGIN_NOTES
 - Cette page affiche un menu avec différents liens
@@ -1536,14 +1536,14 @@ page courante =action= vide
 #+END_NOTES
 ** Utilisation des sessions - 4 - =session_info.php=
 
-#+INCLUDE: "./examples/session_info.php" src c
+#+INCLUDE: "./examples/session_info.php" src php-src
 
 #+BEGIN_NOTES
 - on affiche juste des informations sur la session en cours
 #+END_NOTES
 ** Utilisation des sessions - 5 - =session_public.php=
 
-#+INCLUDE: "./examples/session_public.php" src xml
+#+INCLUDE: "./examples/session_public.php" src php-src
 
 #+BEGIN_NOTES
 - Sur la page publique on démarre la session et on incrémente la variable de session =public=
@@ -1551,7 +1551,7 @@ page courante =action= vide
 #+END_NOTES
 ** Utilisation des sessions - 6 - =session_protected.php=
 
-#+INCLUDE: "./examples/session_protected.php" src xml
+#+INCLUDE: "./examples/session_protected.php" src php-src
 
    [[./examples/session.php][exemple]]
 
@@ -1613,7 +1613,7 @@ page courante =action= vide
    - =file_get_contents()= permet de lire le contenu d'un fichier
    - =file_put_contents()= permet d'écrire dans un fichier
 
-#+BEGIN_SRC c
+#+BEGIN_src php-src
 <?php
   $file = "file.txt";
   $content = "";
@@ -1638,11 +1638,11 @@ page courante =action= vide
 ** Manipulation simple des fichiers
 
    - [[http://php.net/manual/en/function.readfile.php][readfile]] lit et affiche le contenu d'un fichier 
-     #+BEGIN_SRC c
+     #+BEGIN_SRC c-center
      int readfile ( string $filename )
      #+END_SRC
    - [[http://php.net/manual/en/function.file.php][file]] lit et retourne sous forme de tableau un fichier
-     #+BEGIN_SRC c
+     #+BEGIN_SRC c-center
      array file ( string $filename )
      #+END_SRC
      
@@ -1656,7 +1656,7 @@ page courante =action= vide
 ** Manipulation avancée des fichiers
 
    -  [[http://php.net/manual/en/function.fopen.php][fopen]] ouvre un fichier
-     #+BEGIN_SRC c
+     #+BEGIN_SRC c-center
      resource fopen ( string $filename , string $mode)
      #+END_SRC
    - =$mode= :
@@ -1675,19 +1675,19 @@ page courante =action= vide
 ** Déplacement
 
    - [[http://php.net/manual/en/function.fseek.php][fseek]] déplace le pointeur à une position donnée
-     #+BEGIN_SRC c
+     #+BEGIN_SRC c-center
      int fseek ( resource $handle , int $offset )
      #+END_SRC
    - [[http://php.net/manual/en/function.rewind.php][rewind]]  remet le pointeur au début
-     #+BEGIN_SRC c
+     #+BEGIN_SRC c-center
      bool rewind ( resource $handle )
      #+END_SRC
    - [[http://php.net/manual/en/function.ftell.php][ftell]] retourne la position du pointeur
-     #+BEGIN_SRC c
+     #+BEGIN_SRC c-center
      int ftell ( resource $handle )
      #+END_SRC
    - [[http://php.net/manual/en/function.feof.php][feof]] test la fin du fichier
-     #+BEGIN_SRC c
+     #+BEGIN_SRC c-center
      bool feof ( resource $handle )
      #+END_SRC
 
@@ -1701,15 +1701,15 @@ page courante =action= vide
 ** Lecture
 
    - [[http://php.net/manual/en/function.fread.php][fread]] lecture du fichier en mode binaire
-     #+BEGIN_SRC c
+     #+BEGIN_SRC c-center
      string fread ( resource $handle , int $length )
      #+END_SRC
    - [[http://php.net/manual/en/function.fgets.php][fgets]] lecture de la ligne courante
-     #+BEGIN_SRC c
+     #+BEGIN_SRC c-center
      string fgets ( resource $handle [, int $length ] )
      #+END_SRC
    - [[http://php.net/manual/en/function.fgetc.php][fgetc]] lecture du caractère courant
-     #+BEGIN_SRC c
+     #+BEGIN_SRC c-center
      string fgetc ( resource $handle )
      #+END_SRC
 
@@ -1721,11 +1721,11 @@ page courante =action= vide
 ** Écriture/Fermeture d'un fichier
 
    - [[http://php.net/manual/en/function.fwrite.php][fwrite]]/fputs écriture du fichier en mode binaire
-     #+BEGIN_SRC c
+     #+BEGIN_SRC c-center
      int fwrite ( resource $handle , string $string [, int $length ] )
      #+END_SRC
    - [[http://php.net/manual/en/function.fclose.php][fclose]] fermeture du fichier
-     #+BEGIN_SRC c
+     #+BEGIN_SRC c-center
      bool fclose ( resource $handle )
      #+END_SRC
 
@@ -1735,7 +1735,7 @@ page courante =action= vide
 #+END_NOTES
 ** Exemple
 
-   #+BEGIN_SRC c
+   #+BEGIN_src php-src
 <?php
 // Équivalent de file_get_contents
 $file = "file.txt";
@@ -1763,7 +1763,7 @@ if ($handle) {
 ** Vérrouillage d'un fichier
 
    -  [[http://php.net/manual/en/function.flock.php][flock]] vérrouille un fichier
-     #+BEGIN_SRC c
+     #+BEGIN_SRC c-center
      bool flock ( resource $handle , int $operation )
      #+END_SRC
    - =$operation= :
@@ -1802,15 +1802,15 @@ if ($handle) {
 ** Action sur les fichiers
 
    -  [[http://php.net/manual/en/function.copy.php][copy]] copie un fichier
-     #+BEGIN_SRC c
+     #+BEGIN_SRC c-center
      bool copy ( string $source , string $dest )
      #+END_SRC
    -  [[http://php.net/manual/en/function.rename.php][rename]] renomme unfichier
-     #+BEGIN_SRC c
+     #+BEGIN_SRC c-center
      bool rename ( string $oldname , string $newname )
      #+END_SRC
    -  [[http://php.net/manual/en/function.unlink.php][unlink]] supprime un fichier
-     #+BEGIN_SRC c
+     #+BEGIN_SRC c-center
      bool unlink ( string $filename )
      #+END_SRC
 
@@ -1822,23 +1822,23 @@ if ($handle) {
 ** Information sur les fichiers
 
    - [[http://php.net/manual/en/function.filesize.php][filesize]] récupère la taille du fichier
-     #+BEGIN_SRC c
+     #+BEGIN_SRC c-center
      int filesize ( string $filename )
      #+END_SRC
    - [[http://php.net/manual/en/function.fileatime.php][fileatime]] donne la date du dernier accès à un fichier
-     #+BEGIN_SRC c
+     #+BEGIN_SRC c-center
      int fileatime ( string $filename )
      #+END_SRC
    - [[http://php.net/manual/en/function.filemtime.php][filemtime]] donne la date de dernière modification d'un fichier
-     #+BEGIN_SRC c
+     #+BEGIN_SRC c-center
      int filemtime ( string $filename )
      #+END_SRC
    - [[http://php.net/manual/en/function.realpath.php][realpath]] retourne le chemin absolu d'un chemin
-     #+BEGIN_SRC c
+     #+BEGIN_SRC c-center
      string realpath ( string $path )
      #+END_SRC
    - [[http://php.net/manual/en/function.basename.php][basename]] retourne le nom du fichier d'un chemin
-     #+BEGIN_SRC c
+     #+BEGIN_SRC c-center
      string basename ( string $path [, string $suffix ] )
      #+END_SRC
 
@@ -1895,7 +1895,7 @@ if ($handle) {
 #+END_NOTES
 ** Exemple
 
-#+BEGIN_SRC c
+#+BEGIN_src php-src
 <?php
   // mysqli
   $mysqli = new mysqli('example.com', 'user', 'password', 'database');
@@ -1922,11 +1922,11 @@ if ($handle) {
 #+END_NOTES
 ** PDO : créer une connexion
 
-#+INCLUDE: "./examples/pdo_exception.php" src c
+#+INCLUDE: "./examples/pdo_exception.php" src php-src
 
    [[./examples/pdo_exception.php][exemple]]
 
-#+INCLUDE: "./examples/pdo_try.php" src c
+#+INCLUDE: "./examples/pdo_try.php" src php-src
    
    [[./examples/pdo_try.php][exemple]]
 
@@ -1944,7 +1944,7 @@ if ($handle) {
    - Fermeture automatique à la fin du script
    - Mettre à null la variable qui gère la connexion
 
-#+INCLUDE: "./examples/pdo_close.php" src c
+#+INCLUDE: "./examples/pdo_close.php" src php-src
 
 #+BEGIN_NOTES
 - SQLite utilise des fichiers pour stocker la base de données mais
@@ -1957,11 +1957,11 @@ if ($handle) {
 ** PDO : exec et query
 
    - [[http://php.net/manual/en/pdo.exec.php][exec]] execute une requête SQL et retourne le nombre de lignes affectées
-     #+BEGIN_SRC c
+     #+BEGIN_SRC c-center
      public int PDO::exec ( string $statement )
      #+END_SRC
    - [[http://php.net/manual/en/pdo.query.php][query]] execute une requête SQL et retourne un objet [[http://php.net/manual/fr/class.pdostatement.php][PDOStatement]]
-     #+BEGIN_SRC c
+     #+BEGIN_SRC c-center
      public PDOStatement PDO::query ( string $statement )
      #+END_SRC
 
@@ -1975,7 +1975,7 @@ if ($handle) {
 #+END_NOTES
 ** PDO : gestion des erreurs
 
-#+INCLUDE: "./examples/pdo_error.php" src c
+#+INCLUDE: "./examples/pdo_error.php" src php-src
 
    [[./examples/pdo_error.php][exemple]]
 
@@ -1988,7 +1988,7 @@ l'URL en changeant les valeurs =exception=, =warning= et =silent=
    - Pose le plus de problème pour la généricité du code car très
      spécifique à la base utilisée
 
-#+INCLUDE: "./examples/pdo_create.php" src c
+#+INCLUDE: "./examples/pdo_create.php" src php-src
 
 #+BEGIN_NOTES
 - Les requêtes de création de table sont les moins génériques car tous
@@ -2000,7 +2000,7 @@ SQLite)
 #+END_NOTES
 ** PDO : insertion : =pdo_insert.php=
 
-#+INCLUDE: "./examples/pdo_insert.php" src c
+#+INCLUDE: "./examples/pdo_insert.php" src php-src
    
    [[./examples/pdo_insert.php][exemple]]
 
@@ -2014,7 +2014,7 @@ SQLite)
 #+END_NOTES
 ** PDO : sélection
 
-#+INCLUDE: "./examples/pdo_select.php" src c
+#+INCLUDE: "./examples/pdo_select.php" src php-src
    
    [[./examples/pdo_select.php][exemple]]
 
@@ -2026,7 +2026,7 @@ SQLite)
 #+END_NOTES
 ** PDO : parcours des données
 
-#+INCLUDE: "./examples/pdo_select_fetch.php" src c
+#+INCLUDE: "./examples/pdo_select_fetch.php" src php-src
 
    [[./examples/pdo_select_fetch.php][exemple]]
 
@@ -2047,7 +2047,7 @@ SQLite)
 #+END_NOTES
 ** PDO : mise à jour
 
-#+INCLUDE: "./examples/pdo_update.php" src c
+#+INCLUDE: "./examples/pdo_update.php" src php-src
    
    [[./examples/pdo_update.php][exemple]]
 
@@ -2058,7 +2058,7 @@ SQLite)
 #+END_NOTES
 ** PDO : suppression
 
-#+INCLUDE: "./examples/pdo_delete.php" src c
+#+INCLUDE: "./examples/pdo_delete.php" src php-src
    
    [[./examples/pdo_delete.php][exemple]]
 
@@ -2067,7 +2067,7 @@ SQLite)
 #+END_NOTES
 ** PDO : préparation
 
-#+INCLUDE: "./examples/pdo_prepare.php" src c
+#+INCLUDE: "./examples/pdo_prepare.php" src php-src
    
    [[./examples/pdo_prepare.php][exemple]]
 
@@ -2088,7 +2088,7 @@ SQLite)
 #+END_NOTES
 ** PDO : fermeture du curseur
 
-   #+INCLUDE: "./examples/pdo_close_cursor.php" src c
+   #+INCLUDE: "./examples/pdo_close_cursor.php" src php-src
    
    [[./examples/pdo_close_cursor.php][exemple]]
 
