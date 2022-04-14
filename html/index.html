@@ -6,15 +6,17 @@
 <style type="text/css">
 .underline { text-decoration: underline; }
 </style>
-<link rel="stylesheet" href="../common/lib/reveal/css/reveal.css"/>
+<link rel="stylesheet" href="../common/lib/reveal/dist/reveal.css"/>
 
-<link rel="stylesheet" href="../common/lib/reveal/css/theme/serif.css" id="theme"/>
+<link rel="stylesheet" href="../common/lib/reveal/dist/theme/serif.css" id="theme"/>
 
 <link rel="stylesheet" href="../common/inc/css/htmlize.css"/>
 
 <link rel="stylesheet" href="../common/lib/codemirror/codemirror.css"/>
 
 <link rel="stylesheet" href="../common/lib/codemirror/theme/dracula.css"/>
+
+<link rel="stylesheet" href="../common/inc/css/custom-pdf.css"/>
 
 <link rel="stylesheet" href="../common/inc/css/custom.css"/>
 
@@ -30,7 +32,7 @@
 </script>
 </head>
 <body>
-<!-- If the query includes 'print-pdf', include the PDF print sheet --><script>if( window.location.search.match( /print-pdf/gi ) ) { var link = document.createElement( 'link' ); link.rel = 'stylesheet'; link.type = 'text/css'; link.href = '../common/inc/css/custom-pdf.css'; document.getElementsByTagName( 'head' )[0].appendChild( link ); }</script><div id="reveal-notes"></div><div id="editor"><div><div id="php-source"><textarea></textarea></div><div id="php-html-gutter" class="gutter"></div><div id="html-source"><textarea></textarea></div><div id="html-gutter" class="gutter"></div><div id="html-output"></div></div><button id="editor-clear">Clear</button><button id="editor-mode">Mode PHP/HTML</button><button id="editor-close">Close</button><button id="editor-run">Run</button></div>
+<div id="reveal-notes"></div><div id="editor"><div><div id="php-source"><textarea></textarea></div><div id="php-html-gutter" class="gutter"></div><div id="html-source"><textarea></textarea></div><div id="html-gutter" class="gutter"></div><div id="html-output"></div></div><button id="editor-clear">Clear</button><button id="editor-mode">Mode PHP/HTML</button><button id="editor-close">Close</button><button id="editor-run">Run</button></div>
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide"><h1 class="title">HTML/CSS</h1>
@@ -49,7 +51,7 @@
 </section>
 
 <section id="slide-internet">
-<h2 id="internet"><a id="org7d118ad"></a><span class="section-number-2">1</span> Internet</h2>
+<h2 id="internet"><a id="orgb72fc5e"></a><span class="section-number-2">1</span> Internet</h2>
 <ul>
 <li>Historique</li>
 <li>Concepts de base</li>
@@ -57,8 +59,8 @@
 </ul>
 
 </section>
-<section id="slide-org87ddbbd">
-<h3 id="org87ddbbd"><span class="section-number-3">1.1</span> Chronologie 1/2</h3>
+<section id="slide-orgd752a1e">
+<h3 id="orgd752a1e"><span class="section-number-3">1.1</span> Chronologie 1/2</h3>
 <ul>
 <li>Historique
 <ul>
@@ -80,8 +82,8 @@ City ) est fonctionnel.</li>
 </ul>
 
 </section>
-<section id="slide-org5c1ad56">
-<h3 id="org5c1ad56"><span class="section-number-3">1.2</span> Chronologie 2/2</h3>
+<section id="slide-org34ee276">
+<h3 id="org34ee276"><span class="section-number-3">1.2</span> Chronologie 2/2</h3>
 <ul>
 <li>Historique
 <ul>
@@ -95,8 +97,8 @@ City ) est fonctionnel.</li>
 </ul>
 
 </section>
-<section id="slide-orgcbdf1c3">
-<h3 id="orgcbdf1c3"><span class="section-number-3">1.3</span> Concepts de base</h3>
+<section id="slide-org17da1f9">
+<h3 id="org17da1f9"><span class="section-number-3">1.3</span> Concepts de base</h3>
 <ul>
 <li>Réseaux</li>
 <li>Architecture client/serveur</li>
@@ -105,8 +107,8 @@ City ) est fonctionnel.</li>
 </ul>
 
 </section>
-<section id="slide-orgba14a79">
-<h4 id="orgba14a79"><span class="section-number-4">1.3.1</span> Le réseau</h4>
+<section id="slide-org4735584">
+<h4 id="org4735584"><span class="section-number-4">1.3.1</span> Le réseau</h4>
 <ul>
 <li>Protocoles TCP/IP :
 <ul>
@@ -124,8 +126,8 @@ navigateur Web, FTP, Telnet, Ping, POP, SMTP, &#x2026;</li>
 </ul>
 
 </section>
-<section id="slide-org1ebdf18">
-<h4 id="org1ebdf18"><span class="section-number-4">1.3.2</span> L'architecture client/serveur</h4>
+<section id="slide-org254a182">
+<h4 id="org254a182"><span class="section-number-4">1.3.2</span> L'architecture client/serveur</h4>
 <ul>
 <li>La notion de client/serveur : mode de communication entre au
 moins deux ordinateurs
@@ -142,8 +144,8 @@ sur lequel s’exécute le programme serveur.</li>
 </ul>
 
 </section>
-<section id="slide-org593da41">
-<h4 id="org593da41"><span class="section-number-4">1.3.3</span> Le protocole</h4>
+<section id="slide-org655abd2">
+<h4 id="org655abd2"><span class="section-number-4">1.3.3</span> Le protocole</h4>
 <ul>
 <li>Le serveur et le client doivent donc utiliser le même protocole
 pour pouvoir communiquer:
@@ -160,8 +162,8 @@ messages électroniques;</li>
 </ul>
 
 </section>
-<section id="slide-orge188a9a">
-<h4 id="orge188a9a"><span class="section-number-4">1.3.4</span> Exemple d'application : le mail</h4>
+<section id="slide-org2d70ba3">
+<h4 id="org2d70ba3"><span class="section-number-4">1.3.4</span> Exemple d'application : le mail</h4>
 <ul>
 <li><span class="underline">Le client</span> : le logiciel de messagerie électronique envoie des
 requêtes et attends les réponses.</li>
@@ -188,8 +190,8 @@ un serveur web.</li>
 </ul>
 
 </section>
-<section id="slide-org626c07e">
-<h4 id="org626c07e"><span class="section-number-4">1.3.5</span> URL : Universal/Uniform Resource Locator</h4>
+<section id="slide-org213dfae">
+<h4 id="org213dfae"><span class="section-number-4">1.3.5</span> URL : Universal/Uniform Resource Locator</h4>
 <ul>
 <li>Accéder à une ressource/serveur ⇒ décrire où elle se trouve.</li>
 <li>URL : Description de la localisation d’un fichier, une source de
@@ -206,8 +208,8 @@ données, &#x2026;, etc.</li>
 </ul>
 
 </section>
-<section id="slide-org59e1705">
-<h4 id="org59e1705"><span class="section-number-4">1.3.6</span> URL</h4>
+<section id="slide-orgfdc4ee3">
+<h4 id="orgfdc4ee3"><span class="section-number-4">1.3.6</span> URL</h4>
 <div class="org-src-container">
 
 <pre  class="src src-html-center"><code trim>&lt;protocole&gt;://&lt;nomserveur&gt;[:port]/&lt;chemin&gt;
@@ -222,8 +224,8 @@ données, &#x2026;, etc.</li>
 </ul>
 
 </section>
-<section id="slide-org76fb2a0">
-<h4 id="org76fb2a0"><span class="section-number-4">1.3.7</span> Description d'URL</h4>
+<section id="slide-orgcb41202">
+<h4 id="orgcb41202"><span class="section-number-4">1.3.7</span> Description d'URL</h4>
 <ul>
 <li><span class="underline">Adresse IP</span> : identifiant unique des ordinateurs
 (ex. 127.0.0.1).</li>
@@ -244,7 +246,7 @@ IP ⇔ Nom de Domaine / Machine
 
 </section>
 <section id="slide-html">
-<h2 id="html"><a id="org7e8b310"></a><span class="section-number-2">2</span> HTML</h2>
+<h2 id="html"><a id="org39f5961"></a><span class="section-number-2">2</span> HTML</h2>
 
 <div class="figure">
 <p><img src="./inc/img/html5.png" alt="html5.png" />
@@ -252,8 +254,8 @@ IP ⇔ Nom de Domaine / Machine
 </div>
 
 </section>
-<section id="slide-org54fc68b">
-<h3 id="org54fc68b"><span class="section-number-3">2.1</span> Le langage HTML</h3>
+<section id="slide-org69a9857">
+<h3 id="org69a9857"><span class="section-number-3">2.1</span> Le langage HTML</h3>
 <ul>
 <li><span class="underline">HTML</span> : HyperTexte Markup Language</li>
 <li>Langage de balisage pour structurer des pages web</li>
@@ -264,8 +266,8 @@ afficher une page web.</li>
 </ul>
 
 </section>
-<section id="slide-org7ef9f41">
-<h4 id="org7ef9f41"><span class="section-number-4">2.1.1</span> Historique</h4>
+<section id="slide-orga1a5d8b">
+<h4 id="orga1a5d8b"><span class="section-number-4">2.1.1</span> Historique</h4>
 <ul>
 <li>1991 : HTML</li>
 <li>1995 : HTML 2.0</li>
@@ -277,8 +279,8 @@ afficher une page web.</li>
 </ul>
 
 </section>
-<section id="slide-orgda76db4">
-<h4 id="orgda76db4"><span class="section-number-4">2.1.2</span> 4 types d'éléments</h4>
+<section id="slide-org4b50c86">
+<h4 id="org4b50c86"><span class="section-number-4">2.1.2</span> 4 types d'éléments</h4>
 <ul>
 <li>les balises</li>
 <li>les attributs de balises</li>
@@ -288,8 +290,8 @@ afficher une page web.</li>
 </ul>
 
 </section>
-<section id="slide-org83c7dcd">
-<h4 id="org83c7dcd"><span class="section-number-4">2.1.3</span> Les balises</h4>
+<section id="slide-orgee2e1c3">
+<h4 id="orgee2e1c3"><span class="section-number-4">2.1.3</span> Les balises</h4>
 <ul>
 <li>Une balise :
 <ul>
@@ -302,8 +304,8 @@ afficher une page web.</li>
 </ul>
 
 </section>
-<section id="slide-org54cd2c5">
-<h4 id="org54cd2c5"><span class="section-number-4">2.1.4</span> Les balises de zone</h4>
+<section id="slide-org6a03a05">
+<h4 id="org6a03a05"><span class="section-number-4">2.1.4</span> Les balises de zone</h4>
 <ul>
 <li>Les balises vont généralement par paires (ouvrante/fermante)</li>
 
@@ -324,8 +326,8 @@ afficher une page web.</li>
 </div>
 
 </section>
-<section id="slide-orgdc16ae7">
-<h4 id="orgdc16ae7"><span class="section-number-4">2.1.5</span> Les balises ponctuelles</h4>
+<section id="slide-orgef93ef2">
+<h4 id="orgef93ef2"><span class="section-number-4">2.1.5</span> Les balises ponctuelles</h4>
 <ul>
 <li>Les balises peuvent ne pas avoir de contenu</li>
 
@@ -346,8 +348,8 @@ afficher une page web.</li>
 </div>
 
 </section>
-<section id="slide-orgd396718">
-<h4 id="orgd396718"><span class="section-number-4">2.1.6</span> Les attributs</h4>
+<section id="slide-orgb3f1ae5">
+<h4 id="orgb3f1ae5"><span class="section-number-4">2.1.6</span> Les attributs</h4>
 <ul>
 <li>Les attributs sont associés à une balise ouvrante</li>
 
@@ -369,8 +371,8 @@ afficher une page web.</li>
 </div>
 
 </section>
-<section id="slide-orgb069431">
-<h4 id="orgb069431"><span class="section-number-4">2.1.7</span> Les commentaires</h4>
+<section id="slide-org3aeb4e7">
+<h4 id="org3aeb4e7"><span class="section-number-4">2.1.7</span> Les commentaires</h4>
 <ul>
 <li>Les commentaires ne sont pas affichés dans le navigateur</li>
 <li>Ils sont visibles dans le code source <code>Ctrl+U</code></li>
@@ -384,8 +386,8 @@ afficher une page web.</li>
 </div>
 
 </section>
-<section id="slide-orgd71ca5d">
-<h4 id="orgd71ca5d"><span class="section-number-4">2.1.8</span> Les entités</h4>
+<section id="slide-org37c2d93">
+<h4 id="org37c2d93"><span class="section-number-4">2.1.8</span> Les entités</h4>
 <ul>
 <li>Les entités permettent d'afficher des caractères spéciaux
 (accents, signes, etc.)</li>
@@ -445,8 +447,8 @@ afficher une page web.</li>
 </table>
 
 </section>
-<section id="slide-org2dc81ec">
-<h4 id="org2dc81ec"><span class="section-number-4">2.1.9</span> Les entités : accents</h4>
+<section id="slide-org395e7e6">
+<h4 id="org395e7e6"><span class="section-number-4">2.1.9</span> Les entités : accents</h4>
 <ul>
 <li>Pour les accents, il existe différents suffixes : <code>acute, grave,
       circ, uml</code></li>
@@ -468,8 +470,8 @@ afficher une page web.</li>
 </p>
 
 </section>
-<section id="slide-orgd7fdb01">
-<h4 id="orgd7fdb01"><span class="section-number-4">2.1.10</span> La grammaire HTML</h4>
+<section id="slide-orgf6b1ed3">
+<h4 id="orgf6b1ed3"><span class="section-number-4">2.1.10</span> La grammaire HTML</h4>
 <ul>
 <li>On peut définir 5 règles :
 <ul>
@@ -486,13 +488,13 @@ sauf pour séparer 2 mots</li>
 </ul>
 
 </section>
-<section id="slide-orgf88dd6d">
-<h3 id="orgf88dd6d"><span class="section-number-3">2.2</span> Structure d'une page HTML</h3>
+<section id="slide-org80f46bb">
+<h3 id="org80f46bb"><span class="section-number-3">2.2</span> Structure d'une page HTML</h3>
 <div class="outline-text-3" id="text-2-2">
 </div>
 </section>
 <section id="slide-hello-world">
-<h4 id="hello-world"><a id="orgf51b8f1"></a><span class="section-number-4">2.2.1</span> Hello world</h4>
+<h4 id="hello-world"><a id="org880a7a4"></a><span class="section-number-4">2.2.1</span> Hello world</h4>
 <ul>
 <li>Créer un fichier avec l'extension <code>.html</code></li>
 <li>Insérer du code HTML</li>
@@ -516,8 +518,8 @@ sauf pour séparer 2 mots</li>
 </div>
 
 </section>
-<section id="slide-orgeda319b">
-<h4 id="orgeda319b"><span class="section-number-4">2.2.2</span> L'entête &lt;!DOCTYPE&gt;</h4>
+<section id="slide-org01f6982">
+<h4 id="org01f6982"><span class="section-number-4">2.2.2</span> L'entête &lt;!DOCTYPE&gt;</h4>
 <ul>
 <li>HTML 5</li>
 
@@ -549,8 +551,8 @@ sauf pour séparer 2 mots</li>
 </div>
 
 </section>
-<section id="slide-orgc4422d2">
-<h4 id="orgc4422d2"><span class="section-number-4">2.2.3</span> La balise &lt;html&gt;</h4>
+<section id="slide-org025ae8f">
+<h4 id="org025ae8f"><span class="section-number-4">2.2.3</span> La balise &lt;html&gt;</h4>
 <ul>
 <li>Une page HTML commence toujours par une balise <code>&lt;html&gt;</code></li>
 <li>Une page HTML finit toujours par une balise <code>&lt;/html&gt;</code></li>
@@ -564,8 +566,8 @@ sauf pour séparer 2 mots</li>
 </ul>
 
 </section>
-<section id="slide-orgf7e9af4">
-<h4 id="orgf7e9af4"><span class="section-number-4">2.2.4</span> La balise &lt;head&gt;</h4>
+<section id="slide-orgb3abd8f">
+<h4 id="orgb3abd8f"><span class="section-number-4">2.2.4</span> La balise &lt;head&gt;</h4>
 <ul>
 <li><p>
 La balise d'entête contient les informations caractéristiques de
@@ -593,8 +595,8 @@ la page :
 </ul>
 
 </section>
-<section id="slide-org1812acb">
-<h4 id="org1812acb"><span class="section-number-4">2.2.5</span> La balise &lt;head&gt;</h4>
+<section id="slide-org10d21b2">
+<h4 id="org10d21b2"><span class="section-number-4">2.2.5</span> La balise &lt;head&gt;</h4>
 <ul>
 <li><p>
 Elle peut contenir d'autres informations
@@ -620,8 +622,8 @@ du navigateur (sauf le titre) mais sont visibles dans le code source</li>
 </ul>
 
 </section>
-<section id="slide-org16699a7">
-<h4 id="org16699a7"><span class="section-number-4">2.2.6</span> La balise &lt;body&gt;</h4>
+<section id="slide-orgcd35726">
+<h4 id="orgcd35726"><span class="section-number-4">2.2.6</span> La balise &lt;body&gt;</h4>
 <ul>
 <li>La balise de contenu contient toutes les informations qui sont
 affichées par le navigateur :
@@ -636,8 +638,8 @@ affichées par le navigateur :
 </ul>
 
 </section>
-<section id="slide-orge3113a9">
-<h3 id="orge3113a9"><span class="section-number-3">2.3</span> Les balises de structure de la page</h3>
+<section id="slide-org1803b0f">
+<h3 id="org1803b0f"><span class="section-number-3">2.3</span> Les balises de structure de la page</h3>
 <ul>
 <li>HTML5 introduit des balises sémantiques
 <ul>
@@ -657,7 +659,7 @@ de la page</li>
 
 </section>
 <section id="slide-balises-titre">
-<h3 id="balises-titre"><a id="org3669c9a"></a><span class="section-number-3">2.4</span> Les balises de titre</h3>
+<h3 id="balises-titre"><a id="org4c24682"></a><span class="section-number-3">2.4</span> Les balises de titre</h3>
 <div class="org-src-container">
 
 <pre  class="src src-html" id="html-balise-titre"><code trim>&lt;h1&gt;Titre de niveau H1&lt;/h1&gt;
@@ -670,8 +672,8 @@ de la page</li>
 </div>
 
 </section>
-<section id="slide-orgd45453a">
-<h3 id="orgd45453a"><span class="section-number-3">2.5</span> Les balises pour le texte</h3>
+<section id="slide-org83a0cae">
+<h3 id="org83a0cae"><span class="section-number-3">2.5</span> Les balises pour le texte</h3>
 <div class="org-src-container">
 
 <pre  class="src src-html" id="html-texte"><code trim>&lt;p&gt;Paragraphe&lt;/p&gt;
@@ -702,8 +704,8 @@ de la page</li>
 </ul>
 
 </section>
-<section id="slide-org6f1608b">
-<h3 id="org6f1608b"><span class="section-number-3">2.6</span> Les balises pour les images</h3>
+<section id="slide-org7508c6b">
+<h3 id="org7508c6b"><span class="section-number-3">2.6</span> Les balises pour les images</h3>
 <ul>
 <li>La balise <code>&lt;img&gt;</code> permet d'afficher une image</li>
 <li><p>
@@ -727,8 +729,8 @@ d'accessibilité</li>
 </ul>
 
 </section>
-<section id="slide-org430106e">
-<h3 id="org430106e"><span class="section-number-3">2.7</span> Les balises pour les figures</h3>
+<section id="slide-orga055a4d">
+<h3 id="orga055a4d"><span class="section-number-3">2.7</span> Les balises pour les figures</h3>
 <div class="org-src-container">
 
 <pre  class="src src-html" id="html-figure"><code trim>&lt;figure&gt;
@@ -739,8 +741,8 @@ d'accessibilité</li>
 </div>
 
 </section>
-<section id="slide-orgd7368b5">
-<h3 id="orgd7368b5"><span class="section-number-3">2.8</span> Format des images (JPEG)</h3>
+<section id="slide-org7ad5b25">
+<h3 id="org7ad5b25"><span class="section-number-3">2.8</span> Format des images (JPEG)</h3>
 <ul>
 <li>Joint Photographic Experts Group / JPEG (<code>.jpg</code>, <code>.jpeg</code>) :
 <ul>
@@ -753,8 +755,8 @@ d'accessibilité</li>
 </ul>
 
 </section>
-<section id="slide-org1fd9bb6">
-<h3 id="org1fd9bb6"><span class="section-number-3">2.9</span> Format des images (GIF)</h3>
+<section id="slide-orga07c70c">
+<h3 id="orga07c70c"><span class="section-number-3">2.9</span> Format des images (GIF)</h3>
 <ul>
 <li>Graphics Interchange Format / GIF (<code>.gif</code>) :
 <ul>
@@ -767,8 +769,8 @@ d'accessibilité</li>
 </ul>
 
 </section>
-<section id="slide-orged19bac">
-<h3 id="orged19bac"><span class="section-number-3">2.10</span> Format des images (PNG)</h3>
+<section id="slide-orga5788e9">
+<h3 id="orga5788e9"><span class="section-number-3">2.10</span> Format des images (PNG)</h3>
 <ul>
 <li>Portable Network Graphics / PNG (<code>.png</code>) :
 <ul>
@@ -782,8 +784,8 @@ d'accessibilité</li>
 </ul>
 
 </section>
-<section id="slide-orgebb1ff5">
-<h3 id="orgebb1ff5"><span class="section-number-3">2.11</span> Format des images (SVG)</h3>
+<section id="slide-org137a570">
+<h3 id="org137a570"><span class="section-number-3">2.11</span> Format des images (SVG)</h3>
 <ul>
 <li>Scalable Vector Graphics / SVG (<code>.svg</code>) :
 <ul>
@@ -798,7 +800,7 @@ d'accessibilité</li>
 
 </section>
 <section id="slide-html-link">
-<h3 id="html-link"><a id="orgafc07a8"></a><span class="section-number-3">2.12</span> Les balises pour les liens</h3>
+<h3 id="html-link"><a id="org3debc10"></a><span class="section-number-3">2.12</span> Les balises pour les liens</h3>
 <ul>
 <li>Lien hypertexte :
 <ul>
@@ -824,8 +826,8 @@ l'attribut <code>target</code> permet d'ouvrir le lien dans un autre onglet
 </ul>
 
 </section>
-<section id="slide-org8125b7f">
-<h3 id="org8125b7f"><span class="section-number-3">2.13</span> Les balises pour les listes</h3>
+<section id="slide-org1e55a91">
+<h3 id="org1e55a91"><span class="section-number-3">2.13</span> Les balises pour les listes</h3>
 <ul>
 <li><p>
 Les listes ordonnées/non-ordonnées
@@ -860,8 +862,8 @@ Les listes de définitions
 </ul>
 
 </section>
-<section id="slide-orgfb009e7">
-<h3 id="orgfb009e7"><span class="section-number-3">2.14</span> Les listes imbriquées</h3>
+<section id="slide-org7f4d074">
+<h3 id="org7f4d074"><span class="section-number-3">2.14</span> Les listes imbriquées</h3>
 <div class="org-src-container">
 
 <pre  class="src src-html" id="html-list-list"><code trim>&lt;ul&gt;
@@ -887,8 +889,8 @@ Les listes de définitions
 </div>
 
 </section>
-<section id="slide-org5eccebf">
-<h3 id="org5eccebf"><span class="section-number-3">2.15</span> Les balises pour les tableaux</h3>
+<section id="slide-org9a827ce">
+<h3 id="org9a827ce"><span class="section-number-3">2.15</span> Les balises pour les tableaux</h3>
 <ul>
 <li>HTML offre 4 balises pour créer des tableaux
 <ul>
@@ -909,8 +911,8 @@ du tableau</li>
 </ul>
 
 </section>
-<section id="slide-org92bcf31">
-<h3 id="org92bcf31"><span class="section-number-3">2.16</span> Exemple d'un tableau</h3>
+<section id="slide-org57e3c7f">
+<h3 id="org57e3c7f"><span class="section-number-3">2.16</span> Exemple d'un tableau</h3>
 <div class="org-src-container">
 
 <pre  class="src src-html" id="html-table"><code trim>&lt;table&gt;
@@ -929,8 +931,8 @@ du tableau</li>
 </div>
 
 </section>
-<section id="slide-org5153636">
-<h3 id="org5153636"><span class="section-number-3">2.17</span> Les attributs pour les tableaux</h3>
+<section id="slide-org3d70f37">
+<h3 id="org3d70f37"><span class="section-number-3">2.17</span> Les attributs pour les tableaux</h3>
 <ul>
 <li>Il est possible de fusionner des cellules &lt;td&gt;, &lt;th&gt;
 <ul>
@@ -944,8 +946,8 @@ cellules à fusionner</li>
 </ul>
 
 </section>
-<section id="slide-org91dfbfd">
-<h3 id="org91dfbfd"><span class="section-number-3">2.18</span> Exemple d'un tableau avancé</h3>
+<section id="slide-org478984a">
+<h3 id="org478984a"><span class="section-number-3">2.18</span> Exemple d'un tableau avancé</h3>
 <div class="org-src-container">
 
 <pre  class="src src-html" id="html-table"><code trim>&lt;table&gt;
@@ -967,8 +969,8 @@ cellules à fusionner</li>
 </div>
 
 </section>
-<section id="slide-org75ae4e9">
-<h3 id="org75ae4e9"><span class="section-number-3">2.19</span> Les balises neutres et attributs globaux</h3>
+<section id="slide-orgbfca5cc">
+<h3 id="orgbfca5cc"><span class="section-number-3">2.19</span> Les balises neutres et attributs globaux</h3>
 <ul>
 <li>Balises neutres
 <ul>
@@ -987,8 +989,8 @@ cellules à fusionner</li>
 </ul>
 
 </section>
-<section id="slide-org55c5325">
-<h3 id="org55c5325"><span class="section-number-3">2.20</span> Exemple d'utilisation de balises neutres</h3>
+<section id="slide-orge74eab4">
+<h3 id="orge74eab4"><span class="section-number-3">2.20</span> Exemple d'utilisation de balises neutres</h3>
 <div class="org-src-container">
 
 <pre  class="src src-html" id="html-div-span"><code trim>texte
@@ -1005,7 +1007,7 @@ texte
 
 </section>
 <section id="slide-css">
-<h2 id="css"><a id="org6176be6"></a><span class="section-number-2">3</span> CSS</h2>
+<h2 id="css"><a id="org3e04ee3"></a><span class="section-number-2">3</span> CSS</h2>
 
 <div class="figure">
 <p><img src="./inc/img/css3.png" alt="css3.png" />
@@ -1013,8 +1015,8 @@ texte
 </div>
 
 </section>
-<section id="slide-orgef04266">
-<h3 id="orgef04266"><span class="section-number-3">3.1</span> Le langage CSS</h3>
+<section id="slide-org50b9b12">
+<h3 id="org50b9b12"><span class="section-number-3">3.1</span> Le langage CSS</h3>
 <ul>
 <li><span class="underline">CSS</span> : Cascading Style Sheets</li>
 <li>Langage qui définit comment les balises HTML doivent être
@@ -1024,8 +1026,8 @@ affichées par le navigateur</li>
 </ul>
 
 </section>
-<section id="slide-org1693a5c">
-<h4 id="org1693a5c"><span class="section-number-4">3.1.1</span> Historique</h4>
+<section id="slide-org9b6086a">
+<h4 id="org9b6086a"><span class="section-number-4">3.1.1</span> Historique</h4>
 <ul>
 <li>1996 : CSS 1 (base)</li>
 <li>1998 : CSS 2 (position, z-index, type de media)</li>
@@ -1035,8 +1037,8 @@ affichées par le navigateur</li>
 </ul>
 
 </section>
-<section id="slide-org59f6ecf">
-<h4 id="org59f6ecf"><span class="section-number-4">3.1.2</span> La syntaxe</h4>
+<section id="slide-orgaa97f49">
+<h4 id="orgaa97f49"><span class="section-number-4">3.1.2</span> La syntaxe</h4>
 <div class="org-src-container">
 
 <pre  class="src src-css"><code trim>/* commentaire */
@@ -1049,8 +1051,8 @@ selecteur1, selecteur2 {
 </div>
 
 </section>
-<section id="slide-org9cc1092">
-<h4 id="org9cc1092"><span class="section-number-4">3.1.3</span> Les sélecteurs de bases</h4>
+<section id="slide-org400c64f">
+<h4 id="org400c64f"><span class="section-number-4">3.1.3</span> Les sélecteurs de bases</h4>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -1095,13 +1097,13 @@ selecteur1, selecteur2 {
 </table>
 
 </section>
-<section id="slide-org2943544">
-<h3 id="org2943544"><span class="section-number-3">3.2</span> Comment appliquer du CSS à une page HTML</h3>
+<section id="slide-org561fc98">
+<h3 id="org561fc98"><span class="section-number-3">3.2</span> Comment appliquer du CSS à une page HTML</h3>
 <div class="outline-text-3" id="text-3-2">
 </div>
 </section>
-<section id="slide-org888cd2b">
-<h4 id="org888cd2b"><span class="section-number-4">3.2.1</span> Mise en place du CSS (Méthodes à éviter)</h4>
+<section id="slide-org8792307">
+<h4 id="org8792307"><span class="section-number-4">3.2.1</span> Mise en place du CSS (Méthodes à éviter)</h4>
 <ul>
 <li>Directement dans le HTML
 <ul>
@@ -1129,8 +1131,8 @@ selecteur1, selecteur2 {
 </div>
 
 </section>
-<section id="slide-orgb25a92d">
-<h4 id="orgb25a92d"><span class="section-number-4">3.2.2</span> Mise en place du CSS (Méthode conseillée)</h4>
+<section id="slide-org322e893">
+<h4 id="org322e893"><span class="section-number-4">3.2.2</span> Mise en place du CSS (Méthode conseillée)</h4>
 <ul>
 <li>En utilisant un fichier externe <code>.css</code>
 <ul>
@@ -1154,8 +1156,8 @@ selecteur1, selecteur2 {
 </div>
 
 </section>
-<section id="slide-org288bd54">
-<h4 id="org288bd54"><span class="section-number-4">3.2.3</span> Exemple</h4>
+<section id="slide-org2fc0eb0">
+<h4 id="org2fc0eb0"><span class="section-number-4">3.2.3</span> Exemple</h4>
 <div class="org-src-container">
 
 <pre  class="src src-html" id="html-style"><code trim>&lt;head&gt;
@@ -1175,8 +1177,8 @@ selecteur1, selecteur2 {
 </div>
 
 </section>
-<section id="slide-org81b1373">
-<h3 id="org81b1373"><span class="section-number-3">3.3</span> La couleur</h3>
+<section id="slide-orgdf13bec">
+<h3 id="orgdf13bec"><span class="section-number-3">3.3</span> La couleur</h3>
 <ul>
 <li>Propriétés basiques:
 <ul>
@@ -1188,8 +1190,8 @@ selecteur1, selecteur2 {
 </ul>
 
 </section>
-<section id="slide-orgc0bd7d3">
-<h4 id="orgc0bd7d3"><span class="section-number-4">3.3.1</span> La gestion de la couleur en CSS</h4>
+<section id="slide-org45d1b57">
+<h4 id="org45d1b57"><span class="section-number-4">3.3.1</span> La gestion de la couleur en CSS</h4>
 <ul>
 <li>En CSS2 17 couleurs supportés officiellement
 <ul>
@@ -1208,8 +1210,8 @@ selecteur1, selecteur2 {
 </ul>
 
 </section>
-<section id="slide-org8bbac4f">
-<h4 id="org8bbac4f"><span class="section-number-4">3.3.2</span> Les couleurs simples</h4>
+<section id="slide-org35a948a">
+<h4 id="org35a948a"><span class="section-number-4">3.3.2</span> Les couleurs simples</h4>
 <ul>
 <li>Possibilité de définir des couleurs en hexadécimal #RVB;
 <ul>
@@ -1226,8 +1228,8 @@ selecteur1, selecteur2 {
 </ul>
 
 </section>
-<section id="slide-orge472ded">
-<h4 id="orge472ded"><span class="section-number-4">3.3.3</span> Les couleurs complètes</h4>
+<section id="slide-orgf46f641">
+<h4 id="orgf46f641"><span class="section-number-4">3.3.3</span> Les couleurs complètes</h4>
 <ul>
 <li>Possibilité de définir des couleurs en hexadécimal #RRVVBB;
 <ul>
@@ -1244,8 +1246,8 @@ selecteur1, selecteur2 {
 </ul>
 
 </section>
-<section id="slide-org6be8c1b">
-<h4 id="org6be8c1b"><span class="section-number-4">3.3.4</span> Exemple couleurs</h4>
+<section id="slide-org60e7cdd">
+<h4 id="org60e7cdd"><span class="section-number-4">3.3.4</span> Exemple couleurs</h4>
 <div class="org-src-container">
 
 <pre  class="src src-html" id="html-color-simple"><code trim>&lt;head&gt;
@@ -1264,8 +1266,8 @@ selecteur1, selecteur2 {
 </div>
 
 </section>
-<section id="slide-org4a0e08c">
-<h4 id="org4a0e08c"><span class="section-number-4">3.3.5</span> Les fonctions rgb, hsl</h4>
+<section id="slide-org2e08bf2">
+<h4 id="org2e08bf2"><span class="section-number-4">3.3.5</span> Les fonctions rgb, hsl</h4>
 <ul>
 <li>Il est possible d'éclaircir la couleur grâce à la propriété <code>opacity</code>
 <ul>
@@ -1286,8 +1288,8 @@ dernier paramètre alpha est compris entre 0.0 et 1.0</li>
 </ul>
 
 </section>
-<section id="slide-orgf0cd002">
-<h4 id="orgf0cd002"><span class="section-number-4">3.3.6</span> Exemple fonctions couleurs</h4>
+<section id="slide-org66d41da">
+<h4 id="org66d41da"><span class="section-number-4">3.3.6</span> Exemple fonctions couleurs</h4>
 <div class="org-src-container">
 
 <pre  class="src src-html" id="html-color-complete"><code trim>&lt;head&gt;
@@ -1310,13 +1312,13 @@ dernier paramètre alpha est compris entre 0.0 et 1.0</li>
 </div>
 
 </section>
-<section id="slide-org105b5ad">
-<h3 id="org105b5ad"><span class="section-number-3">3.4</span> Les propriétés CSS</h3>
+<section id="slide-org35371cc">
+<h3 id="org35371cc"><span class="section-number-3">3.4</span> Les propriétés CSS</h3>
 <div class="outline-text-3" id="text-3-4">
 </div>
 </section>
-<section id="slide-org5792648">
-<h4 id="org5792648"><span class="section-number-4">3.4.1</span> Le fond</h4>
+<section id="slide-org53bba90">
+<h4 id="org53bba90"><span class="section-number-4">3.4.1</span> Le fond</h4>
 <div class="org-src-container">
 
 <pre  class="src src-html" id="html-color-background"><code trim>&lt;head&gt;
@@ -1341,8 +1343,8 @@ dernier paramètre alpha est compris entre 0.0 et 1.0</li>
 </div>
 
 </section>
-<section id="slide-orga944202">
-<h4 id="orga944202"><span class="section-number-4">3.4.2</span> L'affichage en boîte</h4>
+<section id="slide-orgbb94ac4">
+<h4 id="orgbb94ac4"><span class="section-number-4">3.4.2</span> L'affichage en boîte</h4>
 
 <div class="figure">
 <p><img src="./inc/img/box-model.png" alt="box-model.png" />
@@ -1354,8 +1356,8 @@ dernier paramètre alpha est compris entre 0.0 et 1.0</li>
 </p>
 
 </section>
-<section id="slide-org23a1448">
-<h4 id="org23a1448"><span class="section-number-4">3.4.3</span> La propriété <code>margin</code></h4>
+<section id="slide-orgaa6430c">
+<h4 id="orgaa6430c"><span class="section-number-4">3.4.3</span> La propriété <code>margin</code></h4>
 <div class="org-src-container">
 
 <pre  class="src src-html" id="html-margin"><code trim>&lt;head&gt;
@@ -1382,8 +1384,8 @@ dernier paramètre alpha est compris entre 0.0 et 1.0</li>
 </div>
 
 </section>
-<section id="slide-orgbbde5c4">
-<h4 id="orgbbde5c4"><span class="section-number-4">3.4.4</span> La propriété <code>padding</code></h4>
+<section id="slide-org06ed836">
+<h4 id="org06ed836"><span class="section-number-4">3.4.4</span> La propriété <code>padding</code></h4>
 <div class="org-src-container">
 
 <pre  class="src src-html" id="html-padding"><code trim>&lt;head&gt;
@@ -1410,8 +1412,8 @@ dernier paramètre alpha est compris entre 0.0 et 1.0</li>
 </div>
 
 </section>
-<section id="slide-orgfc4778f">
-<h4 id="orgfc4778f"><span class="section-number-4">3.4.5</span> La propriété <code>border-style</code></h4>
+<section id="slide-org86bcefd">
+<h4 id="org86bcefd"><span class="section-number-4">3.4.5</span> La propriété <code>border-style</code></h4>
 <div class="org-src-container">
 
 <pre  class="src src-html" id="html-border-style"><code trim>&lt;head&gt;
@@ -1436,8 +1438,8 @@ dernier paramètre alpha est compris entre 0.0 et 1.0</li>
 </div>
 
 </section>
-<section id="slide-org095ba76">
-<h4 id="org095ba76"><span class="section-number-4">3.4.6</span> La propriété <code>border-width</code></h4>
+<section id="slide-org7463e5b">
+<h4 id="org7463e5b"><span class="section-number-4">3.4.6</span> La propriété <code>border-width</code></h4>
 <div class="org-src-container">
 
 <pre  class="src src-html" id="html-border-width"><code trim>&lt;head&gt;
@@ -1464,8 +1466,8 @@ dernier paramètre alpha est compris entre 0.0 et 1.0</li>
 </div>
 
 </section>
-<section id="slide-org503ec6a">
-<h4 id="org503ec6a"><span class="section-number-4">3.4.7</span> La propriété <code>border-color</code></h4>
+<section id="slide-orgf6a3607">
+<h4 id="orgf6a3607"><span class="section-number-4">3.4.7</span> La propriété <code>border-color</code></h4>
 <div class="org-src-container">
 
 <pre  class="src src-html" id="html-border-color"><code trim>&lt;head&gt;
@@ -1492,8 +1494,8 @@ dernier paramètre alpha est compris entre 0.0 et 1.0</li>
 </div>
 
 </section>
-<section id="slide-org9a77f49">
-<h4 id="org9a77f49"><span class="section-number-4">3.4.8</span> La propriété <code>border</code></h4>
+<section id="slide-org9c8d8d7">
+<h4 id="org9c8d8d7"><span class="section-number-4">3.4.8</span> La propriété <code>border</code></h4>
 <div class="org-src-container">
 
 <pre  class="src src-html" id="html-border"><code trim>&lt;head&gt;
@@ -1516,8 +1518,8 @@ dernier paramètre alpha est compris entre 0.0 et 1.0</li>
 </div>
 
 </section>
-<section id="slide-org92c2417">
-<h4 id="org92c2417"><span class="section-number-4">3.4.9</span> Les dimensions en CSS</h4>
+<section id="slide-org016334e">
+<h4 id="org016334e"><span class="section-number-4">3.4.9</span> Les dimensions en CSS</h4>
 <div class="org-src-container">
 
 <pre  class="src src-html" id="html-dimension"><code trim>&lt;head&gt;
@@ -1540,8 +1542,8 @@ dernier paramètre alpha est compris entre 0.0 et 1.0</li>
 </div>
 
 </section>
-<section id="slide-org5c6d088">
-<h4 id="org5c6d088"><span class="section-number-4">3.4.10</span> La propriété <code>display</code></h4>
+<section id="slide-org59c5e15">
+<h4 id="org59c5e15"><span class="section-number-4">3.4.10</span> La propriété <code>display</code></h4>
 <ul>
 <li><code>display:</code> <span class="underline">block</span>;
 <ul>
@@ -1565,8 +1567,8 @@ et qui prend juste la largeur nécessaire (<code>&lt;span&gt;</code>, <code>&lt;
 </ul>
 
 </section>
-<section id="slide-org86aff7c">
-<h4 id="org86aff7c"><span class="section-number-4">3.4.11</span> La propriété <code>position</code></h4>
+<section id="slide-orgf74d1ca">
+<h4 id="orgf74d1ca"><span class="section-number-4">3.4.11</span> La propriété <code>position</code></h4>
 <div class="org-src-container">
 
 <pre  class="src src-html" id="html-position"><code trim>&lt;head&gt;
@@ -1587,8 +1589,8 @@ et qui prend juste la largeur nécessaire (<code>&lt;span&gt;</code>, <code>&lt;
 </div>
 
 </section>
-<section id="slide-org55046fb">
-<h4 id="org55046fb"><span class="section-number-4">3.4.12</span> La propriété <code>float</code></h4>
+<section id="slide-orgd1829de">
+<h4 id="orgd1829de"><span class="section-number-4">3.4.12</span> La propriété <code>float</code></h4>
 <div class="org-src-container">
 
 <pre  class="src src-html" id="html-float"><code trim>&lt;head&gt;
@@ -1610,8 +1612,8 @@ et qui prend juste la largeur nécessaire (<code>&lt;span&gt;</code>, <code>&lt;
 </div>
 
 </section>
-<section id="slide-org823960f">
-<h4 id="org823960f"><span class="section-number-4">3.4.13</span> Les propriétés du texte</h4>
+<section id="slide-orgd110778">
+<h4 id="orgd110778"><span class="section-number-4">3.4.13</span> Les propriétés du texte</h4>
 <div class="org-src-container">
 
 <pre  class="src src-html" id="html-text"><code trim>&lt;head&gt;
@@ -1634,8 +1636,8 @@ et qui prend juste la largeur nécessaire (<code>&lt;span&gt;</code>, <code>&lt;
 </div>
 
 </section>
-<section id="slide-org248edda">
-<h4 id="org248edda"><span class="section-number-4">3.4.14</span> Les propriétés de polices</h4>
+<section id="slide-org0c4e907">
+<h4 id="org0c4e907"><span class="section-number-4">3.4.14</span> Les propriétés de polices</h4>
 <div class="org-src-container">
 
 <pre  class="src src-html" id="html-font"><code trim>&lt;head&gt;
@@ -1662,8 +1664,8 @@ et qui prend juste la largeur nécessaire (<code>&lt;span&gt;</code>, <code>&lt;
 </div>
 
 </section>
-<section id="slide-orgbdc3431">
-<h4 id="orgbdc3431"><span class="section-number-4">3.4.15</span> Les propriétés de tableaux</h4>
+<section id="slide-org74d7b3a">
+<h4 id="org74d7b3a"><span class="section-number-4">3.4.15</span> Les propriétés de tableaux</h4>
 <div class="org-src-container">
 
 <pre  class="src src-html" id="html-table"><code trim>&lt;head&gt;
@@ -1687,8 +1689,8 @@ et qui prend juste la largeur nécessaire (<code>&lt;span&gt;</code>, <code>&lt;
 </div>
 
 </section>
-<section id="slide-org9d1e111">
-<h4 id="org9d1e111"><span class="section-number-4">3.4.16</span> Les propriétés des listes</h4>
+<section id="slide-org633689b">
+<h4 id="org633689b"><span class="section-number-4">3.4.16</span> Les propriétés des listes</h4>
 <div class="org-src-container">
 
 <pre  class="src src-html" id="html-list-style"><code trim>&lt;head&gt;
@@ -1716,8 +1718,8 @@ et qui prend juste la largeur nécessaire (<code>&lt;span&gt;</code>, <code>&lt;
 
 
 </section>
-<section id="slide-org5db6355">
-<h4 id="org5db6355"><span class="section-number-4">3.4.17</span> D'autre propriétés CSS</h4>
+<section id="slide-org0fd7c9d">
+<h4 id="org0fd7c9d"><span class="section-number-4">3.4.17</span> D'autre propriétés CSS</h4>
 <ul>
 <li><code>vertical-align: top;</code> <code>/* middle, bottom, etc. */</code></li>
 <li><code>box-sizing: content-box;</code> <code>/* border-box */</code></li>
@@ -1731,13 +1733,13 @@ et qui prend juste la largeur nécessaire (<code>&lt;span&gt;</code>, <code>&lt;
 </ul>
 
 </section>
-<section id="slide-org26a5a28">
-<h3 id="org26a5a28"><span class="section-number-3">3.5</span> HTML/CSS</h3>
+<section id="slide-org47873cc">
+<h3 id="org47873cc"><span class="section-number-3">3.5</span> HTML/CSS</h3>
 <div class="outline-text-3" id="text-3-5">
 </div>
 </section>
-<section id="slide-org52cff8b">
-<h4 id="org52cff8b"><span class="section-number-4">3.5.1</span> La combinaison de sélecteur</h4>
+<section id="slide-org9273171">
+<h4 id="org9273171"><span class="section-number-4">3.5.1</span> La combinaison de sélecteur</h4>
 <ul>
 <li>La descendance : <code>A B</code>
 <ul>
@@ -1763,8 +1765,8 @@ et qui prend juste la largeur nécessaire (<code>&lt;span&gt;</code>, <code>&lt;
 </ul>
 
 </section>
-<section id="slide-orgd6d04e1">
-<h4 id="orgd6d04e1"><span class="section-number-4">3.5.2</span> Sélecteurs principaux pseudo-classe</h4>
+<section id="slide-orgabed1f0">
+<h4 id="orgabed1f0"><span class="section-number-4">3.5.2</span> Sélecteurs principaux pseudo-classe</h4>
 <ul>
 <li>Spécifiques à la balise <code>&lt;a&gt;</code>
 <ul>
@@ -1782,8 +1784,8 @@ et qui prend juste la largeur nécessaire (<code>&lt;span&gt;</code>, <code>&lt;
 </ul>
 
 </section>
-<section id="slide-org3fcb608">
-<h4 id="org3fcb608"><span class="section-number-4">3.5.3</span> Autres sélecteurs pseudo-classe</h4>
+<section id="slide-orga3fc0a6">
+<h4 id="orga3fc0a6"><span class="section-number-4">3.5.3</span> Autres sélecteurs pseudo-classe</h4>
 <ul>
 <li><code>:first-child</code> : premier enfant d'une balise</li>
 <li><code>:last-child</code> : dernier enfant d'une balise</li>
@@ -1798,8 +1800,8 @@ et qui prend juste la largeur nécessaire (<code>&lt;span&gt;</code>, <code>&lt;
 </ul>
 
 </section>
-<section id="slide-org7c9a49e">
-<h4 id="org7c9a49e"><span class="section-number-4">3.5.4</span> Sélecteur pseudo-éléments</h4>
+<section id="slide-orgacce419">
+<h4 id="orgacce419"><span class="section-number-4">3.5.4</span> Sélecteur pseudo-éléments</h4>
 <ul>
 <li><code>::first-line</code> : applique le style sur la première ligne du texte</li>
 <li><code>::first-letter</code> : applique le style sur la première lettre du
@@ -1812,8 +1814,8 @@ balise avec la propriété <code>content</code></li>
 </ul>
 
 </section>
-<section id="slide-org6cbcd5b">
-<h4 id="org6cbcd5b"><span class="section-number-4">3.5.5</span> Sélecteur sur attribut</h4>
+<section id="slide-org6eb3a77">
+<h4 id="org6eb3a77"><span class="section-number-4">3.5.5</span> Sélecteur sur attribut</h4>
 <ul>
 <li><code>[attribut]</code> : toutes les balises ayant cet <code>attribut</code></li>
 <li><code>[attribute=value]</code> : toutes les balises ayant cet <code>attribut</code>
@@ -1829,7 +1831,7 @@ dont la valeur finit par la valeur <code>value</code></li>
 
 </section>
 <section id="slide-form">
-<h2 id="form"><a id="orgaf97c35"></a><span class="section-number-2">4</span> Les formulaires</h2>
+<h2 id="form"><a id="org824aa4d"></a><span class="section-number-2">4</span> Les formulaires</h2>
 <ul>
 <li>Interaction avec l'utilisateur
 <ul>
@@ -1847,8 +1849,8 @@ dont la valeur finit par la valeur <code>value</code></li>
 </ul>
 
 </section>
-<section id="slide-orgfde1bdc">
-<h3 id="orgfde1bdc"><span class="section-number-3">4.1</span> La balise <code>&lt;input&gt;</code></h3>
+<section id="slide-org6830bb5">
+<h3 id="org6830bb5"><span class="section-number-3">4.1</span> La balise <code>&lt;input&gt;</code></h3>
 <div class="org-src-container">
 
 <pre  class="src src-html" id="html-input"><code trim>&lt;form&gt;
@@ -1866,8 +1868,8 @@ dont la valeur finit par la valeur <code>value</code></li>
 </div>
 
 </section>
-<section id="slide-orgff0e00c">
-<h3 id="orgff0e00c"><span class="section-number-3">4.2</span> Les attributes de la balise <code>&lt;input&gt;</code></h3>
+<section id="slide-orge3532e6">
+<h3 id="orge3532e6"><span class="section-number-3">4.2</span> Les attributes de la balise <code>&lt;input&gt;</code></h3>
 <ul>
 <li>les attributs de base:
 <ul>
@@ -1889,8 +1891,8 @@ dont la valeur finit par la valeur <code>value</code></li>
 </ul>
 
 </section>
-<section id="slide-org12824e0">
-<h3 id="org12824e0"><span class="section-number-3">4.3</span> La balise <code>&lt;input&gt;</code> avancé</h3>
+<section id="slide-orgb898be4">
+<h3 id="orgb898be4"><span class="section-number-3">4.3</span> La balise <code>&lt;input&gt;</code> avancé</h3>
 <div class="org-src-container">
 
 <pre  class="src src-html" id="html-input-extra"><code trim>&lt;form&gt;
@@ -1908,8 +1910,8 @@ dont la valeur finit par la valeur <code>value</code></li>
 </div>
 
 </section>
-<section id="slide-orgb4aacec">
-<h3 id="orgb4aacec"><span class="section-number-3">4.4</span> La balise <code>&lt;input&gt;</code> version html5</h3>
+<section id="slide-orgf5373fa">
+<h3 id="orgf5373fa"><span class="section-number-3">4.4</span> La balise <code>&lt;input&gt;</code> version html5</h3>
 <ul>
 <li><code>color</code></li>
 <li><code>date</code></li>
@@ -1923,8 +1925,8 @@ dont la valeur finit par la valeur <code>value</code></li>
 </ul>
 
 </section>
-<section id="slide-org144fc1b">
-<h3 id="org144fc1b"><span class="section-number-3">4.5</span> La balise <code>&lt;select&gt;&lt;/select&gt;</code></h3>
+<section id="slide-org27ad02c">
+<h3 id="org27ad02c"><span class="section-number-3">4.5</span> La balise <code>&lt;select&gt;&lt;/select&gt;</code></h3>
 <div class="org-src-container">
 
 <pre  class="src src-html"><code trim>&lt;form&gt;
@@ -1953,8 +1955,8 @@ dont la valeur finit par la valeur <code>value</code></li>
 </div>
 
 </section>
-<section id="slide-orge95a05e">
-<h3 id="orge95a05e"><span class="section-number-3">4.6</span> Les balises <code>&lt;textarea&gt;&lt;/textarea&gt;</code> et <code>&lt;button&gt;&lt;/button&gt;</code></h3>
+<section id="slide-org3845347">
+<h3 id="org3845347"><span class="section-number-3">4.6</span> Les balises <code>&lt;textarea&gt;&lt;/textarea&gt;</code> et <code>&lt;button&gt;&lt;/button&gt;</code></h3>
 <div class="org-src-container">
 
 <pre  class="src src-html" id="html-textarea"><code trim>&lt;form&gt;
@@ -1967,8 +1969,8 @@ dont la valeur finit par la valeur <code>value</code></li>
 </div>
 
 </section>
-<section id="slide-org928aa2e">
-<h3 id="org928aa2e"><span class="section-number-3">4.7</span> La balise <code>&lt;fieldset&gt;&lt;/fieldset&gt;</code></h3>
+<section id="slide-org483af1e">
+<h3 id="org483af1e"><span class="section-number-3">4.7</span> La balise <code>&lt;fieldset&gt;&lt;/fieldset&gt;</code></h3>
 <div class="org-src-container">
 
 <pre  class="src src-html" id="html-fieldset"><code trim>&lt;form&gt;
@@ -1983,14 +1985,17 @@ dont la valeur finit par la valeur <code>value</code></li>
 </section>
 </div>
 </div>
-<div id="reveal-styles"><ul><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/theme/default.css'); return false;" href="#">Black</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/theme/blood.css'); return false;" href="#">Blood</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/theme/sky.css'); return false;" href="#">Sky</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/theme/beige.css'); return false;" href="#">Beige</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/theme/simple.css'); return false;" href="#">Simple</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/theme/serif.css'); return false;" href="#">Serif</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/theme/night.css'); return false;" href="#">Night</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/theme/moon.css'); return false;" href="#">Moon</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/theme/solarized.css'); return false;" href="#">Solarized</a></li></ul></div>
-<script src="../common/lib/reveal/js/reveal.js"></script>
+<div id="reveal-styles"><ul><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/css/theme/black.css'); return false;" href="#">Black</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/css/theme/blood.css'); return false;" href="#">Blood</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/css/theme/sky.css'); return false;" href="#">Sky</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/css/theme/beige.css'); return false;" href="#">Beige</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/css/theme/simple.css'); return false;" href="#">Simple</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/css/theme/serif.css'); return false;" href="#">Serif</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/css/theme/night.css'); return false;" href="#">Night</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/css/theme/moon.css'); return false;" href="#">Moon</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/css/theme/solarized.css'); return false;" href="#">Solarized</a></li></ul></div>
+<script src="../common/lib/reveal/dist/reveal.js"></script>
+<script src="../common/lib/reveal/plugin/notes/notes.js"></script>
+
 
 <script>
 // Full list of configuration options available here:
 // https://github.com/hakimel/reveal.js#configuration
 Reveal.initialize({
-width:1800, height:1200, progress:true, history:true, control:true, rolling_links:true, keyboard:true, overview:true, hash: false, slideNumber:true,
+plugins: [RevealNotes],
+width:1800, height:1200, progress:true, history:true, control:true, rolling_links:true, keyboard:true, overview:true, hash: false, slideNumber:true, pdfSeparateFragments: false,
 multiplex: {
     secret: '', // null if client
     id: '', // id, obtained from socket.io server
@@ -1999,8 +2004,7 @@ multiplex: {
 
 // Optional libraries used to extend on reveal.js
 dependencies: [
-{ src : '../common/lib/phpjs/php.min.js' }, { src : '../common/lib/codemirror/codemirror.js' }, { src : '../common/lib/codemirror/mode/htmlmixed/htmlmixed.js' }, { src : '../common/lib/codemirror/mode/xml/xml.js' }, { src : '../common/lib/codemirror/mode/php/php.js' }, { src : '../common/lib/codemirror/mode/javascript/javascript.js' }, { src : '../common/lib/codemirror/mode/clike/clike.js' }, { src : '../common/lib/codemirror/mode/css/css.js' }, { src : '../common/lib/codemirror/addon/display/autorefresh.js' }, { src : '../common/lib/split/split-grid.js' }, { src : '../common/inc/js/console.js'},
- { src: '../common/lib/reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+{ src : '../common/lib/phpjs/php.min.js' }, { src : '../common/lib/codemirror/codemirror.js' }, { src : '../common/lib/codemirror/mode/htmlmixed/htmlmixed.js' }, { src : '../common/lib/codemirror/mode/sql/sql.js' }, { src : '../common/lib/codemirror/mode/xml/xml.js' }, { src : '../common/lib/codemirror/mode/php/php.js' }, { src : '../common/lib/codemirror/mode/javascript/javascript.js' }, { src : '../common/lib/codemirror/mode/clike/clike.js' }, { src : '../common/lib/codemirror/mode/css/css.js' }, { src : '../common/lib/codemirror/addon/display/autorefresh.js' }, { src : '../common/lib/split/split-grid.js' }, { src : '../common/inc/js/console.js'}]
 });
 </script>
 </body>

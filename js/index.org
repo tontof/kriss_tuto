@@ -240,9 +240,8 @@
     - =toUpperCase()= : conversion en MAJUSCULES
     - =toLowerCase()= : conversion en minuscules
     - =indexOf(string souschaine, [int pos])= : renvoie l’indice de la 1ère occurence de =souschaine= dans la chaîne
-    - =lastIndexOf(string souschaine, [int pos])= : renvoie l’indice de la dernière occurrence de =souschaine= dans la chaîne. L’option pos permet de n’effectuer la recherche :
-      - qu’à partir d’une certaine position pour =indexOf=
-      - jusqu’à une certaine position pour =lastIndexOf=
+    - =lastIndexOf(string souschaine, [int pos])= : renvoie l’indice de la dernière occurrence de =souschaine= dans la chaîne.
+      - L’option pos permet de n’effectuer la recherche qu’à partir d’une certaine position
 
     #+ATTR_REVEAL: :frag (roll-in)
     #+ATTR_HTML: :style text-align:center; color:green; margin: 6vmin auto;
@@ -757,7 +756,7 @@ if (condition1) {
    :END:
 
     - Tous les types de variables peuvent être retournés par une fonction
-    - Si =return= est absent, =null= est retourné
+    - Si =return= est absent, =undefined= est retourné
 
    #+NAME: function-return
    #+BEGIN_SRC html
@@ -810,6 +809,7 @@ if (condition1) {
    
    - =focus = : un élément reçoit le focus
    - =blur  = : un élément perd le focus
+   - =input = : la valeur d'un champ de formulaire est en cours de modification
    - =change= : la valeur d'un champ de formulaire est modifiée
    - =reset = : quand les champs du formulaire sont réinitialisés
    - =submit= : quand le formulaire est soumis
@@ -963,6 +963,7 @@ if (condition1) {
    :END:
 
    - =getElementById(string)= : retourne la balise à partir d'un identifiant
+   - =getElementsByTagName(string)= : retourne les balises d'un type donné
    - =querySelector(string)= : retourne la première balise qui correspond à une sélection CSS
    - =querySelectorAll(string)= : retourne toutes les balises qui correspondent à une sélection CSS
    - =write(string)= : écrit une chaîne dans le document
@@ -1011,7 +1012,8 @@ if (condition1) {
    :CUSTOM_ID: methodes-noeud
    :END:
 
-   - =appendChild(node)= : nœud à ajouter au nœud parent
+   - =appendChild(node)= : nœud à ajouter à la fin des enfants du nœud parent
+   - =prepend(node)= : nœud à ajouter au début des enfants du nœud parent
    - =removeChild(node)= : nœud à supprimer du nœud parent
    - =replaceChild(newNode, oldNode)= : remplace un nœud par un autre nœud
 
@@ -1027,8 +1029,10 @@ if (condition1) {
    #+BEGIN_SRC html
    <div id="div"><span>span1</span><span>span2</span></div>
    <script>
-   var span = document.createElement('span').appendChild(document.createTextNode('span3'));
+   var span = document.createElement('span');
+   span.appendChild(document.createTextNode('span3'));
    document.getElementById('div').appendChild(span);
+   // document.getElementById('div').prepend(span);
    </script>
    #+END_SRC
 

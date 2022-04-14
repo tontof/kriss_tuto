@@ -90,3 +90,10 @@ pre.src-text-center,
   box-shadow: none;
 }
 
+.reveal .slides section.on-top{
+  top: 0 !important;
+}
+
+.reveal .slides section.too-big{
+  line-height: 100% !important;
+}

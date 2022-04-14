@@ -6,15 +6,17 @@
 <style type="text/css">
 .underline { text-decoration: underline; }
 </style>
-<link rel="stylesheet" href="../common/lib/reveal/css/reveal.css"/>
+<link rel="stylesheet" href="../common/lib/reveal/dist/reveal.css"/>
 
-<link rel="stylesheet" href="../common/lib/reveal/css/theme/serif.css" id="theme"/>
+<link rel="stylesheet" href="../common/lib/reveal/dist/theme/serif.css" id="theme"/>
 
 <link rel="stylesheet" href="../common/inc/css/htmlize.css"/>
 
 <link rel="stylesheet" href="../common/lib/codemirror/codemirror.css"/>
 
 <link rel="stylesheet" href="../common/lib/codemirror/theme/dracula.css"/>
+
+<link rel="stylesheet" href="../common/inc/css/custom-pdf.css"/>
 
 <link rel="stylesheet" href="../common/inc/css/custom.css"/>
 
@@ -31,7 +33,7 @@
 <script type="text/javascript" src="../common/lib/mathjax/mathjax.js"></script>
 </head>
 <body>
-<!-- If the query includes 'print-pdf', include the PDF print sheet --><script>if( window.location.search.match( /print-pdf/gi ) ) { var link = document.createElement( 'link' ); link.rel = 'stylesheet'; link.type = 'text/css'; link.href = '../common/inc/css/custom-pdf.css'; document.getElementsByTagName( 'head' )[0].appendChild( link ); }</script><div id="reveal-notes"></div><div id="editor"><div><div id="php-source"><textarea></textarea></div><div id="php-html-gutter" class="gutter"></div><div id="html-source"><textarea></textarea></div><div id="html-gutter" class="gutter"></div><div id="html-output"></div></div><button id="editor-clear">Clear</button><button id="editor-mode">Mode PHP/HTML</button><button id="editor-close">Close</button><button id="editor-run">Run</button></div>
+<div id="reveal-notes"></div><div id="editor"><div><div id="php-source"><textarea></textarea></div><div id="php-html-gutter" class="gutter"></div><div id="html-source"><textarea></textarea></div><div id="html-gutter" class="gutter"></div><div id="html-output"></div></div><button id="editor-clear">Clear</button><button id="editor-mode">Mode PHP/HTML</button><button id="editor-close">Close</button><button id="editor-run">Run</button></div>
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide"><h1 class="title">PHP</h1>
@@ -40,18 +42,18 @@
 <h2>Table des matières</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#/slide-org7b745a8">1. Les bases en PHP</a></li>
-<li><a href="#/slide-org4df99a3">2. Les formulaires</a></li>
-<li><a href="#/slide-org9a75ea8">3. Cookies et sessions</a></li>
-<li><a href="#/slide-orgc125ca5">4. PHP et les fichiers</a></li>
-<li><a href="#/slide-org0423f69">5. Bases de données SQL</a></li>
+<li><a href="#/slide-org15a2c1e">1. Les bases en PHP</a></li>
+<li><a href="#/slide-orgb04ed5a">2. Les formulaires</a></li>
+<li><a href="#/slide-org712b1b7">3. Cookies et sessions</a></li>
+<li><a href="#/slide-org9ff2d60">4. PHP et les fichiers</a></li>
+<li><a href="#/slide-org328cb2d">5. Bases de données SQL</a></li>
 </ul>
 </div>
 </div>
 </section>
 
-<section id="slide-org7b745a8">
-<h2 id="org7b745a8"><span class="section-number-2">1</span> Les bases en PHP</h2>
+<section id="slide-org15a2c1e">
+<h2 id="org15a2c1e"><span class="section-number-2">1</span> Les bases en PHP</h2>
 <aside class="notes">
 <ul>
 <li>HTML, CSS et JS sont des langages interprétés par un navigateur
@@ -70,8 +72,8 @@ comment manipuler des fichiers et des bases de données SQL avec PHP</li>
 </aside>
 
 </section>
-<section id="slide-org9ba8ab2">
-<h3 id="org9ba8ab2"><span class="section-number-3">1.1</span> Pourquoi PHP ?</h3>
+<section id="slide-orga81e14a">
+<h3 id="orga81e14a"><span class="section-number-3">1.1</span> Pourquoi PHP ?</h3>
 
 <div class="figure">
 <p><a href="http://www.commitstrip.com/fr/2015/01/12/the-right-tool-for-the-right-job/"><img src="./inc/img/Strip-PHP-doute650-Web.jpg" alt="Strip-PHP-doute650-Web.jpg" /></a>
@@ -90,8 +92,8 @@ sur le web un peu moins de 80%</li>
 </aside>
 
 </section>
-<section id="slide-orgc8b7de5">
-<h3 id="orgc8b7de5"><span class="section-number-3">1.2</span> Introduction à PHP</h3>
+<section id="slide-org8d0d571">
+<h3 id="org8d0d571"><span class="section-number-3">1.2</span> Introduction à PHP</h3>
 <ul>
 <li><b><a href="http://php.net">PHP</a></b> (PHP: Hypertext Preprocessor)</li>
 <li>Langage de programmation
@@ -117,8 +119,8 @@ sur le web un peu moins de 80%</li>
 </aside>
 
 </section>
-<section id="slide-org667dedd">
-<h4 id="org667dedd"><span class="section-number-4">1.2.1</span> Quelques versions de php</h4>
+<section id="slide-org5f724fa">
+<h4 id="org5f724fa"><span class="section-number-4">1.2.1</span> Quelques versions de php</h4>
 <ul>
 <li><code>1.0 : 1995      :</code> <i>PHP: Personal Home Page</i></li>
 <li><code>2.0 : 1997      :</code> Base du langage PHP actuel</li>
@@ -144,7 +146,7 @@ sur le web un peu moins de 80%</li>
 
 </section>
 <section id="slide-hello-world">
-<h4 id="hello-world"><a id="orgf0de1dc"></a><span class="section-number-4">1.2.2</span> Hello world</h4>
+<h4 id="hello-world"><a id="org5891529"></a><span class="section-number-4">1.2.2</span> Hello world</h4>
 <ul>
 <li>Créer un fichier avec l'extension .php</li>
 <li>Insérer du code HTML et/ou PHP</li>
@@ -200,8 +202,8 @@ fin de bloc.</li>
 </aside>
 
 </section>
-<section id="slide-orgb26e90c">
-<h3 id="orgb26e90c"><span class="section-number-3">1.3</span> Les types en PHP</h3>
+<section id="slide-org3b06989">
+<h3 id="org3b06989"><span class="section-number-3">1.3</span> Les types en PHP</h3>
 <ul>
 <li>types simples :
 <ul>
@@ -238,8 +240,8 @@ C. Il se rapproche sur point avec javascriptq</li>
 </aside>
 
 </section>
-<section id="slide-org4711cb5">
-<h4 id="org4711cb5"><span class="section-number-4">1.3.1</span> Les booléens (boolean)</h4>
+<section id="slide-orgffe1077">
+<h4 id="orgffe1077"><span class="section-number-4">1.3.1</span> Les booléens (boolean)</h4>
 <ul>
 <li>Type le plus simple pour exprimer une valeur de vérité.</li>
 <li>Deux constantes insensibles à la casse :
@@ -279,8 +281,8 @@ contrairement à ce qu'on aurait pu penser après avoir vu que
 </aside>
 
 </section>
-<section id="slide-org564acb8">
-<h4 id="org564acb8"><span class="section-number-4">1.3.2</span> Les booléens (cast)</h4>
+<section id="slide-org4a1012c">
+<h4 id="org4a1012c"><span class="section-number-4">1.3.2</span> Les booléens (cast)</h4>
 <ul>
 <li>On utilise <code>(bool)</code> ou <code>(boolean)</code></li>
 <li>Quand on convertit une valeur en booléen, sont considérés <code>false</code>  :
@@ -307,8 +309,8 @@ contrairement à ce qu'on aurait pu penser après avoir vu que
 </aside>
 
 </section>
-<section id="slide-org78da61f">
-<h4 id="org78da61f"><span class="section-number-4">1.3.3</span> Les booléens (exemple)</h4>
+<section id="slide-org3e4db6f">
+<h4 id="org3e4db6f"><span class="section-number-4">1.3.3</span> Les booléens (exemple)</h4>
 <div class="org-src-container">
 
 <pre  class="src src-php" id="phpjs-boolean"><code trim>&lt;?php
@@ -334,8 +336,8 @@ compris la conversion en booléen.</li>
 </aside>
 
 </section>
-<section id="slide-org9ec455a">
-<h4 id="org9ec455a"><span class="section-number-4">1.3.4</span> Les entiers (integer)</h4>
+<section id="slide-orgb38180f">
+<h4 id="orgb38180f"><span class="section-number-4">1.3.4</span> Les entiers (integer)</h4>
 <ul>
 <li>Un entier est un nombre de \({\mathbb{Z} = \{ \dots, -2, -1, 0, 1, 2, \dots\}}\)</li>
 <li>Il peut se définir en :
@@ -360,8 +362,8 @@ la base décimale est celle qui est pratiquement toujours utilisée.</li>
 </aside>
 
 </section>
-<section id="slide-org2f95a37">
-<h4 id="org2f95a37"><span class="section-number-4">1.3.5</span> Les entiers (définis formellement)</h4>
+<section id="slide-orge6b7358">
+<h4 id="orge6b7358"><span class="section-number-4">1.3.5</span> Les entiers (définis formellement)</h4>
 <div class="org-src-container">
 
 <pre  class="src src-text"><code trim>decimal     : [1-9][0-9]*      
@@ -393,8 +395,8 @@ d'un autre chiffre compris entre 0 et 9</li>
 </aside>
 
 </section>
-<section id="slide-orgb7f6251">
-<h4 id="orgb7f6251"><span class="section-number-4">1.3.6</span> Les entiers (cast)</h4>
+<section id="slide-orgc986b57">
+<h4 id="orgc986b57"><span class="section-number-4">1.3.6</span> Les entiers (cast)</h4>
 <ul>
 <li>On utilise <code>(int)</code> ou <code>(integer)</code></li>
 <li><code>false</code> correspond à <code>0</code> et <code>true</code> à <code>1</code></li>
@@ -413,8 +415,8 @@ d'un autre chiffre compris entre 0 et 9</li>
 </aside>
 
 </section>
-<section id="slide-org7942287">
-<h4 id="org7942287"><span class="section-number-4">1.3.7</span> Les réels (float/double)</h4>
+<section id="slide-org7b2f3f6">
+<h4 id="org7b2f3f6"><span class="section-number-4">1.3.7</span> Les réels (float/double)</h4>
 <ul>
 <li>Un réel (nombre à virgule flottante) appartient à \({\mathbb{R}}\)</li>
 <li>La taille d'un réel dépend de la plateforme, mais en général
@@ -440,8 +442,8 @@ de ces réels. Un exemple concret sera donné par la suite</li>
 </aside>
 
 </section>
-<section id="slide-org060d999">
-<h4 id="org060d999"><span class="section-number-4">1.3.8</span> Les réels (définis formellement)</h4>
+<section id="slide-org6afbe13">
+<h4 id="org6afbe13"><span class="section-number-4">1.3.8</span> Les réels (définis formellement)</h4>
 <div class="org-src-container">
 
 <pre  class="src src-text"><code trim>LNUM          [0-9]+                                   
@@ -459,8 +461,8 @@ EXPONENT_DNUM [+-]?(({LNUM} | {DNUM}) [eE][+-]? {LNUM})
 </aside>
 
 </section>
-<section id="slide-orgfe96993">
-<h4 id="orgfe96993"><span class="section-number-4">1.3.9</span> Les réels (cast)</h4>
+<section id="slide-orgd27b969">
+<h4 id="orgd27b969"><span class="section-number-4">1.3.9</span> Les réels (cast)</h4>
 <ul>
 <li>On utilise <code>(float)</code> ou <code>(double)</code></li>
 <li>Seule la partie initiale d'une chaîne de caractères est prise en compte</li>
@@ -477,8 +479,8 @@ EXPONENT_DNUM [+-]?(({LNUM} | {DNUM}) [eE][+-]? {LNUM})
 </aside>
 
 </section>
-<section id="slide-org06ce9d1">
-<h4 id="org06ce9d1"><span class="section-number-4">1.3.10</span> Les entiers et les réels (exemple)</h4>
+<section id="slide-orgd163dd7">
+<h4 id="orgd163dd7"><span class="section-number-4">1.3.10</span> Les entiers et les réels (exemple)</h4>
 <div class="org-src-container">
 
 <pre  class="src src-php" id="phpjs-int-float"><code trim>&lt;?php
@@ -517,8 +519,8 @@ point problem sinon c'est que vous l'avez compris.</li>
 </aside>
 
 </section>
-<section id="slide-org96fd9a4">
-<h4 id="org96fd9a4"><span class="section-number-4">1.3.11</span> Les chaînes de caractères (string)</h4>
+<section id="slide-org243d37b">
+<h4 id="org243d37b"><span class="section-number-4">1.3.11</span> Les chaînes de caractères (string)</h4>
 <ul>
 <li>Une chaîne de caractères correspond à un tableau d'octets.</li>
 <li>Elle se définit à l'aide des <code> ' </code> ou <code> " </code></li>
@@ -549,8 +551,8 @@ sont plus efficaces pour représenter les chaînes de caractères.</li>
 </aside>
 
 </section>
-<section id="slide-org3c57ef9">
-<h4 id="org3c57ef9"><span class="section-number-4">1.3.12</span> Les chaînes de caractères (cast)</h4>
+<section id="slide-org2dd0274">
+<h4 id="org2dd0274"><span class="section-number-4">1.3.12</span> Les chaînes de caractères (cast)</h4>
 <ul>
 <li>On utilise <code>(string)</code></li>
 <li>Convertion automatique avec certaines fonctions comme <code>echo</code>, <code>print</code></li>
@@ -567,8 +569,8 @@ sont plus efficaces pour représenter les chaînes de caractères.</li>
 </aside>
 
 </section>
-<section id="slide-orgc4d1b9c">
-<h4 id="orgc4d1b9c"><span class="section-number-4">1.3.13</span> Les chaînes de caractères (affichage)</h4>
+<section id="slide-orgcbae73c">
+<h4 id="orgcbae73c"><span class="section-number-4">1.3.13</span> Les chaînes de caractères (affichage)</h4>
 <ul>
 <li><code>echo</code> et <code>print</code> ne sont pas de vraies fonctions (l'utilisation
 des parenthèses est facultative, mais recommandée)</li>
@@ -601,8 +603,8 @@ la fonction <a href="http://php.net/manual/en/function.sprintf.php"><code>sprint
 </aside>
 
 </section>
-<section id="slide-orgfc79f6e">
-<h4 id="orgfc79f6e"><span class="section-number-4">1.3.14</span> Les chaînes de caractères (format)</h4>
+<section id="slide-orgb3b1a86">
+<h4 id="orgb3b1a86"><span class="section-number-4">1.3.14</span> Les chaînes de caractères (format)</h4>
 <ul>
 <li>Le format dépend du type du paramètre que l'on veut afficher
 <ul>
@@ -653,8 +655,8 @@ traduction.</li>
 </aside>
 
 </section>
-<section id="slide-org85d267c">
-<h4 id="org85d267c"><span class="section-number-4">1.3.15</span> Les chaînes de caractères (fonctions de base)</h4>
+<section id="slide-org79070a4">
+<h4 id="org79070a4"><span class="section-number-4">1.3.15</span> Les chaînes de caractères (fonctions de base)</h4>
 <ul>
 <li><code>strlen </code> : retourne la longueur de la chaîne</li>
 <li><code>strcmp </code> : compare deux chaînes</li>
@@ -678,8 +680,8 @@ traduction.</li>
 </aside>
 
 </section>
-<section id="slide-org7ea7e08">
-<h4 id="org7ea7e08"><span class="section-number-4">1.3.16</span> Résumé (types simples)</h4>
+<section id="slide-orge560032">
+<h4 id="orge560032"><span class="section-number-4">1.3.16</span> Résumé (types simples)</h4>
 <div class="org-src-container">
 
 <pre  class="src src-php" id="phpjs-string"><code trim>&lt;?php
@@ -700,8 +702,8 @@ traduction.</li>
 </aside>
 
 </section>
-<section id="slide-orgdab1c0e">
-<h4 id="orgdab1c0e"><span class="section-number-4">1.3.17</span> Les tableaux (array)</h4>
+<section id="slide-org13c8d87">
+<h4 id="org13c8d87"><span class="section-number-4">1.3.17</span> Les tableaux (array)</h4>
 <ul>
 <li>Il faut utiliser le mot clé <code>array()</code> (<code>[]</code> autorisé depuis PHP 5.4)</li>
 <li>Chaque paramètre correspond à une paire <code>clé =&gt; valeur</code></li>
@@ -727,8 +729,8 @@ tableaux associatifs</li>
 </aside>
 
 </section>
-<section id="slide-orgc0411ae">
-<h4 id="orgc0411ae"><span class="section-number-4">1.3.18</span> Les tableaux (fonctions de base)</h4>
+<section id="slide-orgcb9f02c">
+<h4 id="orgcb9f02c"><span class="section-number-4">1.3.18</span> Les tableaux (fonctions de base)</h4>
 <ul>
 <li><code>count       </code> : retourne le nombre d'éléments contenus dans un tableau</li>
 <li><code>sort        </code> : trie par rapport aux valeurs un tableau (<code>rsort</code> reverse)</li>
@@ -749,8 +751,8 @@ tableaux associatifs</li>
 </aside>
 
 </section>
-<section id="slide-org6bac291">
-<h4 id="org6bac291"><span class="section-number-4">1.3.19</span> Les tableaux (exemple)</h4>
+<section id="slide-org7b49931">
+<h4 id="org7b49931"><span class="section-number-4">1.3.19</span> Les tableaux (exemple)</h4>
 <div class="org-src-container">
 
 <pre  class="src src-php" id="phpjs-array"><code trim>&lt;?php
@@ -776,13 +778,13 @@ associé à l'index 1 ou 2.</li>
 </aside>
 
 </section>
-<section id="slide-org82ac1be">
-<h3 id="org82ac1be"><span class="section-number-3">1.4</span> Les variables et constantes</h3>
+<section id="slide-orge734acc">
+<h3 id="orge734acc"><span class="section-number-3">1.4</span> Les variables et constantes</h3>
 <div class="outline-text-3" id="text-1-4">
 </div>
 </section>
-<section id="slide-org987cebf">
-<h4 id="org987cebf"><span class="section-number-4">1.4.1</span> Les variables</h4>
+<section id="slide-org4e2dbe8">
+<h4 id="org4e2dbe8"><span class="section-number-4">1.4.1</span> Les variables</h4>
 <ul>
 <li>Une variable est désignée par le signe <code>$</code></li>
 <li>Le nom est sensible à la casse et commence par une lettre ou un
@@ -803,8 +805,8 @@ en PHP.</li>
 </aside>
 
 </section>
-<section id="slide-org6df4969">
-<h4 id="org6df4969"><span class="section-number-4">1.4.2</span> Gérer le type d'une variable</h4>
+<section id="slide-org8fe42f9">
+<h4 id="org8fe42f9"><span class="section-number-4">1.4.2</span> Gérer le type d'une variable</h4>
 <ul>
 <li>La fonction <code>gettype()</code> permet d'obtenir une chaîne de caractères
 correspondant au type de l'argument : <code>boolean</code>, <code>integer</code>,
@@ -830,8 +832,8 @@ variable sans erreur dans le code.</li>
 </aside>
 
 </section>
-<section id="slide-org5028e49">
-<h4 id="org5028e49"><span class="section-number-4">1.4.3</span> Tester l'état d'une variable</h4>
+<section id="slide-org49e2f09">
+<h4 id="org49e2f09"><span class="section-number-4">1.4.3</span> Tester l'état d'une variable</h4>
 <ul>
 <li><code>empty()</code></li>
 <li><code>is_null()</code></li>
@@ -871,8 +873,8 @@ problèmes liés à la conversion des types</li>
 </aside>
 
 </section>
-<section id="slide-orge2a53ad">
-<h4 id="orge2a53ad"><span class="section-number-4">1.4.4</span> Les constantes</h4>
+<section id="slide-org1052bc2">
+<h4 id="org1052bc2"><span class="section-number-4">1.4.4</span> Les constantes</h4>
 <ul>
 <li>Par définition, la valeur d'une constante ne peut pas être modifiée</li>
 <li>On utilise par convention, un nom écrit en lettres capitales</li>
@@ -909,8 +911,8 @@ donc conservées</li>
 </aside>
 
 </section>
-<section id="slide-orge5435bb">
-<h3 id="orge5435bb"><span class="section-number-3">1.5</span> Les opérateurs</h3>
+<section id="slide-org0e6d930">
+<h3 id="org0e6d930"><span class="section-number-3">1.5</span> Les opérateurs</h3>
 <ul>
 <li>Les opérateurs arithmétiques</li>
 <li>Les opérateurs d'affectation</li>
@@ -931,8 +933,8 @@ donc conservées</li>
 </aside>
 
 </section>
-<section id="slide-org6533aa8">
-<h4 id="org6533aa8"><span class="section-number-4">1.5.1</span> Les opérateurs arithmétiques</h4>
+<section id="slide-org6ac847e">
+<h4 id="org6ac847e"><span class="section-number-4">1.5.1</span> Les opérateurs arithmétiques</h4>
 <ul>
 <li><code>-$a     </code> : la négation</li>
 <li><code>$a + $b </code> : l'addition</li>
@@ -954,8 +956,8 @@ l'exponentielle</li>
 </aside>
 
 </section>
-<section id="slide-orgfea6ff6">
-<h4 id="orgfea6ff6"><span class="section-number-4">1.5.2</span> Les opérateurs d'affectation</h4>
+<section id="slide-org64dd3f3">
+<h4 id="org64dd3f3"><span class="section-number-4">1.5.2</span> Les opérateurs d'affectation</h4>
 <ul>
 <li>Le signe <code> = </code></li>
 <li>Il est possible de combiner le signe <code> = </code> avec d'autres opérateurs</li>
@@ -986,8 +988,8 @@ l'exponentielle</li>
 </aside>
 
 </section>
-<section id="slide-org53a6ebf">
-<h4 id="org53a6ebf"><span class="section-number-4">1.5.3</span> Les opérateurs de comparaison</h4>
+<section id="slide-orgc76d827">
+<h4 id="orgc76d827"><span class="section-number-4">1.5.3</span> Les opérateurs de comparaison</h4>
 <ul>
 <li><code>$a == $b </code> : égalité des valeurs</li>
 <li><code>$a === $b</code> : identité (égalité des valeurs et des types)</li>
@@ -1013,8 +1015,8 @@ types</li>
 </aside>
 
 </section>
-<section id="slide-org51dd393">
-<h4 id="org51dd393"><span class="section-number-4">1.5.4</span> Les opérateurs d'incrémentation et décrémentation</h4>
+<section id="slide-org696a46e">
+<h4 id="org696a46e"><span class="section-number-4">1.5.4</span> Les opérateurs d'incrémentation et décrémentation</h4>
 <ul>
 <li><code>++$a</code> : incrémente <code>$a</code>  de 1, puis retourne <code>$a</code></li>
 <li><code>$a++</code> : retourne <code>$a</code> puis incrémente <code>$a</code>  de 1</li>
@@ -1045,8 +1047,8 @@ du même comportement que le langage C</li>
 </aside>
 
 </section>
-<section id="slide-org9e7f513">
-<h4 id="org9e7f513"><span class="section-number-4">1.5.5</span> L'opérateur ternaire</h4>
+<section id="slide-org168b851">
+<h4 id="org168b851"><span class="section-number-4">1.5.5</span> L'opérateur ternaire</h4>
 <ul>
 <li><code>?:</code> est un opérateur conditionnel ternaire</li>
 <li><code>(expr1) ? (expr2) : (expr3)</code> est évalué à :
@@ -1077,8 +1079,8 @@ du même comportement que le langage C</li>
 </aside>
 
 </section>
-<section id="slide-orgd7d4b06">
-<h4 id="orgd7d4b06"><span class="section-number-4">1.5.6</span> Les opérateurs logiques</h4>
+<section id="slide-org93cb80d">
+<h4 id="org93cb80d"><span class="section-number-4">1.5.6</span> Les opérateurs logiques</h4>
 <ul>
 <li><code>$a &amp;&amp; $b </code> : <code>true</code> si <code>$a</code> et <code>$b</code> valent <code>true</code></li>
 <li><code>$a and $b</code> : <code>true</code> si <code>$a</code> et <code>$b</code> valent <code>true</code></li>
@@ -1098,8 +1100,8 @@ du même comportement que le langage C</li>
 </aside>
 
 </section>
-<section id="slide-orgfd6a95b">
-<h4 id="orgfd6a95b"><span class="section-number-4">1.5.7</span> Les autres opérateurs</h4>
+<section id="slide-org7af9db6">
+<h4 id="org7af9db6"><span class="section-number-4">1.5.7</span> Les autres opérateurs</h4>
 <ul>
 <li><code>.</code> correspond à l'opération de concaténation pour les chaînes de caractères</li>
 <li><code>[index]</code> permet d'accéder à un élément particulier d'un tableau</li>
@@ -1128,8 +1130,8 @@ du même comportement que le langage C</li>
 </aside>
 
 </section>
-<section id="slide-orgc2e984b">
-<h3 id="orgc2e984b"><span class="section-number-3">1.6</span> Les structures de contrôle</h3>
+<section id="slide-org748857b">
+<h3 id="org748857b"><span class="section-number-3">1.6</span> Les structures de contrôle</h3>
 <ul>
 <li>Les structures conditionnelles</li>
 <li>Les structures répétitives</li>
@@ -1146,8 +1148,8 @@ du même comportement que le langage C</li>
 </aside>
 
 </section>
-<section id="slide-orgd6dd500">
-<h4 id="orgd6dd500"><span class="section-number-4">1.6.1</span> Les structures conditionnelles (if, else, elseif)</h4>
+<section id="slide-org8a03def">
+<h4 id="org8a03def"><span class="section-number-4">1.6.1</span> Les structures conditionnelles (if, else, elseif)</h4>
 <div class="org-src-container">
 
 <pre  class="src src-c"><code trim>if (condition) {
@@ -1187,8 +1189,8 @@ du même comportement que le langage C</li>
 </aside>
 
 </section>
-<section id="slide-orgb2a3d83">
-<h4 id="orgb2a3d83"><span class="section-number-4">1.6.2</span> Les structures conditionnelles (switch)</h4>
+<section id="slide-orgddb95d3">
+<h4 id="orgddb95d3"><span class="section-number-4">1.6.2</span> Les structures conditionnelles (switch)</h4>
 <div class="org-src-container">
 
 <pre  class="src src-c"><code trim>switch ($i) {
@@ -1215,7 +1217,7 @@ du même comportement que le langage C</li>
 if ($i == 0) {
   echo "i equals 0";
 } elseif ($i == 'a') {
-  echo "i equals 1";
+  echo "i equals a";
 } else {
   echo "aucune valeur correspondante";
 }
@@ -1232,8 +1234,8 @@ un switch car la comparaison n'est pas effectuée sur le type</li>
 </aside>
 
 </section>
-<section id="slide-org020205d">
-<h4 id="org020205d"><span class="section-number-4">1.6.3</span> Les structures répétitives (tant que)</h4>
+<section id="slide-org3bdb38b">
+<h4 id="org3bdb38b"><span class="section-number-4">1.6.3</span> Les structures répétitives (tant que)</h4>
 <div class="org-src-container">
 
 <pre  class="src src-c"><code trim>while (condition) {
@@ -1260,8 +1262,8 @@ une fois</li>
 </aside>
 
 </section>
-<section id="slide-org1c045e8">
-<h4 id="org1c045e8"><span class="section-number-4">1.6.4</span> Les structures répétitives (pour)</h4>
+<section id="slide-org3690583">
+<h4 id="org3690583"><span class="section-number-4">1.6.4</span> Les structures répétitives (pour)</h4>
 <div class="org-src-container">
 
 <pre  class="src src-c"><code trim>for (expr1; expr2; expr3) { // expr1 est exécutée une seule fois au début de la boucle
@@ -1296,8 +1298,8 @@ choisir celle que vous préférez</li>
 </aside>
 
 </section>
-<section id="slide-org863f6ca">
-<h4 id="org863f6ca"><span class="section-number-4">1.6.5</span> Les structures répétitives (tableau)</h4>
+<section id="slide-org0471237">
+<h4 id="org0471237"><span class="section-number-4">1.6.5</span> Les structures répétitives (tableau)</h4>
 <ul>
 <li><code>foreach</code> permet de parcourir les éléments d'un tableau</li>
 
@@ -1328,8 +1330,8 @@ choisir celle que vous préférez</li>
 </aside>
 
 </section>
-<section id="slide-orgc7e0710">
-<h4 id="orgc7e0710"><span class="section-number-4">1.6.6</span> Exemple général sur les structures</h4>
+<section id="slide-org4f330c6">
+<h4 id="org4f330c6"><span class="section-number-4">1.6.6</span> Exemple général sur les structures</h4>
 <div class="org-src-container">
 
 <pre  class="src src-php" id="phpjs-while-foreach-example"><code trim>&lt;?php
@@ -1358,8 +1360,8 @@ choisir celle que vous préférez</li>
 </aside>
 
 </section>
-<section id="slide-orgecaed15">
-<h3 id="orgecaed15"><span class="section-number-3">1.7</span> Les fonctions</h3>
+<section id="slide-org11ed31b">
+<h3 id="org11ed31b"><span class="section-number-3">1.7</span> Les fonctions</h3>
 <ul>
 <li>sont des blocs d'instructions que l'on peut répéter dans un programme</li>
 <li>ne sont pas exécutées directement après leurs définitions</li>
@@ -1388,8 +1390,8 @@ choisir celle que vous préférez</li>
 </aside>
 
 </section>
-<section id="slide-org40b61fd">
-<h4 id="org40b61fd"><span class="section-number-4">1.7.1</span> Les arguments</h4>
+<section id="slide-org93746d8">
+<h4 id="org93746d8"><span class="section-number-4">1.7.1</span> Les arguments</h4>
 <ul>
 <li>Un argument est une variable, défini après le nom de la fonction entre paranthèses</li>
 <li>Les arguments sont séparés par une virgule</li>
@@ -1418,8 +1420,8 @@ choisir celle que vous préférez</li>
 </aside>
 
 </section>
-<section id="slide-org5a65697">
-<h4 id="org5a65697"><span class="section-number-4">1.7.2</span> Les valeurs par défaut</h4>
+<section id="slide-orga553e5c">
+<h4 id="orga553e5c"><span class="section-number-4">1.7.2</span> Les valeurs par défaut</h4>
 <ul>
 <li>Il est possible de définir une valeur par défaut à un argument</li>
 <li>Les arguments qui ont une valeur par défaut sont définis en dernier</li>
@@ -1450,8 +1452,8 @@ alors la variable prendra cette valeur</li>
 </aside>
 
 </section>
-<section id="slide-org04261c3">
-<h4 id="org04261c3"><span class="section-number-4">1.7.3</span> Les retours</h4>
+<section id="slide-orgde49bf2">
+<h4 id="orgde49bf2"><span class="section-number-4">1.7.3</span> Les retours</h4>
 <ul>
 <li>Tous les types de variables peuvent être retournés par une fonction</li>
 <li>Si <code>return</code> est absent, <code>null</code> est retourné</li>
@@ -1480,8 +1482,8 @@ fonctions du langage C</li>
 </aside>
 
 </section>
-<section id="slide-orgcae052d">
-<h4 id="orgcae052d"><span class="section-number-4">1.7.4</span> Retourner plusieurs valeurs</h4>
+<section id="slide-org65c075c">
+<h4 id="org65c075c"><span class="section-number-4">1.7.4</span> Retourner plusieurs valeurs</h4>
 <ul>
 <li>Il faut utiliser un tableau</li>
 
@@ -1514,8 +1516,8 @@ de renvoyer plusieurs valeurs</li>
 </aside>
 
 </section>
-<section id="slide-orgef50c49">
-<h4 id="orgef50c49"><span class="section-number-4">1.7.5</span> Arguments par référence</h4>
+<section id="slide-orgcab6b89">
+<h4 id="orgcab6b89"><span class="section-number-4">1.7.5</span> Arguments par référence</h4>
 <div class="org-src-container">
 
 <pre  class="src src-php" id="phpjs-function-args-reference"><code trim>&lt;?php
@@ -1543,8 +1545,8 @@ ne peut pas manipuler les adresses seulement le contenu des variables.q</li>
 </aside>
 
 </section>
-<section id="slide-orge742a53">
-<h4 id="orge742a53"><span class="section-number-4">1.7.6</span> Une fonction récursive</h4>
+<section id="slide-org729d177">
+<h4 id="org729d177"><span class="section-number-4">1.7.6</span> Une fonction récursive</h4>
 <div class="org-src-container">
 
 <pre  class="src src-php" id="phpjs-function-rec"><code trim>&lt;?php
@@ -1576,8 +1578,8 @@ ne peut pas manipuler les adresses seulement le contenu des variables.q</li>
 </aside>
 
 </section>
-<section id="slide-org642b3d5">
-<h3 id="org642b3d5"><span class="section-number-3">1.8</span> Les variables prédéfinies</h3>
+<section id="slide-org16abf02">
+<h3 id="org16abf02"><span class="section-number-3">1.8</span> Les variables prédéfinies</h3>
 <ul>
 <li><code>$_GET    </code> : variables de la méthode GET (dans l'url)</li>
 <li><code>$_POST   </code> : variables de la méthode POST (dans l'entête HTTP)</li>
@@ -1602,8 +1604,8 @@ besoins</li>
 </aside>
 
 </section>
-<section id="slide-orgfc567dd">
-<h3 id="orgfc567dd"><span class="section-number-3">1.9</span> <code>$_SERVER</code></h3>
+<section id="slide-org68a29ea">
+<h3 id="org68a29ea"><span class="section-number-3">1.9</span> <code>$_SERVER</code></h3>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -1676,8 +1678,8 @@ configuration du serveur</li>
 </aside>
 
 </section>
-<section id="slide-org4df99a3">
-<h2 id="org4df99a3"><span class="section-number-2">2</span> Les formulaires</h2>
+<section id="slide-orgb04ed5a">
+<h2 id="orgb04ed5a"><span class="section-number-2">2</span> Les formulaires</h2>
 <aside class="notes">
 <ul>
 <li>L'interaction avec les formulaires va montrer l'intérêt de PHP. Avec
@@ -1692,8 +1694,8 @@ l'attribut <code>method</code> indiquera la façon d'envoyer les informations
 
 </aside>
 </section>
-<section id="slide-org13d71b2">
-<h3 id="org13d71b2"><span class="section-number-3">2.1</span> GET</h3>
+<section id="slide-org3f9d557">
+<h3 id="org3f9d557"><span class="section-number-3">2.1</span> GET</h3>
 <div class="org-src-container">
 
 <pre  class="src src-php-src"><code trim>GET form
@@ -1735,8 +1737,8 @@ de formulaire dans l'URL. Le format est <code>?nom1=valeur1&amp;nom2=valeur2</co
 
 </aside>
 </section>
-<section id="slide-org56b77dc" data-background="#C8321E">
-<h3 id="org56b77dc"><span class="section-number-3">2.2</span> Sécurité</h3>
+<section id="slide-org803455f" data-background="#C8321E">
+<h3 id="org803455f"><span class="section-number-3">2.2</span> Sécurité</h3>
 <ul>
 <li>Attention à l'utilisation de <code>$_SERVER["PHP_SELF"]</code></li>
 <li>Attention aux données reçues sur le serveur</li>
@@ -1756,8 +1758,8 @@ avant de les utiliser.</li>
 
 </aside>
 </section>
-<section id="slide-orgb3b91a7">
-<h4 id="orgb3b91a7"><span class="section-number-4">2.2.1</span> <code>$_SERVER["PHP_SELF"]</code></h4>
+<section id="slide-org985dd6d">
+<h4 id="org985dd6d"><span class="section-number-4">2.2.1</span> <code>$_SERVER["PHP_SELF"]</code></h4>
 <p>
 <code>$_SERVER["PHP_SELF"]</code> permet de faire référence au script en cours
 </p>
@@ -1853,8 +1855,8 @@ seulement qu'il ne faut pas afficher les données utilisateurs sans les vérifie
 
 </aside>
 </section>
-<section id="slide-org6e4d77d">
-<h4 id="org6e4d77d"><span class="section-number-4">2.2.2</span> Filtrer les données des utilisateurs</h4>
+<section id="slide-orgedf56b8">
+<h4 id="orgedf56b8"><span class="section-number-4">2.2.2</span> Filtrer les données des utilisateurs</h4>
 <p>
 Never Trust User Input
 </p>
@@ -1919,8 +1921,8 @@ vous demande pas de faire des sites entièrement sécurisés</li>
 
 </aside>
 </section>
-<section id="slide-orgeb79f8a">
-<h3 id="orgeb79f8a"><span class="section-number-3">2.3</span> POST</h3>
+<section id="slide-orgd397ac1">
+<h3 id="orgd397ac1"><span class="section-number-3">2.3</span> POST</h3>
 <div class="org-src-container">
 
 <pre  class="src src-php-src"><code trim>POST form
@@ -1950,8 +1952,8 @@ les valeurs transmises en POST.</li>
 
 </aside>
 </section>
-<section id="slide-org7b7ae92">
-<h3 id="org7b7ae92"><span class="section-number-3">2.4</span> Valeurs multiples</h3>
+<section id="slide-org5b07079">
+<h3 id="org5b07079"><span class="section-number-3">2.4</span> Valeurs multiples</h3>
 <div class="org-src-container">
 
 <pre  class="src src-php-src"><code trim>Multiple POST form
@@ -1996,8 +1998,8 @@ valeurs il faut que le nom dans le formulaire HTML finisse pas <code>[]</code></
 
 </aside>
 </section>
-<section id="slide-org6797da9">
-<h3 id="org6797da9"><span class="section-number-3">2.5</span> Buttons multiples</h3>
+<section id="slide-orgd18d315">
+<h3 id="orgd18d315"><span class="section-number-3">2.5</span> Buttons multiples</h3>
 <div class="org-src-container">
 
 <pre  class="src src-php-src"><code trim>Multiple button
@@ -2023,8 +2025,8 @@ valeurs il faut que le nom dans le formulaire HTML finisse pas <code>[]</code></
 
 </aside>
 </section>
-<section id="slide-orgba40b71">
-<h3 id="orgba40b71"><span class="section-number-3">2.6</span> <code>$_FILES</code></h3>
+<section id="slide-org118b0e7">
+<h3 id="org118b0e7"><span class="section-number-3">2.6</span> <code>$_FILES</code></h3>
 <ul>
 <li>Envoi de fichiers (méthode <code>POST</code>)</li>
 <li>Balise form avec l'attribut <code>enctype="multipart/form-data" </code></li>
@@ -2056,8 +2058,8 @@ n'est pas très important</li>
 
 </aside>
 </section>
-<section id="slide-org59b8a6e">
-<h3 id="org59b8a6e"><span class="section-number-3">2.7</span> Informations liées aux fichiers</h3>
+<section id="slide-org4ecb566">
+<h3 id="org4ecb566"><span class="section-number-3">2.7</span> Informations liées aux fichiers</h3>
 <ul>
 <li><code>name    </code> : nom du fichier client</li>
 <li><code>type    </code> : MIME du fichier client</li>
@@ -2076,8 +2078,8 @@ associées</li>
 
 </aside>
 </section>
-<section id="slide-org9c858dc">
-<h3 id="org9c858dc"><span class="section-number-3">2.8</span> Codes d'erreur</h3>
+<section id="slide-org8790b54">
+<h3 id="org8790b54"><span class="section-number-3">2.8</span> Codes d'erreur</h3>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -2130,8 +2132,8 @@ problèmes liés à l'envoi du fichier</li>
 
 </aside>
 </section>
-<section id="slide-org8b52052">
-<h3 id="org8b52052"><span class="section-number-3">2.9</span> POST et FILES</h3>
+<section id="slide-org6cbbfe8">
+<h3 id="org6cbbfe8"><span class="section-number-3">2.9</span> POST et FILES</h3>
 <div class="org-src-container">
 
 <pre  class="src src-php-src"><code trim>POST form with file
@@ -2180,8 +2182,8 @@ faudra donc le déplacer dans un dossier.</li>
 
 </aside>
 </section>
-<section id="slide-orgeb4fd46">
-<h3 id="orgeb4fd46"><span class="section-number-3">2.10</span> Déplacement des fichiers</h3>
+<section id="slide-org286ced3">
+<h3 id="org286ced3"><span class="section-number-3">2.10</span> Déplacement des fichiers</h3>
 <ul>
 <li>Il faut utiliser la fonction <code>move_uploaded_file</code></li>
 <li><code>move_uploaded_file($_FILES["file"]["tmp_name"], "monimage.jpg");</code>
@@ -2207,8 +2209,8 @@ l'utilisation d'un nom que vous définirez vous même.</li>
 
 </aside>
 </section>
-<section id="slide-orge721620">
-<h3 id="orge721620"><span class="section-number-3">2.11</span> Validation</h3>
+<section id="slide-orgf7ac8a9">
+<h3 id="orgf7ac8a9"><span class="section-number-3">2.11</span> Validation</h3>
 <ul>
 <li>Never Trust User Input</li>
 <li>La validation html5 n'est pas suffisante</li>
@@ -2235,8 +2237,8 @@ données provenant d'un formulaire.</li>
 
 </aside>
 </section>
-<section id="slide-org9a75ea8">
-<h2 id="org9a75ea8"><span class="section-number-2">3</span> Cookies et sessions</h2>
+<section id="slide-org712b1b7">
+<h2 id="org712b1b7"><span class="section-number-2">3</span> Cookies et sessions</h2>
 <aside class="notes">
 <ul>
 <li>Comme vous le savez sûrement les cookies sont des petits fichiers
@@ -2257,8 +2259,8 @@ la communication entre le client et le serveur</li>
 
 </aside>
 </section>
-<section id="slide-org45d1336">
-<h3 id="org45d1336"><span class="section-number-3">3.1</span> Les cookies</h3>
+<section id="slide-orgb926d76">
+<h3 id="orgb926d76"><span class="section-number-3">3.1</span> Les cookies</h3>
 <ul>
 <li>Les cookies permettent de stocker des informations côté client<br />
 (Never Trust User Input)</li>
@@ -2283,8 +2285,8 @@ toujours.</li>
 
 </aside>
 </section>
-<section id="slide-orgcb2e32c">
-<h3 id="orgcb2e32c"><span class="section-number-3">3.2</span> setcookie</h3>
+<section id="slide-org000ad9e">
+<h3 id="org000ad9e"><span class="section-number-3">3.2</span> setcookie</h3>
 <div class="org-src-container">
 
 <pre  class="src src-c-center"><code trim>setcookie($name, $value, $expire, $path, $domain, $secure, $httponly);
@@ -2358,8 +2360,8 @@ page</li>
 
 </aside>
 </section>
-<section id="slide-orgf8f10bc">
-<h3 id="orgf8f10bc"><span class="section-number-3">3.3</span> Affectation des cookies en PHP</h3>
+<section id="slide-orgd44ba4a">
+<h3 id="orgd44ba4a"><span class="section-number-3">3.3</span> Affectation des cookies en PHP</h3>
 <div class="org-src-container">
 
 <pre  class="src src-c"><code trim>setcookie('hello','world');
@@ -2379,8 +2381,8 @@ setcookie('tableau[index3]','val3');
 
 </aside>
 </section>
-<section id="slide-orgb5de8b2">
-<h3 id="orgb5de8b2"><span class="section-number-3">3.4</span> Lecture des cookies</h3>
+<section id="slide-org48988a9">
+<h3 id="org48988a9"><span class="section-number-3">3.4</span> Lecture des cookies</h3>
 <ul>
 <li><code>$_COOKIE</code> est utilisé pour récupérer les valeurs</li>
 <li>Attention, il n'est pas possible de lire une valeur associée
@@ -2435,8 +2437,8 @@ pour voir la mise à jour dans le rendu généré par PHP</li>
 
 </aside>
 </section>
-<section id="slide-orgb2ce918">
-<h3 id="orgb2ce918"><span class="section-number-3">3.5</span> Les sessions</h3>
+<section id="slide-org5580635">
+<h3 id="org5580635"><span class="section-number-3">3.5</span> Les sessions</h3>
 <ul>
 <li>Les sessions permettent de stocker des informations côté serveur</li>
 <li>Les sessions ne sont pas partagées entre les visiteurs</li>
@@ -2451,8 +2453,8 @@ pour voir la mise à jour dans le rendu généré par PHP</li>
 
 </aside>
 </section>
-<section id="slide-org4846d4c">
-<h3 id="org4846d4c"><span class="section-number-3">3.6</span> Différentes étapes</h3>
+<section id="slide-org5495e1d">
+<h3 id="org5495e1d"><span class="section-number-3">3.6</span> Différentes étapes</h3>
 <ul>
 <li>Ouverture d'une session avec <code>session_start()</code></li>
 <li>Transmission d'un identifiant de session</li>
@@ -2471,8 +2473,8 @@ code HTML</li>
 
 </aside>
 </section>
-<section id="slide-org805aa87">
-<h3 id="org805aa87"><span class="section-number-3">3.7</span> Transmission de l'identifiant de session</h3>
+<section id="slide-orgedfb70b">
+<h3 id="orgedfb70b"><span class="section-number-3">3.7</span> Transmission de l'identifiant de session</h3>
 <ul>
 <li>Dans l'URL à l'aide de la variable <code>SID</code> (Pas recommandé)</li>
 <li>Avec les cookies (il faut que le client accepte les cookies)
@@ -2497,8 +2499,8 @@ sessions</li>
 
 </aside>
 </section>
-<section id="slide-orgec01130">
-<h3 id="orgec01130"><span class="section-number-3">3.8</span> Utilisation des sessions - 1 - <code>session_login.php</code></h3>
+<section id="slide-org0b11729">
+<h3 id="org0b11729"><span class="section-number-3">3.8</span> Utilisation des sessions - 1 - <code>session_login.php</code></h3>
 <div class="org-src-container">
 
 <pre  class="src src-php-src"><code trim>&lt;?php
@@ -2544,8 +2546,8 @@ de demander au navigateur d'effectuer une redirection)</li>
 
 </aside>
 </section>
-<section id="slide-orge03647f">
-<h3 id="orge03647f"><span class="section-number-3">3.9</span> Utilisation des sessions - 2 - <code>session_form.php</code></h3>
+<section id="slide-org07c3934">
+<h3 id="org07c3934"><span class="section-number-3">3.9</span> Utilisation des sessions - 2 - <code>session_form.php</code></h3>
 <div class="org-src-container">
 
 <pre  class="src src-php-src"><code trim>&lt;form method="post" action=""&gt;
@@ -2575,8 +2577,8 @@ page courante <code>action</code> vide
 
 </aside>
 </section>
-<section id="slide-orgff13388">
-<h3 id="orgff13388"><span class="section-number-3">3.10</span> Utilisation des sessions - 3 - <code>session_menu.php</code></h3>
+<section id="slide-orgc147c31">
+<h3 id="orgc147c31"><span class="section-number-3">3.10</span> Utilisation des sessions - 3 - <code>session_menu.php</code></h3>
 <div class="org-src-container">
 
 <pre  class="src src-php-src"><code trim>&lt;p&gt; Visiter les pages du site &lt;br /&gt;
@@ -2615,8 +2617,8 @@ définie</li>
 
 </aside>
 </section>
-<section id="slide-orgc922048">
-<h3 id="orgc922048"><span class="section-number-3">3.11</span> Utilisation des sessions - 4 - <code>session_info.php</code></h3>
+<section id="slide-orgf969d1a">
+<h3 id="orgf969d1a"><span class="section-number-3">3.11</span> Utilisation des sessions - 4 - <code>session_info.php</code></h3>
 <div class="org-src-container">
 
 <pre  class="src src-php-src"><code trim>&lt;p&gt;
@@ -2636,8 +2638,8 @@ définie</li>
 
 </aside>
 </section>
-<section id="slide-org4bf4cd6">
-<h3 id="org4bf4cd6"><span class="section-number-3">3.12</span> Utilisation des sessions - 5 - <code>session_public.php</code></h3>
+<section id="slide-orgef896d8">
+<h3 id="orgef896d8"><span class="section-number-3">3.12</span> Utilisation des sessions - 5 - <code>session_public.php</code></h3>
 <div class="org-src-container">
 
 <pre  class="src src-php-src"><code trim>&lt;?php
@@ -2669,8 +2671,8 @@ $_SESSION["public"] ++;
 
 </aside>
 </section>
-<section id="slide-org2f4a900">
-<h3 id="org2f4a900"><span class="section-number-3">3.13</span> Utilisation des sessions - 6 - <code>session_protected.php</code></h3>
+<section id="slide-orga89befb">
+<h3 id="orga89befb"><span class="section-number-3">3.13</span> Utilisation des sessions - 6 - <code>session_protected.php</code></h3>
 <div class="org-src-container">
 
 <pre  class="src src-php-src"><code trim>&lt;?php
@@ -2722,8 +2724,8 @@ valeurs associées à la session sont conservées</li>
 </aside>
 
 </section>
-<section id="slide-orgc125ca5">
-<h2 id="orgc125ca5"><span class="section-number-2">4</span> PHP et les fichiers</h2>
+<section id="slide-org9ff2d60">
+<h2 id="org9ff2d60"><span class="section-number-2">4</span> PHP et les fichiers</h2>
 <aside class="notes">
 <ul>
 <li>Avec PHP, comme en langage C, il est possible d'utiliser des
@@ -2735,8 +2737,8 @@ et manipuler des fichiers pour stocker ou lire des informations
 
 </aside>
 </section>
-<section id="slide-orgb915598">
-<h3 id="orgb915598"><span class="section-number-3">4.1</span> L'inclusion de fichiers</h3>
+<section id="slide-org2788514">
+<h3 id="org2788514"><span class="section-number-3">4.1</span> L'inclusion de fichiers</h3>
 <ul>
 <li>Il est possible d'utiliser du code PHP ou HTML provenant d'autres fichiers :
 <ul>
@@ -2759,8 +2761,8 @@ sont données sur la diapositive suivante</li>
 
 </aside>
 </section>
-<section id="slide-orgd97601f">
-<h3 id="orgd97601f"><span class="section-number-3">4.2</span> L'inclusion de fichiers</h3>
+<section id="slide-org2f5013a">
+<h3 id="org2f5013a"><span class="section-number-3">4.2</span> L'inclusion de fichiers</h3>
 <ul>
 <li>La différence entre <code>include</code> et <code>require</code> concerne la gestion des erreurs
 <ul>
@@ -2787,8 +2789,8 @@ duplication de code, c'est le principe DRY (Don't Reapeat Yourself)</li>
 
 </aside>
 </section>
-<section id="slide-org23f5393">
-<h3 id="org23f5393"><span class="section-number-3">4.3</span> Manipulation simple des fichiers</h3>
+<section id="slide-org466ed05">
+<h3 id="org466ed05"><span class="section-number-3">4.3</span> Manipulation simple des fichiers</h3>
 <ul>
 <li><code>file_exists()</code> permet de vérifier l'existence d'un fichier</li>
 <li><code>file_get_contents()</code> permet de lire le contenu d'un fichier</li>
@@ -2825,8 +2827,8 @@ pas pensez à vérifier les droits associés au dossier (droit en
 
 </aside>
 </section>
-<section id="slide-org05a45bb">
-<h3 id="org05a45bb"><span class="section-number-3">4.4</span> Manipulation simple des fichiers</h3>
+<section id="slide-org60f8a8f">
+<h3 id="org60f8a8f"><span class="section-number-3">4.4</span> Manipulation simple des fichiers</h3>
 <ul>
 <li><p>
 <a href="http://php.net/manual/en/function.readfile.php">readfile</a> lit et affiche le contenu d'un fichier 
@@ -2859,8 +2861,8 @@ ligne</li>
 
 </aside>
 </section>
-<section id="slide-org4ae7080">
-<h3 id="org4ae7080"><span class="section-number-3">4.5</span> Manipulation avancée des fichiers</h3>
+<section id="slide-org8703768">
+<h3 id="org8703768"><span class="section-number-3">4.5</span> Manipulation avancée des fichiers</h3>
 <ul>
 <li><p>
 <a href="http://php.net/manual/en/function.fopen.php">fopen</a> ouvre un fichier
@@ -2893,8 +2895,8 @@ présentées sur la diapositive suivante</li>
 
 </aside>
 </section>
-<section id="slide-org33b445c">
-<h3 id="org33b445c"><span class="section-number-3">4.6</span> Déplacement</h3>
+<section id="slide-orgd622109">
+<h3 id="orgd622109"><span class="section-number-3">4.6</span> Déplacement</h3>
 <ul>
 <li><p>
 <a href="http://php.net/manual/en/function.fseek.php">fseek</a> déplace le pointeur à une position donnée
@@ -2943,8 +2945,8 @@ avancées de fichiers</li>
 
 </aside>
 </section>
-<section id="slide-org6bc9bee">
-<h3 id="org6bc9bee"><span class="section-number-3">4.7</span> Lecture</h3>
+<section id="slide-org1297c6e">
+<h3 id="org1297c6e"><span class="section-number-3">4.7</span> Lecture</h3>
 <ul>
 <li><p>
 <a href="http://php.net/manual/en/function.fread.php">fread</a> lecture du fichier en mode binaire
@@ -2983,8 +2985,8 @@ de type spécifique en PHP pour représenter un caractère.</li>
 
 </aside>
 </section>
-<section id="slide-org036f656">
-<h3 id="org036f656"><span class="section-number-3">4.8</span> Écriture/Fermeture d'un fichier</h3>
+<section id="slide-org9894bc3">
+<h3 id="org9894bc3"><span class="section-number-3">4.8</span> Écriture/Fermeture d'un fichier</h3>
 <ul>
 <li><p>
 <a href="http://php.net/manual/en/function.fwrite.php">fwrite</a>/fputs écriture du fichier en mode binaire
@@ -3014,8 +3016,8 @@ diapositive suivante</li>
 
 </aside>
 </section>
-<section id="slide-org8a3e86a">
-<h3 id="org8a3e86a"><span class="section-number-3">4.9</span> Exemple</h3>
+<section id="slide-org1804d7e">
+<h3 id="org1804d7e"><span class="section-number-3">4.9</span> Exemple</h3>
 <div class="org-src-container">
 
 <pre  class="src src-php-src"><code trim>&lt;?php
@@ -3040,8 +3042,8 @@ if ($handle) {
 
 </aside>
 </section>
-<section id="slide-org4e13a88">
-<h3 id="org4e13a88"><span class="section-number-3">4.10</span> Résumé</h3>
+<section id="slide-org174c719">
+<h3 id="org174c719"><span class="section-number-3">4.10</span> Résumé</h3>
 
 <div class="figure">
 <p><a href="http://www.luc-damas.fr/humeurs/pedagogie-houblonnee-les-fichiers/"><img src="./inc/img/pedagogie-houblonnee-fichiers.jpg" alt="pedagogie-houblonnee-fichiers.jpg" /></a>
@@ -3057,8 +3059,8 @@ if ($handle) {
 
 </aside>
 </section>
-<section id="slide-orgdd7911c">
-<h3 id="orgdd7911c"><span class="section-number-3">4.11</span> Vérrouillage d'un fichier</h3>
+<section id="slide-orgf27805c">
+<h3 id="orgf27805c"><span class="section-number-3">4.11</span> Vérrouillage d'un fichier</h3>
 <ul>
 <li><p>
 <a href="http://php.net/manual/en/function.flock.php">flock</a> vérrouille un fichier
@@ -3089,8 +3091,8 @@ processus et empêche donc l'utilisation correcte de <code>flock</code></li>
 
 </aside>
 </section>
-<section id="slide-org15f3ad8">
-<h3 id="org15f3ad8"><span class="section-number-3">4.12</span> csv</h3>
+<section id="slide-org2672aa4">
+<h3 id="org2672aa4"><span class="section-number-3">4.12</span> csv</h3>
 <ul>
 <li><p>
 <a href="http://php.net/manual/en/function.fgetcsv.php">fgetcsv</a> retourne sous forme de tableau un fichier CSV
@@ -3127,8 +3129,8 @@ des fichiers sans utiliser de base de données du type MySQL</li>
 
 </aside>
 </section>
-<section id="slide-org608ea76">
-<h3 id="org608ea76"><span class="section-number-3">4.13</span> Action sur les fichiers</h3>
+<section id="slide-org1cd66a5">
+<h3 id="org1cd66a5"><span class="section-number-3">4.13</span> Action sur les fichiers</h3>
 <ul>
 <li><p>
 <a href="http://php.net/manual/en/function.copy.php">copy</a> copie un fichier
@@ -3167,8 +3169,8 @@ irréversibles.</li>
 
 </aside>
 </section>
-<section id="slide-org48b77c6">
-<h3 id="org48b77c6"><span class="section-number-3">4.14</span> Information sur les fichiers</h3>
+<section id="slide-org516d0b8">
+<h3 id="org516d0b8"><span class="section-number-3">4.14</span> Information sur les fichiers</h3>
 <ul>
 <li><p>
 <a href="http://php.net/manual/en/function.filesize.php">filesize</a> récupère la taille du fichier
@@ -3222,8 +3224,8 @@ fichiers</li>
 
 </aside>
 </section>
-<section id="slide-org0423f69">
-<h2 id="org0423f69"><span class="section-number-2">5</span> Bases de données SQL</h2>
+<section id="slide-org328cb2d">
+<h2 id="org328cb2d"><span class="section-number-2">5</span> Bases de données SQL</h2>
 <aside class="notes">
 <ul>
 <li>Pour stocker des informations efficacement, on utilise la plupart du
@@ -3233,8 +3235,8 @@ temps des bases de données relationnelles comme MySQL, SQLite, etc.</li>
 
 </aside>
 </section>
-<section id="slide-org354861b">
-<h3 id="org354861b"><span class="section-number-3">5.1</span> Approches</h3>
+<section id="slide-orga99ffed">
+<h3 id="orga99ffed"><span class="section-number-3">5.1</span> Approches</h3>
 <ul>
 <li>Approche spécifique
 <ul>
@@ -3262,8 +3264,8 @@ grandement son utilisation)</li>
 
 </aside>
 </section>
-<section id="slide-org31394bb">
-<h3 id="org31394bb"><span class="section-number-3">5.2</span> Approche spécifique</h3>
+<section id="slide-org82c54d0">
+<h3 id="org82c54d0"><span class="section-number-3">5.2</span> Approche spécifique</h3>
 <ul>
 <li>Avantages :
 <ul>
@@ -3289,8 +3291,8 @@ pas.</li>
 
 </aside>
 </section>
-<section id="slide-org2f94825">
-<h3 id="org2f94825"><span class="section-number-3">5.3</span> Approche générale</h3>
+<section id="slide-org6e44a0c">
+<h3 id="org6e44a0c"><span class="section-number-3">5.3</span> Approche générale</h3>
 <ul>
 <li>Avantages :
 <ul>
@@ -3316,8 +3318,8 @@ pas.</li>
 
 </aside>
 </section>
-<section id="slide-org1912f10">
-<h3 id="org1912f10"><span class="section-number-3">5.4</span> Exemple</h3>
+<section id="slide-orgcb20ada">
+<h3 id="orgcb20ada"><span class="section-number-3">5.4</span> Exemple</h3>
 <div class="org-src-container">
 
 <pre  class="src src-php-src"><code trim>&lt;?php
@@ -3352,8 +3354,8 @@ du code ne changera pas.</li>
 
 </aside>
 </section>
-<section id="slide-orge814632">
-<h3 id="orge814632"><span class="section-number-3">5.5</span> PDO : créer une connexion</h3>
+<section id="slide-orgd64f99c">
+<h3 id="orgd64f99c"><span class="section-number-3">5.5</span> PDO : créer une connexion</h3>
 <div class="org-src-container">
 
 <pre  class="src src-php-src"><code trim>&lt;?php
@@ -3400,8 +3402,8 @@ produit, le code est arrêté et fait appel au code associé au <code>catch</cod
 
 </aside>
 </section>
-<section id="slide-org48118e0">
-<h3 id="org48118e0"><span class="section-number-3">5.6</span> PDO : fermer une connexion</h3>
+<section id="slide-orgef4d792">
+<h3 id="orgef4d792"><span class="section-number-3">5.6</span> PDO : fermer une connexion</h3>
 <ul>
 <li>Fermeture automatique à la fin du script</li>
 <li>Mettre à null la variable qui gère la connexion</li>
@@ -3439,8 +3441,8 @@ avec une base commune.</li>
 
 </aside>
 </section>
-<section id="slide-org6f8b569">
-<h3 id="org6f8b569"><span class="section-number-3">5.7</span> PDO : exec et query</h3>
+<section id="slide-org90a623f">
+<h3 id="org90a623f"><span class="section-number-3">5.7</span> PDO : exec et query</h3>
 <ul>
 <li><p>
 <a href="http://php.net/manual/en/pdo.exec.php">exec</a> execute une requête SQL et retourne le nombre de lignes affectées
@@ -3474,8 +3476,8 @@ une requête <code>SELECT</code></li>
 
 </aside>
 </section>
-<section id="slide-orgc6da285">
-<h3 id="orgc6da285"><span class="section-number-3">5.8</span> PDO : gestion des erreurs</h3>
+<section id="slide-org9f89d8f">
+<h3 id="org9f89d8f"><span class="section-number-3">5.8</span> PDO : gestion des erreurs</h3>
 <div class="org-src-container">
 
 <pre  class="src src-php-src"><code trim>&lt;?php
@@ -3519,8 +3521,8 @@ l'URL en changeant les valeurs <code>exception</code>, <code>warning</code> et <
 
 </aside>
 </section>
-<section id="slide-org9fb4590">
-<h3 id="org9fb4590"><span class="section-number-3">5.9</span> PDO : création : <code>pdo_create.php</code></h3>
+<section id="slide-orga23e36c">
+<h3 id="orga23e36c"><span class="section-number-3">5.9</span> PDO : création : <code>pdo_create.php</code></h3>
 <ul>
 <li>Pose le plus de problème pour la généricité du code car très
 spécifique à la base utilisée</li>
@@ -3567,8 +3569,8 @@ SQLite)
 
 </aside>
 </section>
-<section id="slide-org46eb982">
-<h3 id="org46eb982"><span class="section-number-3">5.10</span> PDO : insertion : <code>pdo_insert.php</code></h3>
+<section id="slide-orgedee293">
+<h3 id="orgedee293"><span class="section-number-3">5.10</span> PDO : insertion : <code>pdo_insert.php</code></h3>
 <div class="org-src-container">
 
 <pre  class="src src-php-src"><code trim>&lt;?php
@@ -3603,8 +3605,8 @@ chaque fois</li>
 
 </aside>
 </section>
-<section id="slide-orgbfa6eb0">
-<h3 id="orgbfa6eb0"><span class="section-number-3">5.11</span> PDO : sélection</h3>
+<section id="slide-org485c773">
+<h3 id="org485c773"><span class="section-number-3">5.11</span> PDO : sélection</h3>
 <div class="org-src-container">
 
 <pre  class="src src-php-src"><code trim>&lt;?php
@@ -3633,8 +3635,8 @@ résultat le nom d'un attribut de la table</li>
 
 </aside>
 </section>
-<section id="slide-org3dca506">
-<h3 id="org3dca506"><span class="section-number-3">5.12</span> PDO : parcours des données</h3>
+<section id="slide-org9520bfd">
+<h3 id="org9520bfd"><span class="section-number-3">5.12</span> PDO : parcours des données</h3>
 <div class="org-src-container">
 
 <pre  class="src src-php-src"><code trim>&lt;?php
@@ -3691,8 +3693,8 @@ résultats</li>
 
 </aside>
 </section>
-<section id="slide-org8347dc2">
-<h3 id="org8347dc2"><span class="section-number-3">5.13</span> PDO : mise à jour</h3>
+<section id="slide-orgf1a9472">
+<h3 id="orgf1a9472"><span class="section-number-3">5.13</span> PDO : mise à jour</h3>
 <div class="org-src-container">
 
 <pre  class="src src-php-src"><code trim>&lt;?php
@@ -3720,8 +3722,8 @@ requête, ici ça nous donne donc le nombre d'animaux qui ont été mis
 
 </aside>
 </section>
-<section id="slide-org1fb07bb">
-<h3 id="org1fb07bb"><span class="section-number-3">5.14</span> PDO : suppression</h3>
+<section id="slide-org20e8957">
+<h3 id="org20e8957"><span class="section-number-3">5.14</span> PDO : suppression</h3>
 <div class="org-src-container">
 
 <pre  class="src src-php-src"><code trim>&lt;?php
@@ -3748,8 +3750,8 @@ requête, ici ça nous donne donc le nombre d'animaux qui ont été mis
 
 </aside>
 </section>
-<section id="slide-orga561a69">
-<h3 id="orga561a69"><span class="section-number-3">5.15</span> PDO : préparation</h3>
+<section id="slide-org2cea577">
+<h3 id="org2cea577"><span class="section-number-3">5.15</span> PDO : préparation</h3>
 <div class="org-src-container">
 
 <pre  class="src src-php-src"><code trim>&lt;?php
@@ -3801,8 +3803,8 @@ même requête en changeant le paramètre, ici le nom de l'animal</li>
 
 </aside>
 </section>
-<section id="slide-org9dbcd4c">
-<h3 id="org9dbcd4c"><span class="section-number-3">5.16</span> PDO : fermeture du curseur</h3>
+<section id="slide-orgc73673e">
+<h3 id="orgc73673e"><span class="section-number-3">5.16</span> PDO : fermeture du curseur</h3>
 <div class="org-src-container">
 
 <pre  class="src src-php-src"><code trim>&lt;?php
@@ -3851,14 +3853,17 @@ avant.</li>
 </section>
 </div>
 </div>
-<div id="reveal-styles"><ul><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/theme/default.css'); return false;" href="#">Black</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/theme/blood.css'); return false;" href="#">Blood</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/theme/sky.css'); return false;" href="#">Sky</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/theme/beige.css'); return false;" href="#">Beige</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/theme/simple.css'); return false;" href="#">Simple</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/theme/serif.css'); return false;" href="#">Serif</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/theme/night.css'); return false;" href="#">Night</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/theme/moon.css'); return false;" href="#">Moon</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/theme/solarized.css'); return false;" href="#">Solarized</a></li></ul></div>
-<script src="../common/lib/reveal/js/reveal.js"></script>
+<div id="reveal-styles"><ul><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/css/theme/black.css'); return false;" href="#">Black</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/css/theme/blood.css'); return false;" href="#">Blood</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/css/theme/sky.css'); return false;" href="#">Sky</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/css/theme/beige.css'); return false;" href="#">Beige</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/css/theme/simple.css'); return false;" href="#">Simple</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/css/theme/serif.css'); return false;" href="#">Serif</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/css/theme/night.css'); return false;" href="#">Night</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/css/theme/moon.css'); return false;" href="#">Moon</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/css/theme/solarized.css'); return false;" href="#">Solarized</a></li></ul></div>
+<script src="../common/lib/reveal/dist/reveal.js"></script>
+<script src="../common/lib/reveal/plugin/notes/notes.js"></script>
+
 
 <script>
 // Full list of configuration options available here:
 // https://github.com/hakimel/reveal.js#configuration
 Reveal.initialize({
-width:1800, height:1200, progress:true, history:true, control:true, rolling_links:true, keyboard:true, overview:true, hash: false, slideNumber:true,
+plugins: [RevealNotes],
+width:1800, height:1200, progress:true, history:true, control:true, rolling_links:true, keyboard:true, overview:true, hash: false, slideNumber:true, pdfSeparateFragments: false,
 multiplex: {
     secret: '', // null if client
     id: '', // id, obtained from socket.io server
@@ -3867,8 +3872,7 @@ multiplex: {
 
 // Optional libraries used to extend on reveal.js
 dependencies: [
-{ src : '../common/lib/phpjs/php.min.js' }, { src : '../common/lib/codemirror/codemirror.js' }, { src : '../common/lib/codemirror/mode/htmlmixed/htmlmixed.js' }, { src : '../common/lib/codemirror/mode/xml/xml.js' }, { src : '../common/lib/codemirror/mode/php/php.js' }, { src : '../common/lib/codemirror/mode/javascript/javascript.js' }, { src : '../common/lib/codemirror/mode/clike/clike.js' }, { src : '../common/lib/codemirror/mode/css/css.js' }, { src : '../common/lib/codemirror/addon/display/autorefresh.js' }, { src : '../common/lib/split/split-grid.js' }, { src : '../common/inc/js/console.js'},
- { src: '../common/lib/reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
+{ src : '../common/lib/phpjs/php.min.js' }, { src : '../common/lib/codemirror/codemirror.js' }, { src : '../common/lib/codemirror/mode/htmlmixed/htmlmixed.js' }, { src : '../common/lib/codemirror/mode/sql/sql.js' }, { src : '../common/lib/codemirror/mode/xml/xml.js' }, { src : '../common/lib/codemirror/mode/php/php.js' }, { src : '../common/lib/codemirror/mode/javascript/javascript.js' }, { src : '../common/lib/codemirror/mode/clike/clike.js' }, { src : '../common/lib/codemirror/mode/css/css.js' }, { src : '../common/lib/codemirror/addon/display/autorefresh.js' }, { src : '../common/lib/split/split-grid.js' }, { src : '../common/inc/js/console.js'}]
 });
 </script>
 </body>
