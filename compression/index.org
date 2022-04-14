@@ -1,0 +1,2897 @@
+#+Title: Compression de données
+
+#+INCLUDE: "../common/inc/index.org"
+#+REVEAL_EXTRA_CSS: ./inc/css/style.css
+#+HTML_HEAD_EXTRA: <script src="./inc/js/raphael.min.js"></script>
+#+HTML_HEAD_EXTRA: <script src="./inc/js/script.js"></script>
+
+* Introduction
+  Pourquoi on s'intéresse à la compression de données ?
+
+  #+ATTR_REVEAL: :frag (roll-in) :frag_idx (1)
+  * La puissance des processeurs augmente plus vite que les capacités de stockage et de bande passante
+
+** Différents types de compression
+
+#+ATTR_REVEAL: :frag (roll-in roll-in roll-in) :frag_idx (1 2 3)
+- Compression avec perte
+  - destructice, pertes irréversibles
+  - données perceptibles : images (jpeg, webp), sons (mp3, ogg
+    vorbis), vidéos (mpeg, webm)
+- Compression presque sans perte
+  - compression logique (information équivalente 2+2 => 4)
+  - suppression des méta-données (EXIF pour jpeg)
+  - abbréviations (USA : United State of America)
+  - compression js, css (noms des variables plus courts)
+- Compression sans perte
+  - compression physique
+  - également appelé compactage (non destructrice)
+  - attention, si un algorithme compresse au moins un fichier, il en
+    grossit au moins un
+
+** Compression symétrique/asymétrique
+
+#+ATTR_REVEAL: :frag (roll-in roll-in) :frag_idx (1 2)
+- symétrique
+  - la compression et la décompression nécessitent le même nombre
+    d'opérations (utile par exemple pour le transfert sur le réseau de
+    fichiers texte, js, css, html...)
+- asymétrique
+  - une des 2 opérations (compression/décompression) nécessite plus
+    d'opérations (utile par exemple pour l'archivage ou pour
+    l'installation d'un programme)
+
+** Compression non-adaptative, adaptative ou semi-adaptive
+
+#+ATTR_REVEAL: :frag (roll-in roll-in roll-in) :frag_idx (1 2 3)
+- non-adaptatif
+  - utilise un dictionnaire prédéfini en fonction du type de données
+  - utilisation de la fréquence d'apparition des lettres dans une
+    langue donnée par ex pour la langue française : e,s,a,i,t,n,r,...
+- adapatif
+  - n'utilise aucune donnée a priori
+  - indépendant des données
+- semi-adapatif
+  - effectue un premier parcours des données à compresser pour
+    construire un dictionnaire qui sera utilisé pour la compression
+
+** Notations/Vocabulaire
+
+#+ATTR_REVEAL: :frag (roll-in roll-in) :frag_idx (1 2)
+- Notations
+  - alphabet source $S = {s_1,...,s_{|S|}}$
+  - code $C = {c_1,...,c_{|S|}}$ avec $f(s_i) = c_i$
+  - distribution de probabilités sur $S$, $P = (p_1,...,p_{|S|})$
+  - alphabet du code destination $D = {d_1,...,d_{|D|}}$
+- Vocabulaire
+  - quotient/ratio de compression : $q = \frac{taille\_initiale}{taille\_finale}$
+  - taux de compression : $\tau = \frac{1}{q} = \frac{taille\_finale}{taille\_initiale}$
+  - gain de compression : 1 - $\tau$
+
+** Préliminaires : décoder sans ambiguïté
+
+  - ex : $S = {A,...,Z}$ et $C = {0,...,25}$ et $D = {0,...,9}$
+  - 123 peut correspondre à BCD, BX ou MD
+  - la bijectivité de la fonction f n'est pas suffisante
+  - Théorème : Un code C est non ambigu si et seulement si pour toutes
+    séquences $a = a_1...a_n$ et $b = b_1...b_m$ de $C^{+}$
+    - $a = b$ => ($n = m$ et $a_i = b_i$ pour tout $i = 1,...,n$)
+  - ex D = {0,1}
+    - C = {0,01,001} n'est pas uniquement déchiffrable
+    - C = {01, 10} est uniquement déchiffrable
+    - C = {0, 01, 11} est uniquement déchiffrable
+
+** Préliminaires : propriété préfixe
+
+  - Avec la propriété préfixe, il est possible de décoder le code dès
+    la fin de la réception d'un mot du code
+  - ex : $C = {0, 01, 11}$ est uniquement déchiffrable mais ne possède
+    pas la propriété préfixe $a = 001111111\dots$ on ne peut pas décoder
+    le second mot $0$ ou $01$
+
+* Entropie
+** définition
+
+- la quantité d'information contenue ou délivrée par une source d'information
+- $H(S) = - \sum_{i=1}^{n} p_i log_2 (p_i)$
+- $p_i$ : probabilité d'apparition du symbole =i= de =S=
+
+** ABBCCCDDDDEEEEE :
+
+- =H(ABBCCCDDDDEEEEE) = 2.14925539717=
+
+#+begin_src python
+>>> from math import *
+>>> -1./15*log(1./15)/log(2)
+0.26045937304056793
+>>> -2./15*log(2./15)/log(2)
+0.3875854127478025
+>>> -3./15*log(3./15)/log(2)
+0.4643856189774725
+>>> -4./15*log(4./15)/log(2)
+0.5085041588289383
+>>> -5./15*log(5./15)/log(2)
+0.5283208335737187
+>>> 0.26045937304056793+0.3875854127478025+0.4643856189774725
+    +0.5085041588289383+0.5283208335737187
+2.1492553971685
+#+end_src
+
+- Chaque symbole possède une quantité de =2.1492553971685 bits=, il faut
+  donc théoriquement =15x2.1492553971685 = 32.2388309575 bits= pour
+  coder le message
+
+* Huffman
+** Huffman : Présentation
+
+- Principe du morse. Longueur du code en fonction des fréquences
+- Méthode de compression statistique en 2 passes (semi-adaptatif, asymétrique)
+- L'algorithme de Huffman est un codage optimal préfixe (symbole - symbole)
+
+** Huffman : Algorithme
+
+- première passe
+  - calculer la fréquence d'apparition des caractères de S
+  - trier par ordre croissant les fréquences
+  - créer l'arbre de Huffman
+    - extraire les 2 premières plus petites fréquences (tri préalable, résultat différent)
+    - créer un nouveau noeud avec comme nouvelle valeur la somme des 2 fréquences
+    - réitérer jusqu'à obtenir un seul noeud (la racine)
+  - coder l'arbre de Huffman
+- deuxième passe
+  - coder la phrase avec l'arbre de Huffman
+
+** Huffman : ABBCCCDDDDEEEEE : 1
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  
+
+#+begin_src small-tree
+A
+#+end_src
+#+begin_src small-tree
+BB
+#+end_src
+#+begin_src small-tree
+CCC
+#+end_src
+#+begin_src small-tree
+DDDD
+#+end_src
+#+begin_src small-tree
+EEEEE
+#+end_src
+
+- On calcule les fréquences des lettres : =A= apparaît 1 fois, =B= 2 fois, =C= 3 fois, =D= 4 fois et =E= 5 fois
+- On extrait ensuite les 2 premières plus petites fréquences =A= et =B=
+  
+** Huffman : ABBCCCDDDDEEEEE : 2
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  
+
+#+begin_src small-tree
+ABB
+#+end_src
+#+begin_src small-tree
+CCC
+#+end_src
+#+begin_src small-tree
+DDDD
+#+end_src
+#+begin_src small-tree
+EEEEE
+#+end_src
+
+- On retrie par ordre croissant (ici l'ordre ne change pas)
+- On extrait ensuite les 2 premières plus petites fréquences =AB= et =C=
+
+** Huffman : ABBCCCDDDDEEEEE : 3
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+#+begin_src small-tree
+ABBCCC
+#+end_src
+#+begin_src small-tree
+DDDD
+#+end_src
+#+begin_src small-tree
+EEEEE
+#+end_src
+
+  
+
+- On retrie par ordre croissant
+
+** Huffman : ABBCCCDDDDEEEEE : 4
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+#+begin_src small-tree
+DDDD
+#+end_src
+#+begin_src small-tree
+EEEEE
+#+end_src
+#+begin_src small-tree
+ABBCCC
+#+end_src
+
+  
+
+- On extrait ensuite les 2 premières plus petites fréquences =D= et =E=
+
+** Huffman : ABBCCCDDDDEEEEE : 5
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+#+begin_src small-tree
+DDDDEEEEE
+#+end_src
+#+begin_src small-tree
+ABBCCC
+#+end_src
+
+  
+
+- On retrie par ordre croissant
+
+** Huffman : ABBCCCDDDDEEEEE : 6
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+#+begin_src small-tree
+ABBCCC
+#+end_src
+#+begin_src small-tree
+DDDDEEEEE
+#+end_src
+
+  
+
+- On extrait ensuite les 2 premières plus petites fréquences =ABC= et =DE=
+
+** Huffman : ABBCCCDDDDEEEEE : 7
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+#+begin_src tree
+ABBCCCDDDDEEEEE
+#+end_src
+
+  
+
+- On code l'arbre de Huffman en partant toujours de la racine.
+- Le code de =A= est =0=, =0= puis =0= soit =000=
+- Le code de =B= est =001=
+- Le code de =C= est =01=
+- Le code de =D= est =10=
+- Le code de =E= est =11=
+
+** Huffman : ABBCCCDDDDEEEEE
+  :PROPERTIES:
+  :CUSTOM_ID: huffman-abbcccddddeeeee
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+#+begin_src tree
+ABBCCCDDDDEEEEE
+#+end_src
+
+  
+
+- On code le message =ABBCCCDDDDEEEEE= à partir de l'arbre de Huffman
+- sortie : $000^A001^B001^B01^C01^C01^C10^D10^D10^D10^D11^E11^E11^E11^E11^E$ = 33 bits
+- codage de l'arbre (1 pour sous-arbre, 0 pour feuille): =1110A0B0C10D0E : 5*8+9 = 49 bits=
+- =49 + 33 = 82 bits=
+
+** Huffman : Problèmes   
+
+- la place du dico à coder
+- l'impossibilité de coder un caractère sur moins de 1 bit
+
+* Huffman adaptatif
+** Huffman adaptatif : Présentation
+
+- Éviter de transférer le codage du dico de l'algorithme de base
+- Méthode statistique adaptative en 1 passe (symétrique)
+
+** Huffman adapatif : Algorithme
+
+- créer un noeud vide \alpha pour introduire un nouveau caractère
+- coder la phrase
+  - lire un caractère
+  - si déjà présent dans l'arbre
+    - écrire le code du caractère présent dans l'arbre
+    - augmenter la fréquence du caractère de 1
+  - sinon
+    - écrire le code du caractère \alpha
+    - écrire le caractère en sortie
+    - ajouter un nouveau noeud à l'arbre avec une fréquence 1
+    - augmenter la fréquence du caractère \alpha
+  - mettre à jour l'arbre
+  - réitérer jusqu'à la fin de la chaîne
+
+** Huffman adapatif : ABBCCCDDDDEEEEE : 1
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+   
+
+#+begin_src tree-decode
+0α
+#+end_src
+
+  - créer un noeud vide \alpha pour introduire un nouveau caractère
+
+** Huffman adapatif : ABBCCCDDDDEEEEE : 1
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $\mathbf{0^αA}$
+
+#+begin_src tree-decode
+0α
+#+end_src
+
+- lire le caractère A
+- caractère non présent :
+  - on écrit le code du caractère \alpha : =0=
+  - on écrit le caractère =A=
+
+** Huffman adapatif : ABBCCCDDDDEEEEE : 2
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA$
+
+#+begin_src tree
+αA
+#+end_src
+
+- on met à jour l'arbre
+
+** Huffman adapatif : ABBCCCDDDDEEEEE : 2
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA\mathbf{1^αB}$
+
+#+begin_src tree
+αA
+#+end_src
+
+- lire le caractère B
+- caractère non présent :
+  - on écrit le code du caractère \alpha : =1=
+  - on écrit le caractère =B=
+
+** Huffman adapatif : ABBCCCDDDDEEEEE : 3
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB$
+
+#+begin_src tree
+αAαB
+#+end_src
+
+- on met à jour l'arbre
+
+** Huffman adapatif : ABBCCCDDDDEEEEE : 3
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB\mathbf{01^B}$
+
+#+begin_src tree
+αAαB
+#+end_src
+
+- lire le caractère B
+- caractère présent :
+  - on écrit le code du caractère =B= : =01=
+
+** Huffman adapatif : ABBCCCDDDDEEEEE : 4
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B$
+
+#+begin_src tree
+αAαBB
+#+end_src
+
+- on met à jour l'arbre
+
+** Huffman adapatif : ABBCCCDDDDEEEEE : 4
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B\mathbf{0^αC}$
+
+#+begin_src tree
+αAαBB
+#+end_src
+
+- lire le caractère C
+- caractère non présent :
+  - on écrit le code du caractère \alpha : =0=
+  - on écrit le caractère =C=
+
+** Huffman adapatif : ABBCCCDDDDEEEEE : 5
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC$
+
+#+begin_src tree
+αAαBBαC
+#+end_src
+
+- on met à jour l'arbre
+
+** Huffman adapatif : ABBCCCDDDDEEEEE : 5
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC\mathbf{101^C}$
+
+#+begin_src tree
+αAαBBαC
+#+end_src
+
+- lire le caractère C
+- caractère présent :
+  - on écrit le code du caractère =C= : =101=
+
+** Huffman adapatif : ABBCCCDDDDEEEEE : 6
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C$
+
+#+begin_src tree
+αAαBBαCC
+#+end_src
+
+- on met à jour l'arbre
+
+** Huffman adapatif : ABBCCCDDDDEEEEE : 6
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C\mathbf{10^C}$
+
+#+begin_src tree
+αAαBBαCC
+#+end_src
+
+- lire le caractère C
+- caractère présent :
+  - on écrit le code du caractère =C= : =10=
+
+** Huffman adapatif : ABBCCCDDDDEEEEE : 7
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C10^C$
+
+#+begin_src tree
+αAαBBαCCC
+#+end_src
+
+- on met à jour l'arbre
+
+** Huffman adapatif : ABBCCCDDDDEEEEE : 7
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C10^C\mathbf{0^αD}$
+
+#+begin_src tree
+αAαBBαCCC
+#+end_src
+
+- lire le caractère D
+- caractère non présent :
+  - on écrit le code du caractère \alpha : =0=
+  - on écrit le caractère =D=
+
+** Huffman adapatif : ABBCCCDDDDEEEEE : 8
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C10^C0^αD$
+
+#+begin_src tree
+αAαBBαCCCαD
+#+end_src
+
+- on met à jour l'arbre
+
+** Huffman adapatif : ABBCCCDDDDEEEEE : 8
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C10^C0^αD\mathbf{1101^D}$
+
+#+begin_src tree
+αAαBBαCCCαD
+#+end_src
+
+- lire le caractère D
+- caractère présent :
+  - on écrit le code du caractère =D= : =1101=
+
+** Huffman adapatif : ABBCCCDDDDEEEEE : 9
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C10^C0^αD1101^D$
+
+#+begin_src tree
+αAαBBαCCCαDD
+#+end_src
+
+- on met à jour l'arbre
+
+** Huffman adapatif : ABBCCCDDDDEEEEE : 9
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C10^C0^αD1101^D\mathbf{00^D}$
+
+#+begin_src tree
+αAαBBαCCCαDD
+#+end_src
+
+- lire le caractère D
+- caractère présent :
+  - on écrit le code du caractère =D= : =00=
+
+** Huffman adapatif : ABBCCCDDDDEEEEE : 10
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C10^C0^αD1101^D00^D$
+
+#+begin_src tree
+αAαBBαCCCαDDD
+#+end_src
+
+- on met à jour l'arbre
+
+** Huffman adapatif : ABBCCCDDDDEEEEE : 10
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C10^C0^αD1101^D00^D\mathbf{10^D}$
+
+#+begin_src tree
+αAαBBαCCCαDDD
+#+end_src
+
+- lire le caractère D
+- caractère présent :
+  - on écrit le code du caractère =D= : =10=
+
+** Huffman adapatif : ABBCCCDDDDEEEEE : 11
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C10^C0^αD1101^D00^D10^D$
+
+#+begin_src tree
+αAαBBαCCCαDDDD
+#+end_src
+
+- on met à jour l'arbre
+
+** Huffman adapatif : ABBCCCDDDDEEEEE : 11
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C10^C0^αD1101^D00^D10^D\mathbf{11^αE}$
+
+#+begin_src tree
+αAαBBαCCCαDDDD
+#+end_src
+
+- lire le caractère E
+- caractère non présent :
+  - on écrit le code du caractère \alpha : =11=
+  - on écrit le caractère =E=
+
+** Huffman adapatif : ABBCCCDDDDEEEEE : 12
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C10^C0^αD1101^D00^D10^D11^αE$
+
+#+begin_src tree
+αAαBBαCCCαDDDDαE
+#+end_src
+
+- on met à jour l'arbre
+
+** Huffman adapatif : ABBCCCDDDDEEEEE : 12
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C10^C0^αD1101^D00^D10^D11^αE\mathbf{0101^E}$
+
+#+begin_src tree
+αAαBBαCCCαDDDDαE
+#+end_src
+
+- lire le caractère E
+- caractère présent :
+  - on écrit le code du caractère =E= : =0101=
+
+** Huffman adapatif : ABBCCCDDDDEEEEE : 13
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C10^C0^αD1101^D00^D10^D11^αE0101^E$
+
+#+begin_src tree
+αAαBBαCCCαDDDDαEE
+#+end_src
+
+- on met à jour l'arbre
+
+** Huffman adapatif : ABBCCCDDDDEEEEE : 13
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C10^C0^αD1101^D00^D10^D11^αE0101^E\mathbf{100^E}$
+
+#+begin_src tree
+αAαBBαCCCαDDDDαEE
+#+end_src
+
+- lire le caractère E
+- caractère présent :
+  - on écrit le code du caractère =E= : =100=
+
+** Huffman adapatif : ABBCCCDDDDEEEEE : 14
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C10^C0^αD1101^D00^D10^D11^αE0101^E100^E$
+
+#+begin_src tree
+αAαBBαCCCαDDDDαEEE
+#+end_src
+
+- on met à jour l'arbre
+
+** Huffman adapatif : ABBCCCDDDDEEEEE : 14
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C10^C0^αD1101^D00^D10^D11^αE0101^E100^E\mathbf{00^E}$
+
+#+begin_src tree
+αAαBBαCCCαDDDDαEEE
+#+end_src
+
+- lire le caractère E
+- caractère présent :
+  - on écrit le code du caractère =E= : =00=
+
+** Huffman adapatif : ABBCCCDDDDEEEEE : 15
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C10^C0^αD1101^D00^D10^D11^αE0101^E100^E00^E$
+
+#+begin_src tree
+αAαBBαCCCαDDDDαEEEE
+#+end_src
+
+- on met à jour l'arbre
+
+** Huffman adapatif : ABBCCCDDDDEEEEE : 15
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C10^C0^αD1101^D00^D10^D11^αE0101^E100^E00^E\mathbf{01^E}$
+
+#+begin_src tree
+αAαBBαCCCαDDDDαEEEE
+#+end_src
+
+- lire le caractère E
+- caractère présent :
+  - on écrit le code du caractère =E= : =01=
+
+** Huffman adapatif : ABBCCCDDDDEEEEE : 16
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C10^C0^αD1101^D00^D10^D11^αE0101^E100^E00^E01^E$
+
+#+begin_src tree
+αAαBBαCCCαDDDDαEEEEE
+#+end_src
+
+** Huffman adapatif : ABBCCCDDDDEEEEE
+
+- =0A1B010C101100D1101001011E01011000001
+- =5*8+32 = 72 bits=
+
+** Huffman adapatif : Décodage : 1
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+   
+
+#+begin_src tree-decode
+0α
+#+end_src
+
+- créer un noeud vide \alpha pour lire un nouveau caractère
+
+** Huffman adapatif : Décodage : 1
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $\mathbf{0^αA}$
+
+#+begin_src tree-decode
+0α
+#+end_src
+
+- on lit le code =0= qui correspond au caractère \alpha
+- on lit donc les 8 bits suivants correspondant au caractère =A=
+
+** Huffman adapatif : Décodage : 2
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA$
+
+#+begin_src tree
+αA
+#+end_src
+
+- on met à jour l'arbre
+
+** Huffman adapatif : Décodage : 2
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA\mathbf{1^αB}$
+
+#+begin_src tree
+αA
+#+end_src
+
+- on lit le code =1= qui correspond au caractère \alpha
+- on lit donc les 8 bits suivants correspondant au caractère =B=
+
+** Huffman adapatif : Décodage : 3
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB$
+
+#+begin_src tree
+αAαB
+#+end_src
+
+- on met à jour l'arbre
+
+** Huffman adapatif : Décodage : 3
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB\mathbf{01^B}$
+
+#+begin_src tree
+αAαB
+#+end_src
+
+- on lit le code =01= qui correspond au caractère =B=
+
+** Huffman adapatif : Décodage : 4
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B$
+
+#+begin_src tree
+αAαBB
+#+end_src
+
+- on met à jour l'arbre
+
+** Huffman adapatif : Décodage : 4
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B\mathbf{0^αC}$
+
+#+begin_src tree
+αAαBB
+#+end_src
+
+- on lit le code =0= qui correspond au caractère \alpha
+- on lit donc les 8 bits suivants correspondant au caractère =C=
+
+** Huffman adapatif : Décodage : 5
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC$
+
+#+begin_src tree
+αAαBBαC
+#+end_src
+
+- on met à jour l'arbre
+
+** Huffman adapatif : Décodage : 5
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC\mathbf{101^C}$
+
+#+begin_src tree
+αAαBBαC
+#+end_src
+
+- on lit le code =101= qui correspond au caractère =C=
+
+** Huffman adapatif : Décodage : 6
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C$
+
+#+begin_src tree
+αAαBBαCC
+#+end_src
+
+- on met à jour l'arbre
+
+** Huffman adapatif : Décodage : 6
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C\mathbf{10^C}$
+
+#+begin_src tree
+αAαBBαCC
+#+end_src
+
+- on lit le code =10= qui correspond au caractère =C=
+
+** Huffman adapatif : Décodage : 7
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C10^C$
+
+#+begin_src tree
+αAαBBαCCC
+#+end_src
+
+- on met à jour l'arbre
+
+** Huffman adapatif : Décodage : 7
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C10^C\mathbf{0^αD}$
+
+#+begin_src tree
+αAαBBαCCC
+#+end_src
+
+- on lit le code =0= qui correspond au caractère \alpha
+- on lit donc les 8 bits suivants correspondant au caractère =D=
+
+** Huffman adapatif : Décodage : 8
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C10^C0^αD$
+
+#+begin_src tree
+αAαBBαCCCαD
+#+end_src
+
+- on met à jour l'arbre
+
+** Huffman adapatif : Décodage : 8
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C10^C0^αD\mathbf{1101^D}$
+
+#+begin_src tree
+αAαBBαCCCαD
+#+end_src
+
+- on lit le code =1101= qui correspond au caractère =D=
+
+** Huffman adapatif : Décodage : 9
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C10^C0^αD1101^D$
+
+#+begin_src tree
+αAαBBαCCCαDD
+#+end_src
+
+- on met à jour l'arbre
+
+** Huffman adapatif : Décodage : 9
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C10^C0^αD1101^D\mathbf{00^D}$
+
+#+begin_src tree
+αAαBBαCCCαDD
+#+end_src
+
+- on lit le code =00= qui correspond au caractère =D=
+
+** Huffman adapatif : Décodage : 10
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C10^C0^αD1101^D00^D$
+
+#+begin_src tree
+αAαBBαCCCαDDD
+#+end_src
+
+- on met à jour l'arbre
+
+** Huffman adapatif : Décodage : 10
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C10^C0^αD1101^D00^D\mathbf{10^D}$
+
+#+begin_src tree
+αAαBBαCCCαDDD
+#+end_src
+
+- on lit le code =10= qui correspond au caractère =D=
+
+** Huffman adapatif : Décodage : 11
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C10^C0^αD1101^D00^D10^D$
+
+#+begin_src tree
+αAαBBαCCCαDDDD
+#+end_src
+
+- on met à jour l'arbre
+
+** Huffman adapatif : Décodage : 11
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C10^C0^αD1101^D00^D10^D\mathbf{11^αE}$
+
+#+begin_src tree
+αAαBBαCCCαDDDD
+#+end_src
+
+- on lit le code =11= qui correspond au caractère \alpha
+- on lit donc les 8 bits suivants correspondant au caractère =E=
+
+** Huffman adapatif : Décodage : 12
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C10^C0^αD1101^D00^D10^D11^αE$
+
+#+begin_src tree
+αAαBBαCCCαDDDDαE
+#+end_src
+
+- on met à jour l'arbre
+
+** Huffman adapatif : Décodage : 12
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C10^C0^αD1101^D00^D10^D11^αE\mathbf{0101^E}$
+
+#+begin_src tree
+αAαBBαCCCαDDDDαE
+#+end_src
+
+- on lit le code =0101= qui correspond au caractère =E=
+
+** Huffman adapatif : Décodage : 13
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C10^C0^αD1101^D00^D10^D11^αE0101^E$
+
+#+begin_src tree
+αAαBBαCCCαDDDDαEE
+#+end_src
+
+- on met à jour l'arbre
+
+** Huffman adapatif : Décodage : 13
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C10^C0^αD1101^D00^D10^D11^αE0101^E\mathbf{100^E}$
+
+#+begin_src tree
+αAαBBαCCCαDDDDαEE
+#+end_src
+
+- on lit le code =100= qui correspond au caractère =E=
+
+** Huffman adapatif : Décodage : 14
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C10^C0^αD1101^D00^D10^D11^αE0101^E100^E$
+
+#+begin_src tree
+αAαBBαCCCαDDDDαEEE
+#+end_src
+
+- on met à jour l'arbre
+
+** Huffman adapatif : Décodage : 14
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C10^C0^αD1101^D00^D10^D11^αE0101^E100^E\mathbf{00^E}$
+
+#+begin_src tree
+αAαBBαCCCαDDDDαEEE
+#+end_src
+
+- on lit le code =00= qui correspond au caractère =E=
+
+** Huffman adapatif : Décodage : 15
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C10^C0^αD1101^D00^D10^D11^αE0101^E100^E00^E$
+
+#+begin_src tree
+αAαBBαCCCαDDDDαEEEE
+#+end_src
+
+- on met à jour l'arbre
+
+** Huffman adapatif : Décodage : 15
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+  $0^αA1^αB01^B0^αC101^C10^C0^αD1101^D00^D10^D11^αE0101^E100^E00^E\mathbf{01^E}$
+
+#+begin_src tree
+αAαBBαCCCαDDDDαEEEE
+#+end_src
+
+- on lit le code =01= qui correspond au caractère =E=
+
+** Huffman adaptatif : Problèmes
+
+ - Très sensible aux erreurs
+
+* Arithmétique
+** Arithmétique : Présentation
+Le codage arithmétique :
+- s'attaque au problème de Huffman du code des symboles sur des bits
+  entier
+- est une méthode statistique semi-adaptative en 2 passes asymétrique
+- représente la chaîne entière à coder sous la forme d'un seul nombre
+  réel
+** Arithmétique : Algorithme pour l'encodage
+- première passe
+  - on calcule des intervalles pour chaque symbole en fonction de leur
+    fréquence d'apparition
+- deuxième passe
+  - on définit la borne basse en cours = 0
+  - on définit la borne haute en cours = 1
+  - on parcourt tous les symboles
+    - écart = borne haute en cours - borne basse en cours
+    - borne basse en cours = borne basse en cours + écart * borne
+      basse du caractère à coder
+    - borne haute en cours = borne basse en cours + écart * borne
+      haute du caractère à coder
+  - on chercher le plus petit réel compris dans l'intervalle des 2
+    bornes
+** Arithmétique : ABBCCCDDDDEEEEE : première passe 1
+- On calcule les intervalles.
+
+- Pour calculer l'intervale on commence par =0= et on ajoute la première
+  fréquence ce qui donne =[0, 1/15)=, =[0,0.0666...)= pour =A=.
+- Ensuite on part de la borne max du dernier symbole, ici =1/15= ce qui
+  donne la borne min de =B= et on ajoute la fréquence de =B= ce qui donne
+  =1/15 + 2/15 = 3/15=.
+- La borne max de =B= est =3/15= et donne la borne min de =C=. On ajoute la
+  fréquence de =C= ce qui donne =3/15 + 3/15 = 6/15=
+- etc.
+
+** Arithmétique : ABBCCCDDDDEEEEE : première passe 2
+
+|---------+-----------+------------------------+-------------------------|
+| symbole | fréquence | intervalle             | intervalle final        |
+|---------+-----------+------------------------+-------------------------|
+| A       | 1/15      | [0     ,     0 + 1/15) | [0         , 0.0666...) |
+| B       | 2/15      | [1/15  ,  1/15 + 2/15) | [0.0666... , 0.2      ) |
+| C       | 3/15      | [3/15  ,  3/15 + 3/15) | [0.2       , 0.4      ) |
+| D       | 4/15      | [6/15  ,  6/15 + 4/15) | [0.4       , 0.6666...) |
+| E       | 5/15      | [10/15 , 10/15 + 5/15) | [0.6666... , 1        ) |
+|---------+-----------+------------------------+-------------------------|
+
+** Arithmétique : ABBCCCDDDDEEEEE : deuxième passe 1
+
+- On commence avec [0, 1) borne basse = 0 et borne haute = 1
+- On lit A qui a comme intervale [0, 0.0666...)
+- On calcule notre écart qui vaut borne haute - borne basse c'est à dire 1
+- On calcule notre nouvelle borne basse en cours
+  - borne basse en cours + écart * borne basse du caractère à coder
+  - c'est à dire 0 + 1 * 0
+- On calcule notre nouvelle borne haute en cours
+  - borne basse en cours + écart * borne haute du caractère à coder
+  - c'est à dire 0 + 1 * 0.0666
+
+** Arithmétique : ABBCCCDDDDEEEEE : deuxième passe 2
+
+- on lit le A : [0 , 1)
+#+begin_src text
+écart       = 1 - 0             = 1
+borne basse = 0 + 1 * 0         = 0
+borne haute = 0 + 1 * 0.0666... = 0.0666...
+#+end_src
+- on lit le B : [0 , 0.0666...)
+#+begin_src text
+écart       = 0.0666... - 0             = 0.0666...
+borne basse = 0 + 0.0666... * 0.0666... = 0.00444...
+borne haute = 0 + 0.0666... * 0.2       = 0.01333...
+#+end_src
+- on lit le B : [0.00444... , 0.01333...)
+#+begin_src text
+écart       = 0.01333... - 0.00444...              = 0.008888...
+borne basse = 0.00444... + 0.008888... * 0.0666... = 0.00503703...
+borne haute = 0.00444... + 0.008888... * 0.2       = 0.006222...
+#+end_src
+
+** Arithmétique : ABBCCCDDDDEEEEE : deuxième passe 3
+
+- C [0.00503703703703 , 0.006222222222)
+- C [0.00532148148148 , 0.005511111111)
+- C [0.00533096296296 , 0.005340444444)
+- D [0.00533475555556 , 0.0053372839506173)
+- D [0.0053357669135802 , 0.0053364411522634)
+- D [0.0053360366090535 , 0.0053362164060357)
+- D [0.0053361085278464 , 0.0053361564737083)
+- E [0.0053361404917543 , 0.0053361564737083)
+- E [0.0053361511463903 , 0.0053361564737083)
+- E [0.0053361546979356 , 0.0053361564737083)
+- E [0.0053361558817841 , 0.0053361564737083)
+- E [0.0053361562764002 , 0.0053361564737083)
+
+** Arithmétique : ABBCCCDDDDEEEEE : deuxième passe 4
+
+- On cherche le plus petit réel compris dans notre intervalle
+  [0.0053361562764002 , 0.0053361564737083)
+- Ici il s'agit de 0.00533615634777 codé par 01110111
+  1010111011011010111011001
+- Vous pourrez trouver un exemple sur https://www.h-schmidt.net/FloatConverter/IEEE754.html
+  (dans notre cas nous n'avons pas besoin du bit pour le signe qui est toujours positif)
+- En python vous pouvez le calculer avec
+#+BEGIN_SRC python
+2**-8*sum([int(c)*2**-index
+           for index, c in enumerate('1010111011011010111011001')])
+#+END_SRC
+- Ce n'est pas très important si vous ne comprenez pas toute la
+  représentation des nombres réels
+
+** Arithmétique : Résumé
+
+- On utilise =8= bits pour l'exposant et =25= pour Mantissa soit =33= bits
+- Il faut stocker le tableau de fréquences, pour notre exemple court
+  on pourrait indiquer le nombre d'apparition de chaque lettre avec 3
+  bits, ce qui donnerait =5*3 + 5*8 = 55 bits=
+- =55+33 = 88 bits=
+
+** Arithmétique : Algorithme pour le décodage
+
+- À partir de la valeur en cours, trouver le symbole correspondant
+- $\text{nouvelle valeur} = \frac{\text{valeur en cours} - \text{borne basse du symbole en
+  cours}}{\text{probabilité du symbole}}$
+
+** Arithmétique : Décodage =0.00533615634777= - 1
+
+- On trouve =A= car =0.00533615634777= est compris entre =[0         , 0.0666...)=
+- nouvelle valeur = =(0.00533615634777-0)/(1./15) = 0.08004234521655=
+- On trouve =B= car =0.08004234521655= est compris entre =[0.0666... , 0.2)=
+- nouvelle valeur = =(0.08004234521655-1./15)/(2./15) = 0.10031758912412501=
+- On trouve =B= car =0.10031758912412501= est compris entre =[0.0666... , 0.2)=
+- nouvelle valeur = =(0.10031758912412501-1./15)/(2./15) = 0.2523819184309376=
+
+** Arithmétique : Décodage =0.00533615634777= - 2
+- =C= : =0.2523819184309376= entre =[0.2, 0.4)=
+- =C= : =0.26190959215468795= entre =[0.2, 0.4)=
+- =C= : =0.3095479607734397= entre =[0.2, 0.4)=
+- =D= : =0.5477398038671984= entre =[0.4, 0.666666666)=
+- =D= : =0.5540242645019942= entre =[0.4, 0.666666666)=
+- =D= : =0.577590991882478= entre =[0.4, 0.666666666)=
+- =D= : =0.6659662195592924= entre =[0.4, 0.666666666)=
+- =E= : =0.9973733233473463= entre =[0.6666666666, 1)=
+- =E= : =0.992119970042039= entre =[0.6666666666, 1)=
+- =E= : =0.9763599101261171= entre =[0.6666666666, 1)=
+- =E= : =0.9290797303783515= entre =[0.6666666666, 1)=
+- =E= : =0.7872391911350545= entre =[0.6666666666, 1)=
+
+** Arithmétique : Problèmes
+
+- Il faut trouver comment coder les fréquences des caractères (on
+  retrouve le problème du dictionnaire de Huffman).
+- Attention aux arrondis, la manipulation des réels peut poser des
+  problèmes avec les ordinateurs et le nombre de chiffres après la
+  virgule limité
+
+* Réduction de l'entropie
+
+- ABBCCCDDDDEEEEE et EBCEDDEAEDBECDC possèdent la même entropie
+- pourtant on peut imaginer que le premier peut être compressé avec plus
+  d'efficacité que le second
+- au lieu de compresser directement le message, on va chercher à
+  réduire son entropie
+
+* RLE : Run Length Encoding
+** RLE : Présentation
+
+- Permet de compresser l'apparition successive du même caractère
+- Utile pour les images noir/blanc, utilisé par exemple pour le
+  transfert par fax
+- Pour éviter le problème de l'augmentation de l'espace quand il y a
+  peu de répétitions, on peut utiliser un caractère spécial pour
+  prévenir s'il s'agit d'une étape de compression ou pas
+
+** RLE : Exemple
+
+- Par exemple =AAAAABBBBB= peut être remplacer par =5A5B=
+- Mais si on a =ABABAB= il faudrait écrire =1A1B1A1B1A1B= ce qui n'est
+  pas du tout efficace
+- L'utilisation d'un caractère spécial par exemple ! permet d'éviter
+  ce problème mais devient intéressant seulement à partir de plus de 3
+  apparitions du même symbole
+- On aurait donc =!5A!5B= pour =AAAAABBBBB= alors que =ABABAB= reste
+  inchangé.
+
+** RLE : ABBCCCDDDDEEEEE
+
+- Sans utiliser de caractère spécial on a
+#+BEGIN_TEXT
+=1A2B3C4D5E = 10*8 = 80 bits=
+#+END_TEXT
+
+- Avec un caractère spécial par exemple ! on a
+#+BEGIN_TEXT
+=ABBCCC!4D!5E = 12*8 = 96 bits=
+#+END_TEXT
+
+* Méthodes par dictionnaire LZ (Lempel, Ziv)
+
+- Le but des méthodes par dictionnaire est de remplacer des motifs
+  fréquents par des références dans un dictionnaire
+
+* LZ77
+** LZ77 : Présentation
+
+- Algorithme adaptatif de type dictionnaire (local) en 1 passe (asymétrique)
+- Bien adapté pour compresser peu et décompresser souvent
+- La sortie est de type (position, longueur, caractère suivant)
+
+** LZ77 : Algorithme
+
+- Trouver le plus long prefixe dans le dico local
+- Afficher la position dans la fenêtre par rapport à la position courante
+- Afficher la longueur du préfixe
+- Afficher le caractère qui apparaît après le préfixe
+- Réitérer jusqu'à la fin de la chaîne
+
+** LZ77 : ABBCCCDDDDEEEEE : paramètres
+
+- L'algorithme LZ77 utilise 2 paramètres:
+  - longueur de la fenêtre (qui correspond à la taille du dictionnaire
+    dans lequel nous chercherons le préfixe)
+  - longueur du préfixe (qui correspond à la longueur maximum du
+    préfixe recherché)
+- Pour notre exemple, la chaîne de caractères étant petite, nous
+  choisirons une fenêtre de 7 symboles (qui nécessite 3 bits pour
+  stocker cette information), et une longueur de préfixe de 3 symboles
+  (qui nécessite 2 bits pour stocker cette information)
+
+** LZ77 : ABBCCCDDDEEEEEE : 1
+
+#+BEGIN_SRC ditaa :file ./inc/img/ditaa-A.png :cmdline -E :eval never-export
++-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+|cYEL |cYEL |cYEL |cYEL |cYEL |cYEL |cYEL |  A  |  B  |  B  |  C  |  C  |  C  |  D  |  D  |  D  |  D  |  E  |  E  |  E  |  E  |  E  |  0, 0, A
+|     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
++-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+7     6     5     4     3     2     1     0 
+#+END_SRC
+
+#+RESULTS:
+[[file:./inc/img/ditaa-A.png]]
+
+- En jaune, la fenêtre correspondant au dictionnaire
+- On lit le symbole =A=, il n'existe pas dans le dictionnaire local, on affiche donc =0, 0, A=
+- On décale la fenêtre après le symbole =A=
+
+#+BEGIN_SRC ditaa :file ./inc/img/ditaa-B.png :cmdline -E :eval never-export
+      +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+      |cYEL |cYEL |cYEL |cYEL |cYEL |cYEL |  A  |  B  |  B  |  C  |  C  |  C  |  D  |  D  |  D  |  D  |  E  |  E  |  E  |  E  |  E  |  0, 0, B
+      |     |     |     |     |     |     |cYEL |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
+      +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+      7     6     5     4     3     2     1     0
+#+END_SRC
+
+#+RESULTS:
+[[file:./inc/img/ditaa-B.png]]
+
+- On lit le symbole =B=, il n'existe pas dans le dictionnaire local, on affiche donc =0, 0, B=
+- On décale la fenêtre après le premier symbole =B=
+
+** LZ77 : ABBCCCDDDEEEEEE : 2
+
+#+BEGIN_SRC ditaa :file ./inc/img/ditaa-C.png :cmdline -E :eval never-export
+            +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+            |cYEL |cYEL |cYEL |cYEL |cYEL |  A  |  B  |  B  |  C  |  C  |  C  |  D  |  D  |  D  |  D  |  E  |  E  |  E  |  E  |  E  |
+            |     |     |     |     |     |cYEL |cYEL |     |     |     |     |     |     |     |     |     |     |     |     |     |
+            +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+            7     6     5     4     3     2     1     0 
+
+            +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+            |cYEL |cYEL |cYEL |cYEL |cYEL |  A  |  B  |  B  |  C  |  C  |  C  |  D  |  D  |  D  |  D  |  E  |  E  |  E  |  E  |  E  |  1, 1, C
+            |     |     |     |     |     |cYEL |cYEL |cRED |     |     |     |     |     |     |     |     |     |     |     |     |
+            +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+            7     6     5     4     3     2     1     0 
+#+END_SRC
+
+#+RESULTS:
+[[file:./inc/img/ditaa-C.png]]
+
+- On lit le symbole =B=, il existe dans le dictionnaire local, on
+  recherche le plus grand préfixe
+- Le plus grand préfixe est seulement =B= en rouge, on affiche donc
+  l'index dans le dictionnaire du =B= qui est =1= la longueur du préfixe
+  qui est aussi =1=
+- Puis on affiche le caractère qui suit, le C (soit =1, 1, C=)
+- On décale la fenêtre après le premier symbole =C=
+
+** LZ77 : ABBCCCDDDEEEEEE : 3
+
+#+BEGIN_SRC ditaa :file ./inc/img/ditaa-D.png :cmdline -E :eval never-export
+                        +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+                        |cYEL |cYEL |cYEL |  A  |  B  |  B  |  C  |  C  |  C  |  D  |  D  |  D  |  D  |  E  |  E  |  E  |  E  |  E  |
+                        |     |     |     |cYEL |cYEL |cYEL |cYEL |     |     |     |     |     |     |     |     |     |     |     |
+                        +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+                        7     6     5     4     3     2     1     0 
+
+                        +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+                        |cYEL |cYEL |cYEL |  A  |  B  |  B  |  C  |  C  |  C  |  D  |  D  |  D  |  D  |  E  |  E  |  E  |  E  |  E  |  1, 2, D
+                        |     |     |     |cYEL |cYEL |cYEL |cYEL |cRED |cRED |     |     |     |     |     |     |     |     |     |
+                        +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+                        7     6     5     4     3     2     1     0 
+#+END_SRC
+
+#+RESULTS:
+[[file:./inc/img/ditaa-D.png]]
+
+- On lit le symbole =C=, il existe dans le dictionnaire local, on
+  recherche le plus grand préfixe
+- Le plus grand préfixe est =CC=, on affiche donc l'index dans le
+  dictionnaire qui est =1= et la longueur du préfixe qui est =2=
+- Quand le caractère de fin du dictionnaire se répète on peut déborder
+  sur la droite car si la longueur du préfixe dépasse cela signifie
+  qu'il s'agit du même caractère répété.
+- Puis on affiche le caractère qui suit, le =D= (soit =1, 2, D=)
+- On décale la fenêtre après le premier symbole =D=
+ 
+** LZ77 : ABBCCCDDDEEEEEE : 4
+
+#+BEGIN_SRC ditaa :file ./inc/img/ditaa.png :cmdline -E :eval never-export
+
+
+                                          +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+                                          |  A  |  B  |  B  |  C  |  C  |  C  |  D  |  D  |  D  |  D  |  E  |  E  |  E  |  E  |  E  |
+                                          |cYEL |cYEL |cYEL |cYEL |cYEL |cYEL |cYEL |     |     |     |     |     |     |     |     |
+                                          +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+                                          7     6     5     4     3     2     1     0 
+
+                                          +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+                                          |  A  |  B  |  B  |  C  |  C  |  C  |  D  |  D  |  D  |  D  |  E  |  E  |  E  |  E  |  E  |  1, 3, E
+                                          |cYEL |cYEL |cYEL |cYEL |cYEL |cYEL |cYEL |cRED |cRED |cRED |     |     |     |     |     |
+                                          +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+                                          7     6     5     4     3     2     1     0 
+
+                                          +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+                                          |  A  |  B  |  B  |  C  |  C  |  C  |  D  |  D  |  D  |  D  |  E  |  E  |  E  |  E  |  E  |
+                                          |     |     |     |     |cYEL |cYEL |cYEL |cYEL |cYEL |cYEL |cYEL |     |     |     |     |
+                                          +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+                                                                  7     6     5     4     3     2     1     0 
+
+                                          +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+                                          |  A  |  B  |  B  |  C  |  C  |  C  |  D  |  D  |  D  |  D  |  E  |  E  |  E  |  E  |  E  |  1, 3, E
+                                          |     |     |     |     |cYEL |cYEL |cYEL |cYEL |cYEL |cYEL |cYEL |cRED |cRED |cRED |     |
+                                          +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+                                                                  7     6     5     4     3     2     1     0 
+#+END_SRC
+
+#+RESULTS:
+[[file:./inc/img/ditaa.png]]
+
+** LZ77 : Résumé 
+#+BEGIN_SRC ditaa :file ./inc/img/ditaa-summary.png :cmdline -E :eval never-export
++-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+|cYEL |cYEL |cYEL |cYEL |cYEL |cYEL |cYEL |  A  |  B  |  B  |  C  |  C  |  C  |  D  |  D  |  D  |  D  |  E  |  E  |  E  |  E  |  E  |  0, 0, A
+|     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
++-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+7     6     5     4     3     2     1     0 
+
+      +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+      |cYEL |cYEL |cYEL |cYEL |cYEL |cYEL |  A  |  B  |  B  |  C  |  C  |  C  |  D  |  D  |  D  |  D  |  E  |  E  |  E  |  E  |  E  |  0, 0, B
+      |     |     |     |     |     |     |cYEL |     |     |     |     |     |     |     |     |     |     |     |     |     |     |
+      +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+      7     6     5     4     3     2     1     0
+
+            +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+            |cYEL |cYEL |cYEL |cYEL |cYEL |  A  |  B  |  B  |  C  |  C  |  C  |  D  |  D  |  D  |  D  |  E  |  E  |  E  |  E  |  E  |  1, 1, C
+            |     |     |     |     |     |cYEL |cYEL |cRED |     |     |     |     |     |     |     |     |     |     |     |     |
+            +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+            7     6     5     4     3     2     1     0 
+
+                        +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+                        |cYEL |cYEL |cYEL |  A  |  B  |  B  |  C  |  C  |  C  |  D  |  D  |  D  |  D  |  E  |  E  |  E  |  E  |  E  |  1, 2, D
+                        |     |     |     |cYEL |cYEL |cYEL |cYEL |cRED |cRED |     |     |     |     |     |     |     |     |     |
+                        +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+                        7     6     5     4     3     2     1     0 
+
+                                          +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+                                          |  A  |  B  |  B  |  C  |  C  |  C  |  D  |  D  |  D  |  D  |  E  |  E  |  E  |  E  |  E  |  1, 3, E
+                                          |cYEL |cYEL |cYEL |cYEL |cYEL |cYEL |cYEL |cRED |cRED |cRED |     |     |     |     |     |
+                                          +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+                                          7     6     5     4     3     2     1     0 
+
+                                          +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+                                          |  A  |  B  |  B  |  C  |  C  |  C  |  D  |  D  |  D  |  D  |  E  |  E  |  E  |  E  |  E  |  1, 3, E
+                                          |     |     |     |     |cYEL |cYEL |cYEL |cYEL |cYEL |cYEL |cYEL |cRED |cRED |cRED |     |
+                                          +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+                                                                  7     6     5     4     3     2     1     0 
+#+END_SRC
+
+#+RESULTS:
+[[file:./inc/img/ditaa-summary.png]]
+
+- (0,0,A) (0,0,B) (1,1,C) (1,2,D) (1,3,E) (1,3,E)
+- 6*(3+2+8) = 78 bits
+
+** LZ77 : Décodage
+- (0,0,A) (0,0,B) (1,1,C) (1,2,D) (1,3,E) (1,3,E)
+
+#+BEGIN_decode
+#+ATTR_REVEAL: :frag (roll-in roll-in roll-in roll-in roll-in roll-in roll-in) :frag_idx (2 4 6 8 10 12)
+   * A
+   * B
+   * BC
+   * CCD
+   * DDDE
+   * EEEE
+#+END_decode
+
+#+ATTR_REVEAL: :frag (roll-in roll-in roll-in roll-in roll-in roll-in) :frag_idx (1 3 5 7 9 11)
+   * =0,0,A= pas de préfixe, on affiche directement =A=
+   * =0,0,B= pas de préfixe, on affiche directement =B=
+   * =1,1,C= un préfixe qui commence par la dernière lettre affichée =B= et de longueur 1 donc =B=, puis on affiche =C=
+   * =1,2,D= un préfixe qui commence par la dernière lettre affichée =C= et de longueur 2 donc =C= puis de nouveau =C=, puis on affiche =D=
+   * =1,3,E= un préfixe qui commence par la dernière lettre affichée =D= et de longueur 3 donc =DDD=, puis on affiche =E=
+   * =1,3,E= un préfixe qui commence par la dernière lettre affichée =E= et de longueur 3 donc =EEE=, puis on affiche =E=
+
+* LZ78
+** LZ78 : Présentation
+
+- méthode dictionnaire adaptative en 1 passe (symétrique)
+- La sortie est de type (index, caractère suivant)
+
+** LZ78 : Algorithme
+
+- lire un symbole
+- si le mot en cours suffixé par le symbole est présent dans le dico
+  - ajouter le symbole au mot en cours
+- sinon
+  - afficher l'index dans le dico du mot en cours
+  - afficher le symbole
+  - ajouter le mot en cours suffixé par le symbole dans le dico
+  - réinitialiser le mot en cours à vide
+
+** LZ78 : ABBCCCDDDDEEEEE : 1
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+| *0, null*    |              | *A*     |        | *1*         |
+
+- On commence avec le dictionnaire vide 0, null (1 bit est nécessaire
+  pour stocker le dictionnaire)
+- On lit le premier symbole A
+
+** LZ78 : ABBCCCDDDDEEEEE : 2
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+| 0, null      |              | A       | *0, A* |           1 |
+| *1, A*       |              |         |        |             |
+- Le mot en cours suffixé par le symbole donne A et n'est pas dans le
+  dictionnaire
+  - on affiche en sortie l'index dans le dico du mot en cours : 0
+  - on affiche en sortie le symbole A
+  - on ajoute le mot en cours suffixé par le symbole dans le
+    dictionnaire : 1, A
+  - on réinitialise le mot en cours à vide
+
+** LZ78 : ABBCCCDDDDEEEEE : 3
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+| 0, null      |              | A       | 0, A   |           1 |
+| 1, A         |              | *B*     |        |             |
+- On lit le symbole suivant B
+
+** LZ78 : ABBCCCDDDDEEEEE : 4
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+| 0, null      |              | A       | 0, A   | 1           |
+| 1, A         |              | B       | *0, B* |             |
+| *2, B*       |              |         |        | *2*         |
+- Le mot en cours suffixé par le symbole donne B et n'est pas dans le
+  dictionnaire
+  - on affiche en sortie l'index dans le dico du mot en cours : 0
+  - on affiche en sortie le symbole B
+  - on ajoute le mot en cours suffixé par le symbole dans le
+    dictionnaire : 2, B (la taille du dico augmente d'un bit pour
+    stocker l'index 2)
+  - on réinitialise le mot en cours à vide
+
+** LZ78 : ABBCCCDDDDEEEEE : 5
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+| 0, null      |              | A       | 0, A   |           1 |
+| 1, A         |              | B       | 0, B   |             |
+| 2, B         |              | *B*     |        |           2 |
+- On lit le symbole suivant B
+
+** LZ78 : ABBCCCDDDDEEEEE : 6
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+| 0, null      |              | A       | 0, A   |           1 |
+| 1, A         |              | B       | 0, B   |             |
+| 2, B         |              | B       |        |           2 |
+|              | *B*          |         |        |             |
+- Le mot en cours suffixé par le symbole donne B et est présent dans
+  le dictionnaire
+  - on ajoute donc le symbole au mot en cours qui devient B
+
+** LZ78 : ABBCCCDDDDEEEEE : 7
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+| 0, null      |              | A       | 0, A   |           1 |
+| 1, A         |              | B       | 0, B   |             |
+| 2, B         |              | B       |        |           2 |
+|              | B            | *C*     |        |             |
+- On lit le symbole suivant C
+
+** LZ78 : ABBCCCDDDDEEEEE : 8
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+| 0, null      |              | A       | 0, A   |           1 |
+| 1, A         |              | B       | 0, B   |             |
+| 2, B         |              | B       |        |           2 |
+|              | B            | C       | *2, C* |             |
+| *3, BC*      |              |         |        |             |
+- Le mot en cours suffixé par le symbole donne BC et n'est pas dans le
+  dictionnaire
+  - on affiche en sortie l'index dans le dico du mot en cours : 2
+  - on affiche en sortie le symbole C
+  - on ajoute le mot en cours suffixé par le symbole dans le
+    dictionnaire : 3, BC
+  - on réinitialise le mot en cours à vide
+
+** LZ78 : ABBCCCDDDDEEEEE : 9
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+| 0, null      |              | A       | 0, A   |           1 |
+| 1, A         |              | B       | 0, B   |             |
+| 2, B         |              | B       |        |           2 |
+|              | B            | C       | 2, C   |             |
+| 3, BC        |              | *C*     |        |             |
+- On lit le symbole suivant C
+
+** LZ78 : ABBCCCDDDDEEEEE : 10
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+| 0, null      |              | A       | 0, A   |           1 |
+| 1, A         |              | B       | 0, B   |             |
+| 2, B         |              | B       |        |           2 |
+|              | B            | C       | 2, C   |             |
+| 3, BC        |              | C       | *0, C* |             |
+| *4, C*       |              |         |        |         *3* |
+- C n'est pas dans le dico, on affiche 0,C et on ajoute 4,C au
+  dictionnaire (qui nécessite maintenant 3 bits)
+
+** LZ78 : ABBCCCDDDDEEEEE : 11
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+| 0, null      |              | A       | 0, A   |           1 |
+| 1, A         |              | B       | 0, B   |             |
+| 2, B         |              | B       |        |           2 |
+|              | B            | C       | 2, C   |             |
+| 3, BC        |              | C       | 0, C   |             |
+| 4, C         |              | *C*     |        |           3 |
+- On lit le symbole suivant C
+
+** LZ78 : ABBCCCDDDDEEEEE : 12
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+| 0, null      |              | A       | 0, A   |           1 |
+| 1, A         |              | B       | 0, B   |             |
+| 2, B         |              | B       |        |           2 |
+|              | B            | C       | 2, C   |             |
+| 3, BC        |              | C       | 0, C   |             |
+| 4, C         |              | C       |        |           3 |
+|              | *C*          |         |        |             |
+- C est dans le dico, on ajoute C au mot en cours
+
+** LZ78 : ABBCCCDDDDEEEEE : 13
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+| 0, null      |              | A       | 0, A   |           1 |
+| 1, A         |              | B       | 0, B   |             |
+| 2, B         |              | B       |        |           2 |
+|              | B            | C       | 2, C   |             |
+| 3, BC        |              | C       | 0, C   |             |
+| 4, C         |              | C       |        |           3 |
+|              | C            | *D*     |        |             |
+- On lit le symbole suivant D
+
+** LZ78 : ABBCCCDDDDEEEEE : 14
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+| 0, null      |              | A       | 0, A   |           1 |
+| 1, A         |              | B       | 0, B   |             |
+| 2, B         |              | B       |        |           2 |
+|              | B            | C       | 2, C   |             |
+| 3, BC        |              | C       | 0, C   |             |
+| 4, C         |              | C       |        |           3 |
+|              | C            | D       | *4, D* |             |
+| *5, CD*      |              |         |        |             |
+- CD n'est pas dans le dico, on affiche 4,D (4 étant l'index dans le
+  dico du mot en cours et D le symbole) et on ajoute 5,CD au
+  dictionnaire
+
+** LZ78 : ABBCCCDDDDEEEEE : 15
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+| 0, null      |              | A       | 0, A   |           1 |
+| 1, A         |              | B       | 0, B   |             |
+| 2, B         |              | B       |        |           2 |
+|              | B            | C       | 2, C   |             |
+| 3, BC        |              | C       | 0, C   |             |
+| 4, C         |              | C       |        |           3 |
+|              | C            | D       | 4, D   |             |
+| 5, CD        |              | *D*     |        |             |
+- On lit le symbole suivant D
+
+** LZ78 : ABBCCCDDDDEEEEE : 16
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+| 0, null      |              | A       | 0, A   |           1 |
+| 1, A         |              | B       | 0, B   |             |
+| 2, B         |              | B       |        |           2 |
+|              | B            | C       | 2, C   |             |
+| 3, BC        |              | C       | 0, C   |             |
+| 4, C         |              | C       |        |           3 |
+|              | C            | D       | 4, D   |             |
+| 5, CD        |              | D       | *0, D* |             |
+| *6, D*       |              |         |        |             |
+- D n'est pas dans le dico, on affiche 0,D et on ajoute 6,D au
+  dictionnaire
+
+** LZ78 : ABBCCCDDDDEEEEE : 17
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+| 0, null      |              | A       | 0, A   |           1 |
+| 1, A         |              | B       | 0, B   |             |
+| 2, B         |              | B       |        |           2 |
+|              | B            | C       | 2, C   |             |
+| 3, BC        |              | C       | 0, C   |             |
+| 4, C         |              | C       |        |           3 |
+|              | C            | D       | 4, D   |             |
+| 5, CD        |              | D       | 0, D   |             |
+| 6, D         |              | *D*     |        |             |
+- On lit le symbole suivant D
+
+** LZ78 : ABBCCCDDDDEEEEE : 18
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+| 0, null      |              | A       | 0, A   |           1 |
+| 1, A         |              | B       | 0, B   |             |
+| 2, B         |              | B       |        |           2 |
+|              | B            | C       | 2, C   |             |
+| 3, BC        |              | C       | 0, C   |             |
+| 4, C         |              | C       |        |           3 |
+|              | C            | D       | 4, D   |             |
+| 5, CD        |              | D       | 0, D   |             |
+| 6, D         |              | D       |        |             |
+|              | *D*          |         |        |             |
+- D est dans le dico, on ajoute D au mot en cours
+
+** LZ78 : ABBCCCDDDDEEEEE : 19
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+| 0, null      |              | A       | 0, A   |           1 |
+| 1, A         |              | B       | 0, B   |             |
+| 2, B         |              | B       |        |           2 |
+|              | B            | C       | 2, C   |             |
+| 3, BC        |              | C       | 0, C   |             |
+| 4, C         |              | C       |        |           3 |
+|              | C            | D       | 4, D   |             |
+| 5, CD        |              | D       | 0, D   |             |
+| 6, D         |              | D       |        |             |
+|              | D            | *D*     |        |             |
+- On lit le symbole suivant D
+
+** LZ78 : ABBCCCDDDDEEEEE : 20
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+| 0, null      |              | A       | 0, A   |           1 |
+| 1, A         |              | B       | 0, B   |             |
+| 2, B         |              | B       |        |           2 |
+|              | B            | C       | 2, C   |             |
+| 3, BC        |              | C       | 0, C   |             |
+| 4, C         |              | C       |        |           3 |
+|              | C            | D       | 4, D   |             |
+| 5, CD        |              | D       | 0, D   |             |
+| 6, D         |              | D       |        |             |
+|              | D            | D       | *6, D* |             |
+| *7, DD*      |              |         |        |             |
+- DD n'est pas dans le dico, on affiche 6,D (6 étant l'index dans le
+  dico du mot en cours et D le symbole) et on ajoute 7,DD au
+  dictionnaire
+
+** LZ78 : ABBCCCDDDDEEEEE : 21
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+| 0, null      |              | A       | 0, A   |           1 |
+| 1, A         |              | B       | 0, B   |             |
+| 2, B         |              | B       |        |           2 |
+|              | B            | C       | 2, C   |             |
+| 3, BC        |              | C       | 0, C   |             |
+| 4, C         |              | C       |        |           3 |
+|              | C            | D       | 4, D   |             |
+| 5, CD        |              | D       | 0, D   |             |
+| 6, D         |              | D       |        |             |
+|              | D            | D       | 6, D   |             |
+| 7, DD        |              | *E*     |        |             |
+- On lit le symbole suivant E
+
+** LZ78 : ABBCCCDDDDEEEEE : 22
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+| 0, null      |              | A       | 0, A   |           1 |
+| 1, A         |              | B       | 0, B   |             |
+| 2, B         |              | B       |        |           2 |
+|              | B            | C       | 2, C   |             |
+| 3, BC        |              | C       | 0, C   |             |
+| 4, C         |              | C       |        |           3 |
+|              | C            | D       | 4, D   |             |
+| 5, CD        |              | D       | 0, D   |             |
+| 6, D         |              | D       |        |             |
+|              | D            | D       | 6, D   |             |
+| 7, DD        |              | E       | *0, E* |             |
+| *8, E*       |              |         |        |         *4* |
+- E n'est pas dans le dico, on affiche 0,E et on ajoute 8,E au
+  dictionnaire
+
+** LZ78 : ABBCCCDDDDEEEEE : 23
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+| 0, null      |              | A       | 0, A   |           1 |
+| 1, A         |              | B       | 0, B   |             |
+| 2, B         |              | B       |        |           2 |
+|              | B            | C       | 2, C   |             |
+| 3, BC        |              | C       | 0, C   |             |
+| 4, C         |              | C       |        |           3 |
+|              | C            | D       | 4, D   |             |
+| 5, CD        |              | D       | 0, D   |             |
+| 6, D         |              | D       |        |             |
+|              | D            | D       | 6, D   |             |
+| 7, DD        |              | E       | 0, E   |             |
+| 8, E         |              | *E*     |        |           4 |
+- On lit le symbole suivant E
+
+** LZ78 : ABBCCCDDDDEEEEE : 24
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+| 0, null      |              | A       | 0, A   |           1 |
+| 1, A         |              | B       | 0, B   |             |
+| 2, B         |              | B       |        |           2 |
+|              | B            | C       | 2, C   |             |
+| 3, BC        |              | C       | 0, C   |             |
+| 4, C         |              | C       |        |           3 |
+|              | C            | D       | 4, D   |             |
+| 5, CD        |              | D       | 0, D   |             |
+| 6, D         |              | D       |        |             |
+|              | D            | D       | 6, D   |             |
+| 7, DD        |              | E       | 0, E   |             |
+| 8, E         |              | E       |        |           4 |
+|              | *E*          |         |        |             |
+- E est dans le dico, on ajoute E au mot en cours
+
+** LZ78 : ABBCCCDDDDEEEEE : 25
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+| 0, null      |              | A       | 0, A   |           1 |
+| 1, A         |              | B       | 0, B   |             |
+| 2, B         |              | B       |        |           2 |
+|              | B            | C       | 2, C   |             |
+| 3, BC        |              | C       | 0, C   |             |
+| 4, C         |              | C       |        |           3 |
+|              | C            | D       | 4, D   |             |
+| 5, CD        |              | D       | 0, D   |             |
+| 6, D         |              | D       |        |             |
+|              | D            | D       | 6, D   |             |
+| 7, DD        |              | E       | 0, E   |             |
+| 8, E         |              | E       |        |           4 |
+|              | E            | *E*     |        |             |
+- On lit le symbole suivant E
+
+** LZ78 : ABBCCCDDDDEEEEE : 26
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+| 0, null      |              | A       | 0, A   |           1 |
+| 1, A         |              | B       | 0, B   |             |
+| 2, B         |              | B       |        |           2 |
+|              | B            | C       | 2, C   |             |
+| 3, BC        |              | C       | 0, C   |             |
+| 4, C         |              | C       |        |           3 |
+|              | C            | D       | 4, D   |             |
+| 5, CD        |              | D       | 0, D   |             |
+| 6, D         |              | D       |        |             |
+|              | D            | D       | 6, D   |             |
+| 7, DD        |              | E       | 0, E   |             |
+| 8, E         |              | E       |        |           4 |
+|              | E            | E       | *8, E* |             |
+| *9, EE*      |              |         |        |             |
+- EE n'est pas dans le dico, on affiche 8,E et on ajoute 9,EE au
+  dictionnaire
+
+** LZ78 : ABBCCCDDDDEEEEE : 27
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+| 0, null      |              | A       | 0, A   |           1 |
+| 1, A         |              | B       | 0, B   |             |
+| 2, B         |              | B       |        |           2 |
+|              | B            | C       | 2, C   |             |
+| 3, BC        |              | C       | 0, C   |             |
+| 4, C         |              | C       |        |           3 |
+|              | C            | D       | 4, D   |             |
+| 5, CD        |              | D       | 0, D   |             |
+| 6, D         |              | D       |        |             |
+|              | D            | D       | 6, D   |             |
+| 7, DD        |              | E       | 0, E   |             |
+| 8, E         |              | E       |        |           4 |
+|              | E            | E       | 8, E   |             |
+| 9, EE        |              | *E*     |        |             |
+- On lit le symbole suivant E
+
+** LZ78 : ABBCCCDDDDEEEEE : 28
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+| 0, null      |              | A       | 0, A   |           1 |
+| 1, A         |              | B       | 0, B   |             |
+| 2, B         |              | B       |        |           2 |
+|              | B            | C       | 2, C   |             |
+| 3, BC        |              | C       | 0, C   |             |
+| 4, C         |              | C       |        |           3 |
+|              | C            | D       | 4, D   |             |
+| 5, CD        |              | D       | 0, D   |             |
+| 6, D         |              | D       |        |             |
+|              | D            | D       | 6, D   |             |
+| 7, DD        |              | E       | 0, E   |             |
+| 8, E         |              | E       |        |           4 |
+|              | E            | E       | 8, E   |             |
+| 9, EE        |              | E       |        |             |
+|              | *E*          |         |        |             |
+- E est dans le dico, on ajoute E au mot en cours
+
+** LZ78 : ABBCCCDDDDEEEEE : 29
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+| 0, null      |              | A       | 0, A   |           1 |
+| 1, A         |              | B       | 0, B   |             |
+| 2, B         |              | B       |        |           2 |
+|              | B            | C       | 2, C   |             |
+| 3, BC        |              | C       | 0, C   |             |
+| 4, C         |              | C       |        |           3 |
+|              | C            | D       | 4, D   |             |
+| 5, CD        |              | D       | 0, D   |             |
+| 6, D         |              | D       |        |             |
+|              | D            | D       | 6, D   |             |
+| 7, DD        |              | E       | 0, E   |             |
+| 8, E         |              | E       |        |           4 |
+|              | E            | E       | 8, E   |             |
+| 9, EE        |              | E       |        |             |
+|              | E            | *E*     |        |             |
+- On lit le symbole suivant E
+
+** LZ78 : ABBCCCDDDDEEEEE : 30
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+| 0, null      |              | A       | 0, A   |           1 |
+| 1, A         |              | B       | 0, B   |             |
+| 2, B         |              | B       |        |           2 |
+|              | B            | C       | 2, C   |             |
+| 3, BC        |              | C       | 0, C   |             |
+| 4, C         |              | C       |        |           3 |
+|              | C            | D       | 4, D   |             |
+| 5, CD        |              | D       | 0, D   |             |
+| 6, D         |              | D       |        |             |
+|              | D            | D       | 6, D   |             |
+| 7, DD        |              | E       | 0, E   |             |
+| 8, E         |              | E       |        |           4 |
+|              | E            | E       | 8, E   |             |
+| 9, EE        |              | E       |        |             |
+|              | E            | E       |        |             |
+|              | EE           |         | *9*    |             |
+- EE est dans le dico, on ajoute E au mot en cours
+- C'est la fin du message, on affiche 9
+
+** LZ78 : Résumé
+- =0,A,0,B,2,C,0,C,4,D,0,D,6,D,0,E,8,E,9=
+- =(2*1 + 2*2 + 4*3 + 2*4)+9*8 = 98 bits=
+- La taille du dictionnaire varie, il faut donc regarder la taille
+  courante au moment de l'affichage en sortie
+
+** LZ78 : Décodage
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: class="too-big"
+  :END:
+
+- =0,A,0,B,2,C,0,C,4,D,0,D,6,D,0,E,8,E,9=
+
+#+BEGIN_decode
+#+ATTR_REVEAL: :frag (roll-in roll-in roll-in roll-in roll-in roll-in roll-in roll-in roll-in roll-in) :frag_idx (2 4 6 8 10 12 14 16 18 20)
+   * A
+   * B
+   * BC
+   * C
+   * CD
+   * D
+   * DD
+   * E
+   * EE
+   * EE
+#+END_decode
+
+#+ATTR_REVEAL: :frag (roll-in roll-in roll-in roll-in roll-in roll-in roll-in roll-in roll-in roll-in) :frag_idx (1 3 5 7 9 11 13 15 17 19)
+   * =0,A= On affiche =A= et on ajoute =A= au dico à l'index =1=
+   * =0,B= On affiche =B= et on ajoute =B= au dico à l'index =2=
+   * =2,C= On affiche =BC=, =B= provenant du dico à l'index =2= et on ajoute =BC= au dico à l'index =3=
+   * =0,C= On affiche =C= et on ajoute =C= au dico à l'index =4=
+   * =4,D= On affiche =CD=, =C= provenant du dico à l'index =4= et on ajoute =CD= au dico à l'index =5=
+   * =0,D= On affiche =D= et on ajoute =D= au dico à l'index =6=
+   * =6,D= On affiche =DD= et on ajoute =DD= au dico à l'index =7=
+   * =0,E= On affiche =E= et on ajoute =E= au dico à l'index =8=
+   * =8,E= On affiche =EE= et on ajoute =EE= au dico à l'index =9=
+   * =9=   On affiche =EE=
+
+* LZW (Lempel, Ziv, Welch)
+** LZW : Présentation
+- méthode dictionnaire adaptative en 1 passe (symétrique)
+- basé sur lz78 avec en sortie uniquement des index
+** LZW : Algorithme
+- Même algo que LZ78 avec initialisation du dico avec la table ASCII,
+  il y a donc 256 index dans le dictionnaire au départ
+- On n'affiche plus le symbole en cours à la sortie, mais on l'ajoute
+  au mot en cours à la réinitialisation
+** LZW : ABBCCCDDDDEEEEE : 1
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+|              |              | *A*     |        | *8*         |
+
+- On commence avec le dictionnaire ASCII, (1 octet, 8 bits sont
+  nécessaires pour stocker le dictionnaire)
+- On lit le premier symbole =A=
+
+** LZW : ABBCCCDDDDEEEEE : 2
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+|              |              | A       |        |           8 |
+|              | *A*          |         |        |             |
+
+
+- =A= est dans le dictionnaire on l'ajoute au mot en cours
+
+** LZW : ABBCCCDDDDEEEEE : 3
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+|              |              | A       |        |           8 |
+|              | A            | *B*     |        |             |
+
+
+- On lit le deuxième symbole =B=
+
+** LZW : ABBCCCDDDDEEEEE : 4
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+|              |              | A       |        | 8           |
+|              | A            | B       | *A*    |             |
+| *256, AB*    | *B*          |         |        | *9*         |
+
+- On regarde si le mot en cours suffixé par le symbole est dans le
+  dictionnaire.
+- =AB= n'est pas dans le dictionnaire, on affiche donc l'index du mot
+  en cours en sortie =A=
+- On ajoute =AB= dans le dictionnaire avec l'index =256= (la taille du
+  dico passe à 9)
+- On ajoute le symbole au mot en cours =B=
+
+** LZW : ABBCCCDDDDEEEEE : 5
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+|              |              | A       |        |           8 |
+|              | A            | B       | A      |             |
+| 256, AB      | B            | *B*     |        |           9 |
+
+- On lit le troisième symbole =B=
+
+** LZW : ABBCCCDDDDEEEEE : 6
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+|              |              | A       |        |           8 |
+|              | A            | B       | A      |             |
+| 256, AB      | B            | B       | *B*    |           9 |
+| *257, BB*    | *B*          |         |        |             |
+
+- On regarde si le mot en cours suffixé par le symbole est dans le
+  dictionnaire.
+- =BB= n'est pas dans le dictionnaire, on affiche donc l'index du mot
+  en cours en sortie =B=
+- On ajoute =BB= dans le dictionnaire avec l'index =257=
+- On ajoute le symbole au mot en cours =B=
+
+** LZW : ABBCCCDDDDEEEEE : 7
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+|              |              | A       |        |           8 |
+|              | A            | B       | A      |             |
+| 256, AB      | B            | B       | B      |           9 |
+| 257, BB      | B            | *C*     |        |             |
+
+- On lit le quatrième symbole =C=
+
+** LZW : ABBCCCDDDDEEEEE : 8
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+|              |              | A       |        |           8 |
+|              | A            | B       | A      |             |
+| 256, AB      | B            | B       | B      |           9 |
+| 257, BB      | B            | C       | *B*    |             |
+| *258, BC*    | *C*          |         |        |             |
+
+- On regarde si le mot en cours suffixé par le symbole est dans le
+  dictionnaire.
+- =BC= n'est pas dans le dictionnaire, on affiche donc l'index du mot
+  en cours en sortie =B=
+- On ajoute =BC= dans le dictionnaire avec l'index =258=
+- On ajoute le symbole au mot en cours =C=
+
+** LZW : ABBCCCDDDDEEEEE : 9
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+|              |              | A       |        |           8 |
+|              | A            | B       | A      |             |
+| 256, AB      | B            | B       | B      |           9 |
+| 257, BB      | B            | C       | B      |             |
+| 258, BC      | C            | *C*     |        |             |
+
+- On lit le cinquième symbole =C=
+
+** LZW : ABBCCCDDDDEEEEE : 10
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+|              |              | A       |        |           8 |
+|              | A            | B       | A      |             |
+| 256, AB      | B            | B       | B      |           9 |
+| 257, BB      | B            | C       | B      |             |
+| 258, BC      | C            | C       | *C*    |             |
+| *259, CC*    | *C*          |         |        |             |
+- =CC= n'est pas dans le dictionnaire, on affiche =C= en sortie
+- On ajoute =CC= dans le dictionnaire avec l'index =259=
+- On ajoute le symbole au mot en cours =C=
+
+** LZW : ABBCCCDDDDEEEEE : 11
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+|              |              | A       |        |           8 |
+|              | A            | B       | A      |             |
+| 256, AB      | B            | B       | B      |           9 |
+| 257, BB      | B            | C       | B      |             |
+| 258, BC      | C            | C       | C      |             |
+| 259, CC      | C            | *C*     |        |             |
+
+- On lit le sixième symbole =C=
+
+** LZW : ABBCCCDDDDEEEEE : 12
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+|              |              | A       |        |           8 |
+|              | A            | B       | A      |             |
+| 256, AB      | B            | B       | B      |           9 |
+| 257, BB      | B            | C       | B      |             |
+| 258, BC      | C            | C       | C      |             |
+| 259, CC      | C            | C       |        |             |
+|              | *CC*         |         |        |             |
+
+- =CC= est dans le dictionnaire, on ajoute le symbole =C= au mot
+  en cours
+
+** LZW : ABBCCCDDDDEEEEE : 13
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+|              |              | A       |        |           8 |
+|              | A            | B       | A      |             |
+| 256, AB      | B            | B       | B      |           9 |
+| 257, BB      | B            | C       | B      |             |
+| 258, BC      | C            | C       | C      |             |
+| 259, CC      | C            | C       |        |             |
+|              | CC           | *D*     |        |             |
+
+- On lit le septième symbole =D=
+
+** LZW : ABBCCCDDDDEEEEE : 14
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+|              |              | A       |        |           8 |
+|              | A            | B       | A      |             |
+| 256, AB      | B            | B       | B      |           9 |
+| 257, BB      | B            | C       | B      |             |
+| 258, BC      | C            | C       | C      |             |
+| 259, CC      | C            | C       |        |             |
+|              | CC           | D       | *259*  |             |
+| *260, CCD*   | *D*          |         |        |             |
+
+- =CCD= n'est pas dans le dictionnaire, on affiche =259= correspondant
+  à l'index du mot en cours =CC= en sortie
+- On ajoute =CCD= dans le dictionnaire avec l'index =260=
+- On ajoute le symbole au mot en cours =D=
+
+** LZW : ABBCCCDDDDEEEEE : 15
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+|              |              | A       |        |           8 |
+|              | A            | B       | A      |             |
+| 256, AB      | B            | B       | B      |           9 |
+| 257, BB      | B            | C       | B      |             |
+| 258, BC      | C            | C       | C      |             |
+| 259, CC      | C            | C       |        |             |
+|              | CC           | D       | 259    |             |
+| 260, CCD     | D            | *D*     |        |             |
+
+- On lit le huitième symbole =D=
+
+** LZW : ABBCCCDDDDEEEEE : 16
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+|              |              | A       |        |           8 |
+|              | A            | B       | A      |             |
+| 256, AB      | B            | B       | B      |           9 |
+| 257, BB      | B            | C       | B      |             |
+| 258, BC      | C            | C       | C      |             |
+| 259, CC      | C            | C       |        |             |
+|              | CC           | D       | 259    |             |
+| 260, CCD     | D            | D       | *D*    |             |
+| *261, DD*    | *D*          |         |        |             |
+
+- =DD= n'est pas dans le dictionnaire, on affiche =D= en sortie
+- On ajoute =DD= dans le dictionnaire avec l'index =261=
+- On ajoute le symbole au mot en cours =D=
+
+** LZW : ABBCCCDDDDEEEEE : 17
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+|              |              | A       |        |           8 |
+|              | A            | B       | A      |             |
+| 256, AB      | B            | B       | B      |           9 |
+| 257, BB      | B            | C       | B      |             |
+| 258, BC      | C            | C       | C      |             |
+| 259, CC      | C            | C       |        |             |
+|              | CC           | D       | 259    |             |
+| 260, CCD     | D            | D       | D      |             |
+| 261, DD      | D            | *D*     |        |             |
+
+- On lit le neuvième symbole =D=
+
+** LZW : ABBCCCDDDDEEEEE : 18
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+|              |              | A       |        |           8 |
+|              | A            | B       | A      |             |
+| 256, AB      | B            | B       | B      |           9 |
+| 257, BB      | B            | C       | B      |             |
+| 258, BC      | C            | C       | C      |             |
+| 259, CC      | C            | C       |        |             |
+|              | CC           | D       | 259    |             |
+| 260, CCD     | D            | D       | D      |             |
+| 261, DD      | D            | D       |        |             |
+|              | *DD*         |         |        |             |
+
+- =DD= est dans le dictionnaire, on ajoute le symbole =D= au mot
+  en cours
+
+** LZW : ABBCCCDDDDEEEEE : 19
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+|              |              | A       |        |           8 |
+|              | A            | B       | A      |             |
+| 256, AB      | B            | B       | B      |           9 |
+| 257, BB      | B            | C       | B      |             |
+| 258, BC      | C            | C       | C      |             |
+| 259, CC      | C            | C       |        |             |
+|              | CC           | D       | 259    |             |
+| 260, CCD     | D            | D       | D      |             |
+| 261, DD      | D            | D       |        |             |
+|              | DD           | *D*     |        |             |
+
+- On lit le dixième symbole =D=
+
+** LZW : ABBCCCDDDDEEEEE : 20
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+|              |              | A       |        |           8 |
+|              | A            | B       | A      |             |
+| 256, AB      | B            | B       | B      |           9 |
+| 257, BB      | B            | C       | B      |             |
+| 258, BC      | C            | C       | C      |             |
+| 259, CC      | C            | C       |        |             |
+|              | CC           | D       | 259    |             |
+| 260, CCD     | D            | D       | D      |             |
+| 261, DD      | D            | D       |        |             |
+|              | DD           | D       | *261*  |             |
+| *262, DDD*   | *D*          |         |        |             |
+
+- =DDD= n'est pas dans le dictionnaire, on affiche =261= en sortie
+- On ajoute =DDD= dans le dictionnaire avec l'index =262=
+- On ajoute le symbole au mot en cours =D=
+
+** LZW : ABBCCCDDDDEEEEE : 21
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+|              |              | A       |        |           8 |
+|              | A            | B       | A      |             |
+| 256, AB      | B            | B       | B      |           9 |
+| 257, BB      | B            | C       | B      |             |
+| 258, BC      | C            | C       | C      |             |
+| 259, CC      | C            | C       |        |             |
+|              | CC           | D       | 259    |             |
+| 260, CCD     | D            | D       | D      |             |
+| 261, DD      | D            | D       |        |             |
+|              | DD           | D       | 261    |             |
+| 262, DDD     | D            | *E*     |        |             |
+
+- On lit le onzième symbole =E=
+
+** LZW : ABBCCCDDDDEEEEE : 22
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+|              |              | A       |        |           8 |
+|              | A            | B       | A      |             |
+| 256, AB      | B            | B       | B      |           9 |
+| 257, BB      | B            | C       | B      |             |
+| 258, BC      | C            | C       | C      |             |
+| 259, CC      | C            | C       |        |             |
+|              | CC           | D       | 259    |             |
+| 260, CCD     | D            | D       | D      |             |
+| 261, DD      | D            | D       |        |             |
+|              | DD           | D       | 261    |             |
+| 262, DDD     | D            | E       | *D*    |             |
+| *263, DE*    | *E*          |         |        |             |
+
+- =DE= n'est pas dans le dictionnaire, on affiche =D= en sortie
+- On ajoute =DE= dans le dictionnaire avec l'index =263=
+- On ajoute le symbole au mot en cours =E=
+
+** LZW : ABBCCCDDDDEEEEE : 23
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+|              |              | A       |        |           8 |
+|              | A            | B       | A      |             |
+| 256, AB      | B            | B       | B      |           9 |
+| 257, BB      | B            | C       | B      |             |
+| 258, BC      | C            | C       | C      |             |
+| 259, CC      | C            | C       |        |             |
+|              | CC           | D       | 259    |             |
+| 260, CCD     | D            | D       | D      |             |
+| 261, DD      | D            | D       |        |             |
+|              | DD           | D       | 261    |             |
+| 262, DDD     | D            | E       | D      |             |
+| 263, DE      | E            | *E*     |        |             |
+
+- On lit le douzième symbole =E=
+
+** LZW : ABBCCCDDDDEEEEE : 24
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+|              |              | A       |        |           8 |
+|              | A            | B       | A      |             |
+| 256, AB      | B            | B       | B      |           9 |
+| 257, BB      | B            | C       | B      |             |
+| 258, BC      | C            | C       | C      |             |
+| 259, CC      | C            | C       |        |             |
+|              | CC           | D       | 259    |             |
+| 260, CCD     | D            | D       | D      |             |
+| 261, DD      | D            | D       |        |             |
+|              | DD           | D       | 261    |             |
+| 262, DDD     | D            | E       | D      |             |
+| 263, DE      | E            | E       | *E*    |             |
+| *264, EE*    | *E*          |         |        |             |
+
+- =EE= n'est pas dans le dictionnaire, on affiche =E= en sortie
+- On ajoute =EE= dans le dictionnaire avec l'index =264=
+- On ajoute le symbole au mot en cours =E=
+
+** LZW : ABBCCCDDDDEEEEE : 25
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+|              |              | A       |        |           8 |
+|              | A            | B       | A      |             |
+| 256, AB      | B            | B       | B      |           9 |
+| 257, BB      | B            | C       | B      |             |
+| 258, BC      | C            | C       | C      |             |
+| 259, CC      | C            | C       |        |             |
+|              | CC           | D       | 259    |             |
+| 260, CCD     | D            | D       | D      |             |
+| 261, DD      | D            | D       |        |             |
+|              | DD           | D       | 261    |             |
+| 262, DDD     | D            | E       | D      |             |
+| 263, DE      | E            | E       | E      |             |
+| 264, EE      | E            | *E*     |        |             |
+
+- On lit le treizième symbole =E=
+
+** LZW : ABBCCCDDDDEEEEE : 26
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+|              |              | A       |        |           8 |
+|              | A            | B       | A      |             |
+| 256, AB      | B            | B       | B      |           9 |
+| 257, BB      | B            | C       | B      |             |
+| 258, BC      | C            | C       | C      |             |
+| 259, CC      | C            | C       |        |             |
+|              | CC           | D       | 259    |             |
+| 260, CCD     | D            | D       | D      |             |
+| 261, DD      | D            | D       |        |             |
+|              | DD           | D       | 261    |             |
+| 262, DDD     | D            | E       | D      |             |
+| 263, DE      | E            | E       | E      |             |
+| 264, EE      | E            | E       |        |             |
+|              | *EE*         |         |        |             |
+
+- =EE= est dans le dictionnaire, on ajoute le symbole =E= au mot
+  en cours
+
+** LZW : ABBCCCDDDDEEEEE : 27
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+|              |              | A       |        |           8 |
+|              | A            | B       | A      |             |
+| 256, AB      | B            | B       | B      |           9 |
+| 257, BB      | B            | C       | B      |             |
+| 258, BC      | C            | C       | C      |             |
+| 259, CC      | C            | C       |        |             |
+|              | CC           | D       | 259    |             |
+| 260, CCD     | D            | D       | D      |             |
+| 261, DD      | D            | D       |        |             |
+|              | DD           | D       | 261    |             |
+| 262, DDD     | D            | E       | D      |             |
+| 263, DE      | E            | E       | E      |             |
+| 264, EE      | E            | E       |        |             |
+|              | EE           | *E*     |        |             |
+
+- On lit le quatorzième symbole =E=
+
+** LZW : ABBCCCDDDDEEEEE : 28
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+|              |              | A       |        |           8 |
+|              | A            | B       | A      |             |
+| 256, AB      | B            | B       | B      |           9 |
+| 257, BB      | B            | C       | B      |             |
+| 258, BC      | C            | C       | C      |             |
+| 259, CC      | C            | C       |        |             |
+|              | CC           | D       | 259    |             |
+| 260, CCD     | D            | D       | D      |             |
+| 261, DD      | D            | D       |        |             |
+|              | DD           | D       | 261    |             |
+| 262, DDD     | D            | E       | D      |             |
+| 263, DE      | E            | E       | E      |             |
+| 264, EE      | E            | E       |        |             |
+|              | EE           | E       | *264*  |             |
+| *265, EEE*   | *E*          |         |        |             |
+
+- =EEE= n'est pas dans le dictionnaire, on affiche =264= en sortie
+- On ajoute =EEE= dans le dictionnaire avec l'index =265=
+- On ajoute =E= au mot en cours
+
+** LZW : ABBCCCDDDDEEEEE : 29
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+|              |              | A       |        |           8 |
+|              | A            | B       | A      |             |
+| 256, AB      | B            | B       | B      |           9 |
+| 257, BB      | B            | C       | B      |             |
+| 258, BC      | C            | C       | C      |             |
+| 259, CC      | C            | C       |        |             |
+|              | CC           | D       | 259    |             |
+| 260, CCD     | D            | D       | D      |             |
+| 261, DD      | D            | D       |        |             |
+|              | DD           | D       | 261    |             |
+| 262, DDD     | D            | E       | D      |             |
+| 263, DE      | E            | E       | E      |             |
+| 264, EE      | E            | E       |        |             |
+|              | EE           | E       | 264    |             |
+| 265, EEE     | E            | *E*     |        |             |
+
+- On lit le dernière symbole =E=
+
+** LZW : ABBCCCDDDDEEEEE : 30
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+|              |              | A       |        |           8 |
+|              | A            | B       | A      |             |
+| 256, AB      | B            | B       | B      |           9 |
+| 257, BB      | B            | C       | B      |             |
+| 258, BC      | C            | C       | C      |             |
+| 259, CC      | C            | C       |        |             |
+|              | CC           | D       | 259    |             |
+| 260, CCD     | D            | D       | D      |             |
+| 261, DD      | D            | D       |        |             |
+|              | DD           | D       | 261    |             |
+| 262, DDD     | D            | E       | D      |             |
+| 263, DE      | E            | E       | E      |             |
+| 264, EE      | E            | E       |        |             |
+|              | EE           | E       | 264    |             |
+| 265, EEE     | E            | E       |        |             |
+|              | *EE*         |         |        |             |
+
+- =EE= est dans le dictionnaire, on ajoute le symbole =E= au mot
+  en cours
+
+** LZW : ABBCCCDDDDEEEEE : 31
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+  :END:
+
+|--------------+--------------+---------+--------+-------------|
+| Dictionnaire | Mot en cours | Symbole | Sortie | Taille dico |
+|--------------+--------------+---------+--------+-------------|
+|              |              | A       |        |           8 |
+|              | A            | B       | A      |             |
+| 256, AB      | B            | B       | B      |           9 |
+| 257, BB      | B            | C       | B      |             |
+| 258, BC      | C            | C       | C      |             |
+| 259, CC      | C            | C       |        |             |
+|              | CC           | D       | 259    |             |
+| 260, CCD     | D            | D       | D      |             |
+| 261, DD      | D            | D       |        |             |
+|              | DD           | D       | 261    |             |
+| 262, DDD     | D            | E       | D      |             |
+| 263, DE      | E            | E       | E      |             |
+| 264, EE      | E            | E       |        |             |
+|              | EE           | E       | 264    |             |
+| 265, EEE     | E            | E       |        |             |
+|              | EE           |         | *264*  |             |
+
+- On affiche l'index du mot en cours =264=
+
+** LZW : Résumé
+
+- =A, B, B, C, 259, D, 261, D, E, 264, 264=
+- =8 + 9*10 = 98 bits=
+
+** LZW : Décodage
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: class="too-big"
+  :END:
+
+- =A, B, B, C, 259, D, 261, D, E, 264, 264=
+
+#+BEGIN_decode
+#+ATTR_REVEAL: :frag (roll-in roll-in roll-in roll-in roll-in roll-in roll-in roll-in roll-in roll-in roll-in) :frag_idx (2 3 4 5 6 7 8 9 10 11 12)
+   * A
+   * B
+   * B
+   * C
+   * CC
+   * D
+   * DD
+   * D
+   * E
+   * EE
+   * EE
+#+END_decode
+
+#+ATTR_REVEAL: :frag (roll-in roll-in roll-in roll-in roll-in roll-in roll-in roll-in roll-in roll-in roll-in roll-in) :frag_idx (1 2 3 4 5 6 7 8 9 10 11 12)
+   * =A= : Lire =A=
+   * =B= : Lire =B=, afficher =A= et ajouter =AB= au dico à l'index =256=
+   * =B= : Lire =B=, afficher =B= et ajouter =BB= au dico à l'index =257=
+   * =C= : Lire =C=, afficher =B= et ajouter =BC= au dico à l'index =258=
+   * =259= : Lire =259=, afficher =C= et ajouter =CC= au dico à
+     l'index =259= (quand l'index est égal à la taille du dico en
+     cours, on concatène le mot en cours ici =C= avec la première
+     lettre du mot en cours ici =C=)
+   * =D= : Lire =D=, afficher =CC= et ajouter =CCD= au dico à l'index =260=
+   * =261= : Lire =261=, afficher =D= et ajouter =DD= au dico à l'index =261=
+   * =D= : Lire =D=, afficher =DD= et ajouter =DDD= au dico à l'index =262=
+   * =E= : Lire =E=, afficher =D= et ajouter =DE= au dico à l'index =263=
+   * =264= : Lire =264=, afficher =E= et ajouter =EE= au dico à l'index =264=
+   * =264= : Lire =264=, afficher =EE= et ajouter =EEE= au dico à l'index =265=
+   * afficher =EE=
+
+#+BEGIN_COMMENT
+|--------------+--------------+--------+--------|
+| Dictionnaire | Mot en cours | Entrée | Sortie |
+|--------------+--------------+--------+--------|
+|              |              | A      |        |
+|              | A            | B      | A      |
+| 256, AB      | B            | B      | B      |
+| 257, BB      | B            | C      | B      |
+| 258, BC      | C            | 259    | C      |
+| 259, CC      | 259          | D      | CC     |
+| 260, CCD     | D            | 261    | D      |
+| 261, DD      | 261          | D      | DD     |
+| 262, DDD     | D            | E      | D      |
+| 263, DE      | E            | 264    | E      |
+| 264, EE      | 264          | 264    | EE     |
+| 265, EEE     | 264          |        | EE     |
+#+END_COMMENT
+
+* Rappel général
+- ABBCCCDDDDEEEEE : =15*8 = 120 bits=
+- Entropie H(ABBCCCDDDDEEEEE) : =2.14925539717=
+- Huffman : =49+33 = 82 bits=
+- Huffman adaptatif : =5*8+32 = 72 bits=
+- Codage arithmétique : =55+33 = 88 bits=
+- RLE : =80 bits=
+- RLE! : =96 bits=
+- LZ77 : =78 bits=
+- LZ78 : =98 bits=
+- LZW : =98 bits=
+
+

@@ -1,0 +1,23 @@
+.tree {
+  margin: auto;
+  width: 840px;
+  height: 420px;
+}
+
+.small-tree {
+  display: inline-block;
+  margin: auto;
+  width: 240px;
+  height: 240px;
+}
+
+.on-top > h3 ~ p {
+  width: 1300px;
+  height: 84px;
+  margin: auto;
+  text-align: left;
+}
+
+.on-top > div.org-src-container ~ ul {
+  margin-top: 84px;
+}
