@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"/>
+<title>Bases de données</title>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="../common/lib/reveal/dist/reveal.css"/>
+
+<link rel="stylesheet" href="../common/lib/reveal/dist/theme/serif.css" id="theme"/>
+
+<link rel="stylesheet" href="../common/inc/css/htmlize.css"/>
+
+<link rel="stylesheet" href="../common/lib/codemirror/codemirror.css"/>
+
+<link rel="stylesheet" href="../common/lib/codemirror/theme/dracula.css"/>
+
+<link rel="stylesheet" href="../common/inc/css/custom-pdf.css"/>
+
+<link rel="stylesheet" href="../common/inc/css/custom.css"/>
+
+<link rel="stylesheet" href="./inc/css/style.css"/>
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = '../common/lib/reveal/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+<script src="../common/lib/sql-wasm/sql-wasm.js"></script>
+<script src="../common/lib/sqlite/sqlite.js"></script>
+<script src="../common/lib/add-event/add-event.js"></script>
+<script src="../common/lib/split/split-grid.js"></script>
+<script src="../common/lib/resizable-table/resizable-table.js"></script>
+<script src="../common/lib/tabs/tabs.js"></script>
+<script src="./inc/js/script.js"></script>
+</head>
+<body>
+<div id="editor-sql"><main><div id="container-table">Voici les tables disponibles :<div id="tables">Aucune table actuellement</div></div><div id="table-gutter" class="gutter">⬄</div><div id="container-query"><label for='commands'>Écrire des requêtes SQL</label><textarea id="commands"></textarea></div><div id="query-gutter" class="gutter">⬄</div><div id="container-result">Résultat des requêtes:<div id="error" class="error"></div><pre id="output"></pre></div></main><button id="editor-close">Close</button><button id="editor-mode">Mode</button><button id="editor-clear">Clear</button><button id="editor-run">Éxecuter les requêtes</button><button id="tables-save">Sauvegarder la table</button></div>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">Bases de données</h1>
+</section>
+<section id="table-of-contents"><div id="table-of-contents">
+<h2>Table des matières</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#/slide-requetes-simples">1. Requêtes simples</a></li>
+<li><a href="#/slide-fichier-sql">2. Fichier SQL</a></li>
+<li><a href="#/slide-sql-integre">3. SQL intégré</a></li>
+</ul>
+</div>
+</div>
+</section>
+
+<section id="slide-requetes-simples">
+<h2 id="requetes-simples"><span class="section-number-2">1</span> Requêtes simples</h2>
+<div class="org-src-container">
+
+<pre  class="src src-sql" id="sql-test"><code trim>CREATE TABLE test (col1 INT PRIMARY KEY, col2);
+CREATE TABLE test2 (col1, col2 INT REFERENCES test(col1));
+INSERT INTO test VALUES (1,111), (2,222);
+INSERT INTO test2 VALUES (1,1), (2,2);
+SELECT * FROM test WHERE col1 BETWEEN 1 AND 1;
+</code></pre>
+</div>
+
+</section>
+<section id="slide-fichier-sql">
+<h2 id="fichier-sql"><span class="section-number-2">2</span> Fichier SQL</h2>
+<div class="org-src-container">
+
+<pre  class="src src-sql" id="sql-file"><code trim>/* load: data.db */
+/* test */
+SELECT * FROM test;
+</code></pre>
+</div>
+
+</section>
+<section id="slide-sql-integre" data-transition="none" class="on-top too-big">
+<h2 id="sql-integre"><span class="section-number-2">3</span> SQL intégré</h2>
+<div class="org-src-container">
+
+<pre  class="src src-sql-inline" id="sql-file"><code trim>/* load: data.db */
+SELECT * FROM test;
+</code></pre>
+</div>
+<p>
+ 
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right"><b>A</b></th>
+<th scope="col" class="org-right"><b>B</b></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">2</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</div>
+</div>
+<div id="reveal-styles"><ul><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/css/theme/black.css'); return false;" href="#">Black</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/css/theme/blood.css'); return false;" href="#">Blood</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/css/theme/sky.css'); return false;" href="#">Sky</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/css/theme/beige.css'); return false;" href="#">Beige</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/css/theme/simple.css'); return false;" href="#">Simple</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/css/theme/serif.css'); return false;" href="#">Serif</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/css/theme/night.css'); return false;" href="#">Night</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/css/theme/moon.css'); return false;" href="#">Moon</a></li><li><a onclick="document.getElementById('theme').setAttribute('href','../common/lib/reveal/css/theme/solarized.css'); return false;" href="#">Solarized</a></li></ul></div>
+<script src="../common/lib/reveal/dist/reveal.js"></script>
+<script src="../common/lib/reveal/plugin/notes/notes.js"></script>
+
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+plugins: [RevealNotes],
+width:1800, height:1200, progress:true, history:true, control:true, rolling_links:true, keyboard:true, overview:true, hash: false, slideNumber:true, pdfSeparateFragments: false,
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+{ src : '../common/lib/phpjs/php.min.js' }, { src : '../common/lib/codemirror/codemirror.js' }, { src : '../common/lib/codemirror/mode/htmlmixed/htmlmixed.js' }, { src : '../common/lib/codemirror/mode/sql/sql.js' }, { src : '../common/lib/codemirror/mode/xml/xml.js' }, { src : '../common/lib/codemirror/mode/php/php.js' }, { src : '../common/lib/codemirror/mode/javascript/javascript.js' }, { src : '../common/lib/codemirror/mode/clike/clike.js' }, { src : '../common/lib/codemirror/mode/css/css.js' }, { src : '../common/lib/codemirror/addon/display/autorefresh.js' }, { src : '../common/lib/split/split-grid.js' }, { src : '../common/inc/js/console.js'}]
+});
+</script>
+</body>
+</html>

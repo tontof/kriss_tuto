@@ -1,0 +1,57 @@
+#+Title: Bases de données
+
+#+INCLUDE: "../common/inc/index.org"
+#+REVEAL_EXTRA_CSS: ./inc/css/style.css
+#+HTML_HEAD_EXTRA: <script src="../common/lib/sql-wasm/sql-wasm.js"></script>
+#+HTML_HEAD_EXTRA: <script src="../common/lib/sqlite/sqlite.js"></script>
+#+HTML_HEAD_EXTRA: <script src="../common/lib/add-event/add-event.js"></script>
+#+HTML_HEAD_EXTRA: <script src="../common/lib/split/split-grid.js"></script>
+#+HTML_HEAD_EXTRA: <script src="../common/lib/resizable-table/resizable-table.js"></script>
+#+HTML_HEAD_EXTRA: <script src="../common/lib/tabs/tabs.js"></script>
+#+HTML_HEAD_EXTRA: <script src="./inc/js/script.js"></script>
+#+REVEAL_PREAMBLE: <div id="editor-sql"><main><div id="container-table">Voici les tables disponibles :<div id="tables">Aucune table actuellement</div></div><div id="table-gutter" class="gutter">⬄</div><div id="container-query"><label for='commands'>Écrire des requêtes SQL</label><textarea id="commands"></textarea></div><div id="query-gutter" class="gutter">⬄</div><div id="container-result">Résultat des requêtes:<div id="error" class="error"></div><pre id="output"></pre></div></main><button id="editor-close">Close</button><button id="editor-mode">Mode</button><button id="editor-clear">Clear</button><button id="editor-run">Éxecuter les requêtes</button><button id="tables-save">Sauvegarder la table</button></div>
+
+* Requêtes simples
+   :PROPERTIES:
+   :CUSTOM_ID: requetes-simples
+   :END:
+
+     #+NAME: sql-test
+     #+BEGIN_SRC sql
+     CREATE TABLE test (col1 INT PRIMARY KEY, col2);
+     CREATE TABLE test2 (col1, col2 INT REFERENCES test(col1));
+     INSERT INTO test VALUES (1,111), (2,222);
+     INSERT INTO test2 VALUES (1,1), (2,2);
+     SELECT * FROM test WHERE col1 BETWEEN 1 AND 1;
+     #+END_SRC
+
+* Fichier SQL
+   :PROPERTIES:
+   :CUSTOM_ID: fichier-sql
+   :END:
+     #+NAME: sql-file
+     #+BEGIN_SRC sql
+     /* load: data.db */
+     /* test */
+     SELECT * FROM test;
+     #+END_SRC
+
+* SQL intégré
+   :PROPERTIES:
+   :CUSTOM_ID: sql-integre
+   :REVEAL_EXTRA_ATTR: data-transition="none" class="on-top too-big"
+   :END:
+
+     #+NAME: sql-file
+     #+BEGIN_SRC sql-inline
+     /* load: data.db */
+     SELECT * FROM test;
+     #+END_SRC
+ 
+
+|-----+-----|
+| *A* | *B* |
+|-----+-----|
+|   1 |   2 |
+|   1 |   2 |
+|-----+-----|
